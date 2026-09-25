@@ -156,7 +156,7 @@
         ['Safe local storage.', 'Everything saves to the browser with a versioned schema. JSON backup and restore checks the file before touching your data.']
       ],
       stack: ['React', 'TypeScript', 'Vite', 'Tailwind CSS'],
-      links: [['Source on GitHub', GH + 'video-production']]
+      links: [['Open the app', 'https://thebarbellengineer.com/video-production/'], ['Source on GitHub', GH + 'video-production']]
     }
   };
 
