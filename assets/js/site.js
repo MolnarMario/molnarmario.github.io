@@ -123,7 +123,7 @@
         ['Tested hard.', '116 unit tests, a two-client protocol smoke test, and a UI test that drives two headless Chrome profiles as two devices.']
       ],
       stack: ['Vanilla JS', 'Web Crypto', 'Cloudflare Workers', 'Durable Objects', 'WebSockets'],
-      links: [],
+      links: [['Open the app', 'https://expenses.thebarbellengineer.com/']],
       note: 'Not on GitHub yet.'
     },
     dashboard: {
