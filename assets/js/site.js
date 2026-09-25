@@ -60,7 +60,7 @@
         ['One file.', 'The whole game is a single HTML file with zero dependencies.']
       ],
       stack: ['HTML', 'Canvas', 'Vanilla JS', 'Node verifier scripts'],
-      links: [['Play it', 'https://molnarmario.github.io/one-more-tile/'], ['Source on GitHub', GH + 'one-more-tile']]
+      links: [['Play it', 'https://thebarbellengineer.com/one-more-tile/'], ['Source on GitHub', GH + 'one-more-tile']]
     },
     chess: {
       tag: 'Browser game',
@@ -74,7 +74,7 @@
         ['Gambling mode.', 'Any capture can become a 50/50 roll that doubles the points or destroys your piece.']
       ],
       stack: ['HTML', 'Vanilla JS', 'WebRTC networking'],
-      links: [['Play it', 'https://molnarmario.github.io/chess2.0/'], ['Source on GitHub', GH + 'chess2.0']]
+      links: [['Play it', 'https://thebarbellengineer.com/chess2.0/'], ['Source on GitHub', GH + 'chess2.0']]
     },
     ironlog: {
       tag: 'Web app',
@@ -90,7 +90,7 @@
         ['Your old data comes along.', 'On first load it offers to import data from the older single-file version, and it never deletes the original.']
       ],
       stack: ['React', 'TypeScript', 'Vite', 'localStorage'],
-      links: [['Open the app', 'https://molnarmario.github.io/testing-out-my-lifting-app/'], ['Source on GitHub', GH + 'testing-out-my-lifting-app']]
+      links: [['Open the app', 'https://thebarbellengineer.com/testing-out-my-lifting-app/'], ['Source on GitHub', GH + 'testing-out-my-lifting-app']]
     },
     vinted: {
       tag: 'Chrome extension',
