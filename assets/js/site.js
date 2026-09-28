@@ -48,7 +48,7 @@
     tile: {
       tag: 'Browser game',
       title: 'One More Tile',
-      img: 'tile',
+      img: 'tile', board: true,
       lede: 'A cross-stitch puzzle inspired by the game Proverbs. Solving it uncovers a hidden pixel-art painting, one region at a time.',
       features: [
         ['Three puzzle types on one canvas.', 'Fill-a-pix clues cover the board, with sudoku patches (4×4 up to 9×9) and picross patches whose solution is part of the painting.'],
@@ -238,7 +238,12 @@
     if (!p) return;
     lastFocus = document.activeElement;
     media.replaceChildren();
-    if (p.img) {
+    if (p.board && window.TileBoard) {
+      // A replay of the board being solved (assets/js/tile.js). It stops itself once removed.
+      const host = el('div', { className: 'feature__media' });
+      media.append(host);
+      TileBoard(host, { demo: true });
+    } else if (p.img) {
       media.append(el('img', { src: `assets/img/${p.img}-1600.webp`, alt: `${p.title} screenshot`, width: 1600, height: 1000 }));
       if (p.mob) media.append(el('img', { className: 'modal__phone', src: `assets/img/${p.img}-mob.webp`, alt: '', width: 480, height: 1039 }));
     } else if (p.art) {
@@ -293,8 +298,8 @@
     const t = e.target.closest('[data-open]');
     if (t) { e.preventDefault(); openProject(t.dataset.open); }
   });
-  // Clicking the featured media also opens the details
-  $$('.feature__media, .feature .hive').forEach(m => {
+  // Clicking the featured media also opens the details (except the playable board)
+  $$('.feature__media:not([data-omt]), .feature .hive').forEach(m => {
     m.style.cursor = 'pointer';
     m.addEventListener('click', () => openProject(m.closest('[data-project]').dataset.project));
   });
