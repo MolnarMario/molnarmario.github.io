@@ -129,7 +129,7 @@
     dashboard: {
       tag: 'QA platform',
       title: 'Automation Test Platform',
-      img: 'dashboard',
+      img: 'dashboard', replay: true,
       lede: 'The QA tooling I always wanted. It runs end-to-end suites, shows every test live and keeps the history, without ever modifying the suites.',
       features: [
         ['Three frameworks, one live view.', 'Playwright, Cypress and Selenium suites run from the same dashboard. Each target gets a live card with a progress bar, pass/fail/skip counts and failures as they happen.'],
@@ -243,6 +243,11 @@
       const host = el('div', { className: 'feature__media' });
       media.append(host);
       TileBoard(host, { demo: true });
+    } else if (p.replay && window.AtpDemo && !reduceMotion) {
+      // The recorded walkthrough (assets/js/atp.js), picking up at the homepage's chapter
+      const host = el('div', { className: 'feature__media' });
+      media.append(host);
+      AtpDemo(host, { start: +($('[data-atp]').dataset.chapter || 0) });
     } else if (p.img) {
       media.append(el('img', { src: `assets/img/${p.img}-1600.webp`, alt: `${p.title} screenshot`, width: 1600, height: 1000 }));
       if (p.mob) media.append(el('img', { className: 'modal__phone', src: `assets/img/${p.img}-mob.webp`, alt: '', width: 480, height: 1039 }));
@@ -303,6 +308,9 @@
     m.style.cursor = 'pointer';
     m.addEventListener('click', () => openProject(m.closest('[data-project]').dataset.project));
   });
+  // The dashboard card plays its walkthrough in place of the screenshot
+  if (window.AtpDemo && !reduceMotion) AtpDemo($('[data-atp]'));
+
   /* ---------- Copy email ---------- */
   $$('.copy').forEach(btn => btn.addEventListener('click', async () => {
     const label = $('.copy__label', btn);
