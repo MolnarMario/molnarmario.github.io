@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mario Molnar | Building with AI agents</title>
-  <meta name="description" content="Mario Molnar is a QA engineer in Cluj-Napoca who directs AI coding agents to build Android apps, desktop tools, browser games and extensions. Nine shipped projects, most of them open source.">
+  <title>Mario Molnar | Software from idea to release</title>
+  <meta name="description" content="Mario Molnar is a product builder and QA engineer in Cluj-Napoca who takes software from first idea to release: Android apps, desktop tools, web apps, browser games and extensions. Nine shipped projects, most of them open source.">
   <meta name="theme-color" content="#0d0c0b" media="(prefers-color-scheme: dark)">
   <meta name="theme-color" content="#f5f2ec" media="(prefers-color-scheme: light)">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Mario Molnar | Building with AI agents">
-  <meta property="og:description" content="QA engineer who directs AI coding agents to build real software. Android, Windows, web, Chrome.">
+  <meta property="og:title" content="Mario Molnar | Software from idea to release">
+  <meta property="og:description" content="Product builder and QA engineer who takes real software from idea to release. Android, Windows, web, Chrome.">
   <meta property="og:url" content="https://thebarbellengineer.com/">
   <meta property="og:image" content="https://thebarbellengineer.com/assets/img/og.png">
   <link rel="canonical" href="https://thebarbellengineer.com/">
@@ -52,9 +52,9 @@
     <!-- Hero -->
     <section class="hero wrap" aria-labelledby="hero-title">
       <div class="hero__copy">
-        <p class="eyebrow"><span class="dot dot--live" aria-hidden="true"></span>QA engineer, Cluj-Napoca. Open to projects.</p>
-        <h1 id="hero-title" class="hero__title">I direct AI agents to build <em>real software</em>, then I try to break it.</h1>
-        <p class="hero__lede">By day I test WordPress products at Thrive Themes. The rest of the time I run a hive of coding agents. Since June 2026 they've shipped an Android app, a Windows desktop app, a Chrome extension and a stack of browser games and tools. Everything below exists, and most of it you can open right now.</p>
+        <p class="eyebrow"><span class="dot dot--live" aria-hidden="true"></span>Product builder and QA engineer, Cluj-Napoca. Open to projects.</p>
+        <h1 id="hero-title" class="hero__title">I build <em>real software</em> from idea to release, then I try to break it.</h1>
+        <p class="hero__lede">I've been part of every stage of making a product: shaping the idea, writing the PRD, giving feedback on specs and early builds, testing mid-build, shipping the release and talking to the customers who use it. Now I run the whole loop myself, on a modern, AI-assisted toolchain that keeps it fast. Since June 2026 that's meant an Android app, a Windows desktop app, a Chrome extension and a stack of web apps and games. Everything below exists, and most of it you can open right now.</p>
         <div class="hero__actions">
           <a class="btn btn--primary" href="#work">See the work <span aria-hidden="true">&darr;</span></a>
           <a class="btn btn--ghost" href="https://github.com/MolnarMario" target="_blank" rel="noopener">
@@ -77,7 +77,7 @@
     <section class="work wrap" id="work" aria-labelledby="work-title">
       <div class="section-head">
         <p class="kicker">01 / Work</p>
-        <h2 id="work-title">Things I've built with agents</h2>
+        <h2 id="work-title">Things I've built</h2>
         <p class="section-sub">Five I'm proudest of first. Click any project to see what it does, what it's made of and where to try it.</p>
       </div>
 
@@ -110,7 +110,7 @@
         <div class="feature__body">
           <p class="tag">Windows desktop app</p>
           <h3>AI Hive</h3>
-          <p>A control center for running many AI coding agents side by side. Each tile is a real Windows pseudo-console running Claude Code, Gemini, Grok or a plain shell. It's where every other project on this page was built.</p>
+          <p>A control center for running many AI coding assistants side by side. Each tile is a real Windows pseudo-console running Claude Code, Gemini, Grok or a plain shell. It's the workbench I built to keep several workstreams moving at once.</p>
           <ul class="facts"><li><b>~30k</b> lines of Python</li><li><b>147</b> commits</li><li><b>PySide6</b> + ConPTY</li></ul>
           <div class="feature__actions">
             <button class="btn btn--primary btn--sm" type="button" data-open="aihive">See features</button>
@@ -227,29 +227,39 @@
       <div class="wrap">
         <div class="section-head">
           <p class="kicker">02 / Process</p>
-          <h2 id="process-title">How I build with agents</h2>
-          <p class="section-sub">Agents write most of the code. Deciding what to build, reviewing it and finding where it breaks is still my job, and it's the part that decides whether the thing is any good.</p>
+          <h2 id="process-title">How I build</h2>
+          <p class="section-sub">I've sat in every seat a product passes through, from the first idea to the support inbox after launch. You get one person who keeps the whole picture in mind, and a modern toolchain that makes it fast without cutting corners.</p>
         </div>
         <ol class="steps">
           <li class="step reveal">
             <span class="step__n">1</span>
-            <h3>Write the spec first</h3>
-            <p>Every project starts as a plan file: what it does, what it won't do, how I'll know it works. The expense tracker's spec had numbered acceptance scenarios before any code existed.</p>
+            <h3>Start with the problem</h3>
+            <p>Before any code, I want to know who it's for, what they're trying to do and what would make them come back. A good idea survives those questions. A weak one gets fixed cheaply, on paper.</p>
           </li>
           <li class="step reveal">
             <span class="step__n">2</span>
-            <h3>Run agents in parallel</h3>
-            <p>Several agents per project, each on its own task, coordinating through a shared board in AI Hive so two of them don't rewrite the same file.</p>
+            <h3>Write the PRD</h3>
+            <p>What it does, what it won't do, and how we'll know it works. The expense tracker's spec had numbered acceptance scenarios before any code existed.</p>
           </li>
           <li class="step reveal">
             <span class="step__n">3</span>
-            <h3>Test like it's my day job</h3>
-            <p>Because it is. Unit tests for the maths, end-to-end tests for the flows, and an adversarial review pass before anything merges. The expense tracker ships with 116 unit tests.</p>
+            <h3>Build in short loops</h3>
+            <p>Work is split into small, parallel tasks, with AI-assisted tooling doing the heavy lifting. You see real progress mid-build, and your feedback goes straight into the next loop, not a list for later.</p>
           </li>
           <li class="step reveal">
             <span class="step__n">4</span>
+            <h3>Test like it's my day job</h3>
+            <p>Because it is. Unit tests for the maths, end-to-end tests for the flows, and a review pass before anything merges. The expense tracker ships with 116 unit tests.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step__n">5</span>
             <h3>Ship something you can open</h3>
             <p>A link that plays, an APK that installs, an extension that loads. If it only runs on my machine, it isn't done.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step__n">6</span>
+            <h3>Listen after launch</h3>
+            <p>Release is where the real feedback starts. Years in support taught me to talk to the people using the thing, find what confuses them and turn that into the next round of work.</p>
           </li>
         </ol>
       </div>
@@ -263,15 +273,15 @@
       <div class="about__copy">
         <p class="kicker">03 / About</p>
         <h2 id="about-title">Hi, I'm Mario.</h2>
-        <p>I've spent eleven years on the web, most of them at Thrive Themes. I did six years of technical support, debugging WordPress sites across the whole stack, then moved to QA in 2023. These days I write Playwright suites covering nine Thrive products and WordPress core. Before all that I built scrapers for car listings at AutoUncle.</p>
+        <p>I've spent eleven years on the web, and I've been there for every step of how a product gets made. I've been in the room when ideas were pitched, helped turn them into PRDs, reviewed specs and early builds, tested features mid-build, signed off releases and then heard from the customers who used them. Six years of that was technical support, debugging WordPress sites across the whole stack. Since 2023 it's been QA, writing Playwright suites that cover nine products and WordPress core.</p>
         <p>More than a decade of meetings and working across teams taught me how software should be built, and plenty about how it shouldn't. My degree in electronics and telecommunications adds an engineer's view. I want to know how a thing works, and where it breaks, before I trust it. Support filled in the other half. Six years of tickets from people whose site had just gone down taught me how customers think, and I still think like one before I build anything. The first question I ask is what someone will try when they open it cold.</p>
-        <p>Testing taught me how software fails. AI agents let me build software fast enough to find out. The two fit together better than I expected: agents are quick and confident and wrong in interesting ways, and catching that is exactly what a QA engineer does.</p>
+        <p>Testing taught me how software fails. A modern, AI-assisted workflow lets me build quickly without skipping the part that matters. Speed is only worth something if what ships holds up, and making sure it does is exactly what a QA engineer is for.</p>
 
         <ol class="timeline" aria-label="Career">
-          <li><span>2015</span>Web scraper, AutoUncle</li>
-          <li><span>2017</span>Technical support engineer, Thrive Themes</li>
-          <li><span>2023</span>QA engineer, Thrive Themes</li>
-          <li><span>2026</span>Building my own products with AI agents</li>
+          <li><span>2015</span>Started on the web, building data scrapers</li>
+          <li><span>2017</span>Technical support engineer</li>
+          <li><span>2023</span>QA engineer</li>
+          <li><span>2026</span>Building products end to end</li>
         </ol>
       </div>
 
@@ -279,12 +289,12 @@
         <h3 class="offline__title">Away from the keyboard</h3>
         <div class="offline__grid">
           <div class="off reveal">
-            <p class="off__big">585<small>kg</small></p>
-            <p><b>Powerlifting.</b> Competing since 2019. Best meet lifts are a 200 kg squat, 140 kg bench and 245 kg deadlift. Yes, that's why Ironlog exists.</p>
+            <p class="off__big">595<small>kg</small></p>
+            <p><b>Powerlifting.</b> Competing since 2019, with a 595 kg best total across squat, bench and deadlift. Yes, that's why Ironlog exists.</p>
           </div>
           <div class="off reveal">
             <p class="off__big">30</p>
-            <p><b>Countries backpacked.</b> I go for how locals actually live, not the landmarks.</p>
+            <p><b>Countries backpacked.</b> Night trains, hostels and whatever the locals are eating. I'd rather live like someone from the place for a week than tick off landmarks, and it's taught me to adapt fast and keep calm when plans fall apart.</p>
           </div>
           <div class="off reveal">
             <p class="off__big">1</p>
@@ -314,7 +324,7 @@
   </main>
 
   <footer class="foot wrap">
-    <p>Built with AI agents, tested by me. &copy; <span id="year">2026</span> Mario Molnar</p>
+    <p>Built and tested by me. &copy; <span id="year">2026</span> Mario Molnar</p>
     <a href="#top">Back to top <span aria-hidden="true">&uarr;</span></a>
   </footer>
 

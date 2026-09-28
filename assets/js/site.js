@@ -14,7 +14,7 @@
       tag: 'Windows desktop app',
       title: 'AI Hive',
       art: '[data-project="aihive"] .hive',
-      lede: 'I built it when one terminal per agent stopped scaling, somewhere around the fifth project. Every other project on this page came out of it.',
+      lede: 'I built it when one terminal per assistant stopped scaling, somewhere around the fifth project. It lets me keep several workstreams moving at once and see all of them in one place.',
       features: [
         ['Many agents, real terminals, one window.', 'Each tile is a Windows pseudo-console (ConPTY) running Claude Code, Gemini, Grok or a plain shell, so every CLI behaves exactly as it does on its own. Grids go from 1×1 to 4×3.'],
         ['Agents that don\'t trip over each other.', 'Agents in a workspace share an activity board through an MCP server. Before one edits a file, it can see that another agent already claimed it.'],
