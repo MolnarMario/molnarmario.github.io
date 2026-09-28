@@ -79,7 +79,7 @@
     ironlog: {
       tag: 'Web app',
       title: 'Ironlog',
-      img: 'ironlog', mob: true,
+      img: 'ironlog',
       lede: 'The powerlifting tracker I use for my own training. No account, and nothing leaves your browser.',
       features: [
         ['Log a session set by set.', 'RPE or percentage intensity, per-set gear, readiness meters and session timing, from a 47-lift exercise library.'],
