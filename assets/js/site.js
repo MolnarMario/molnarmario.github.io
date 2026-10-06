@@ -432,6 +432,70 @@
     }, 400);
   }
 
+  /* ---------- GitHub activity heatmap ---------- */
+  // data/contributions.json is rewritten every 12h by .github/workflows/contributions.yml.
+  // If the fetch fails the section stays hidden.
+  (async () => {
+    const section = $('#activity');
+    const heat = $('#heat');
+    if (!section || !heat) return;
+    let data;
+    try {
+      const res = await fetch('data/contributions.json', { cache: 'no-cache' });
+      if (!res.ok) return;
+      data = await res.json();
+    } catch { return; }
+
+    const grid = $('.heat__grid', heat);
+    const monthsEl = $('.heat__months', heat);
+    const scroller = $('.heat__scroll', heat);
+    const tip = $('.heat__tip', heat);
+    const fmt = new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+    const monthFmt = new Intl.DateTimeFormat('en', { month: 'short', timeZone: 'UTC' });
+
+    const cells = document.createDocumentFragment();
+    const labels = document.createDocumentFragment();
+    let lastMonth = -1;
+    data.weeks.forEach((week, w) => {
+      const first = new Date(week[0][0] + 'T00:00:00Z');
+      const m = first.getUTCMonth();
+      // Label a month at its first full week, skipping the cramped first column
+      if (m !== lastMonth && (w > 0 || first.getUTCDate() <= 7)) {
+        const s = document.createElement('span');
+        s.textContent = monthFmt.format(first);
+        s.style.gridColumn = String(w + 1);
+        labels.append(s);
+      }
+      lastMonth = m;
+      week.forEach(([date, n, level]) => {
+        const c = document.createElement('i');
+        c.dataset.l = level;
+        c.dataset.tip = `${n} ${n === 1 ? 'contribution' : 'contributions'} on ${fmt.format(new Date(date + 'T00:00:00Z'))}`;
+        c.tabIndex = -1;
+        cells.append(c);
+      });
+    });
+    grid.append(cells);
+    monthsEl.append(labels);
+
+    $('#activity-sum').innerHTML =
+      `<b>${data.total}</b> contributions in the last year, <b>${data.commits}</b> of them commits, on <b>${data.activeDays}</b> days. Longest streak <b>${data.longestStreak}</b> days.`;
+    section.hidden = false;
+    scroller.scrollLeft = scroller.scrollWidth; // phones: start at today
+
+    const show = (c) => {
+      tip.textContent = c.dataset.tip;
+      tip.hidden = false;
+      const b = c.getBoundingClientRect(), h = heat.getBoundingClientRect();
+      const x = b.left - h.left + b.width / 2;
+      tip.style.left = Math.min(Math.max(x, tip.offsetWidth / 2 + 4), h.width - tip.offsetWidth / 2 - 4) + 'px';
+      tip.style.top = (b.top - h.top - 6) + 'px';
+    };
+    grid.addEventListener('pointerover', e => { if (e.target.dataset.tip) show(e.target); });
+    grid.addEventListener('pointerleave', () => { tip.hidden = true; });
+    scroller.addEventListener('scroll', () => { tip.hidden = true; }, { passive: true });
+  })();
+
   // Deep links: /#hirakata opens that project. Runs last so the hive code above is ready.
   // The bare page goes underneath, so Back from a shared link closes the dialog first.
   const hash = location.hash.slice(1);
