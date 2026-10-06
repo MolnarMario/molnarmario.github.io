@@ -434,11 +434,10 @@
 
   /* ---------- GitHub activity heatmap ---------- */
   // data/contributions.json is rewritten every 12h by .github/workflows/contributions.yml.
-  // If the fetch fails the section stays hidden.
+  // Shows only the weeks from the first active one onward. If the fetch fails the block stays hidden.
   (async () => {
-    const section = $('#activity');
     const heat = $('#heat');
-    if (!section || !heat) return;
+    if (!heat) return;
     let data;
     try {
       const res = await fetch('data/contributions.json', { cache: 'no-cache' });
@@ -453,14 +452,19 @@
     const fmt = new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
     const monthFmt = new Intl.DateTimeFormat('en', { month: 'short', timeZone: 'UTC' });
 
+    const start = data.weeks.findIndex(w => w.some(d => d[1] > 0));
+    if (start < 0) return;
+    const weeks = data.weeks.slice(start);
+    const since = monthFmt.format(new Date(weeks[0].find(d => d[1] > 0)[0] + 'T00:00:00Z'));
+
     const cells = document.createDocumentFragment();
     const labels = document.createDocumentFragment();
     let lastMonth = -1;
-    data.weeks.forEach((week, w) => {
+    weeks.forEach((week, w) => {
       const first = new Date(week[0][0] + 'T00:00:00Z');
       const m = first.getUTCMonth();
-      // Label a month at its first full week, skipping the cramped first column
-      if (m !== lastMonth && (w > 0 || first.getUTCDate() <= 7)) {
+      // A label is wider than one column, so one in the last two columns would overflow the grid
+      if (m !== lastMonth && w < weeks.length - 2) {
         const s = document.createElement('span');
         s.textContent = monthFmt.format(first);
         s.style.gridColumn = String(w + 1);
@@ -477,11 +481,12 @@
     });
     grid.append(cells);
     monthsEl.append(labels);
+    heat.style.setProperty('--weeks', weeks.length);
 
-    $('#activity-sum').innerHTML =
-      `<b>${data.total}</b> contributions in the last year, <b>${data.commits}</b> of them commits, on <b>${data.activeDays}</b> days. Longest streak <b>${data.longestStreak}</b> days.`;
-    section.hidden = false;
-    scroller.scrollLeft = scroller.scrollWidth; // phones: start at today
+    $('#heat-sum').innerHTML =
+      `<b>${data.total}</b> contributions since ${since}, <b>${data.commits}</b> of them commits, across <b>${data.activeDays}</b> days. Longest streak: <b>${data.longestStreak}</b> days.`;
+    heat.hidden = false;
+    scroller.scrollLeft = scroller.scrollWidth; // narrow screens: start at today
 
     const show = (c) => {
       tip.textContent = c.dataset.tip;
