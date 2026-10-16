@@ -227,6 +227,22 @@ function latest(p, data) {
       </section>`;
 }
 
+function story(s) {
+  if (!s) return '';
+  return `
+          <h2 class="p-h">How it was built</h2>
+          <div class="story">
+            <p>${esc(s.context)}</p>
+            <h3 class="story__h">Decisions that mattered</h3>
+            <ul class="decisions">
+              ${s.decisions.map(([lead, detail]) => `<li><b>${esc(lead)}</b> ${esc(detail)}</li>`).join('\n              ')}
+            </ul>
+            ${s.testing ? `<h3 class="story__h">How it's tested</h3>\n            <p>${esc(s.testing)}</p>` : ''}
+            <h3 class="story__h">Where it stands</h3>
+            <p>${esc(s.status)}</p>
+          </div>`;
+}
+
 function pager(id) {
   const i = PROJECT_ORDER.indexOf(id), n = PROJECT_ORDER.length;
   const prev = PROJECTS[PROJECT_ORDER[(i - 1 + n) % n]], next = PROJECTS[PROJECT_ORDER[(i + 1) % n]];
@@ -241,7 +257,8 @@ async function projectPage(id, p, data) {
   const isGame = /game/i.test(p.tag);
   const actions = [];
   if (p.play) actions.push(`<a class="btn btn--primary" href="play/">${isGame ? 'Play it here' : 'Try it here'} <span aria-hidden="true">&rarr;</span></a>`);
-  p.links.forEach(([label, href], i) => actions.push(ext(href, `${esc(label)} ${arrow}`, `btn ${!p.play && i === 0 ? 'btn--primary' : 'btn--ghost'}`)));
+  // A link to the same app the play page frames reads as a second "Play" button, so name it for what it does
+  p.links.forEach(([label, href], i) => actions.push(ext(href, `${esc(href === p.play ? 'Open full page' : label)} ${arrow}`, `btn ${!p.play && i === 0 ? 'btn--primary' : 'btn--ghost'}`)));
   if (data?.log.entries.length) actions.push(`<a class="btn btn--ghost" href="changelog/">${logName(data)}</a>`);
   const features = p.features.map(([name, detail]) => `<li><b>${esc(name)}</b> ${esc(detail)}</li>`).join('\n            ');
   const body = `${NAV}
@@ -267,7 +284,7 @@ async function projectPage(id, p, data) {
           <h2 class="p-h" id="feat-h">What it does</h2>
           <ol class="feat-list">
             ${features}
-          </ol>
+          </ol>${story(p.story)}
           <h2 class="p-h">Made with</h2>
           <ul class="stack">${p.stack.map(t => `<li>${esc(t)}</li>`).join('')}</ul>
         </section>
@@ -378,9 +395,11 @@ const out = async (path, html) => {
 
 const slugs = new Set();
 const urls = ['/'];
+const allData = {};
 for (const id of PROJECT_ORDER) {
   const p = PROJECTS[id];
   const data = p.repo ? await loadData(p.slug) : null;
+  allData[id] = data;
   slugs.add(p.slug);
   const dir = `projects/${p.slug}/`;
   await out(dir + 'index.html', await projectPage(id, p, data));
@@ -394,6 +413,23 @@ for (const id of PROJECT_ORDER) {
 for (const d of await readdir(new URL('projects/', root))) {
   if (!slugs.has(d)) await rm(new URL(`projects/${d}`, root), { recursive: true, force: true });
 }
+// Homepage numbers marked data-live="kind[:project]" follow the same data, so they
+// can't drift from the project pages. A number with no data behind it is left alone.
+const live = {
+  projects: () => PROJECT_ORDER.length,
+  'total-commits': () => Object.values(allData).reduce((n, d) => n + (d?.commits ?? 0), 0) || null,
+  commits: id => allData[id]?.commits ?? null,
+  version: id => { const v = allData[id]?.log.entries.find(e => e.version)?.version; return v ? 'v' + v : null; },
+};
+const home = await readFile(new URL('index.html', root), 'utf8');
+const patched = home.replace(/<b\b([^>]*?)data-live="([\w-]+)(?::(\w+))?"([^>]*)>[^<]*<\/b>/g, (m, pre, kind, id, post) => {
+  const v = live[kind]?.(id);
+  if (v == null) return m;
+  const attrs = (pre + `data-live="${kind}${id ? ':' + id : ''}"` + post).replace(/data-count="[^"]*"/, `data-count="${v}"`);
+  return `<b${attrs}>${v}</b>`;
+});
+if (patched !== home) await writeFile(new URL('index.html', root), patched);
+
 await writeFile(new URL('sitemap.xml', root), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map(u => `  <url><loc>${SITE}${u}</loc></url>`).join('\n')}

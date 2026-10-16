@@ -26,6 +26,17 @@
         ['Per-agent model, effort and mode.', 'Dropdowns map to the real CLI flags. The card header follows whatever you change inside the terminal, and the permission mode survives a restart.'],
         ['A sidebar you can organize.', 'Drag agents and workspaces to reorder them, and group workspaces into collapsible categories. The layout persists across restarts.']
       ],
+      story: {
+        context: 'I started AI Hive on 5 July 2026, when I was running more coding agents than I could follow in separate terminal windows. Since then it has been built by the agents it runs: they take tasks, coordinate on the shared board and ship through pull requests, and every release gets a numbered changelog entry.',
+        decisions: [
+          ['Session data is never only in memory.', 'Adding or removing an agent saves at once, saves are atomic (a temp file, then a rename) and a failed load keeps the old file as a backup instead of deleting it. Each of these rules came from a real loss and has a regression test.'],
+          ['One copy at a time, enforced by Windows.', 'A named mutex refuses a second launch, so two copies can never overwrite each other\'s session file.'],
+          ['Closing a card kills everything it started.', 'Each card\'s processes run in a Windows Job Object, so a shell\'s grandchildren die with it, even if the app itself crashes.'],
+          ['Agents work in lanes.', 'An agent can get its own git worktree. It flags finished work with a "Task done" commit, and an integrator agent merges a batch through one pull request once a GPT-6-Luna review comes back clean.']
+        ],
+        testing: 'A smoke suite of over 3,400 checks drives the real app headlessly, with real child processes, in up to six parallel workers. One end-to-end test talks to a live Claude Code agent, closes the app, reopens it and checks that the same conversation comes back on the same card, which is exactly where data used to get lost.',
+        status: 'In daily use. I run my projects from it, this site included.'
+      },
       stack: ['Python', 'PySide6 / Qt', 'Windows ConPTY', 'MCP', 'pytest'],
       links: [['Source on GitHub', GH + 'ai-hive']]
     },
@@ -45,11 +56,21 @@
         ['Hear it, and remember it.', 'A speaker button reads any kana or word aloud with the phone\'s Japanese voice. Each of the 46 basic hiragana has a memory story: あ is APPLE.'],
         ['All of hiragana and katakana.', 'Voiced, combined and extended kana are opt-ins, so beginners start with the 46 basics and add the rest when ready.']
       ],
+      story: {
+        context: 'AI agents built the first version from three written phase prompts, starting on 3 July 2026. The first build session was lost before anything was written down, so the repo\'s HISTORY.md is a recovery record: what each phase asked for, what shipped and how every step was verified.',
+        decisions: [
+          ['Cut a feature the day after it landed.', 'Phase 3 added a spaced-repetition study mode with a scheduler, a lesson generator and a guided session. I removed it on 5 July and kept free practice and quizzes, with built-in practice sets for structure. Its tables stay in the database unused, because dropping them would take a destructive migration.'],
+          ['Trace the font, animate the real strokes.', 'The ghost you trace is drawn by the system font, which guarantees a correct shape. The stroke-order demo comes from KanjiVG\'s stroke paths, so both match real calligraphic proportions.'],
+          ['Contracts before parallel work.', 'Each phase started with a fixed design document and domain types, and then three or four workstreams built against it at once. Phase 3\'s four workstreams went green on the first integration build.']
+        ],
+        testing: '272 unit tests across 28 files. After each phase, two independent review agents went through the code, and Phase 2 and Phase 3 both came back with no blocking defects. The live database migrations were checked on a real Pixel 7 running Android 16.',
+        status: 'Version 0.4.0 is out as a downloadable APK, with all of hiragana and katakana, a reading track and nearly 700 words.'
+      },
       stack: ['Kotlin', 'Jetpack Compose', 'Room', 'ML Kit Digital Ink', 'Gradle'],
       links: [['Download the APK', GH + 'HiraKataQuest-releases/releases/latest'], ['Source on GitHub', GH + 'HiraKataQuest']]
     },
     tile: {
-      slug: 'one-more-tile', repo: 'one-more-tile', log: { from: 'changelog', file: 'CHANGELOG.md', level: 2 },
+      slug: 'one-more-tile', repo: 'one-more-tile', log: { from: 'changelog', file: 'RELEASE-NOTES.md', level: 2 },
       play: 'https://thebarbellengineer.com/one-more-tile/',
       tag: 'Browser game',
       title: 'One More Tile',
@@ -62,8 +83,19 @@
         ['Co-op for up to four.', 'Split-screen on one screen, or online with a room code.'],
         ['Hints near where you\'re working.', 'Press H and it points at a forced move close to your cursor and explains why it\'s forced.'],
         ['Nine paintings, saved as you go.', 'Each painting autosaves separately, with a timer that remembers your time, undo, pan and zoom, and full gamepad support.'],
-        ['One file.', 'The whole game is a single HTML file with zero dependencies.']
+        ['No build step, no install.', 'The game and its puzzle generator live in one HTML file, next to the precomputed boards. Open it and play.']
       ],
+      story: {
+        context: 'I started it on 13 June 2026 as a single HTML file. It still has no build step and no install: the game and its generator live in index.html, next to the precomputed boards. 60 versions shipped between June and September.',
+        decisions: [
+          ['Repair the picture, never hand out answers.', 'Where the solver would stall on a truly ambiguous spot, the generator flips a few pixels of the stitch texture until every region falls to plain counting. That\'s why no tile is ever pre-filled, on any difficulty.'],
+          ['Regions follow the painting.', 'A marker-controlled watershed grows the regions along the picture\'s own edges, so a finished region shows a recognisable piece of the art.'],
+          ['Ship the boards ready-made.', 'Generation is deterministic, so every player was computing the same bytes, up to 35 seconds on the largest canvas. Since 0.30.0 the boards ship precomputed, and a check rebuilds each one and asserts the shipped bytes match.'],
+          ['Trust the connection, not the message.', 'Version 0.33.0 rebuilt online play so a player\'s identity comes from the connection a message arrived on, after a review found one guest could pose as the host.']
+        ],
+        testing: 'An audit mode rebuilds every canvas at every difficulty and asserts zero pre-filled tiles, every region solvable from the shipped clues and every picross patch solvable by line logic. Versus was played across two browser tabs over the live connection broker before release, which turned up the fixes in 0.33.1.',
+        status: 'Live and free to play, solo, in co-op or in versus.'
+      },
       stack: ['HTML', 'Canvas', 'Vanilla JS', 'Node verifier scripts'],
       links: [['Play it', 'https://thebarbellengineer.com/one-more-tile/'], ['Source on GitHub', GH + 'one-more-tile']]
     },
@@ -80,6 +112,16 @@
         ['Play a friend or the computer.', 'Online against a friend, or against an AI at several difficulties, with an optional clock.'],
         ['Gambling mode.', 'Any capture can become a 50/50 roll that doubles the points or destroys your piece.']
       ],
+      story: {
+        context: 'It started on 13 June 2026 as chess with an RPG layer, in one HTML file. Online play came in August, and so did the work that made it safe.',
+        decisions: [
+          ['Rules without the page.', 'The move logic was tangled up with dialogs, animations and networking in one function. I pulled it out into a rules engine with no page, timer or network code, so it can be tested on its own.'],
+          ['Send the move, not the result.', 'Online play first shipped the whole game state to the other player, who applied it as is, including move-log HTML that could run script. Now each side sends only the move, checks it against its own legal moves, replays it and compares a position hash after every move.'],
+          ['Dice nobody controls.', 'Gamble rolls come from a seed both players contribute when they connect, so both boards roll the same result and neither side reports its own outcome.']
+        ],
+        testing: 'Three test suites cover the rules engine, the network protocol and replaying a game from its moves.',
+        status: 'Live. Play a friend online or the computer.'
+      },
       stack: ['HTML', 'Vanilla JS', 'WebRTC networking'],
       links: [['Play it', 'https://thebarbellengineer.com/chess2.0/'], ['Source on GitHub', GH + 'chess2.0']]
     },
@@ -98,6 +140,17 @@
         ['Switch kg and lb freely.', 'Weights are stored in kilograms and converted for display, so changing units never rewrites your history.'],
         ['Your old data comes along.', 'On first load it offers to import data from the older single-file version, and it never deletes the original.']
       ],
+      story: {
+        context: 'It began on 11 June 2026 as a single 424 KB HTML file holding a minified React bundle. In August I rebuilt it as a Vite, React and TypeScript project, one tab at a time, with the old build kept as the reference for how everything should behave.',
+        decisions: [
+          ['Kilograms underneath.', 'Weights are stored in kilograms and converted for display, so switching units never rewrites your history.'],
+          ['Never lose the old data.', 'On first load it offers to import data from the original build, reports how many days and sets came across, names any exercise it couldn\'t match and never deletes the original.'],
+          ['Parity you can check.', 'Every class in the original stylesheet was diffed against the new code. 17 are unused, and all 17 were already dead in the original.'],
+          ['Say so when saving fails.', 'If the browser refuses to store data, in private mode or with full storage, a banner says so instead of failing silently.']
+        ],
+        testing: 'Unit tests cover the plate solver and the food maths, and every build runs the TypeScript typecheck first.',
+        status: 'In use for my own training. The workout, plates and food tabs are all rebuilt.'
+      },
       stack: ['React', 'TypeScript', 'Vite', 'localStorage'],
       links: [['Open the app', 'https://thebarbellengineer.com/testing-out-my-lifting-app/'], ['Source on GitHub', GH + 'testing-out-my-lifting-app']]
     },
@@ -109,14 +162,26 @@
       lede: 'Vinted shows you items from sellers all over Europe and never says where they are. This extension does.',
       features: [
         ['A flag on every listing.', 'The seller\'s country flag sits in the corner of each item on the homepage, in search and on the item page.'],
-        ['Mostly free.', 'The catalog API already returns the seller\'s currency when it differs from yours. On vinted.ro one catalog call resolved 93 of 94 items with no extra requests.'],
+        ['Reads what the page already knows.', 'Seller ids come from the page\'s own data and from the requests Vinted makes anyway. On a vinted.ro search that named 96 of 96 sellers in 8 ms, with no extra requests.'],
         ['Works on every Vinted domain.', 'No per-country code. It found every card on vinted.pl, .de, .co.uk and .ro without a change.'],
-        ['Euro sellers fill in closest first.', 'A euro could mean any of eighteen markets, so those cost one profile lookup each. Cards near the screen go first, and the popup shows how many are left.'],
+        ['Cards near the screen go first.', 'Where a seller lives costs one profile lookup, once. Cards in and near the viewport are looked up first, and the popup shows how many are still coming.'],
         ['Learns new markets by itself.', 'It builds the currency-to-country table from Vinted\'s own countries endpoint and caches it for a week.'],
-        ['One cache across countries.', 'The cache lives in the service worker, so a seller found on vinted.fr is already known on vinted.de.']
+        ['One cache across countries.', 'Sellers are cached for 30 days in the service worker, so a seller found on vinted.fr is already known on vinted.de.'],
+        ['Polite to Vinted.', 'It stays under the measured rate limit, shares one budget across every tab and backs off whenever Vinted says to.']
       ],
+      story: {
+        context: 'Vinted shows listings from all over Europe and never says where the seller is. The extension reads that from data the page already has, and asks Vinted only when it has to.',
+        decisions: [
+          ['Read what the page already received.', 'Seller ids come from the page\'s own server-rendered data and from the requests Vinted\'s front end makes anyway. On a vinted.ro search that named the sellers of 96 of 96 cards in 8 ms, with no extra requests.'],
+          ['Measure the rate limit, then stay under it.', '30 requests to the profile endpoint succeed and the 31st gets a 429. The extension allows 20 at once and 0.8 per second after that, shared by every tab, so Vinted\'s own front end keeps some headroom.'],
+          ['Adapt when Vinted changes.', 'On 8 October 2026 the endpoint that made most lookups free started returning 404. Version 2.2 dropped it and now learns exchange rates from sellers it already knows, so a converted price can name the seller\'s currency for free.'],
+          ['No flag beats a wrong flag.', 'A card whose seller nothing named gets no flag rather than a guess.']
+        ],
+        testing: 'Node tests cover the currency rule against the real 27-market table, price parsing in every market\'s number format, the rate limiter and both feed parsers. The parts that depend on Vinted\'s pages were checked against live pages on five Vinted domains.',
+        status: 'Version 2.2.0. Install it by loading the unpacked extension in Chrome.'
+      },
       stack: ['JavaScript', 'Chrome Manifest V3', 'Vinted web API'],
-      links: [['Download v2.1.0', GH + 'vinted-country-flags/releases/latest'], ['Source on GitHub', GH + 'vinted-country-flags']]
+      links: [['Download the latest release', GH + 'vinted-country-flags/releases/latest'], ['Source on GitHub', GH + 'vinted-country-flags']]
     },
     expense: {
       slug: 'expense-tracker', repo: null,
@@ -131,8 +196,19 @@
         ['Hand someone one file.', 'The whole app builds into a single 200 KB HTML file. Save it anywhere and double-click it, no install.'],
         ['Money that adds up.', 'Amounts are stored as whole cents, never floats. Splitting 10,00 three ways gives 3,34 / 3,33 / 3,33, and "42,50" and "240.924,00" both parse correctly.'],
         ['Your data, portable.', 'Export any set of months as JSON or CSV.'],
-        ['Tested hard.', '116 unit tests, a two-client protocol smoke test, and a UI test that drives two headless Chrome profiles as two devices.']
+        ['Tested hard.', '125 unit tests, a two-client protocol smoke test, and a UI test that drives two headless Chrome profiles as two devices.']
       ],
+      story: {
+        context: 'I built it on 30 August 2026 from a written PRD with numbered acceptance scenarios, in one long day: the local-only version first, then export and the single-file build, then end-to-end encrypted sharing. It went live on its own domain on 26 September.',
+        decisions: [
+          ['The server never sees your data.', 'Records are encrypted in the browser before they leave it, with a key wrapped by your password, so the sharing server stores only ciphertext.'],
+          ['Money in whole cents.', 'No floats anywhere. Splitting 10,00 three ways gives 3,34 / 3,33 / 3,33.'],
+          ['One file you can hand to someone.', 'The build inlines everything into one HTML file that works from a double-click, with no install.'],
+          ['Invite-only sharing.', 'Creating a shared tracker needs an invite code, and each one is capped at 2 MB, so a stranger can\'t fill the server.']
+        ],
+        testing: '125 unit tests, a protocol smoke test with two clients, and a UI check that drives two headless Chrome profiles as two devices editing the same tracker.',
+        status: 'Live at expenses.thebarbellengineer.com.'
+      },
       stack: ['Vanilla JS', 'Web Crypto', 'Cloudflare Workers', 'Durable Objects', 'WebSockets'],
       links: [['Open the app', 'https://expenses.thebarbellengineer.com/']],
       note: 'Not on GitHub yet.'
@@ -152,6 +228,15 @@
         ['Shareable reports.', 'HTML and PDF reports for any run.'],
         ['Behind a login.', 'The dashboard, API, reports and live streams all need a session, with roles for who can do what.']
       ],
+      story: {
+        context: 'I write Playwright suites for a living, and every framework came with its own runner, reports and history. On my own time I built the one dashboard I wanted: run Playwright, Cypress and Selenium suites against any site, without changing the suites.',
+        decisions: [
+          ['Suites times sites.', 'A suite says how to run and a site says where. Every suite gets the base URL and admin credentials as environment variables, so any suite can target any registered site.'],
+          ['Adapters that admit their limits.', 'Where a framework can\'t do something, the dashboard says so instead of faking it. Cypress has no command-line title filter, so a keyword filter is ignored for it, with a warning, rather than quietly running more tests than you asked for.'],
+          ['Hardened before going public.', 'A security pass on 20 August 2026 blocked environment injection into the processes it starts, encrypted stored site passwords with AES-256-GCM and bound the server to localhost by default.']
+        ],
+        status: 'Runs on your own machine, behind a login with roles. The source is public.'
+      },
       stack: ['Node.js', 'Express', 'Playwright', 'Cypress', 'Selenium'],
       links: [['Source on GitHub', GH + 'thrive-test-dashboard']]
     },
@@ -169,6 +254,15 @@
         ['Write the script in place.', 'Quick-add templates for hooks, intros, main points, B-roll and calls to action, with a rich-text editor per section.'],
         ['Safe local storage.', 'Everything saves to the browser with a versioned schema. JSON backup and restore checks the file before touching your data.']
       ],
+      story: {
+        context: 'It was planned up front: the data model, how progress is worked out across the production stages, how storage and backups behave, and a phased roadmap, all written down before the first commit on 23 August 2026.',
+        decisions: [
+          ['Progress that doesn\'t mislead.', 'Overall progress weights filming at 40%, editing at 40% and publishing at 20%, so a project with many script sections doesn\'t drown out its publishing.'],
+          ['Check a backup before touching your data.', 'An imported file is parsed, and its projects, sections and platform states are validated and repaired. You see how many projects it holds before you choose to merge or replace.'],
+          ['Rich text, sanitized.', 'Each script section has a rich-text editor, and its HTML is sanitized before it\'s saved.']
+        ],
+        status: 'Live. Everything stays in your browser.'
+      },
       stack: ['React', 'TypeScript', 'Vite', 'Tailwind CSS'],
       links: [['Open the app', 'https://thebarbellengineer.com/video-production/'], ['Source on GitHub', GH + 'video-production']]
     }

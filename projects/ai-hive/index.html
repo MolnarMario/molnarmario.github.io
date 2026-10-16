@@ -123,6 +123,21 @@
             <li><b>Per-agent model, effort and mode.</b> Dropdowns map to the real CLI flags. The card header follows whatever you change inside the terminal, and the permission mode survives a restart.</li>
             <li><b>A sidebar you can organize.</b> Drag agents and workspaces to reorder them, and group workspaces into collapsible categories. The layout persists across restarts.</li>
           </ol>
+          <h2 class="p-h">How it was built</h2>
+          <div class="story">
+            <p>I started AI Hive on 5 July 2026, when I was running more coding agents than I could follow in separate terminal windows. Since then it has been built by the agents it runs: they take tasks, coordinate on the shared board and ship through pull requests, and every release gets a numbered changelog entry.</p>
+            <h3 class="story__h">Decisions that mattered</h3>
+            <ul class="decisions">
+              <li><b>Session data is never only in memory.</b> Adding or removing an agent saves at once, saves are atomic (a temp file, then a rename) and a failed load keeps the old file as a backup instead of deleting it. Each of these rules came from a real loss and has a regression test.</li>
+              <li><b>One copy at a time, enforced by Windows.</b> A named mutex refuses a second launch, so two copies can never overwrite each other&#39;s session file.</li>
+              <li><b>Closing a card kills everything it started.</b> Each card&#39;s processes run in a Windows Job Object, so a shell&#39;s grandchildren die with it, even if the app itself crashes.</li>
+              <li><b>Agents work in lanes.</b> An agent can get its own git worktree. It flags finished work with a &quot;Task done&quot; commit, and an integrator agent merges a batch through one pull request once a GPT-6-Luna review comes back clean.</li>
+            </ul>
+            <h3 class="story__h">How it's tested</h3>
+            <p>A smoke suite of over 3,400 checks drives the real app headlessly, with real child processes, in up to six parallel workers. One end-to-end test talks to a live Claude Code agent, closes the app, reopens it and checks that the same conversation comes back on the same card, which is exactly where data used to get lost.</p>
+            <h3 class="story__h">Where it stands</h3>
+            <p>In daily use. I run my projects from it, this site included.</p>
+          </div>
           <h2 class="p-h">Made with</h2>
           <ul class="stack"><li>Python</li><li>PySide6 / Qt</li><li>Windows ConPTY</li><li>MCP</li><li>pytest</li></ul>
         </section>

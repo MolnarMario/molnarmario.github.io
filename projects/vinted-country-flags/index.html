@@ -54,7 +54,7 @@
         <h1 class="p-title">Vinted Country Flags</h1>
         <p class="p-lede">Vinted shows you items from sellers all over Europe and never says where they are. This extension does.</p>
         <div class="p-actions">
-          <a class="btn btn--primary" href="https://github.com/MolnarMario/vinted-country-flags/releases/latest" target="_blank" rel="noopener">Download v2.1.0 <span aria-hidden="true">&nearr;</span></a>
+          <a class="btn btn--primary" href="https://github.com/MolnarMario/vinted-country-flags/releases/latest" target="_blank" rel="noopener">Download the latest release <span aria-hidden="true">&nearr;</span></a>
           <a class="btn btn--ghost" href="https://github.com/MolnarMario/vinted-country-flags" target="_blank" rel="noopener">Source on GitHub <span aria-hidden="true">&nearr;</span></a>
           <a class="btn btn--ghost" href="changelog/">Changelog</a>
         </div>
@@ -70,12 +70,28 @@
           <h2 class="p-h" id="feat-h">What it does</h2>
           <ol class="feat-list">
             <li><b>A flag on every listing.</b> The seller&#39;s country flag sits in the corner of each item on the homepage, in search and on the item page.</li>
-            <li><b>Mostly free.</b> The catalog API already returns the seller&#39;s currency when it differs from yours. On vinted.ro one catalog call resolved 93 of 94 items with no extra requests.</li>
+            <li><b>Reads what the page already knows.</b> Seller ids come from the page&#39;s own data and from the requests Vinted makes anyway. On a vinted.ro search that named 96 of 96 sellers in 8 ms, with no extra requests.</li>
             <li><b>Works on every Vinted domain.</b> No per-country code. It found every card on vinted.pl, .de, .co.uk and .ro without a change.</li>
-            <li><b>Euro sellers fill in closest first.</b> A euro could mean any of eighteen markets, so those cost one profile lookup each. Cards near the screen go first, and the popup shows how many are left.</li>
+            <li><b>Cards near the screen go first.</b> Where a seller lives costs one profile lookup, once. Cards in and near the viewport are looked up first, and the popup shows how many are still coming.</li>
             <li><b>Learns new markets by itself.</b> It builds the currency-to-country table from Vinted&#39;s own countries endpoint and caches it for a week.</li>
-            <li><b>One cache across countries.</b> The cache lives in the service worker, so a seller found on vinted.fr is already known on vinted.de.</li>
+            <li><b>One cache across countries.</b> Sellers are cached for 30 days in the service worker, so a seller found on vinted.fr is already known on vinted.de.</li>
+            <li><b>Polite to Vinted.</b> It stays under the measured rate limit, shares one budget across every tab and backs off whenever Vinted says to.</li>
           </ol>
+          <h2 class="p-h">How it was built</h2>
+          <div class="story">
+            <p>Vinted shows listings from all over Europe and never says where the seller is. The extension reads that from data the page already has, and asks Vinted only when it has to.</p>
+            <h3 class="story__h">Decisions that mattered</h3>
+            <ul class="decisions">
+              <li><b>Read what the page already received.</b> Seller ids come from the page&#39;s own server-rendered data and from the requests Vinted&#39;s front end makes anyway. On a vinted.ro search that named the sellers of 96 of 96 cards in 8 ms, with no extra requests.</li>
+              <li><b>Measure the rate limit, then stay under it.</b> 30 requests to the profile endpoint succeed and the 31st gets a 429. The extension allows 20 at once and 0.8 per second after that, shared by every tab, so Vinted&#39;s own front end keeps some headroom.</li>
+              <li><b>Adapt when Vinted changes.</b> On 8 October 2026 the endpoint that made most lookups free started returning 404. Version 2.2 dropped it and now learns exchange rates from sellers it already knows, so a converted price can name the seller&#39;s currency for free.</li>
+              <li><b>No flag beats a wrong flag.</b> A card whose seller nothing named gets no flag rather than a guess.</li>
+            </ul>
+            <h3 class="story__h">How it's tested</h3>
+            <p>Node tests cover the currency rule against the real 27-market table, price parsing in every market&#39;s number format, the rate limiter and both feed parsers. The parts that depend on Vinted&#39;s pages were checked against live pages on five Vinted domains.</p>
+            <h3 class="story__h">Where it stands</h3>
+            <p>Version 2.2.0. Install it by loading the unpacked extension in Chrome.</p>
+          </div>
           <h2 class="p-h">Made with</h2>
           <ul class="stack"><li>JavaScript</li><li>Chrome Manifest V3</li><li>Vinted web API</li></ul>
         </section>

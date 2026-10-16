@@ -76,6 +76,19 @@
             <li><b>Shareable reports.</b> HTML and PDF reports for any run.</li>
             <li><b>Behind a login.</b> The dashboard, API, reports and live streams all need a session, with roles for who can do what.</li>
           </ol>
+          <h2 class="p-h">How it was built</h2>
+          <div class="story">
+            <p>I write Playwright suites for a living, and every framework came with its own runner, reports and history. On my own time I built the one dashboard I wanted: run Playwright, Cypress and Selenium suites against any site, without changing the suites.</p>
+            <h3 class="story__h">Decisions that mattered</h3>
+            <ul class="decisions">
+              <li><b>Suites times sites.</b> A suite says how to run and a site says where. Every suite gets the base URL and admin credentials as environment variables, so any suite can target any registered site.</li>
+              <li><b>Adapters that admit their limits.</b> Where a framework can&#39;t do something, the dashboard says so instead of faking it. Cypress has no command-line title filter, so a keyword filter is ignored for it, with a warning, rather than quietly running more tests than you asked for.</li>
+              <li><b>Hardened before going public.</b> A security pass on 20 August 2026 blocked environment injection into the processes it starts, encrypted stored site passwords with AES-256-GCM and bound the server to localhost by default.</li>
+            </ul>
+            
+            <h3 class="story__h">Where it stands</h3>
+            <p>Runs on your own machine, behind a login with roles. The source is public.</p>
+          </div>
           <h2 class="p-h">Made with</h2>
           <ul class="stack"><li>Node.js</li><li>Express</li><li>Playwright</li><li>Cypress</li><li>Selenium</li></ul>
         </section>

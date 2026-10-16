@@ -145,8 +145,7 @@ function fromCommits(p, commits) {
 
 await mkdir(new URL('../data/projects/', import.meta.url), { recursive: true });
 
-for (const [id, p] of Object.entries(PROJECTS)) {
-  if (!p.repo) continue;
+async function fetchProject(id, p) {
   const repo = await json(`/repos/${OWNER}/${p.repo}`);
   const branch = repo.default_branch;
   const commits = (await allPages(`/repos/${OWNER}/${p.repo}/commits?sha=${branch}`)).map(c => ({
@@ -183,3 +182,13 @@ for (const [id, p] of Object.entries(PROJECTS)) {
   await writeFile(new URL(`../data/projects/${p.slug}.json`, import.meta.url), JSON.stringify(out, null, 1) + '\n');
   console.log(`${p.slug}: ${out.commits} commits, ${log.entries.length} ${log.source.kind} entries`);
 }
+
+// One repo failing (renamed, private, rate limited) keeps its last good JSON and
+// doesn't stop the others. The exit code still says something went wrong.
+let failed = 0;
+for (const [id, p] of Object.entries(PROJECTS)) {
+  if (!p.repo) continue;
+  try { await fetchProject(id, p); }
+  catch (e) { failed++; console.error(`${p.slug}: kept the previous data. ${e.message}`); }
+}
+if (failed) process.exitCode = 1;
