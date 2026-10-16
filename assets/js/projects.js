@@ -185,6 +185,7 @@
     },
     expense: {
       slug: 'expense-tracker', repo: 'common-expense-tracker', log: { from: 'changelog', file: 'CHANGELOG.md', level: 2 },
+      play: 'https://expenses.thebarbellengineer.com/',
       tag: 'Web app',
       title: 'Common Expense Tracker',
       img: 'expense', mob: true,
