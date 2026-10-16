@@ -4,39 +4,39 @@
  "url": "https://github.com/MolnarMario/ai-hive",
  "branch": "main",
  "created": "2026-07-05",
- "pushed": "2026-10-15",
- "commits": 511,
+ "pushed": "2026-10-16",
+ "commits": 519,
  "firstCommit": "2026-07-05",
  "lastCommit": {
-  "sha": "a8d7e9f",
-  "date": "2026-10-15",
-  "subject": "Merge pull request #72 from MolnarMario/integrate/2026-10-16-lane-chip-words"
+  "sha": "a3d8148",
+  "date": "2026-10-16",
+  "subject": "Merge pull request #73 from MolnarMario/integrate/2026-10-16-header-chip-fit"
  },
  "recent": [
   {
-   "sha": "7dc6601",
-   "date": "2026-10-15",
-   "subject": "docs: README count 3412"
+   "sha": "84ce4b1",
+   "date": "2026-10-16",
+   "subject": "docs: README count 3420"
   },
   {
-   "sha": "87efaec",
-   "date": "2026-10-15",
-   "subject": "fix: code review findings on the lane chip word drop"
+   "sha": "21ce9e4",
+   "date": "2026-10-16",
+   "subject": "fix: narrow header refits before the frame paints"
   },
   {
-   "sha": "3fcbd2b",
-   "date": "2026-10-15",
-   "subject": "chore: version 0.43.1 and changelog"
+   "sha": "b259c55",
+   "date": "2026-10-16",
+   "subject": "docs: changelog names the summary's clipboard icon"
   },
   {
-   "sha": "3f950c4",
-   "date": "2026-10-15",
-   "subject": "chore: lane chip word-drop fix reviewed"
+   "sha": "4818093",
+   "date": "2026-10-16",
+   "subject": "chore: version 0.43.2 and changelog"
   },
   {
-   "sha": "a33498b",
-   "date": "2026-10-15",
-   "subject": "fix: squeezed lane chip drops words instead of eliding \"int...tor\""
+   "sha": "4a0b319",
+   "date": "2026-10-16",
+   "subject": "Narrow header chip fit reviewed by GPT-6-Luna, no findings"
   }
  ],
  "weeks": [
@@ -142,7 +142,7 @@
   ],
   [
    "2026-10-12",
-   53
+   61
   ]
  ],
  "log": {
@@ -152,6 +152,13 @@
    "url": "https://github.com/MolnarMario/ai-hive/blob/main/CHANGELOG.md"
   },
   "entries": [
+   {
+    "version": "0.43.2",
+    "date": "2026-10-16",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>A narrow card header no longer cuts its chips off mid-word, such as\n\"Opus 5.5 · high ·\" or \"10% of 1\". As the card narrows, the header\ndrops whole words in a fixed order: the task summary shrinks to a\nclipboard icon, then the word integrator goes, then the model's mode and effort,\nthen the \" of 1M\" of the context badge, then the lane counts.</li>\n</ul>"
+   },
    {
     "version": "0.43.1",
     "date": "2026-10-15",
