@@ -145,6 +145,9 @@
    5
   ]
  ],
+ "facts": {
+  "paintings": 9
+ },
  "log": {
   "source": {
    "kind": "changelog",

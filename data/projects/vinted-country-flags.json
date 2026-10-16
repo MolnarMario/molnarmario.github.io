@@ -135,6 +135,9 @@
    0
   ]
  ],
+ "facts": {
+  "markets": 27
+ },
  "log": {
   "source": {
    "kind": "releases",

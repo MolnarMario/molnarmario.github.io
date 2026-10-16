@@ -20,7 +20,7 @@
     onScroll();
   }
 
-  /* The pages are rebuilt every 12 hours, so "3 days ago" is worked out here.
+  /* The pages are rebuilt once a day, so "3 days ago" is worked out here.
      The exact date stays in the tooltip. */
   const rel = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
   const today = Date.UTC(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());

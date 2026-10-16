@@ -56,7 +56,7 @@
         const end = +e.target.dataset.count, t0 = performance.now(), dur = 1200;
         const tick = now => {
           const p = Math.min(1, (now - t0) / dur);
-          e.target.textContent = Math.round(end * (1 - Math.pow(1 - p, 3)));
+          e.target.textContent = Math.round(end * (1 - Math.pow(1 - p, 3))).toLocaleString('en');
           if (p < 1) requestAnimationFrame(tick);
         };
         requestAnimationFrame(tick);
@@ -176,7 +176,7 @@
   }
 
   /* ---------- GitHub activity heatmap ---------- */
-  // data/contributions.json is rewritten every 12h by .github/workflows/contributions.yml.
+  // data/contributions.json is rewritten once a day by .github/workflows/contributions.yml.
   // Shows only the weeks from the first active one onward. If the fetch fails the block stays hidden.
   (async () => {
     const heat = $('#heat');

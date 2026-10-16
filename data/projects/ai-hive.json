@@ -145,6 +145,11 @@
    61
   ]
  ],
+ "facts": {
+  "pyLines": 71514,
+  "checks": 3420,
+  "workers": 6
+ },
  "log": {
   "source": {
    "kind": "changelog",

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mario Molnar | Software from idea to release</title>
-  <meta name="description" content="Mario Molnar is a product builder and QA engineer in Cluj-Napoca who takes software from first idea to release: Android apps, desktop tools, web apps, browser games and extensions. Nine shipped projects, most of them open source.">
+  <meta name="description" data-live-tpl="Mario Molnar is a product builder and QA engineer in Cluj-Napoca who takes software from first idea to release: Android apps, desktop tools, web apps, browser games and extensions. {projects|Word} shipped projects, most of them open source." content="Mario Molnar is a product builder and QA engineer in Cluj-Napoca who takes software from first idea to release: Android apps, desktop tools, web apps, browser games and extensions. Nine shipped projects, most of them open source.">
   <meta name="theme-color" content="#0d0c0b" media="(prefers-color-scheme: dark)">
   <meta name="theme-color" content="#f5f2ec" media="(prefers-color-scheme: light)">
   <meta property="og:type" content="website">
@@ -68,9 +68,9 @@
     <!-- Numbers -->
     <section class="stats wrap" aria-label="In numbers">
       <div class="stat"><b data-count="9" data-live="projects">9</b><span>projects shipped in 2026</span></div>
-      <div class="stat"><b data-count="890" data-live="total-commits">890</b><span>commits across these projects</span></div>
+      <div class="stat"><b data-count="896" data-live="commits">896</b><span>commits across these projects</span></div>
       <div class="stat"><b>4</b><span>platforms: Android, Windows, web, Chrome</span></div>
-      <div class="stat"><b>11</b><span>years working on the web</span></div>
+      <div class="stat"><b data-count="11" data-live="years">11</b><span>years working on the web</span></div>
     </section>
 
     <!-- Featured work -->
@@ -86,7 +86,7 @@
           <div class="hive__bar">
             <img src="assets/img/aihive-logo.webp" width="20" height="20" alt="">
             <span class="hive__title">AI Hive</span>
-            <span class="hive__ver">v0.20</span>
+            <span class="hive__ver" data-live="aihive.version|minor|v">v0.43</span>
             <span class="hive__usage"><span class="hive__meter"><i style="--v:.42"></i></span>5h 42%</span>
           </div>
           <div class="hive__body">
@@ -111,7 +111,7 @@
           <p class="tag">Windows desktop app</p>
           <h3>AI Hive</h3>
           <p>A control center for running many AI coding assistants side by side. Each tile is a real Windows pseudo-console running Claude Code, Gemini, Grok or a plain shell. It's the workbench I built to keep several workstreams moving at once.</p>
-          <ul class="facts"><li><b>~72k</b> lines of Python</li><li><b data-live="commits:aihive">519</b> commits</li><li><b>PySide6</b> + ConPTY</li></ul>
+          <ul class="facts"><li><b data-live="aihive.pyLines|k|approx">~72k</b> lines of Python</li><li><b data-live="aihive.commits">519</b> commits</li><li><b>PySide6</b> + ConPTY</li></ul>
           <div class="feature__actions">
             <a class="btn btn--primary btn--sm" href="projects/ai-hive/">Project page</a>
             <a class="btn btn--ghost btn--sm" href="https://github.com/MolnarMario/ai-hive" target="_blank" rel="noopener">Source</a>
@@ -135,7 +135,7 @@
           <p class="tag">Android app</p>
           <h3>HiraKataQuest</h3>
           <p>Learn to read and handwrite Japanese kana. You trace the handwritten form on a genkouyoushi grid, watch the stroke order play out, and get a score on what you actually wrote.</p>
-          <ul class="facts"><li><b>~29k</b> lines of Kotlin</li><li><b data-live="commits:hirakata">168</b> commits</li><li><b data-live="version:hirakata">v0.4.0</b> released</li></ul>
+          <ul class="facts"><li><b data-live="hirakata.ktLines|k|approx">~29k</b> lines of Kotlin</li><li><b data-live="hirakata.commits">168</b> commits</li><li><b data-live="hirakata.version|v">v0.4.0</b> released</li></ul>
           <div class="feature__actions">
             <a class="btn btn--primary btn--sm" href="projects/hirakataquest/">Project page</a>
             <a class="btn btn--ghost btn--sm" href="https://github.com/MolnarMario/HiraKataQuest-releases/releases/latest" target="_blank" rel="noopener">Download APK</a>
@@ -151,7 +151,7 @@
           <p class="tag">Browser game</p>
           <h3>One More Tile</h3>
           <p>A cross-stitch puzzle that hides a pixel-art painting. Fill-a-pix, sudoku and picross share one canvas, and every region you finish reveals a piece of the picture.</p>
-          <ul class="facts"><li><b>No</b> build step, no install</li><li><b data-live="commits:tile">119</b> commits</li><li><b>Co-op</b> for up to 4</li></ul>
+          <ul class="facts"><li><b>No</b> build step, no install</li><li><b data-live="tile.commits">119</b> commits</li><li><b>Co-op</b> for up to 4</li></ul>
           <div class="feature__actions">
             <a class="btn btn--primary btn--sm" href="https://tile.thebarbellengineer.com/" target="_blank" rel="noopener">Play it <span aria-hidden="true">&nearr;</span></a>
             <a class="btn btn--ghost btn--sm" href="projects/one-more-tile/">Project page</a>
@@ -185,7 +185,7 @@
           <p class="tag">Web app</p>
           <h3>Ironlog</h3>
           <p>The powerlifting tracker I train with. It logs sets, works out which plates go on the bar and counts macros, all stored in your browser with no account.</p>
-          <ul class="facts"><li><b>47</b>-lift library</li><li><b>92</b>-food pantry</li><li><b>React</b> + TypeScript</li></ul>
+          <ul class="facts"><li><b data-live="ironlog.lifts">47</b>-lift library</li><li><b data-live="ironlog.foods">92</b>-food pantry</li><li><b>React</b> + TypeScript</li></ul>
           <div class="feature__actions">
             <a class="btn btn--primary btn--sm" href="https://ironlog.thebarbellengineer.com/" target="_blank" rel="noopener">Open the app <span aria-hidden="true">&nearr;</span></a>
             <a class="btn btn--ghost btn--sm" href="projects/ironlog/">Project page</a>
@@ -249,7 +249,7 @@
           <li class="step reveal">
             <span class="step__n">4</span>
             <h3>Test like it's my day job</h3>
-            <p>Because it is. Unit tests for the maths, end-to-end tests for the flows, and a review pass before anything merges. The expense tracker ships with 125 unit tests.</p>
+            <p>Because it is. Unit tests for the maths, end-to-end tests for the flows, and a review pass before anything merges. The expense tracker ships with <span data-live="expense.tests">125</span> unit tests.</p>
           </li>
           <li class="step reveal">
             <span class="step__n">5</span>
@@ -263,7 +263,7 @@
           </li>
         </ol>
 
-        <!-- GitHub activity: drawn by site.js from data/contributions.json (refreshed every 12h by a workflow). Hidden until the data loads. -->
+        <!-- GitHub activity: drawn by site.js from data/contributions.json (refreshed daily by a workflow). Hidden until the data loads. -->
         <div class="heat reveal" id="heat" hidden>
           <div class="heat__chart">
             <div class="heat__scroll">
@@ -289,7 +289,7 @@
       <div class="about__copy">
         <p class="kicker">03 / About</p>
         <h2 id="about-title">Hi, I'm Mario.</h2>
-        <p>I've spent eleven years on the web, and I've been there for every step of how a product gets made. I've been in the room when ideas were pitched, helped turn them into PRDs, reviewed specs and early builds, tested features mid-build, signed off releases and then heard from the customers who used them. Six years of that was technical support, debugging WordPress sites across the whole stack. Since 2023 it's been QA, writing Playwright suites that cover nine products and WordPress core.</p>
+        <p>I've spent <span data-live="years|word">eleven</span> years on the web, and I've been there for every step of how a product gets made. I've been in the room when ideas were pitched, helped turn them into PRDs, reviewed specs and early builds, tested features mid-build, signed off releases and then heard from the customers who used them. Six years of that was technical support, debugging WordPress sites across the whole stack. Since 2023 it's been QA, writing Playwright suites that cover nine products and WordPress core.</p>
         <p>More than a decade of meetings and working across teams taught me how software should be built, and plenty about how it shouldn't. My degree in electronics and telecommunications adds an engineer's view. I want to know how a thing works, and where it breaks, before I trust it. Support filled in the other half. Six years of tickets from people whose site had just gone down taught me how customers think, and I still think like one before I build anything. The first question I ask is what someone will try when they open it cold.</p>
         <p>Testing taught me how software fails. A modern, AI-assisted workflow lets me build quickly without skipping the part that matters. Speed is only worth something if what ships holds up, and making sure it does is exactly what a QA engineer is for.</p>
 

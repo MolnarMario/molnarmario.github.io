@@ -5,14 +5,19 @@
  "branch": "main",
  "created": "2026-10-16",
  "pushed": "2026-10-16",
- "commits": 3,
+ "commits": 5,
  "firstCommit": "2026-10-16",
  "lastCommit": {
-  "sha": "be06a07",
+  "sha": "293d20d",
   "date": "2026-10-16",
-  "subject": "Merge pull request #1 from MolnarMario/fork-hostname-docs"
+  "subject": "Merge pull request #2 from MolnarMario/readme-live-link"
  },
  "recent": [
+  {
+   "sha": "9a66f74",
+   "date": "2026-10-16",
+   "subject": "Link the live app from the README"
+  },
   {
    "sha": "2d23956",
    "date": "2026-10-16",
@@ -127,9 +132,13 @@
   ],
   [
    "2026-10-12",
-   3
+   5
   ]
  ],
+ "facts": {
+  "tests": 125,
+  "htmlSize": 206525
+ },
  "log": {
   "source": {
    "kind": "changelog",

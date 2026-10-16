@@ -1,6 +1,7 @@
 // Writes data/projects/<slug>.json for every project in assets/js/projects.js:
-// commit activity plus changelog entries rendered to HTML by GitHub's markdown API.
-// Run by .github/workflows/contributions.yml every 12 hours, then build-projects.mjs
+// commit activity, changelog entries rendered to HTML by GitHub's markdown API, and
+// the figures its `facts` rules count in the repo's files.
+// Run by .github/workflows/contributions.yml once a day, then build-projects.mjs
 // turns the JSON into pages. Locally:
 //   GITHUB_TOKEN=$(gh auth token) node scripts/fetch-projects.mjs
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
@@ -143,12 +144,76 @@ function fromCommits(p, commits) {
   };
 }
 
+// Figures counted in the repo's files at one commit, from the project's `facts` rules
+// in projects.js. A rule that breaks (file renamed, pattern no longer matches) keeps
+// its last good value, and the run is marked failed so someone notices.
+const re = (r, global) => new RegExp(r.source, r.flags.replace('g', '') + (global ? 'g' : ''));
+const sum = ns => ns.reduce((a, b) => a + b, 0);
+const lineCount = s => (s.match(/\n/g)?.length ?? 0) + (s && !s.endsWith('\n') ? 1 : 0);
+
+// File contents come from raw.githubusercontent.com, which doesn't use up the API
+// rate limit. At most 8 downloads at a time.
+let active = 0;
+const waiting = [];
+function limited(fn) {
+  return new Promise((resolve, reject) => {
+    const run = () => {
+      active++;
+      fn().then(resolve, reject).finally(() => { active--; waiting.shift()?.(); });
+    };
+    active < 8 ? run() : waiting.push(run);
+  });
+}
+const rawText = (repo, sha, path) => limited(async () => {
+  const res = await fetch(`https://raw.githubusercontent.com/${OWNER}/${repo}/${sha}/${path.split('/').map(encodeURIComponent).join('/')}`);
+  if (!res.ok) throw new Error(`${path}: ${res.status}`);
+  return res.text();
+});
+
+async function countFacts(p, sha, previous) {
+  const tree = await json(`/repos/${OWNER}/${p.repo}/git/trees/${sha}?recursive=1`);
+  if (tree.truncated) throw new Error('file tree is truncated');
+  const blobs = tree.tree.filter(t => t.type === 'blob');
+  const texts = new Map();
+  const text = path => texts.get(path) ?? texts.set(path, rawText(p.repo, sha, path)).get(path);
+  const pick = r => {
+    const files = blobs.filter(b => re(r).test(b.path));
+    if (!files.length) throw new Error(`no file matches ${r}`);
+    return files;
+  };
+  const facts = {};
+  let broken = 0;
+  for (const [name, f] of Object.entries(p.facts)) {
+    try {
+      let v;
+      if (f.lines) v = sum(await Promise.all(pick(f.lines).map(async b => lineCount(await text(b.path)))));
+      else if (f.count) v = sum(await Promise.all(pick(f.in).map(async b => (await text(b.path)).match(re(f.count, true))?.length ?? 0)));
+      else if (f.files) {
+        const files = pick(f.files);
+        v = f.containing ? (await Promise.all(files.map(b => text(b.path)))).filter(s => re(f.containing).test(s)).length : files.length;
+      }
+      else if (f.capture) v = Number((await text(f.in)).match(re(f.capture))?.[1]?.replace(/,/g, ''));
+      else if (f.bytes) v = blobs.find(b => b.path === f.bytes)?.size;
+      else throw new Error('unknown rule');
+      // Nothing on the site counts zero of something, so 0 means the rule stopped matching
+      if (!v) throw new Error(`came out as ${v}`);
+      facts[name] = v;
+    } catch (e) {
+      broken++;
+      facts[name] = previous?.[name] ?? null;
+      console.error(`${p.slug}: fact ${name} kept ${facts[name]}. ${e.message}`);
+    }
+  }
+  return { facts, broken };
+}
+
 await mkdir(new URL('../data/projects/', import.meta.url), { recursive: true });
 
 async function fetchProject(id, p) {
   const repo = await json(`/repos/${OWNER}/${p.repo}`);
   const branch = repo.default_branch;
-  const commits = (await allPages(`/repos/${OWNER}/${p.repo}/commits?sha=${branch}`)).map(c => ({
+  const list = await allPages(`/repos/${OWNER}/${p.repo}/commits?sha=${branch}`);
+  const commits = list.map(c => ({
     sha: c.sha.slice(0, 7),
     date: (c.commit.author?.date ?? c.commit.committer.date).slice(0, 10),
     subject: c.commit.message.split('\n')[0],
@@ -169,6 +234,10 @@ async function fetchProject(id, p) {
     : p.log.from === 'releases' ? await fromReleases(p, branch)
     : fromCommits(p, commits);
 
+  const file = new URL(`../data/projects/${p.slug}.json`, import.meta.url);
+  const previous = await readFile(file, 'utf8').then(JSON.parse, () => null);
+  const counted = p.facts && list.length ? await countFacts(p, list[0].sha, previous?.facts) : null;
+
   const out = {
     id, repo: p.repo, url: repo.html_url, branch,
     created: repo.created_at.slice(0, 10), pushed: repo.pushed_at.slice(0, 10),
@@ -177,10 +246,13 @@ async function fetchProject(id, p) {
     lastCommit: commits[0] ? { sha: commits[0].sha, date: commits[0].date, subject: commits[0].subject } : null,
     recent: commits.filter(c => !c.merge).slice(0, 5).map(({ sha, date, subject }) => ({ sha, date, subject })),
     weeks,
+    ...(counted && { facts: counted.facts }),
     log,
   };
-  await writeFile(new URL(`../data/projects/${p.slug}.json`, import.meta.url), JSON.stringify(out, null, 1) + '\n');
-  console.log(`${p.slug}: ${out.commits} commits, ${log.entries.length} ${log.source.kind} entries`);
+  await writeFile(file, JSON.stringify(out, null, 1) + '\n');
+  const facts = counted ? ', ' + Object.entries(counted.facts).map(([k, v]) => `${k} ${v}`).join(', ') : '';
+  console.log(`${p.slug}: ${out.commits} commits, ${log.entries.length} ${log.source.kind} entries${facts}`);
+  return counted?.broken ?? 0;
 }
 
 // One repo failing (renamed, private, rate limited) keeps its last good JSON and
@@ -188,7 +260,7 @@ async function fetchProject(id, p) {
 let failed = 0;
 for (const [id, p] of Object.entries(PROJECTS)) {
   if (!p.repo) continue;
-  try { await fetchProject(id, p); }
+  try { if (await fetchProject(id, p)) failed++; }
   catch (e) { failed++; console.error(`${p.slug}: kept the previous data. ${e.message}`); }
 }
 if (failed) process.exitCode = 1;
