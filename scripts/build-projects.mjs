@@ -47,6 +47,59 @@ const summary = html => {
   return li ?? '';
 };
 
+/* ---------- Figures ---------- */
+// {name|format} in projects.js text, and data-live="[project.]name|format" on the
+// homepage, come from data/projects/<slug>.json. The top of projects.js lists the names
+// and formats.
+
+const WORDS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten',
+  'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty'];
+const monthName = new Intl.DateTimeFormat('en', { month: 'long', timeZone: 'UTC' });
+const FORMAT = {
+  k: n => Math.round(n / 1000) + 'k',
+  kb: n => Math.round(n / 1024) + ' KB',
+  word: n => WORDS[n] ?? n,
+  Word: n => { const w = String(FORMAT.word(n)); return w[0].toUpperCase() + w.slice(1); },
+  month: d => monthName.format(utc(d)),
+  minor: v => v.split('.').slice(0, 2).join('.'),
+  v: v => 'v' + v,
+  approx: s => '~' + s,
+};
+function show(value, formats, where) {
+  const out = formats.reduce((v, f) => {
+    if (!FORMAT[f]) throw new Error(`${where}: unknown format "${f}"`);
+    return FORMAT[f](v);
+  }, value);
+  return typeof out === 'number' ? out.toLocaleString('en') : String(out);
+}
+
+// Everything a project's text can use: its counted facts plus what its data already says
+function factsOf(data) {
+  if (!data) return {};
+  const versioned = data.log.entries.filter(e => e.version);
+  return {
+    ...data.facts,
+    commits: data.commits,
+    version: versioned[0]?.version,
+    versions: versioned.length || undefined,
+    firstVersion: versioned.at(-1)?.date,
+    lastVersion: versioned[0]?.date,
+  };
+}
+
+// A token with no value stops the build, so a page never ships with "{tests}" in it.
+const TOKEN = /\{(\w+)((?:\|\w+)*)\}/g;
+const fill = (text, facts, where) => text.replace(TOKEN, (_, name, formats) => {
+  if (facts[name] == null) throw new Error(`${where}: no value for {${name}}`);
+  return show(facts[name], formats.split('|').slice(1), where);
+});
+// The same, through every string of a project (its `facts` rules stay as they are)
+const fillAll = (x, facts, where) =>
+  typeof x === 'string' ? fill(x, facts, where)
+  : Array.isArray(x) ? x.map(v => fillAll(v, facts, where))
+  : x && typeof x === 'object' ? Object.fromEntries(Object.entries(x).map(([k, v]) => [k, k === 'facts' ? v : fillAll(v, facts, where)]))
+  : x;
+
 /* ---------- Shell ---------- */
 
 const NAV = `
@@ -343,7 +396,7 @@ function changelogPage(id, p, data) {
       ${crumbs([['Work', '/#work'], [p.title, '../'], [name]])}
       <p class="tag">${esc(p.tag)}</p>
       <h1 class="p-title">${esc(p.title)} ${name.toLowerCase()}</h1>
-      <p class="p-lede">${intro} The site checks for new ${source.kind === 'commits' ? 'commits' : 'entries'} every 12 hours.</p>
+      <p class="p-lede">${intro} The site checks for new ${source.kind === 'commits' ? 'commits' : 'entries'} once a day.</p>
       <p class="p-count">${counted}${entries.at(-1)?.date ? `, since ${month.format(utc(entries.at(-1).date))}` : ''}</p>
     </header>
     <div class="log wrap">
@@ -374,8 +427,8 @@ const slugs = new Set();
 const urls = ['/'];
 const allData = {};
 for (const id of PROJECT_ORDER) {
-  const p = PROJECTS[id];
-  const data = p.repo ? await loadData(p.slug) : null;
+  const data = PROJECTS[id].repo ? await loadData(PROJECTS[id].slug) : null;
+  const p = fillAll(PROJECTS[id], factsOf(data), PROJECTS[id].slug);
   allData[id] = data;
   slugs.add(p.slug);
   const dir = `projects/${p.slug}/`;
@@ -390,21 +443,37 @@ for (const id of PROJECT_ORDER) {
 for (const d of await readdir(new URL('projects/', root))) {
   if (!slugs.has(d)) await rm(new URL(`projects/${d}`, root), { recursive: true, force: true });
 }
-// Homepage numbers marked data-live="kind[:project]" follow the same data, so they
-// can't drift from the project pages. A number with no data behind it is left alone.
-const live = {
-  projects: () => PROJECT_ORDER.length,
-  'total-commits': () => Object.values(allData).reduce((n, d) => n + (d?.commits ?? 0), 0) || null,
-  commits: id => allData[id]?.commits ?? null,
-  version: id => { const v = allData[id]?.log.entries.find(e => e.version)?.version; return v ? 'v' + v : null; },
+// Homepage figures follow the same data, so they can't drift from the project pages:
+//   <b data-live="aihive.commits">519</b>      a project's fact, as on its page
+//   <b data-live="commits">890</b>             a site-wide one (below)
+//   <meta data-live-tpl="... {projects|word} ..." content="...">   for attributes
+// A project whose data file is missing keeps the figure that's there.
+const site = {
+  projects: PROJECT_ORDER.length,
+  commits: Object.values(allData).reduce((n, d) => n + (d?.commits ?? 0), 0) || null,
+  // On the web since 2015, the first year on the About timeline
+  years: new Date().getUTCFullYear() - 2015,
 };
+function liveValue(key) {
+  const [path, ...formats] = key.split('|');
+  const [id, name] = path.includes('.') ? path.split('.') : [null, path];
+  if (id && !PROJECTS[id]) throw new Error(`index.html: data-live="${key}" names no project`);
+  if (id && !allData[id]) return null;
+  const value = id ? factsOf(allData[id])[name] : site[name];
+  if (value == null) throw new Error(`index.html: no value for data-live="${key}"`);
+  return { value, text: show(value, formats, 'index.html') };
+}
 const home = await readFile(new URL('index.html', root), 'utf8');
-const patched = home.replace(/<b\b([^>]*?)data-live="([\w-]+)(?::(\w+))?"([^>]*)>[^<]*<\/b>/g, (m, pre, kind, id, post) => {
-  const v = live[kind]?.(id);
-  if (v == null) return m;
-  const attrs = (pre + `data-live="${kind}${id ? ':' + id : ''}"` + post).replace(/data-count="[^"]*"/, `data-count="${v}"`);
-  return `<b${attrs}>${v}</b>`;
-});
+const patched = home
+  .replace(/<(\w+)\b([^>]*?\sdata-live="([^"]+)"[^>]*)>[^<]*<\/\1>/g, (m, tag, attrs, key) => {
+    const v = liveValue(key);
+    if (!v) return m;
+    // The count-up animation in site.js runs to data-count
+    if (typeof v.value === 'number') attrs = attrs.replace(/data-count="[^"]*"/, `data-count="${v.value}"`);
+    return `<${tag}${attrs}>${esc(v.text)}</${tag}>`;
+  })
+  .replace(/<meta\b[^>]*\sdata-live-tpl="([^"]*)"[^>]*>/g, (m, tpl) =>
+    m.replace(/\scontent="[^"]*"/, ` content="${fill(tpl, site, 'index.html')}"`));
 if (patched !== home) await writeFile(new URL('index.html', root), patched);
 
 await writeFile(new URL('sitemap.xml', root), `<?xml version="1.0" encoding="UTF-8"?>

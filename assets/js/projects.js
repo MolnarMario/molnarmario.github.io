@@ -8,10 +8,27 @@
   // slug: URL of the project page. repo: GitHub repo name. log: where its changelog comes from
   // (a CHANGELOG.md split at that heading level, GitHub releases, or commit history).
   // features: [name, detail], ordered by how much each one matters to someone using the app.
+  //
+  // Figures that change with the repo are written as {name} or {name|format} in the text.
+  // fetch-projects.mjs counts each project's `facts` in its repo once a day:
+  //   { lines: /path/ }                  lines in every file whose path matches
+  //   { count: /text/, in: /path/ }      matches of the text in those files
+  //   { files: /path/, containing? }     files whose path matches (and whose text does)
+  //   { capture: /(\d+)/, in: 'file' }    the number the pattern captures in one file
+  //   { bytes: 'file' }                  size of one file
+  // Every project with a repo also has {commits}, {version} (newest in its changelog),
+  // {versions} (how many) and {firstVersion} / {lastVersion} (their dates).
+  // Formats, chainable: k (72k), kb (202 KB), word (nine), Word (Nine), month (June),
+  // minor (0.43.2 to 0.43), v (v0.43), approx (~). build-projects.mjs fills them in.
   const GH = 'https://github.com/MolnarMario/';
   window.PROJECTS = {
     aihive: {
       slug: 'ai-hive', repo: 'ai-hive', log: { from: 'changelog', file: 'CHANGELOG.md', level: 2 },
+      facts: {
+        pyLines: { lines: /\.py$/ },
+        checks: { capture: /(\d[\d,]*) checks drive/, in: 'README.md' },
+        workers: { capture: /up to (\d+) worker processes/, in: 'README.md' }
+      },
       tag: 'Windows desktop app',
       title: 'AI Hive',
       art: '[data-project="aihive"] .hive',
@@ -33,7 +50,7 @@
           ['Closing a card kills everything it started.', 'Each card\'s processes run in a Windows Job Object, so a shell\'s grandchildren die with it, even if the app itself crashes.'],
           ['Agents work in lanes.', 'An agent can get its own git worktree. It flags finished work with a "Task done" commit, and an integrator agent merges a batch through one pull request once a GPT-6-Luna review comes back clean.']
         ],
-        testing: 'A smoke suite of over 3,400 checks drives the real app headlessly, with real child processes, in up to six parallel workers. One end-to-end test talks to a live Claude Code agent, closes the app, reopens it and checks that the same conversation comes back on the same card, which is exactly where data used to get lost.',
+        testing: 'A smoke suite of {checks} checks drives the real app headlessly, with real child processes, in up to {workers|word} parallel workers. One end-to-end test talks to a live Claude Code agent, closes the app, reopens it and checks that the same conversation comes back on the same card, which is exactly where data used to get lost.',
         status: 'In daily use. I run my projects from it, this site included.'
       },
       stack: ['Python', 'PySide6 / Qt', 'Windows ConPTY', 'MCP', 'pytest'],
@@ -41,6 +58,12 @@
     },
     hirakata: {
       slug: 'hirakataquest', repo: 'HiraKataQuest', log: { from: 'changelog', file: 'CHANGELOG.md', level: 3 },
+      facts: {
+        ktLines: { lines: /\.kt$/ },
+        tests: { count: /@Test\b/, in: /\/src\/test\/.*\.kt$/ },
+        testFiles: { files: /\/src\/test\/.*\.kt$/, containing: /@Test\b/ },
+        words: { count: /"kana"\s*:/, in: /assets\/(hiragana|katakana)\/vocabulary\.json$/ }
+      },
       tag: 'Android app',
       title: 'HiraKataQuest',
       art: '[data-project="hirakata"] .feature__media',
@@ -62,14 +85,15 @@
           ['Trace the font, animate the real strokes.', 'The ghost you trace is drawn by the system font, which guarantees a correct shape. The stroke-order demo comes from KanjiVG\'s stroke paths, so both match real calligraphic proportions.'],
           ['Contracts before parallel work.', 'Each phase started with a fixed design document and domain types, and then three or four workstreams built against it at once. Phase 3\'s four workstreams went green on the first integration build.']
         ],
-        testing: '272 unit tests across 28 files. After Phase 2 and again after Phase 3, two independent review agents went through the code, and both rounds came back with no blocking defects. The live database migrations were checked on a real Pixel 7 running Android 16.',
-        status: 'Version 0.4.0 is out as a downloadable APK, with all of hiragana and katakana, a reading track and nearly 700 words.'
+        testing: '{tests} unit tests across {testFiles} files. After Phase 2 and again after Phase 3, two independent review agents went through the code, and both rounds came back with no blocking defects. The live database migrations were checked on a real Pixel 7 running Android 16.',
+        status: 'Version {version} is out as a downloadable APK, with all of hiragana and katakana, a reading track and {words} words.'
       },
       stack: ['Kotlin', 'Jetpack Compose', 'Room', 'ML Kit Digital Ink', 'Gradle'],
       links: [['Download the APK', GH + 'HiraKataQuest-releases/releases/latest'], ['Source on GitHub', GH + 'HiraKataQuest']]
     },
     tile: {
       slug: 'one-more-tile', repo: 'one-more-tile', log: { from: 'changelog', file: 'RELEASE-NOTES.md', level: 2 },
+      facts: { paintings: { files: /^boards\/[^/]+\.js$/ } },
       tag: 'Browser game',
       title: 'One More Tile',
       img: 'tile', board: true,
@@ -80,11 +104,11 @@
         ['Never a guess.', 'Five difficulty tiers, and a verifier script checks that every tier of every painting solves by logic alone.'],
         ['Co-op for up to four.', 'Split-screen on one screen, or online with a room code.'],
         ['Hints near where you\'re working.', 'Press H and it points at a forced move close to your cursor and explains why it\'s forced.'],
-        ['Nine paintings, saved as you go.', 'Each painting autosaves separately, with a timer that remembers your time, undo, pan and zoom, and full gamepad support.'],
+        ['{paintings|Word} paintings, saved as you go.', 'Each painting autosaves separately, with a timer that remembers your time, undo, pan and zoom, and full gamepad support.'],
         ['No build step, no install.', 'The game and its puzzle generator live in one HTML file, next to the precomputed boards. Open it and play.']
       ],
       story: {
-        context: 'I started it on 13 June 2026 as a single HTML file. It still has no build step and no install: the game and its generator live in index.html, next to the precomputed boards. 60 versions shipped between June and September.',
+        context: 'I started it on 13 June 2026 as a single HTML file. It still has no build step and no install: the game and its generator live in index.html, next to the precomputed boards. {versions} versions shipped between {firstVersion|month} and {lastVersion|month}.',
         decisions: [
           ['Repair the picture, never hand out answers.', 'Where the solver would stall on a truly ambiguous spot, the generator flips a few pixels of the stitch texture until every region falls to plain counting. That\'s why no tile is ever pre-filled, on any difficulty.'],
           ['Regions follow the painting.', 'A marker-controlled watershed grows the regions along the picture\'s own edges, so a finished region shows a recognisable piece of the art.'],
@@ -124,14 +148,18 @@
     },
     ironlog: {
       slug: 'ironlog', repo: 'testing-out-my-lifting-app', log: { from: 'commits' },
+      facts: {
+        lifts: { count: /id: "def-/, in: /^src\/data\/exercises\.ts$/ },
+        foods: { count: /id: "df-/, in: /^src\/data\/foods\.ts$/ }
+      },
       tag: 'Web app',
       title: 'Ironlog',
       img: 'ironlog',
       lede: 'The powerlifting tracker I use for my own training. No account, and nothing leaves your browser.',
       features: [
-        ['Log a session set by set.', 'RPE or percentage intensity, per-set gear, readiness meters and session timing, from a 47-lift exercise library.'],
+        ['Log a session set by set.', 'RPE or percentage intensity, per-set gear, readiness meters and session timing, from a {lifts}-lift exercise library.'],
         ['Know which plates go on the bar.', 'The plate loader draws the barbell and solves the plates per side, with bar and collar options. The plate icon on any logged set sends that weight straight to it.'],
-        ['Track food against your targets.', 'Calories and macros against daily targets from a 92-food pantry plus your own foods, with water and bodyweight.'],
+        ['Track food against your targets.', 'Calories and macros against daily targets from a {foods}-food pantry plus your own foods, with water and bodyweight.'],
         ['Training and food on one calendar.', 'The month view can overlay each day\'s calories, macros and bodyweight on top of the training grid.'],
         ['Switch kg and lb freely.', 'Weights are stored in kilograms and converted for display, so changing units never rewrites your history.'],
         ['Your old data comes along.', 'On first load it offers to import data from the older single-file version, and it never deletes the original.']
@@ -152,6 +180,7 @@
     },
     vinted: {
       slug: 'vinted-country-flags', repo: 'vinted-country-flags', log: { from: 'releases' },
+      facts: { markets: { capture: /All (\d+) markets/, in: 'README.md' } },
       tag: 'Chrome extension',
       title: 'Vinted Country Flags',
       img: 'vinted',
@@ -173,14 +202,18 @@
           ['Adapt when Vinted changes.', 'On 8 October 2026 the endpoint that made most lookups free started returning 404. Version 2.2 dropped it and now learns exchange rates from sellers it already knows, so a converted price can name the seller\'s currency for free.'],
           ['No flag beats a wrong flag.', 'A card whose seller nothing named gets no flag rather than a guess.']
         ],
-        testing: 'Node tests cover the currency rule against the real 27-market table, price parsing in every market\'s number format, the rate limiter and both feed parsers. The parts that depend on Vinted\'s pages were checked against live pages on five Vinted domains.',
-        status: 'Version 2.2.0. Install it by loading the unpacked extension in Chrome.'
+        testing: 'Node tests cover the currency rule against the real {markets}-market table, price parsing in every market\'s number format, the rate limiter and both feed parsers. The parts that depend on Vinted\'s pages were checked against live pages on five Vinted domains.',
+        status: 'Version {version}. Install it by loading the unpacked extension in Chrome.'
       },
       stack: ['JavaScript', 'Chrome Manifest V3', 'Vinted web API'],
       links: [['Download the latest release', GH + 'vinted-country-flags/releases/latest'], ['Source on GitHub', GH + 'vinted-country-flags']]
     },
     expense: {
       slug: 'expense-tracker', repo: 'common-expense-tracker', log: { from: 'changelog', file: 'CHANGELOG.md', level: 2 },
+      facts: {
+        tests: { count: /^\s*(?:test|it)\(/m, in: /^test\/.*\.js$/ },
+        htmlSize: { bytes: 'common-expense-tracker.html' }
+      },
       tag: 'Web app',
       title: 'Common Expense Tracker',
       img: 'expense', mob: true,
@@ -189,10 +222,10 @@
         ['Who owes whom, settled.', 'Add each month\'s shared costs and it works out the transfers that square everyone up.'],
         ['Share one tracker live.', 'Two people can edit the same tracker from different devices. A change on a phone shows up on the other laptop in well under a second.'],
         ['The server can\'t read your data.', 'Every record is encrypted in the browser with a 256-bit key, wrapped by a key derived from your password (PBKDF2-SHA256, 600,000 iterations). The server never sees either.'],
-        ['Hand someone one file.', 'The whole app builds into a single 200 KB HTML file. Save it anywhere and double-click it, no install.'],
+        ['Hand someone one file.', 'The whole app builds into a single {htmlSize|kb} HTML file. Save it anywhere and double-click it, no install.'],
         ['Money that adds up.', 'Amounts are stored as whole cents, never floats. Splitting 10,00 three ways gives 3,34 / 3,33 / 3,33, and "42,50" and "240.924,00" both parse correctly.'],
         ['Your data, portable.', 'Export any set of months as JSON or CSV.'],
-        ['Tested hard.', '125 unit tests, a two-client protocol smoke test, and a UI test that drives two headless Chrome profiles as two devices.']
+        ['Tested hard.', '{tests} unit tests, a two-client protocol smoke test, and a UI test that drives two headless Chrome profiles as two devices.']
       ],
       story: {
         context: 'I built it on 30 August 2026 from a written PRD with numbered acceptance scenarios, in one long day: the local-only version first, then export and the single-file build, then end-to-end encrypted sharing. It went live on its own domain on 26 September.',
@@ -202,7 +235,7 @@
           ['One file you can hand to someone.', 'The build inlines everything into one HTML file that works from a double-click, with no install.'],
           ['Invite-only sharing.', 'Creating a shared tracker needs an invite code, and each one is capped at 2 MB, so a stranger can\'t fill the server.']
         ],
-        testing: '125 unit tests, a protocol smoke test with two clients, and a UI check that drives two headless Chrome profiles as two devices editing the same tracker.',
+        testing: '{tests} unit tests, a protocol smoke test with two clients, and a UI check that drives two headless Chrome profiles as two devices editing the same tracker.',
         status: 'Live at expenses.thebarbellengineer.com.'
       },
       stack: ['Vanilla JS', 'Web Crypto', 'Cloudflare Workers', 'Durable Objects', 'WebSockets'],

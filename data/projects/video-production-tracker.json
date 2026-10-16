@@ -5,14 +5,24 @@
  "branch": "main",
  "created": "2026-08-23",
  "pushed": "2026-10-16",
- "commits": 4,
+ "commits": 8,
  "firstCommit": "2026-08-23",
  "lastCommit": {
-  "sha": "e892954",
-  "date": "2026-09-25",
-  "subject": "Deploy to GitHub Pages at /video-production/"
+  "sha": "49433b7",
+  "date": "2026-10-16",
+  "subject": "Merge pull request #2 from MolnarMario/readme-live-link"
  },
  "recent": [
+  {
+   "sha": "abc5db4",
+   "date": "2026-10-16",
+   "subject": "Add a README with the live link"
+  },
+  {
+   "sha": "1dc2b4f",
+   "date": "2026-10-16",
+   "subject": "Build for the root of video.thebarbellengineer.com"
+  },
   {
    "sha": "e892954",
    "date": "2026-09-25",
@@ -27,11 +37,6 @@
    "sha": "a5e5cb9",
    "date": "2026-09-24",
    "subject": "Add MIT license"
-  },
-  {
-   "sha": "61fc517",
-   "date": "2026-08-23",
-   "subject": "feat: initial commit for video production tracker"
   }
  ],
  "weeks": [
@@ -137,7 +142,7 @@
   ],
   [
    "2026-10-12",
-   0
+   4
   ]
  ],
  "log": {
@@ -147,6 +152,22 @@
    "url": "https://github.com/MolnarMario/video-production/commits"
   },
   "entries": [
+   {
+    "version": null,
+    "date": "2026-10-16",
+    "dated": "commit",
+    "title": null,
+    "commits": [
+     {
+      "sha": "abc5db4",
+      "subject": "Add a README with the live link"
+     },
+     {
+      "sha": "1dc2b4f",
+      "subject": "Build for the root of video.thebarbellengineer.com"
+     }
+    ]
+   },
    {
     "version": null,
     "date": "2026-09-25",

@@ -2,7 +2,8 @@ name: Update contributions and project pages
 
 on:
   schedule:
-    - cron: '17 */12 * * *'
+    # Once a day, 04:17 UTC
+    - cron: '17 4 * * *'
   workflow_dispatch:
 
 permissions:

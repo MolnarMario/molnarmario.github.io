@@ -1,5 +1,5 @@
 // Writes data/contributions.json from the GitHub GraphQL API.
-// Run by .github/workflows/contributions.yml every 12 hours. Locally:
+// Run by .github/workflows/contributions.yml once a day. Locally:
 //   GITHUB_TOKEN=$(gh auth token) node scripts/update-contributions.mjs
 import { writeFile, mkdir } from 'node:fs/promises';
 
