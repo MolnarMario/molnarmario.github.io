@@ -73,8 +73,23 @@
             <li><b>Hand someone one file.</b> The whole app builds into a single 200 KB HTML file. Save it anywhere and double-click it, no install.</li>
             <li><b>Money that adds up.</b> Amounts are stored as whole cents, never floats. Splitting 10,00 three ways gives 3,34 / 3,33 / 3,33, and &quot;42,50&quot; and &quot;240.924,00&quot; both parse correctly.</li>
             <li><b>Your data, portable.</b> Export any set of months as JSON or CSV.</li>
-            <li><b>Tested hard.</b> 116 unit tests, a two-client protocol smoke test, and a UI test that drives two headless Chrome profiles as two devices.</li>
+            <li><b>Tested hard.</b> 125 unit tests, a two-client protocol smoke test, and a UI test that drives two headless Chrome profiles as two devices.</li>
           </ol>
+          <h2 class="p-h">How it was built</h2>
+          <div class="story">
+            <p>I built it on 30 August 2026 from a written PRD with numbered acceptance scenarios, in one long day: the local-only version first, then export and the single-file build, then end-to-end encrypted sharing. It went live on its own domain on 26 September.</p>
+            <h3 class="story__h">Decisions that mattered</h3>
+            <ul class="decisions">
+              <li><b>The server never sees your data.</b> Records are encrypted in the browser before they leave it, with a key wrapped by your password, so the sharing server stores only ciphertext.</li>
+              <li><b>Money in whole cents.</b> No floats anywhere. Splitting 10,00 three ways gives 3,34 / 3,33 / 3,33.</li>
+              <li><b>One file you can hand to someone.</b> The build inlines everything into one HTML file that works from a double-click, with no install.</li>
+              <li><b>Invite-only sharing.</b> Creating a shared tracker needs an invite code, and each one is capped at 2 MB, so a stranger can&#39;t fill the server.</li>
+            </ul>
+            <h3 class="story__h">How it's tested</h3>
+            <p>125 unit tests, a protocol smoke test with two clients, and a UI check that drives two headless Chrome profiles as two devices editing the same tracker.</p>
+            <h3 class="story__h">Where it stands</h3>
+            <p>Live at expenses.thebarbellengineer.com.</p>
+          </div>
           <h2 class="p-h">Made with</h2>
           <ul class="stack"><li>Vanilla JS</li><li>Web Crypto</li><li>Cloudflare Workers</li><li>Durable Objects</li><li>WebSockets</li></ul>
         </section>

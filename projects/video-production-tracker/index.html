@@ -55,7 +55,7 @@
         <p class="p-lede">I make videos, so I built the tracker I wanted. Each project is a script split into sections.</p>
         <div class="p-actions">
           <a class="btn btn--primary" href="play/">Try it here <span aria-hidden="true">&rarr;</span></a>
-          <a class="btn btn--ghost" href="https://thebarbellengineer.com/video-production/" target="_blank" rel="noopener">Open the app <span aria-hidden="true">&nearr;</span></a>
+          <a class="btn btn--ghost" href="https://thebarbellengineer.com/video-production/" target="_blank" rel="noopener">Open full page <span aria-hidden="true">&nearr;</span></a>
           <a class="btn btn--ghost" href="https://github.com/MolnarMario/video-production" target="_blank" rel="noopener">Source on GitHub <span aria-hidden="true">&nearr;</span></a>
           <a class="btn btn--ghost" href="changelog/">Commit log</a>
         </div>
@@ -76,6 +76,19 @@
             <li><b>Write the script in place.</b> Quick-add templates for hooks, intros, main points, B-roll and calls to action, with a rich-text editor per section.</li>
             <li><b>Safe local storage.</b> Everything saves to the browser with a versioned schema. JSON backup and restore checks the file before touching your data.</li>
           </ol>
+          <h2 class="p-h">How it was built</h2>
+          <div class="story">
+            <p>It was planned up front: the data model, how progress is worked out across the production stages, how storage and backups behave, and a phased roadmap, all written down in a plan that went in with the first commit on 23 August 2026.</p>
+            <h3 class="story__h">Decisions that mattered</h3>
+            <ul class="decisions">
+              <li><b>Progress that doesn&#39;t mislead.</b> Overall progress weights filming at 40%, editing at 40% and publishing at 20%, so a project with many script sections doesn&#39;t drown out its publishing.</li>
+              <li><b>Check a backup before touching your data.</b> An imported file is parsed, and its projects, sections and platform states are validated and repaired. You see how many projects it holds before you choose to merge or replace.</li>
+              <li><b>Rich text, sanitized.</b> Each script section has a rich-text editor, and its HTML is sanitized before it&#39;s saved.</li>
+            </ul>
+            
+            <h3 class="story__h">Where it stands</h3>
+            <p>Live. Everything stays in your browser.</p>
+          </div>
           <h2 class="p-h">Made with</h2>
           <ul class="stack"><li>React</li><li>TypeScript</li><li>Vite</li><li>Tailwind CSS</li></ul>
         </section>

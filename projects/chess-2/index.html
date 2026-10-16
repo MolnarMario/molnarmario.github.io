@@ -55,7 +55,7 @@
         <p class="p-lede">Chess with an RPG layer. The king watches and never changes. Everything else can grow.</p>
         <div class="p-actions">
           <a class="btn btn--primary" href="play/">Play it here <span aria-hidden="true">&rarr;</span></a>
-          <a class="btn btn--ghost" href="https://thebarbellengineer.com/chess2.0/" target="_blank" rel="noopener">Play it <span aria-hidden="true">&nearr;</span></a>
+          <a class="btn btn--ghost" href="https://thebarbellengineer.com/chess2.0/" target="_blank" rel="noopener">Open full page <span aria-hidden="true">&nearr;</span></a>
           <a class="btn btn--ghost" href="https://github.com/MolnarMario/chess2.0" target="_blank" rel="noopener">Source on GitHub <span aria-hidden="true">&nearr;</span></a>
           <a class="btn btn--ghost" href="changelog/">Commit log</a>
         </div>
@@ -75,6 +75,20 @@
             <li><b>Play a friend or the computer.</b> Online against a friend, or against an AI at several difficulties, with an optional clock.</li>
             <li><b>Gambling mode.</b> Any capture can become a 50/50 roll that doubles the points or destroys your piece.</li>
           </ol>
+          <h2 class="p-h">How it was built</h2>
+          <div class="story">
+            <p>It started on 13 June 2026 as chess with an RPG layer, in one HTML file. Online play came in August, and so did the work that made it safe.</p>
+            <h3 class="story__h">Decisions that mattered</h3>
+            <ul class="decisions">
+              <li><b>Rules without the page.</b> The move logic was tangled up with dialogs, animations and networking in one function. I pulled it out into a rules engine with no page, timer or network code, so it can be tested on its own.</li>
+              <li><b>Send the move, not the result.</b> Online play first shipped the whole game state to the other player, who applied it as is, including move-log HTML that could run script. Now each side sends only the move, checks it against its own legal moves, replays it and compares a position hash after every move.</li>
+              <li><b>Dice nobody controls.</b> Gamble rolls come from a seed both players contribute when they connect, so both boards roll the same result and neither side reports its own outcome.</li>
+            </ul>
+            <h3 class="story__h">How it's tested</h3>
+            <p>Three test suites cover the rules engine, the network protocol and replaying a game from its moves.</p>
+            <h3 class="story__h">Where it stands</h3>
+            <p>Live. Play a friend online or the computer.</p>
+          </div>
           <h2 class="p-h">Made with</h2>
           <ul class="stack"><li>HTML</li><li>Vanilla JS</li><li>WebRTC networking</li></ul>
         </section>

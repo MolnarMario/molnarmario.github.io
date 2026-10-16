@@ -88,6 +88,20 @@
             <li><b>Hear it, and remember it.</b> A speaker button reads any kana or word aloud with the phone&#39;s Japanese voice. Each of the 46 basic hiragana has a memory story: あ is APPLE.</li>
             <li><b>All of hiragana and katakana.</b> Voiced, combined and extended kana are opt-ins, so beginners start with the 46 basics and add the rest when ready.</li>
           </ol>
+          <h2 class="p-h">How it was built</h2>
+          <div class="story">
+            <p>AI agents built the first version from three written phase prompts, starting on 3 July 2026. The first build session was lost before anything was written down, so the repo&#39;s HISTORY.md is a recovery record: what each phase asked for, what shipped and how every step was verified.</p>
+            <h3 class="story__h">Decisions that mattered</h3>
+            <ul class="decisions">
+              <li><b>Cut a feature the day after it landed.</b> Phase 3 added a spaced-repetition study mode with a scheduler, a lesson generator and a guided session. I removed it on 5 July and kept free practice and quizzes, with built-in practice sets for structure. Its tables stay in the database unused, because dropping them would take a destructive migration.</li>
+              <li><b>Trace the font, animate the real strokes.</b> The ghost you trace is drawn by the system font, which guarantees a correct shape. The stroke-order demo comes from KanjiVG&#39;s stroke paths, so both match real calligraphic proportions.</li>
+              <li><b>Contracts before parallel work.</b> Each phase started with a fixed design document and domain types, and then three or four workstreams built against it at once. Phase 3&#39;s four workstreams went green on the first integration build.</li>
+            </ul>
+            <h3 class="story__h">How it's tested</h3>
+            <p>272 unit tests across 28 files. After Phase 2 and again after Phase 3, two independent review agents went through the code, and both rounds came back with no blocking defects. The live database migrations were checked on a real Pixel 7 running Android 16.</p>
+            <h3 class="story__h">Where it stands</h3>
+            <p>Version 0.4.0 is out as a downloadable APK, with all of hiragana and katakana, a reading track and nearly 700 words.</p>
+          </div>
           <h2 class="p-h">Made with</h2>
           <ul class="stack"><li>Kotlin</li><li>Jetpack Compose</li><li>Room</li><li>ML Kit Digital Ink</li><li>Gradle</li></ul>
         </section>

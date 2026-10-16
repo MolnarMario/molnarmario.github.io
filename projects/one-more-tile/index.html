@@ -55,7 +55,7 @@
         <p class="p-lede">A cross-stitch puzzle inspired by the game Proverbs. Solving it uncovers a hidden pixel-art painting, one region at a time.</p>
         <div class="p-actions">
           <a class="btn btn--primary" href="play/">Play it here <span aria-hidden="true">&rarr;</span></a>
-          <a class="btn btn--ghost" href="https://thebarbellengineer.com/one-more-tile/" target="_blank" rel="noopener">Play it <span aria-hidden="true">&nearr;</span></a>
+          <a class="btn btn--ghost" href="https://thebarbellengineer.com/one-more-tile/" target="_blank" rel="noopener">Open full page <span aria-hidden="true">&nearr;</span></a>
           <a class="btn btn--ghost" href="https://github.com/MolnarMario/one-more-tile" target="_blank" rel="noopener">Source on GitHub <span aria-hidden="true">&nearr;</span></a>
           <a class="btn btn--ghost" href="changelog/">Changelog</a>
         </div>
@@ -76,8 +76,23 @@
             <li><b>Co-op for up to four.</b> Split-screen on one screen, or online with a room code.</li>
             <li><b>Hints near where you&#39;re working.</b> Press H and it points at a forced move close to your cursor and explains why it&#39;s forced.</li>
             <li><b>Nine paintings, saved as you go.</b> Each painting autosaves separately, with a timer that remembers your time, undo, pan and zoom, and full gamepad support.</li>
-            <li><b>One file.</b> The whole game is a single HTML file with zero dependencies.</li>
+            <li><b>No build step, no install.</b> The game and its puzzle generator live in one HTML file, next to the precomputed boards. Open it and play.</li>
           </ol>
+          <h2 class="p-h">How it was built</h2>
+          <div class="story">
+            <p>I started it on 13 June 2026 as a single HTML file. It still has no build step and no install: the game and its generator live in index.html, next to the precomputed boards. 60 versions shipped between June and September.</p>
+            <h3 class="story__h">Decisions that mattered</h3>
+            <ul class="decisions">
+              <li><b>Repair the picture, never hand out answers.</b> Where the solver would stall on a truly ambiguous spot, the generator flips a few pixels of the stitch texture until every region falls to plain counting. That&#39;s why no tile is ever pre-filled, on any difficulty.</li>
+              <li><b>Regions follow the painting.</b> A marker-controlled watershed grows the regions along the picture&#39;s own edges, so a finished region shows a recognisable piece of the art.</li>
+              <li><b>Ship the boards ready-made.</b> Generation is deterministic, so every player was computing the same bytes, up to 35 seconds on the largest canvas. Since 0.30.0 the boards ship precomputed, and a check rebuilds each one and asserts the shipped bytes match.</li>
+              <li><b>Trust the connection, not the message.</b> Version 0.33.0 rebuilt online play so a player&#39;s identity comes from the connection a message arrived on, after a review found one guest could pose as the host.</li>
+            </ul>
+            <h3 class="story__h">How it's tested</h3>
+            <p>An audit mode rebuilds every canvas at every difficulty and asserts zero pre-filled tiles, every region solvable from the shipped clues and every picross patch solvable by line logic. Versus was played across two browser tabs over the live connection broker before release, which turned up the fixes in 0.33.1.</p>
+            <h3 class="story__h">Where it stands</h3>
+            <p>Live and free to play, solo, in co-op or in versus.</p>
+          </div>
           <h2 class="p-h">Made with</h2>
           <ul class="stack"><li>HTML</li><li>Canvas</li><li>Vanilla JS</li><li>Node verifier scripts</li></ul>
         </section>
@@ -85,20 +100,20 @@
         <section class="p-side__block" aria-labelledby="act-h">
           <h2 class="p-h" id="act-h">Repository activity</h2>
           <dl class="act">
-            <div><dt>Commits</dt><dd>114</dd></div>
-            <div><dt>Last commit</dt><dd><time datetime="2026-09-25" data-rel>Sep 25, 2026</time></dd></div>
+            <div><dt>Commits</dt><dd>117</dd></div>
+            <div><dt>Last commit</dt><dd><time datetime="2026-10-16" data-rel>Oct 16, 2026</time></dd></div>
             <div><dt>Latest version</dt><dd>0.33.1</dd></div>
             <div><dt>First commit</dt><dd>Jun 2026</dd></div>
           </dl>
-          <div class="weeks" role="img" aria-label="114 commits in the last 26 weeks, by week"><i style="--h:0.000" title="Week of Apr 20, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Apr 27, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of May 4, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of May 11, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of May 18, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of May 25, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Jun 1, 2026: 0 commits" class="is-zero"></i><i style="--h:1.000" title="Week of Jun 8, 2026: 35 commits"></i><i style="--h:0.600" title="Week of Jun 15, 2026: 21 commits"></i><i style="--h:0.000" title="Week of Jun 22, 2026: 0 commits" class="is-zero"></i><i style="--h:0.314" title="Week of Jun 29, 2026: 11 commits"></i><i style="--h:0.114" title="Week of Jul 6, 2026: 4 commits"></i><i style="--h:0.029" title="Week of Jul 13, 2026: 1 commit"></i><i style="--h:0.143" title="Week of Jul 20, 2026: 5 commits"></i><i style="--h:0.171" title="Week of Jul 27, 2026: 6 commits"></i><i style="--h:0.486" title="Week of Aug 3, 2026: 17 commits"></i><i style="--h:0.286" title="Week of Aug 10, 2026: 10 commits"></i><i style="--h:0.000" title="Week of Aug 17, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Aug 24, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Aug 31, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Sep 7, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Sep 14, 2026: 0 commits" class="is-zero"></i><i style="--h:0.114" title="Week of Sep 21, 2026: 4 commits"></i><i style="--h:0.000" title="Week of Sep 28, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Oct 5, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Oct 12, 2026: 0 commits" class="is-zero"></i></div>
+          <div class="weeks" role="img" aria-label="117 commits in the last 26 weeks, by week"><i style="--h:0.000" title="Week of Apr 20, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Apr 27, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of May 4, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of May 11, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of May 18, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of May 25, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Jun 1, 2026: 0 commits" class="is-zero"></i><i style="--h:1.000" title="Week of Jun 8, 2026: 35 commits"></i><i style="--h:0.600" title="Week of Jun 15, 2026: 21 commits"></i><i style="--h:0.000" title="Week of Jun 22, 2026: 0 commits" class="is-zero"></i><i style="--h:0.314" title="Week of Jun 29, 2026: 11 commits"></i><i style="--h:0.114" title="Week of Jul 6, 2026: 4 commits"></i><i style="--h:0.029" title="Week of Jul 13, 2026: 1 commit"></i><i style="--h:0.143" title="Week of Jul 20, 2026: 5 commits"></i><i style="--h:0.171" title="Week of Jul 27, 2026: 6 commits"></i><i style="--h:0.486" title="Week of Aug 3, 2026: 17 commits"></i><i style="--h:0.286" title="Week of Aug 10, 2026: 10 commits"></i><i style="--h:0.000" title="Week of Aug 17, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Aug 24, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Aug 31, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Sep 7, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Sep 14, 2026: 0 commits" class="is-zero"></i><i style="--h:0.114" title="Week of Sep 21, 2026: 4 commits"></i><i style="--h:0.000" title="Week of Sep 28, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Oct 5, 2026: 0 commits" class="is-zero"></i><i style="--h:0.086" title="Week of Oct 12, 2026: 3 commits"></i></div>
           <p class="weeks__cap"><span>26 weeks ago</span><span>This week</span></p>
           <h3 class="p-h p-h--sm">Latest commits</h3>
           <ol class="commits">
+            <li><a href="https://github.com/MolnarMario/one-more-tile/commit/2b84dca" target="_blank" rel="noopener"><code>2b84dca</code></a> <span>Release notes: fill in what Luna&#39;s accuracy check found missing</span> <time datetime="2026-10-16">Oct 16, 2026</time></li>
+            <li><a href="https://github.com/MolnarMario/one-more-tile/commit/ca0d059" target="_blank" rel="noopener"><code>ca0d059</code></a> <span>Add player-facing release notes</span> <time datetime="2026-10-16">Oct 16, 2026</time></li>
             <li><a href="https://github.com/MolnarMario/one-more-tile/commit/94929e8" target="_blank" rel="noopener"><code>94929e8</code></a> <span>Fix versus seating and results, grid Continue in co-op (v0.33.1)</span> <time datetime="2026-09-25">Sep 25, 2026</time></li>
             <li><a href="https://github.com/MolnarMario/one-more-tile/commit/44bf49a" target="_blank" rel="noopener"><code>44bf49a</code></a> <span>Add MIT license</span> <time datetime="2026-09-24">Sep 24, 2026</time></li>
             <li><a href="https://github.com/MolnarMario/one-more-tile/commit/fcc267e" target="_blank" rel="noopener"><code>fcc267e</code></a> <span>Race a friend, and mean it when we say only the host may do that (v0.33.0)</span> <time datetime="2026-08-12">Aug 12, 2026</time></li>
-            <li><a href="https://github.com/MolnarMario/one-more-tile/commit/1a44c52" target="_blank" rel="noopener"><code>1a44c52</code></a> <span>Weave a new puzzle from any canvas (v0.31.0)</span> <time datetime="2026-08-11">Aug 11, 2026</time></li>
-            <li><a href="https://github.com/MolnarMario/one-more-tile/commit/16328a1" target="_blank" rel="noopener"><code>16328a1</code></a> <span>Ship every canvas already generated (v0.30.0)</span> <time datetime="2026-08-11">Aug 11, 2026</time></li>
           </ol>
           <p class="p-more"><a href="https://github.com/MolnarMario/one-more-tile/commits" target="_blank" rel="noopener">All commits on GitHub <span aria-hidden="true">&nearr;</span></a></p>
         </section>
@@ -113,26 +128,21 @@
         <ol class="changes">
           <li class="change">
             <p class="change__meta"><span class="entry__v">0.33.1</span><time datetime="2026-09-25">Sep 25, 2026</time></p>
-            <h3 class="change__title"><a href="changelog/#v0-33-1">Versus and menu fixes from live testing</a></h3>
-            <div class="change__body"><p>0.30.0 through 0.33.0 sat on a branch until now and ship together with this
-release. Playing them in a real browser, across two tabs over the live PeerJS
-broker, turned up these.</p></div>
+            <h3 class="change__title"><a href="changelog/#v0-33-1">Versus and menu fixes</a></h3>
+            <div class="change__body"><p>In online versus, a joining player now sees the host on the scoreboard and
+in the opponents panel.</p></div>
           </li>
           <li class="change">
             <p class="change__meta"><span class="entry__v">0.33.0</span><time datetime="2026-09-25">Sep 25, 2026</time></p>
-            <h3 class="change__title"><a href="changelog/#v0-33-0">Online play: who is actually speaking</a></h3>
-            <div class="change__body"><p>A security pass over online co-op and versus. The through-line: every privileged
-action was authorised against a peer id <strong>the sender wrote into its own frame</strong>,
-while the transport quietly knew who really sent it and threw that away.</p></div>
+            <h3 class="change__title"><a href="changelog/#v0-33-0">Safer online play</a></h3>
+            <div class="change__body"><p>In a game with two or more guests, one guest could pretend to be the host:
+push a board at the others, fake or cancel a match, or disconnect another
+guest, which could end a match for everyone. That's no longer possible.</p></div>
           </li>
           <li class="change">
             <p class="change__meta"><span class="entry__v">0.32.0</span><time datetime="2026-09-25">Sep 25, 2026</time></p>
-            <h3 class="change__title"><a href="changelog/#v0-32-0">Versus: race a friend for the canvas</a></h3>
-            <div class="change__body"><p>
-<strong>Versus mode</strong>, on the home menu beside Single Player and Co-op. Two shapes,
-because a shared screen and two separate screens leak completely different
-amounts of information:
-</p></div>
+            <h3 class="change__title"><a href="changelog/#v0-32-0">Versus mode</a></h3>
+            <div class="change__body"><p>Race up to three friends for the canvas, on one screen or online with a code.</p></div>
           </li>
         </ol>
       </section>

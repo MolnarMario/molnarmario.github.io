@@ -55,7 +55,7 @@
         <p class="p-lede">The powerlifting tracker I use for my own training. No account, and nothing leaves your browser.</p>
         <div class="p-actions">
           <a class="btn btn--primary" href="play/">Try it here <span aria-hidden="true">&rarr;</span></a>
-          <a class="btn btn--ghost" href="https://thebarbellengineer.com/testing-out-my-lifting-app/" target="_blank" rel="noopener">Open the app <span aria-hidden="true">&nearr;</span></a>
+          <a class="btn btn--ghost" href="https://thebarbellengineer.com/testing-out-my-lifting-app/" target="_blank" rel="noopener">Open full page <span aria-hidden="true">&nearr;</span></a>
           <a class="btn btn--ghost" href="https://github.com/MolnarMario/testing-out-my-lifting-app" target="_blank" rel="noopener">Source on GitHub <span aria-hidden="true">&nearr;</span></a>
           <a class="btn btn--ghost" href="changelog/">Commit log</a>
         </div>
@@ -77,6 +77,21 @@
             <li><b>Switch kg and lb freely.</b> Weights are stored in kilograms and converted for display, so changing units never rewrites your history.</li>
             <li><b>Your old data comes along.</b> On first load it offers to import data from the older single-file version, and it never deletes the original.</li>
           </ol>
+          <h2 class="p-h">How it was built</h2>
+          <div class="story">
+            <p>It began on 11 June 2026 as a single 424 KB HTML file holding a minified React bundle. In August I rebuilt it as a Vite, React and TypeScript project, one tab at a time, with the old build kept as the reference for how everything should behave.</p>
+            <h3 class="story__h">Decisions that mattered</h3>
+            <ul class="decisions">
+              <li><b>Kilograms underneath.</b> Weights are stored in kilograms and converted for display, so switching units never rewrites your history.</li>
+              <li><b>Never lose the old data.</b> On first load it offers to import data from the original build, reports how many days and sets came across, names any exercise it couldn&#39;t match and never deletes the original.</li>
+              <li><b>Parity you can check.</b> Every class in the original stylesheet was diffed against the new code. 17 are unused, and all 17 were already dead in the original.</li>
+              <li><b>Say so when saving fails.</b> If the browser refuses to store data, in private mode or with full storage, a banner says so instead of failing silently.</li>
+            </ul>
+            <h3 class="story__h">How it's tested</h3>
+            <p>Unit tests cover the plate solver and the food maths, and every build runs the TypeScript typecheck first.</p>
+            <h3 class="story__h">Where it stands</h3>
+            <p>In use for my own training. The workout, plates and food tabs are all rebuilt.</p>
+          </div>
           <h2 class="p-h">Made with</h2>
           <ul class="stack"><li>React</li><li>TypeScript</li><li>Vite</li><li>localStorage</li></ul>
         </section>
