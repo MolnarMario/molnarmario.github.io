@@ -4,15 +4,20 @@
  "url": "https://github.com/MolnarMario/testing-out-my-lifting-app",
  "branch": "main",
  "created": "2026-06-11",
- "pushed": "2026-10-15",
- "commits": 44,
+ "pushed": "2026-10-16",
+ "commits": 46,
  "firstCommit": "2026-06-11",
  "lastCommit": {
-  "sha": "4ca68bb",
-  "date": "2026-10-15",
-  "subject": "Merge pull request #3 from MolnarMario/integrate/review-fixes"
+  "sha": "4d9953e",
+  "date": "2026-10-16",
+  "subject": "Merge pull request #4 from MolnarMario/subdomain"
  },
  "recent": [
+  {
+   "sha": "e03956c",
+   "date": "2026-10-16",
+   "subject": "Serve Ironlog from ironlog.thebarbellengineer.com"
+  },
   {
    "sha": "2e2a712",
    "date": "2026-10-15",
@@ -32,11 +37,6 @@
    "sha": "42d47fb",
    "date": "2026-10-15",
    "subject": "Offer the import when exercise edits are all an old install has"
-  },
-  {
-   "sha": "ee53431",
-   "date": "2026-10-15",
-   "subject": "Fix what Luna's full-diff review found"
   }
  ],
  "weeks": [
@@ -142,7 +142,7 @@
   ],
   [
    "2026-10-12",
-   23
+   25
   ]
  ],
  "log": {
@@ -152,6 +152,18 @@
    "url": "https://github.com/MolnarMario/testing-out-my-lifting-app/commits"
   },
   "entries": [
+   {
+    "version": null,
+    "date": "2026-10-16",
+    "dated": "commit",
+    "title": null,
+    "commits": [
+     {
+      "sha": "e03956c",
+      "subject": "Serve Ironlog from ironlog.thebarbellengineer.com"
+     }
+    ]
+   },
    {
     "version": null,
     "date": "2026-10-15",

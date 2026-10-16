@@ -5,38 +5,38 @@
  "branch": "main",
  "created": "2026-07-04",
  "pushed": "2026-10-16",
- "commits": 144,
+ "commits": 168,
  "firstCommit": "2026-07-04",
  "lastCommit": {
-  "sha": "172b2b8",
-  "date": "2026-09-24",
-  "subject": "Add MIT license"
+  "sha": "93c187c",
+  "date": "2026-10-16",
+  "subject": "Merge pull request #66 from MolnarMario/fix/large-font-leftovers"
  },
  "recent": [
   {
-   "sha": "172b2b8",
-   "date": "2026-09-24",
-   "subject": "Add MIT license"
+   "sha": "d2b601e",
+   "date": "2026-10-16",
+   "subject": "Document the measured picker collapse and the font-scaled reveal reserve"
   },
   {
-   "sha": "4cbfb6d",
-   "date": "2026-08-11",
-   "subject": "Redesign the opening screen (kana wall bg, bilingual title, specimen mode cards)"
+   "sha": "4e5d919",
+   "date": "2026-10-16",
+   "subject": "Keep the flashcard glyph visible when the keyboard leaves a tiny card"
   },
   {
-   "sha": "e871b47",
-   "date": "2026-08-11",
-   "subject": "Fix forward reading-quiz MC options shrinking to one on a retake"
+   "sha": "ad9dd09",
+   "date": "2026-10-16",
+   "subject": "Grow the flashcard reveal reserve with the font so its badges stay visible"
   },
   {
-   "sha": "46623ed",
-   "date": "2026-08-11",
-   "subject": "Replace pointless sort toggle with a hype line on mistake-free reading quizzes"
+   "sha": "bd91d63",
+   "date": "2026-10-16",
+   "subject": "Keep a gap between Study scope row text and its value"
   },
   {
-   "sha": "e4261c3",
-   "date": "2026-08-07",
-   "subject": "Fix silent TTS for standalone small vowel kana"
+   "sha": "462f29d",
+   "date": "2026-10-16",
+   "subject": "Collapse the Library button when its label would clip the size picker"
   }
  ],
  "weeks": [
@@ -130,7 +130,7 @@
   ],
   [
    "2026-09-21",
-   1
+   4
   ],
   [
    "2026-09-28",
@@ -142,7 +142,7 @@
   ],
   [
    "2026-10-12",
-   0
+   21
   ]
  ],
  "log": {

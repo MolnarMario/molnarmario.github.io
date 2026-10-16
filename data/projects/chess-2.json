@@ -4,15 +4,20 @@
  "url": "https://github.com/MolnarMario/chess2.0",
  "branch": "master",
  "created": "2026-06-13",
- "pushed": "2026-09-24",
- "commits": 18,
+ "pushed": "2026-10-16",
+ "commits": 20,
  "firstCommit": "2026-06-13",
  "lastCommit": {
-  "sha": "b52e8a3",
-  "date": "2026-09-24",
-  "subject": "Add MIT license"
+  "sha": "9470493",
+  "date": "2026-10-16",
+  "subject": "Merge pull request #7 from MolnarMario/subdomain"
  },
  "recent": [
+  {
+   "sha": "2576636",
+   "date": "2026-10-16",
+   "subject": "Serve the game from chess.thebarbellengineer.com"
+  },
   {
    "sha": "b52e8a3",
    "date": "2026-09-24",
@@ -32,11 +37,6 @@
    "sha": "c222faf",
    "date": "2026-08-11",
    "subject": "Stop trusting the peer with the board in online play"
-  },
-  {
-   "sha": "36bb779",
-   "date": "2026-08-10",
-   "subject": "Extract a pure move reducer out of playMove's DOM-tangled CPS chain"
   }
  ],
  "weeks": [
@@ -142,7 +142,7 @@
   ],
   [
    "2026-10-12",
-   0
+   2
   ]
  ],
  "log": {
@@ -152,6 +152,18 @@
    "url": "https://github.com/MolnarMario/chess2.0/commits"
   },
   "entries": [
+   {
+    "version": null,
+    "date": "2026-10-16",
+    "dated": "commit",
+    "title": null,
+    "commits": [
+     {
+      "sha": "2576636",
+      "subject": "Serve the game from chess.thebarbellengineer.com"
+     }
+    ]
+   },
    {
     "version": null,
     "date": "2026-09-24",

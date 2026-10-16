@@ -5,14 +5,19 @@
  "branch": "master",
  "created": "2026-06-13",
  "pushed": "2026-10-16",
- "commits": 117,
+ "commits": 119,
  "firstCommit": "2026-06-13",
  "lastCommit": {
-  "sha": "1e7a312",
+  "sha": "b9b3147",
   "date": "2026-10-16",
-  "subject": "Merge pull request #23 from MolnarMario/release-notes"
+  "subject": "Merge pull request #24 from MolnarMario/subdomain"
  },
  "recent": [
+  {
+   "sha": "c21ce29",
+   "date": "2026-10-16",
+   "subject": "Serve the game from tile.thebarbellengineer.com"
+  },
   {
    "sha": "2b84dca",
    "date": "2026-10-16",
@@ -32,11 +37,6 @@
    "sha": "44bf49a",
    "date": "2026-09-24",
    "subject": "Add MIT license"
-  },
-  {
-   "sha": "fcc267e",
-   "date": "2026-08-12",
-   "subject": "Race a friend, and mean it when we say only the host may do that (v0.33.0)"
   }
  ],
  "weeks": [
@@ -142,7 +142,7 @@
   ],
   [
    "2026-10-12",
-   3
+   5
   ]
  ],
  "log": {
