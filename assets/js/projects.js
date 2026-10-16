@@ -184,7 +184,7 @@
       links: [['Download the latest release', GH + 'vinted-country-flags/releases/latest'], ['Source on GitHub', GH + 'vinted-country-flags']]
     },
     expense: {
-      slug: 'expense-tracker', repo: null,
+      slug: 'expense-tracker', repo: 'common-expense-tracker', log: { from: 'changelog', file: 'CHANGELOG.md', level: 2 },
       tag: 'Web app',
       title: 'Common Expense Tracker',
       img: 'expense', mob: true,
@@ -210,8 +210,7 @@
         status: 'Live at expenses.thebarbellengineer.com.'
       },
       stack: ['Vanilla JS', 'Web Crypto', 'Cloudflare Workers', 'Durable Objects', 'WebSockets'],
-      links: [['Open the app', 'https://expenses.thebarbellengineer.com/']],
-      note: 'Not on GitHub yet.'
+      links: [['Open the app', 'https://expenses.thebarbellengineer.com/'], ['Source on GitHub', GH + 'common-expense-tracker']]
     },
     dashboard: {
       slug: 'automation-test-platform', repo: 'thrive-test-dashboard', log: { from: 'changelog', file: 'CHANGELOG.md', level: 2 },
