@@ -1,0 +1,507 @@
+{
+ "id": "aihive",
+ "repo": "ai-hive",
+ "url": "https://github.com/MolnarMario/ai-hive",
+ "branch": "main",
+ "created": "2026-07-05",
+ "pushed": "2026-10-15",
+ "commits": 511,
+ "firstCommit": "2026-07-05",
+ "lastCommit": {
+  "sha": "a8d7e9f",
+  "date": "2026-10-15",
+  "subject": "Merge pull request #72 from MolnarMario/integrate/2026-10-16-lane-chip-words"
+ },
+ "recent": [
+  {
+   "sha": "7dc6601",
+   "date": "2026-10-15",
+   "subject": "docs: README count 3412"
+  },
+  {
+   "sha": "87efaec",
+   "date": "2026-10-15",
+   "subject": "fix: code review findings on the lane chip word drop"
+  },
+  {
+   "sha": "3fcbd2b",
+   "date": "2026-10-15",
+   "subject": "chore: version 0.43.1 and changelog"
+  },
+  {
+   "sha": "3f950c4",
+   "date": "2026-10-15",
+   "subject": "chore: lane chip word-drop fix reviewed"
+  },
+  {
+   "sha": "a33498b",
+   "date": "2026-10-15",
+   "subject": "fix: squeezed lane chip drops words instead of eliding \"int...tor\""
+  }
+ ],
+ "weeks": [
+  [
+   "2026-04-20",
+   0
+  ],
+  [
+   "2026-04-27",
+   0
+  ],
+  [
+   "2026-05-04",
+   0
+  ],
+  [
+   "2026-05-11",
+   0
+  ],
+  [
+   "2026-05-18",
+   0
+  ],
+  [
+   "2026-05-25",
+   0
+  ],
+  [
+   "2026-06-01",
+   0
+  ],
+  [
+   "2026-06-08",
+   0
+  ],
+  [
+   "2026-06-15",
+   0
+  ],
+  [
+   "2026-06-22",
+   0
+  ],
+  [
+   "2026-06-29",
+   3
+  ],
+  [
+   "2026-07-06",
+   14
+  ],
+  [
+   "2026-07-13",
+   1
+  ],
+  [
+   "2026-07-20",
+   2
+  ],
+  [
+   "2026-07-27",
+   10
+  ],
+  [
+   "2026-08-03",
+   55
+  ],
+  [
+   "2026-08-10",
+   18
+  ],
+  [
+   "2026-08-17",
+   29
+  ],
+  [
+   "2026-08-24",
+   1
+  ],
+  [
+   "2026-08-31",
+   2
+  ],
+  [
+   "2026-09-07",
+   6
+  ],
+  [
+   "2026-09-14",
+   0
+  ],
+  [
+   "2026-09-21",
+   12
+  ],
+  [
+   "2026-09-28",
+   59
+  ],
+  [
+   "2026-10-05",
+   246
+  ],
+  [
+   "2026-10-12",
+   53
+  ]
+ ],
+ "log": {
+  "source": {
+   "kind": "changelog",
+   "label": "CHANGELOG.md",
+   "url": "https://github.com/MolnarMario/ai-hive/blob/main/CHANGELOG.md"
+  },
+  "entries": [
+   {
+    "version": "0.43.1",
+    "date": "2026-10-15",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>A crowded card header no longer shortens the integrator's lane chip to\n\"int...tor\". The chip drops whole words instead, the word integrator\nfirst since its icon already says it, then the counts. The chip's\ntooltip still lists the role and every count.</li>\n</ul>"
+   },
+   {
+    "version": "0.43.0",
+    "date": "2026-10-15",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Giving an agent its own lane, from the New Agent dialog or Restart in\nown lane, now turns the workspace's Lanes toggle on, so the header no\nlonger says Lanes is off beside a laned card.</li>\n<li>Make integrator works on an agent without a lane once the workspace has\na lane. After you confirm, the agent restarts in its own lane in a new\nconversation and becomes the integrator.</li>\n<li>The + that brings back closed usage readouts is now a square button with\nthe same bold + as the add workspace button.</li>\n</ul>"
+   },
+   {
+    "version": "0.42.1",
+    "date": "2026-10-13",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>After a usage limit, Claude Code's own \"continuing automatically\" gets\nto go first. AI Hive used to type Continue a few seconds after the\nreset, which cancelled Claude's own continuation. Now it waits until 7.5\nminutes past the reset and steps in only if Claude hasn't continued.</li>\n<li>Pressing Esc on Claude's automatic continue now also tells AI Hive not\nto resume that agent.</li>\n<li>Before it continues a Claude agent whose reset time has passed, AI Hive\nchecks the account's usage reading and keeps waiting while the limit is\nstill spent. With no fresh reading, it waits up to 10 minutes, then goes\nby the clock as before.</li>\n</ul>"
+   },
+   {
+    "version": "0.42.0",
+    "date": "2026-10-12",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>The Close merged agents dialog has a \"Don't ask again\" box, with a\nswitch under Options &gt; Agents (Confirm Close merged agents) that brings\nthe dialog back.</li>\n<li>Closing several merged agents at once fades their cards out in turn and\nrearranges the grid once, instead of once per agent.</li>\n<li>Pressing F11 to leave fullscreen goes straight back to a maximized\nwindow, without flashing at half size first.</li>\n</ul>"
+   },
+   {
+    "version": "0.41.2",
+    "date": "2026-10-12",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>The usage pills keep loading at startup when the first read fails and\nsay \"retrying...\" while they try again within seconds. They only show\nthat usage could not be read after 3 minutes of failures, or right away\nfor an expired login.</li>\n<li>A new agent in its own lane shows the loading animation while AI Hive\ncreates its git worktree, instead of \"terminal not running\".</li>\n</ul>"
+   },
+   {
+    "version": "0.41.1",
+    "date": "2026-10-11",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>An agent that writes about the usage-limit menu in its own reply no\nlonger gets the hourglass. Only the real menu counts.</li>\n</ul>"
+   },
+   {
+    "version": "0.41.0",
+    "date": "2026-10-11",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Ctrl+Up maximizes the selected agent and Ctrl+Down shows every agent\nagain. A focused terminal no longer receives these two keys.</li>\n<li>A Claude card's usage-limit hourglass no longer comes back after a\nresume when Claude redraws the old limit message. A limit the\nconversation never recorded clears after 10 idle minutes.</li>\n</ul>"
+   },
+   {
+    "version": "0.40.0",
+    "date": "2026-10-11",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Resizing a Claude terminal re-wraps its whole scrollback at the new size,\nnot just the bottom screenful. The reflow waits until the agent is idle.</li>\n<li>A reply paragraph no longer shows up twice in a Claude card's scrollback\nafter Claude redraws its screen while idle.</li>\n<li>Closing a Codex agent no longer kills the Codex daemon that your other\nCodex windows share.</li>\n<li>Codex's own daemon and MCP servers no longer light the gear badge, and\nthe gear's kill menu no longer offers them.</li>\n<li>Clicking a workspace in the sidebar or in the event log puts the cursor\nin its top-left agent (or the maximized one), so you can type right away.</li>\n<li>The New Agent dialog shows the Full terminal box only for shells, scripts\nand custom commands. It was a forced, greyed-out tick for AI agents.</li>\n<li>A task summary squeezed down to a lone ellipsis in a card's header turns\ninto a clipboard icon that shows the whole task on hover. The close button\nis square and the usage text next to it is larger.</li>\n</ul>"
+   },
+   {
+    "version": "0.39.1",
+    "date": "2026-10-10",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>A Codex card now shows the \"?\" when Codex asks for approval or asks a\nquestion, and stops pulsing as busy while it waits for your answer.</li>\n</ul>"
+   },
+   {
+    "version": "0.39.0",
+    "date": "2026-10-10",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Before a laned agent marks its work Task done, it merges the newest main\ninto its lane and gets a GPT-6-Luna code review, fixing what the review\nfinds. Lanes reach the integrator already up to date and reviewed.</li>\n<li>Agents already running keep the old instructions until they restart.</li>\n<li>After a restart, the newest reply of a reopened conversation gets its\ntime stamp again, even when the reply was reprinted slowly or the card\nwas cleared.</li>\n</ul>"
+   },
+   {
+    "version": "0.38.1",
+    "date": "2026-10-09",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Opening or closing the sidebar no longer lights every idle agent as\nworking for two seconds.</li>\n<li>The README explains the lane chip's counts, untracked files and its\nhover tooltip.</li>\n</ul>"
+   },
+   {
+    "version": "0.38.0",
+    "date": "2026-10-09",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Tooltips wrap at one readable width instead of stretching into a thin\nstrip across the window. A new Tooltips switch in Options turns them\nall off.</li>\n<li>Options has a Fullscreen switch that does the same as F11.</li>\n<li>F11 no longer opens a black console window when pressed right after\nAI Hive starts.</li>\n<li>In fullscreen, resting the cursor on the top or left edge brings the\nbars back in 0.75 s instead of 1.5 s, and the floating top bar leaves\nout the logo, name and version.</li>\n<li>A Claude reply no longer shows up several times over in a card after\nthe card changes width.</li>\n<li>Close merged agents closes every merged agent in one click, not one\nper click.</li>\n<li>A finished lane's chip judges conflicts by the commit it flagged as\ndone, so later unfinished work no longer turns a shippable lane red.</li>\n<li>The Claude model list says Haiku 5.5 instead of Haiku 4.5.</li>\n</ul>"
+   },
+   {
+    "version": "0.37.2",
+    "date": "2026-10-09",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>The icons in a card's hover tray are now one size, the maximize\nbutton included, and the \"⋯\" that opens the tray is bigger.</li>\n<li>Make integrator is no longer offered while the workspace already has\nan integrator. Stop the current one first to hand the role on.</li>\n<li>The lane chip on a card shows a drawn branch icon instead of the small\n\"⎇\" glyph. The integrator's chip shows two lanes merging into one.</li>\n<li>The folder and trash beside the workspace path are line icons that\nmatch Lanes, Layout, Map and Activity, and the path is easier to read.</li>\n</ul>"
+   },
+   {
+    "version": "0.37.1",
+    "date": "2026-10-09",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>The new terminal shortcut is now Ctrl+T instead of Ctrl+N, so Ctrl+N\ngoes back to the program running in the terminal.</li>\n<li>The maximize and restore button on a card is now four plain arrows,\na little larger than before.</li>\n</ul>"
+   },
+   {
+    "version": "0.37.0",
+    "date": "2026-10-09",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>F11 goes fullscreen with only the agent grid on screen. Rest the\npointer on the top edge for a moment to float the top bar and the\nworkspace header over the grid, or on the left edge for the sidebar.\nTerminals never resize when they appear. F11 again puts the window\nback as it was.</li>\n<li>Ctrl+N opens a new terminal, also while a terminal has focus.</li>\n<li>Reply time stamps no longer vanish when a card is resized, retiled or\nrebuilt. They now work for Codex and Gemini agents, and a reopened\nCodex conversation gets its stamps back. Options &gt; Reply times hides\nthem.</li>\n<li>The card's maximize button draws corner arrows, pointing out to\nmaximize and in to restore, in the theme's header colors.</li>\n</ul>"
+   },
+   {
+    "version": "0.36.1",
+    "date": "2026-10-07",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Restart now gives the new agent a blank screen. The new Claude used to\ndraw its banner and input box over the old one's last frame.</li>\n<li>The card's maximize button uses the Windows caption icons: one square\nto maximize, two stacked squares to restore. They are larger than the\nold arrows, which looked alike.</li>\n</ul>"
+   },
+   {
+    "version": "0.36.0",
+    "date": "2026-10-07",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Close merged agents on the integrator's lane chip closes, after you\nconfirm, every agent whose lane work is now on main and that holds\nnothing else: no commit ahead, no uncommitted file, not mid-turn. Their\nlanes go too. The integrator and every other agent stay open.</li>\n<li>The Ship finished lanes confirmation has a Don't ask again box. Options\n<blockquote>\n<p>Agents &gt; Confirm Ship finished lanes turns the question back on.</p>\n</blockquote>\n</li>\n<li>Stop is gone from a terminal card's hover tray. Ctrl+C in the terminal\ndoes the same. Line-console cards, which have no Ctrl+C, keep it. Restart on a running agent now shows a restarting veil until\nthe new prompt is live, instead of a frozen old frame.</li>\n<li>A finished lane that shares a file with another lane keeps its green\nchip and gets a yellow border, instead of turning amber. Lane chips\nhave squarer corners.</li>\n<li>The model badge no longer shows backticks or a cut-off name like\n\"Sonnet 5\" after a /model pick.</li>\n<li>The agent map's hub colors match the sidebar: green when idle, yellow\nwhile working.</li>\n<li>Show usage moved to the left column in Options, under the chime rows.</li>\n</ul>"
+   },
+   {
+    "version": "0.35.0",
+    "date": "2026-10-07",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Click the integrator's lane chip and pick Ship finished lanes to ask it\nto ship. The item counts the lanes with a Task done commit, shows you\nthe list to confirm, then types the request into the integrator. It\nstays greyed out while the integrator works or no lane is finished.</li>\n<li>The test suite runs in parallel worker processes and finishes in about\na minute and a half instead of six. It also stops leaving test folders\nbehind in your Temp folder.</li>\n<li>Old plan and review documents are gone from the project folder.</li>\n</ul>"
+   },
+   {
+    "version": "0.34.1",
+    "date": "2026-10-06",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Removes the old task hand-off code that 0.34.0 left without a button.\nNothing you can see changes: scheduled sends and the auto-continue\nafter a plan limit still type into agents the same way.</li>\n<li>The collapsed sidebar rail and the workspace count badges now share\none \"working\" pulse, so they breathe in step.</li>\n</ul>"
+   },
+   {
+    "version": "0.34.0",
+    "date": "2026-10-06",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Restart now gives you a fresh agent, as if you closed the card and\nopened a new one of the same kind. It drops a permission mode you\nswitched into, a /model or /effort override, the AI title, the\ncontext badge and the assigned task. Name, folder, lane, font and\nthe model, effort and permission mode you created it with stay.</li>\n<li>The Start and Assign buttons are gone from the card's hover tray.\nRestart or any keystroke starts a stopped agent.</li>\n<li>A collapsed sidebar now leaves a thin rail with one strip per\nworkspace, colored like its count badge: amber while an agent\nworks, green when idle, red on an error. Hover a strip for the name\nand counts, click it to open that workspace.</li>\n<li>New \"Show usage left\" switch under Options, Appearance. Usage pills\nthen read \"Claude 79% left\" instead of \"Claude 21% used\", and the\nring empties as you use up the window. Red still means 85% used.</li>\n</ul>"
+   },
+   {
+    "version": "0.33.0",
+    "date": "2026-10-06",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>The integrator no longer pulls main into your project's own folder\nafter it merges. That folder is your working copy, and a pull could\nchange files under your editor or dev server. It tells you main moved\ninstead, so you pull when you're ready.</li>\n<li>The integrator no longer bumps a version or edits a CHANGELOG in\nevery project. It does both only when the project's\ndocs/agents/integration.md asks for it, the way AI Hive's own does.</li>\n</ul>"
+   },
+   {
+    "version": "0.32.0",
+    "date": "2026-10-06",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>You decide when finished work ships. AI Hive no longer types a note\ninto the integrator each time a lane's agent commits \"Task done\".\nThe lane chip still gets its ✓ and turns green. When you think\nthere is enough for a pull request, ask the integrator to ship it,\nnaming the lanes you want or none for everything marked done.</li>\n<li>The integrator starts only when you ask it to, never on its own.</li>\n</ul>"
+   },
+   {
+    "version": "0.31.0",
+    "date": "2026-10-06",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>A lane's chip on its card turns green once its agent commits \"Task\ndone\". Amber or red for files another lane also changed still wins\nover green.</li>\n<li>The workspace header's buttons are evenly spaced again. Change and\nLayout had a 20px gap between them while every other pair sat 6px\napart.</li>\n<li>The header's Change… button is now called Change folder.</li>\n</ul>"
+   },
+   {
+    "version": "0.30.0",
+    "date": "2026-10-06",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Finished work now ships without any clicks. When a laned agent finishes\nits task, it commits with a last line of just \"Task done\". AI Hive sees\nthat commit, puts a ✓ on the lane's chip and tells the integrator. The\nintegrator combines every finished lane into one pull request, runs the\ntests, gets a GPT-6-Luna code review, fixes what it finds and reviews\nagain until the review is clean. Then it merges and updates your main\nfolder, so the next launch runs the new version.</li>\n<li>The integration queue is gone: no more Submit to integrator, Approve\nmerge, Mark merged or the Activity panel's Integration section. Your\nintegrator stays the integrator. Queue items saved by an older version\nare dropped when the session loads.</li>\n<li>A laned agent now commits each finished task on its own, without asking.\nIf it ends a turn with uncommitted changes anyway, it gets one reminder to\ncommit them.</li>\n<li>When a closed card's lane is kept only because of uncommitted files, the\nnotice names up to three of them.</li>\n</ul>"
+   },
+   {
+    "version": "0.29.0",
+    "date": "2026-10-06",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>The card actions that lived in the header's right-click menu (start, stop,\nrestart, assign a task, scheduled send, Restart in own lane, Make\nintegrator) are now buttons in the tray that opens when you hover the ⋯ in\na card header, next to A- / A+ / maximize. Each has a tooltip naming it.\nThe right-click menu is gone. A lane action AI Hive can't do right now\nshows disabled, and its tooltip says why.</li>\n<li>The hover tray closes when you move the pointer slowly off it, up or down.\nBefore, it could stay stuck open on a display with fractional scaling.</li>\n<li>A second click on a dropdown's button now closes the dropdown. Before, it\nclosed and opened again at once. This affects the repo activity arrow, the\nusage \"+\" picker, the chime rows' note button in Options, and the\nbackground-shell and lane chips.</li>\n<li>A click anywhere on a sidebar category row expands or collapses it, not\nonly on the arrow. A double-click on the name still renames it.</li>\n<li>The Activity panel's \"No integrator yet\" hint points at the ⚑ button in\nthe card's hover tray instead of the right-click menu that is gone.</li>\n</ul>"
+   },
+   {
+    "version": "0.28.5",
+    "date": "2026-10-06",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Closing an agent no longer says \"Lane kept\" with an unmerged commit when\nthat work is already on main as a different commit. This happened when the\nintegrator cherry-picked a lane into a batch, and after a squash or rebase\nmerge. AI Hive now removes the lane once every change in it is on main. A\nlane with even one change main lacks is still kept.</li>\n</ul>"
+   },
+   {
+    "version": "0.28.4",
+    "date": "2026-10-06",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>AI Hive pulls what merged on GitHub every time it starts, so a restart\nalways runs the latest approved changes. Before, nothing moved your folder\nafter a merge, and a folder left on an old branch never updated at all.\nIt still never touches local changes or commits that are not on GitHub.</li>\n<li>The integrator now gets a second code review from GPT-6-Luna (through\nyour Codex CLI) before it opens a pull request, and lists each finding\nand what it did about it in the PR.</li>\n</ul>"
+   },
+   {
+    "version": "0.28.3",
+    "date": "2026-10-06",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>No change to the app itself. The release test that drives a real Claude\nCode agent works again with Claude Code 2.1.290, which changed how its\n\"do you trust this folder\" question marks the selected answer.</li>\n</ul>"
+   },
+   {
+    "version": "0.28.2",
+    "date": "2026-10-05",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>The A- / A+ / maximize buttons that appear when you hover the ⋯ in a card\nheader now touch each other and the tray edge, with no dead gaps, and fill\nthe full header height.</li>\n<li>Moving the pointer above or below those buttons now hides them, instead of\nleaving them open until you leave sideways.</li>\n<li>Layout, Map, Activity and Lanes in the workspace header have line icons\ninstead of font symbols, which some systems drew as colour emoji.</li>\n<li>Open folder and Change... look like the other header buttons, and the\nLanes toggle sits before them.</li>\n<li>On a window too narrow for the terminals plus the Activity panel, the panel\nnow slides over the terminals instead of pushing the window wider than the\nscreen.</li>\n<li>The model dropdown labels Sonnet as 5.5.</li>\n</ul>"
+   },
+   {
+    "version": "0.28.1",
+    "date": "2026-10-05",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>The ⚙ badge in a card header (a background command is still running) is\nnow as narrow as the gear itself, instead of a wide pill that pushed the\ntask summary aside.</li>\n<li>The workspace header's delete button is now a 🗑 trash can, and it turns\nred on hover like the other delete buttons.</li>\n<li>Hovering Open repo now outlines the whole button, right edge included.</li>\n<li>The Open repo ▾ list of recent pull requests and commits loads in the\nbackground a few seconds after AI Hive starts, so it opens with the list\nalready there. Opening it refreshes the list in place when it is more than\n3 minutes old, and a refresh that fails keeps the list you had.</li>\n</ul>"
+   },
+   {
+    "version": "0.28.0",
+    "date": "2026-10-05",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Lanes can now be turned on per workspace. Each git workspace's header has\na ⎇ Lanes toggle (off for new workspaces): on, the New Agent dialog ticks\nOwn lane for that workspace's new Claude agents.</li>\n<li>The Options switch is now \"Lanes in every workspace\". On, it turns every\nworkspace's toggle on and locks it. Off, each workspace decides.</li>\n<li>The New Agent dialog offers Own lane in every git workspace, so one agent\ncan have a lane while the rest of the workspace shares the folder.</li>\n<li>An existing agent can move into a lane with Restart in own lane in its\ncard's right-click menu. It starts a new conversation in its own worktree,\nand the old conversation stays in the New Agent picker.</li>\n<li>Turning lanes off no longer pauses anything. A lane keeps its warnings,\nits chip and its way to the integrator until you close its card, and a\npull request awaiting approval can be merged even after its lane is gone.</li>\n<li>New \"What are lanes?\" explainer, from the ? beside the header toggle and\nfrom the New Agent dialog, and a one-time hint when a workspace gets two\nlanes without an integrator.</li>\n<li>Fixed: right after a restart, an agent could briefly be pinned back to its\nprevious conversation.</li>\n</ul>"
+   },
+   {
+    "version": "0.27.1",
+    "date": "2026-10-03",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Closing a laned agent now keeps its lane when the agent deleted one of the\nlocal files that <code>.worktreeinclude</code> copied in (a <code>.env</code>), the same as when\nit edited one. Before, the lane was removed and the deletion with it.</li>\n<li>When AI Hive can't finish checking a lane's local files, it now keeps the\nlane and says so, instead of taking the lane for clean and removing it.</li>\n</ul>"
+   },
+   {
+    "version": "0.27.0",
+    "date": "2026-10-02",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Agent lanes get an integration queue. Right-click a laned Claude agent's\nheader and pick Make integrator, then choose Submit to integrator on\nanother lane's chip. One lane at a time, AI Hive sends the integrator a\nshort brief: it merges the newest base branch into that lane's work, bumps\nthe version, runs the tests on exactly that commit and opens a pull request\nthat names it. It never merges.</li>\n<li>The Activity panel's new Integration section lists every submitted lane.\nApprove merge there is the only way a pull request gets merged, and AI Hive\ndoes it itself: it refuses if the pull request changed since it was tested\nor the base branch can't be confirmed with GitHub, and sends it back to the\nintegrator if the base branch moved since then. Anything unexpected waits\nfor you with the reason and the \"?\" chime, and is never approved again by\nitself.</li>\n<li>A pull request merged on GitHub instead of with Approve merge waits for you:\nMark merged checks with GitHub, then moves the queue on. A lane whose work\nwas squash-merged can be removed from its \"lane kept\" notice.</li>\n<li>A lane with no work of its own now catches up with the base branch by\nitself while its agent is idle, and the agent is told.</li>\n<li>The integration queue needs a GitHub remote and a logged-in GitHub CLI\n(gh). It pauses while Agent lanes is off and survives a restart.</li>\n</ul>"
+   },
+   {
+    "version": "0.26.1",
+    "date": "2026-10-02",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>A task given to a Claude agent as it starts is now always submitted. In a\nfresh git folder (every new agent lane is one) Claude could take the task's\ntext and its Enter as one paste, so the task sat typed in the input box and\nnever ran. AI Hive now presses Enter only once Claude shows the text.</li>\n</ul>"
+   },
+   {
+    "version": "0.26.0",
+    "date": "2026-10-02",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Agent lanes now keep agents aware of each other without reading the whole\nboard. Each laned agent's card shows its branch, commits ahead and\nuncommitted files, and turns amber when another agent's lane (or the base\nbranch) changed one of the same files, red when the two would conflict.</li>\n<li>A laned agent is warned the moment it edits a file another lane changed,\nor edits outside its own lane, and is told on its next prompt when the base\nbranch changed a file it changed. Each warning comes once per round of\nwork. Laned agents read a small roster file instead of the whole board.</li>\n<li>The board roster shows each agent's lane, how far ahead it is and which\nfiles it is touching. The Activity panel lists lanes and their changed\nfiles, the Agent/File Map shows one tree for the whole repository, and new\noverlaps and conflicts appear in the event log.</li>\n<li>The lane chip's menu opens the lane folder, and updates a lane with no work\nof its own to the newest base branch.</li>\n<li>A <code>.worktreeinclude</code> file in the repository names ignored local files (like\na <code>.env</code>) to copy into every new lane. A lane whose copy you edited is kept\nwhen its agent closes, not deleted with it.</li>\n<li>Turning Agent lanes off now always reaches agents that are running, even\nwhen one of them is reading the lane file at that moment.</li>\n</ul>"
+   },
+   {
+    "version": "0.25.0",
+    "date": "2026-10-02",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>New in Options: Agent lanes, off by default. Turned on, every new Claude\nagent in a git workspace works in its own copy of the repository (a git\nworktree on its own branch, next to your project folder), so agents can no\nlonger overwrite, reset or accidentally commit each other's changes. Untick\n\"Own lane\" in the New Agent dialog to keep an agent in the workspace folder.</li>\n<li>Closing a laned agent cleans its lane up only when nothing in it is\nunsaved or unmerged, and only once no program is still running in it (AI\nHive tries again for a minute). Otherwise the lane is kept and AI Hive tells\nyou what is in it; its conversation stays in the New Agent dialog's\nConversation list, and picking it brings the lane back where it was.</li>\n<li>A workspace inside a larger repository starts with \"Own lane\" unticked,\nsince its lane would copy the whole repository. A workspace folder that is\nnot part of the repository's files gets no lane at all.</li>\n<li>Turning Agent lanes off stops new lanes. Agents that already have one keep\nworking in it.</li>\n</ul>"
+   },
+   {
+    "version": "0.24.0",
+    "date": "2026-10-01",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>The New Agent dialog has a Count stepper: pick Claude Code (or any type),\npress + to choose how many, and that many agents open at once, numbered on\nfrom the name you gave. It starts at 1 and can't go past the workspace's\nfree slots. Resuming a past conversation keeps it at 1.</li>\n<li>New Workspace can start from a GitHub repository: paste its URL and AI Hive\nclones its default branch (main, master or any other name) into a new folder\nand opens a workspace there.</li>\n</ul>"
+   },
+   {
+    "version": "0.23.2",
+    "date": "2026-10-03",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>The shared board now keeps only its newest 40 activity notes. Older ones\nmove to board-archive.md next to it, so agents spend fewer tokens reading\nthe board before each task. Nothing is deleted.</li>\n<li>The board's agent list shows what each agent is working on (its\nconversation title) instead of \"-\" when it has no assigned task.</li>\n</ul>"
+   },
+   {
+    "version": "0.23.1",
+    "date": "2026-10-03",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Terminals restored after a reopen keep the width they started at, also on a\nsmall or heavily scaled screen. Before, a resumed conversation there could\nbe wrapped narrower than its card.</li>\n</ul>"
+   },
+   {
+    "version": "0.23.0",
+    "date": "2026-10-01",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Codex cards now resume their own conversation when you reopen AI Hive, and\nshow the model, reasoning level and context-window usage live in the header.</li>\n<li>A card's summary is now the conversation title you see in the CLI's resume\nlist. A task assigned in AI Hive shows only until that title exists.</li>\n<li>A Codex card's summary stays on the conversation's opening prompt instead of\njumping to a later message once the conversation gets long.</li>\n</ul>"
+   },
+   {
+    "version": "0.22.6",
+    "date": "2026-09-29",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>When Claude Code continues on its own after a usage limit resets, the\nhourglass no longer comes back and stays for a day. Any leftover hourglass\nalso clears within a minute once the conversation shows new work.</li>\n<li>An agent stopped by a usage limit is now resumed even if a background task\nhit the same limit again later. Before, AI Hive could decide there was\nnothing to resume and leave it idle.</li>\n</ul>"
+   },
+   {
+    "version": "0.22.5",
+    "date": "2026-09-29",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>A reply's date and time stamp now shows when Claude actually finished the\nreply. It used to jump to whenever the terminal was next redrawn, for\nexample when you switched to its workspace hours later.</li>\n<li>Reply stamps no longer go missing in terminals where a Stop hook prints a\nline under every reply (such as a hook that echoes the time).</li>\n</ul>"
+   },
+   {
+    "version": "0.22.4",
+    "date": "2026-09-28",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>The update button beside the version is a cleaner refresh icon.</li>\n<li>\"Up to date\" now shows for 4 seconds and then the button returns on its\nown. While it shows it is just a message, not something to click.</li>\n</ul>"
+   },
+   {
+    "version": "0.22.3",
+    "date": "2026-09-28",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Internal: the test suite is split into one file per area of the app, and a\ntest can no longer be left out of the run by mistake.</li>\n</ul>"
+   },
+   {
+    "version": "0.22.2",
+    "date": "2026-09-28",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>The model list in the New Terminal dialog is current: Fable 5.1, Opus 5.5,\nSonnet 5 and Haiku 4.5, plus the 1M-context versions and Opus Plan (Opus\nplans, Sonnet executes).</li>\n</ul>"
+   },
+   {
+    "version": "0.22.1",
+    "date": "2026-09-28",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Conversations are found when Claude Code keeps its data somewhere other\nthan your user folder (the CLAUDE_CONFIG_DIR setting).</li>\n<li>Fixed an error that could be logged when a label was removed right after\nits text changed.</li>\n<li>Internal: the test suite runs in a throwaway profile, can never start a\nreal Claude in your project folders, and finishes in about a third of the\ntime. Unused code for spawning agents automatically was removed.</li>\n</ul>"
+   },
+   {
+    "version": "0.22.0",
+    "date": "2026-09-28",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Update AI Hive from inside the app. The button beside the version badge\nchecks GitHub, shows what changed, and updates this folder when you click\nUpdate. You restart AI Hive yourself when your agents are at a good point.</li>\n<li>This changelog.</li>\n</ul>"
+   },
+   {
+    "version": "0.21.1",
+    "date": "2026-09-28",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Internal: shorter project notes for the agents working on AI Hive. No\nchange to the app.</li>\n</ul>"
+   },
+   {
+    "version": "0.21.0",
+    "date": "2026-09-28",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Event log window (Log button or Ctrl+Shift+L): what every agent in every\nworkspace did, with unanswered questions highlighted.</li>\n<li>Usage pills share one poller: faster while agents work, slower when idle,\nand a pill only greys out when its reading is really stale.</li>\n<li>Pick your own WAV or MP3 for each chime in Options, preview it, or go back\nto the built-in sound.</li>\n<li>A second click on Options now closes the panel.</li>\n</ul>"
+   },
+   {
+    "version": "0.19.7",
+    "date": "2026-09-28",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>New question chime, and an optional chime when a reply finishes.</li>\n<li>Usage pills: per-agent colours, red from 85%, Claude and GPT labels, and a\nnew Codex / ChatGPT usage pill.</li>\n<li>Gemini agents get the full card header: model, effort, mode, summary and\ncontext.</li>\n<li>Usage-limit cut-offs are caught more reliably, and the reset time is read\ncorrectly across time zones and daylight saving.</li>\n<li>Card font and maximize buttons collapse into a hover tray.</li>\n<li>Right-click menu on links, and the input box no longer gets stranded after\na menu closes.</li>\n<li>Reveal in folder opens the file's own folder.</li>\n</ul>"
+   }
+  ]
+ }
+}

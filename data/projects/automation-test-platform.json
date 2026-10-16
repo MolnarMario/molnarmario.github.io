@@ -1,0 +1,171 @@
+{
+ "id": "dashboard",
+ "repo": "thrive-test-dashboard",
+ "url": "https://github.com/MolnarMario/thrive-test-dashboard",
+ "branch": "main",
+ "created": "2026-07-14",
+ "pushed": "2026-09-24",
+ "commits": 8,
+ "firstCommit": "2026-07-14",
+ "lastCommit": {
+  "sha": "5b8a911",
+  "date": "2026-09-24",
+  "subject": "Add MIT license"
+ },
+ "recent": [
+  {
+   "sha": "5b8a911",
+   "date": "2026-09-24",
+   "subject": "Add MIT license"
+  },
+  {
+   "sha": "5e0aa5f",
+   "date": "2026-08-21",
+   "subject": "Make sites.manage and users.manage non-delegable admin-only permissions"
+  },
+  {
+   "sha": "22e3b6e",
+   "date": "2026-08-21",
+   "subject": "Harden dashboard security: encrypted site credentials, CSRF/CSP, login throttling"
+  },
+  {
+   "sha": "a4ea899",
+   "date": "2026-08-19",
+   "subject": "Serialize same-site targets in a run to fix cross-framework test races"
+  },
+  {
+   "sha": "ce660ad",
+   "date": "2026-08-19",
+   "subject": "Add login/RBAC, site management UI, and fix JDK glob detection"
+  }
+ ],
+ "weeks": [
+  [
+   "2026-04-20",
+   0
+  ],
+  [
+   "2026-04-27",
+   0
+  ],
+  [
+   "2026-05-04",
+   0
+  ],
+  [
+   "2026-05-11",
+   0
+  ],
+  [
+   "2026-05-18",
+   0
+  ],
+  [
+   "2026-05-25",
+   0
+  ],
+  [
+   "2026-06-01",
+   0
+  ],
+  [
+   "2026-06-08",
+   0
+  ],
+  [
+   "2026-06-15",
+   0
+  ],
+  [
+   "2026-06-22",
+   0
+  ],
+  [
+   "2026-06-29",
+   0
+  ],
+  [
+   "2026-07-06",
+   0
+  ],
+  [
+   "2026-07-13",
+   1
+  ],
+  [
+   "2026-07-20",
+   0
+  ],
+  [
+   "2026-07-27",
+   0
+  ],
+  [
+   "2026-08-03",
+   0
+  ],
+  [
+   "2026-08-10",
+   1
+  ],
+  [
+   "2026-08-17",
+   5
+  ],
+  [
+   "2026-08-24",
+   0
+  ],
+  [
+   "2026-08-31",
+   0
+  ],
+  [
+   "2026-09-07",
+   0
+  ],
+  [
+   "2026-09-14",
+   0
+  ],
+  [
+   "2026-09-21",
+   1
+  ],
+  [
+   "2026-09-28",
+   0
+  ],
+  [
+   "2026-10-05",
+   0
+  ],
+  [
+   "2026-10-12",
+   0
+  ]
+ ],
+ "log": {
+  "source": {
+   "kind": "changelog",
+   "label": "CHANGELOG.md",
+   "url": "https://github.com/MolnarMario/thrive-test-dashboard/blob/main/CHANGELOG.md"
+  },
+  "entries": [
+   {
+    "version": null,
+    "date": "2026-08-20",
+    "dated": "heading",
+    "title": "Security hardening",
+    "html": "<p>An audit of how the dashboard stores user accounts and site passwords, ahead of\nopen-sourcing it. Everything below is fixed; the through-line is that the app now\nassumes it may be hosted on a public domain rather than sitting on one laptop.</p>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Privilege escalation: environment injection into spawned processes</h3><a id=\"user-content-privilege-escalation-environment-injection-into-spawned-processes\" class=\"anchor\" aria-label=\"Permalink: Privilege escalation: environment injection into spawned processes\" href=\"#privilege-escalation-environment-injection-into-spawned-processes\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<p><code>POST /api/runs</code> passed the request body straight through to <code>spawn()</code>, so any\naccount with <code>tests.run</code> could set <code>NODE_OPTIONS=--require …</code> (or\n<code>CYPRESS_RUN_BINARY</code>, <code>PATH</code>, <code>LD_PRELOAD</code>) and execute arbitrary code as the\ndashboard's user. Saved schedules were the same hole with a timer on it.\nRequested environment is now allowlisted to the <code>E2E_ / WP_ / TEST_ / DASHBOARD_</code> namespaces, and validated when a schedule is saved rather than at\n3am when it fires. A run may also no longer carry its own <code>baseUrl</code>: only the\nPR Builder, which builds its target server-side, can target an unregistered site.</p>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Site passwords are encrypted at rest</h3><a id=\"user-content-site-passwords-are-encrypted-at-rest\" class=\"anchor\" aria-label=\"Permalink: Site passwords are encrypted at rest\" href=\"#site-passwords-are-encrypted-at-rest\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<p><code>data/custom-sites.json</code> held <code>\"adminPass\": \"admin\"</code> in the clear. It is now\nAES-256-GCM, keyed from <code>DASHBOARD_SECRET_KEY</code> or a generated <code>data/secret.key</code>\n(0600), and existing files are migrated on first boot. <code>data/</code> itself is locked\nto the running account. Adding a site now <em>requires</em> a password — the old\nsilent default meant a site with none would send admin/admin at whatever host\nits URL pointed to.</p>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Bound to loopback by default</h3><a id=\"user-content-bound-to-loopback-by-default\" class=\"anchor\" aria-label=\"Permalink: Bound to loopback by default\" href=\"#bound-to-loopback-by-default\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<p><code>app.listen(PORT)</code> bound every interface while the banner said <code>localhost</code>, over\nplain HTTP with non-Secure cookies. Now <code>127.0.0.1</code> unless <code>HOST</code> says otherwise,\nwith <code>TRUST_PROXY</code> to make <code>req.secure</code> and <code>req.ip</code> meaningful behind a proxy\nand a boot warning when the bind is not loopback.</p>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Path traversal in run and target ids</h3><a id=\"user-content-path-traversal-in-run-and-target-ids\" class=\"anchor\" aria-label=\"Permalink: Path traversal in run and target ids\" href=\"#path-traversal-in-run-and-target-ids\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<p>Express percent-decodes route parameters after matching, so <code>..%2f..%2f</code> reached\n<code>path.join()</code> in the report, artifact and run-record routes. Both ids are now\nvalidated before they touch the filesystem.</p>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Accounts</h3><a id=\"user-content-accounts\" class=\"anchor\" aria-label=\"Permalink: Accounts\" href=\"#accounts\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>The seeded admin gets a <strong>generated</strong> password, printed once, instead of the\npublished constant <code>admin!</code>.</li>\n<li>\n<code>mustChangePassword</code> is enforced rather than advisory: the account is signed in\nbut inert until it sets its own password. New accounts and admin resets set it.</li>\n<li>Password floor raised to 12 characters, with checks against the username and a\nshort list of the obvious ones.</li>\n<li>scrypt cost raised to 32 MiB with the parameters stored per record, so it can be\nraised again later; a successful sign-in re-hashes older records transparently.</li>\n<li>Unknown usernames now cost the same work as wrong passwords — the previous\nearly return leaked which accounts exist through response timing.</li>\n<li>Throttling is per account <strong>and</strong> per client address, escalating, and no longer\nhands back a clean slate when a lock expires. The maps are bounded.</li>\n<li>Session ids are stored as SHA-256 digests, with an absolute 7-day cap on top of\nthe sliding idle timeout.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Browser-side</h3><a id=\"user-content-browser-side\" class=\"anchor\" aria-label=\"Permalink: Browser-side\" href=\"#browser-side\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>Strict CSP (no external origins), <code>nosniff</code>, <code>X-Frame-Options: DENY</code>, HSTS over\nTLS. The login page's inline script moved to <code>login.js</code> so <code>script-src</code> can be\n<code>'self'</code>. Playwright reports get a narrowly relaxed policy so they still run.</li>\n<li>Same-origin check on every state-changing request, behind <code>SameSite=Lax</code>.</li>\n<li>Artifacts that a browser would execute (<code>.html</code>, <code>.svg</code>, <code>.xml</code>) are served as\ndownloads — they are test output from sites you may not control.</li>\n<li>Passwords are typed into a real masked dialog instead of <code>window.prompt()</code>,\nwhich paints them onto the screen.</li>\n</ul>"
+   },
+   {
+    "version": null,
+    "date": "2026-07-08",
+    "dated": "heading",
+    "title": "Run pacing, per-site control, and a combined report",
+    "html": "<p>Three problems surfaced running the full 11-product suite from the dashboard, plus\na reporting gap. This release addresses all four.</p>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">1. Staggered launch (fixes out-of-memory crashes)</h3><a id=\"user-content-1-staggered-launch-fixes-out-of-memory-crashes\" class=\"anchor\" aria-label=\"Permalink: 1. Staggered launch (fixes out-of-memory crashes)\" href=\"#1-staggered-launch-fixes-out-of-memory-crashes\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<p><strong>Why:</strong> the orchestrator launched every authenticated site's Playwright process\n<strong>simultaneously</strong> (<code>Promise.all(runnable.map(runTests))</code>). Eleven concurrent\nWordPress stacks plus a swarm of headless Chromium instances exhausted machine\nmemory, so the OS refused new allocations and several sites died mid-startup\nwith PHP <code>Fatal error: Out of memory</code> / nginx <code>502 Bad Gateway</code> (observed on\nseveral sites). Which sites lost was down to luck under contention, so the\nfailures looked random.</p>\n<p><strong>What changed</strong> (<code>config.js</code>, <code>server/orchestrator.js</code>):</p>\n<ul>\n<li>Sites now launch <strong>one at a time with a delay between starts</strong> —\n<code>SITE_START_STAGGER_MS</code> (default <strong>45000 ms</strong>). Each site clears its\nmemory-heavy startup (browser launch + auth + first page load) before the next\nbegins, so peak memory stays bounded.</li>\n<li>Optional hard cap <code>MAX_CONCURRENT_SITES</code> (default <code>0</code> = off) as a complementary\nsafeguard; a freed slot lets the next queued site launch.</li>\n<li>New <code>launchWithStagger()</code> + <code>cancellableDelay()</code> replace the simultaneous\n<code>Promise.all</code>; a whole-run cancel no longer has to wait out the stagger.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">2. Priority start order (largest suites first)</h3><a id=\"user-content-2-priority-start-order-largest-suites-first\" class=\"anchor\" aria-label=\"Permalink: 2. Priority start order (largest suites first)\" href=\"#2-priority-start-order-largest-suites-first\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<p><strong>Why:</strong> the biggest, longest suites should start earliest — they need the most\nrunway and the freest memory. Previously sites ran in selection/tree order.</p>\n<p><strong>What changed</strong> (<code>config.js</code>, <code>server/orchestrator.js</code>):</p>\n<ul>\n<li>\n<code>SITE_START_PRIORITY</code> (default <code>apprentice, architect, ttb, quiz</code>) is applied to\n<strong>both</strong> the auth phase and the launch phase via <code>orderTargets()</code>, regardless of\nselection order. Remaining sites keep their original relative order. Storage /\nrender order is untouched.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">3. Per-site control + instant free-up (unblocks new runs)</h3><a id=\"user-content-3-per-site-control--instant-free-up-unblocks-new-runs\" class=\"anchor\" aria-label=\"Permalink: 3. Per-site control + instant free-up (unblocks new runs)\" href=\"#3-per-site-control--instant-free-up-unblocks-new-runs\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<p><strong>Why:</strong> a site was marked \"busy\" for the <strong>entire run</strong> and only released at\nwhole-run <code>finalize()</code>. So a product that already failed kept blocking a new run\nfor that product until every other product finished — you couldn't re-run the\nfailed one in the meantime.</p>\n<p><strong>What changed</strong> (<code>server/orchestrator.js</code>, <code>server/index.js</code>, <code>public/app.js</code>,\n<code>public/style.css</code>):</p>\n<ul>\n<li>A site is released from the busy set <strong>the moment it reaches a terminal state</strong>\n(passed/failed/error/cancelled), not at whole-run finalize.</li>\n<li>\n<code>busySites</code> is now a <code>Map&lt;site, runId&gt;</code> with an <strong>ownership-checked</strong>\n<code>releaseSite()</code> — so an old run's finalize can never free a site a newer run has\nalready re-acquired.</li>\n<li>Per-site <strong>Cancel</strong> — <code>cancelSite()</code> + <code>POST /api/runs/:id/targets/:site/cancel</code>\nkills just that site's process (children are tagged with <code>_site</code>), marks it\ncancelled, frees it, and finalizes the run only once nothing else is active\n(<code>maybeFinalize()</code>, gated on <code>launchComplete</code>; <code>finalize()</code> made idempotent).</li>\n<li>Per-site <strong>Re-run</strong> button on finished/failed cards starts a fresh single-site\nrun (the site is already free, so the busy guard passes).</li>\n<li>New per-site card buttons render in the Live view (<code>renderSiteActions()</code>).</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">4. Combined run report (one shareable, printable page)</h3><a id=\"user-content-4-combined-run-report-one-shareable-printable-page\" class=\"anchor\" aria-label=\"Permalink: 4. Combined run report (one shareable, printable page)\" href=\"#4-combined-run-report-one-shareable-printable-page\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<p><strong>Why:</strong> results were only viewable <strong>per product</strong> (one Playwright report per\nsite). There was no single view of a whole multi-product run to read, share, or\nexport.</p>\n<p><strong>What changed</strong> (<code>server/combined-report.js</code> (new), <code>server/index.js</code>,\n<code>public/app.js</code>, <code>public/style.css</code>):</p>\n<ul>\n<li>New route <strong><code>GET /api/runs/:id/combined-report</code></strong> renders a <strong>self-contained\nHTML page</strong> merging every product of a run into one document, built <strong>on demand\nfrom the persisted <code>run.json</code></strong> (so it works for historical runs too — no\nartifact regeneration).</li>\n<li>Content: run header + summary tiles (products / tests / passed / failed /\nskipped / flaky), then one section per product with its pass/fail/skip counts, a\ndetailed list of the <strong>failed tests</strong> (title, <code>file:line</code>, error), a \"did not\nrun\" note for auth-failed/empty products, and a link to each product's full\nPlaywright report for trace/screenshot drill-down. All interpolated strings are\nHTML-escaped.</li>\n<li>Print-friendly (<code>@media print</code>, page-break-avoid): open it (it opens in a new\ntab) and <strong>Ctrl/⌘+P → Save as PDF</strong> — no manual PDF step.</li>\n<li>An \"↗ Combined report\" button appears on a finished run in both the <strong>Live</strong>\nview and the <strong>History</strong> detail panel.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Files touched</h3><a id=\"user-content-files-touched\" class=\"anchor\" aria-label=\"Permalink: Files touched\" href=\"#files-touched\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<code>config.js</code> — <code>SITE_START_STAGGER_MS</code>, <code>MAX_CONCURRENT_SITES</code>, <code>SITE_START_PRIORITY</code>\n</li>\n<li>\n<code>server/orchestrator.js</code> — staggered/ordered launch, per-site cancel + ownership-aware busy release, idempotent finalize, per-site child tagging, <code>slimTarget</code> exposes <code>paths/grep/custom</code>\n</li>\n<li>\n<code>server/combined-report.js</code> — <strong>new</strong>; the combined-report HTML builder</li>\n<li>\n<code>server/index.js</code> — combined-report route + per-site cancel route</li>\n<li>\n<code>public/app.js</code> — per-site Cancel/Re-run buttons, combined-report links (Live + History)</li>\n<li>\n<code>public/style.css</code> — <code>.card-actions</code>, small button + run-head link styling</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Local configuration note (not a code change to review)</h3><a id=\"user-content-local-configuration-note-not-a-code-change-to-review\" class=\"anchor\" aria-label=\"Permalink: Local configuration note (not a code change to review)\" href=\"#local-configuration-note-not-a-code-change-to-review\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<p>On the machine this runs on, the local site domains didn't match the\ncanonical names hardcoded in the committed suite config\n(<code>.playwright/sites.config.ts</code>). To run against the real local sites, the\nsuite's <code>sites.config.ts</code> URLs were pointed at the actual local domains. This\nis a machine-specific override, intentionally kept out of this dashboard\nchange; the long-term fix is to rename the local sites to the canonical names\nand drop the override.</p>"
+   }
+  ]
+ }
+}
