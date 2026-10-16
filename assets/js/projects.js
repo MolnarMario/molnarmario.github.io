@@ -7,7 +7,6 @@
 
   // slug: URL of the project page. repo: GitHub repo name. log: where its changelog comes from
   // (a CHANGELOG.md split at that heading level, GitHub releases, or commit history).
-  // play: a same-origin app URL the play page can frame.
   // features: [name, detail], ordered by how much each one matters to someone using the app.
   const GH = 'https://github.com/MolnarMario/';
   window.PROJECTS = {
@@ -71,7 +70,6 @@
     },
     tile: {
       slug: 'one-more-tile', repo: 'one-more-tile', log: { from: 'changelog', file: 'RELEASE-NOTES.md', level: 2 },
-      play: 'https://thebarbellengineer.com/one-more-tile/',
       tag: 'Browser game',
       title: 'One More Tile',
       img: 'tile', board: true,
@@ -97,11 +95,10 @@
         status: 'Live and free to play, solo, in co-op or in versus.'
       },
       stack: ['HTML', 'Canvas', 'Vanilla JS', 'Node verifier scripts'],
-      links: [['Play it', 'https://thebarbellengineer.com/one-more-tile/'], ['Source on GitHub', GH + 'one-more-tile']]
+      links: [['Play it', 'https://tile.thebarbellengineer.com/'], ['Source on GitHub', GH + 'one-more-tile']]
     },
     chess: {
       slug: 'chess-2', repo: 'chess2.0', log: { from: 'commits' },
-      play: 'https://thebarbellengineer.com/chess2.0/',
       tag: 'Browser game',
       title: 'Chess 2.0',
       img: 'chess', mob: true,
@@ -123,11 +120,10 @@
         status: 'Live. Play a friend online or the computer.'
       },
       stack: ['HTML', 'Vanilla JS', 'WebRTC networking'],
-      links: [['Play it', 'https://thebarbellengineer.com/chess2.0/'], ['Source on GitHub', GH + 'chess2.0']]
+      links: [['Play it', 'https://chess.thebarbellengineer.com/'], ['Source on GitHub', GH + 'chess2.0']]
     },
     ironlog: {
       slug: 'ironlog', repo: 'testing-out-my-lifting-app', log: { from: 'commits' },
-      play: 'https://thebarbellengineer.com/testing-out-my-lifting-app/',
       tag: 'Web app',
       title: 'Ironlog',
       img: 'ironlog',
@@ -152,7 +148,7 @@
         status: 'In use for my own training. The workout, plates and food tabs are all rebuilt.'
       },
       stack: ['React', 'TypeScript', 'Vite', 'localStorage'],
-      links: [['Open the app', 'https://thebarbellengineer.com/testing-out-my-lifting-app/'], ['Source on GitHub', GH + 'testing-out-my-lifting-app']]
+      links: [['Open the app', 'https://ironlog.thebarbellengineer.com/'], ['Source on GitHub', GH + 'testing-out-my-lifting-app']]
     },
     vinted: {
       slug: 'vinted-country-flags', repo: 'vinted-country-flags', log: { from: 'releases' },
@@ -185,7 +181,6 @@
     },
     expense: {
       slug: 'expense-tracker', repo: 'common-expense-tracker', log: { from: 'changelog', file: 'CHANGELOG.md', level: 2 },
-      play: 'https://expenses.thebarbellengineer.com/',
       tag: 'Web app',
       title: 'Common Expense Tracker',
       img: 'expense', mob: true,
@@ -242,7 +237,6 @@
     },
     video: {
       slug: 'video-production-tracker', repo: 'video-production', log: { from: 'commits' },
-      play: 'https://thebarbellengineer.com/video-production/',
       tag: 'Web app',
       title: 'Video Production Tracker',
       img: 'video', mob: true,
@@ -264,7 +258,7 @@
         status: 'Live. Everything stays in your browser.'
       },
       stack: ['React', 'TypeScript', 'Vite', 'Tailwind CSS'],
-      links: [['Open the app', 'https://thebarbellengineer.com/video-production/'], ['Source on GitHub', GH + 'video-production']]
+      links: [['Open the app', 'https://video.thebarbellengineer.com/'], ['Source on GitHub', GH + 'video-production']]
     }
   };
 

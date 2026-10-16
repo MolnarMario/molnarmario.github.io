@@ -1,7 +1,6 @@
 // Generates the project pages from assets/js/projects.js and data/projects/<slug>.json:
 //   projects/<slug>/index.html            the project page
 //   projects/<slug>/changelog/index.html  its changelog, release notes or commit log
-//   projects/<slug>/play/index.html       the live app in a frame, for projects with `play`
 // plus sitemap.xml. No network: fetch-projects.mjs gets the data. Run after editing
 // projects.js or the page templates below:
 //   node scripts/build-projects.mjs
@@ -254,11 +253,8 @@ function pager(id) {
 }
 
 async function projectPage(id, p, data) {
-  const isGame = /game/i.test(p.tag);
   const actions = [];
-  if (p.play) actions.push(`<a class="btn btn--primary" href="play/">${isGame ? 'Play it here' : 'Try it here'} <span aria-hidden="true">&rarr;</span></a>`);
-  // A link to the same app the play page frames reads as a second "Play" button, so name it for what it does
-  p.links.forEach(([label, href], i) => actions.push(ext(href, `${esc(href === p.play ? 'Open full page' : label)} ${arrow}`, `btn ${!p.play && i === 0 ? 'btn--primary' : 'btn--ghost'}`)));
+  p.links.forEach(([label, href], i) => actions.push(ext(href, `${esc(label)} ${arrow}`, `btn ${i === 0 ? 'btn--primary' : 'btn--ghost'}`)));
   if (data?.log.entries.length) actions.push(`<a class="btn btn--ghost" href="changelog/">${logName(data)}</a>`);
   const features = p.features.map(([name, detail]) => `<li><b>${esc(name)}</b> ${esc(detail)}</li>`).join('\n            ');
   const body = `${NAV}
@@ -367,25 +363,6 @@ ${FOOT}`;
   });
 }
 
-/* ---------- Play page ---------- */
-
-function playPage(id, p, data) {
-  const body = `
-  <header class="play__bar">
-    <a class="play__back" href="../"><span aria-hidden="true">&larr;</span> <span>${esc(p.title)}</span></a>
-    <span class="play__hint">Running live from ${esc(new URL(p.play).host + new URL(p.play).pathname)}</span>
-    ${data?.log.entries.length ? `<a class="play__link" href="../changelog/">${logName(data)}</a>` : ''}
-    <a class="btn btn--ghost btn--sm" href="${esc(p.play)}">Open full page ${arrow}</a>
-  </header>
-  <iframe class="play__frame" src="${esc(p.play)}" title="${esc(p.title)}, running live" allow="fullscreen; gamepad; clipboard-write; autoplay"></iframe>`;
-  return page({
-    title: `Play ${p.title} | Mario Molnar`,
-    description: `${p.title} running live in the browser. ${p.lede}`,
-    path: `/projects/${p.slug}/play/`, image: p.img ? `/assets/img/${p.img}-1600.webp` : null,
-    bodyClass: 'play', body,
-  });
-}
-
 /* ---------- Write ---------- */
 
 const out = async (path, html) => {
@@ -406,8 +383,8 @@ for (const id of PROJECT_ORDER) {
   urls.push('/' + dir);
   if (data?.log.entries.length) { await out(dir + 'changelog/index.html', changelogPage(id, p, data)); urls.push(`/${dir}changelog/`); }
   else await rm(new URL(dir + 'changelog/', root), { recursive: true, force: true });
-  if (p.play) { await out(dir + 'play/index.html', playPage(id, p, data)); urls.push(`/${dir}play/`); }
-  else await rm(new URL(dir + 'play/', root), { recursive: true, force: true });
+  // Projects link straight to their apps, so clear out any old framed copy
+  await rm(new URL(dir + 'play/', root), { recursive: true, force: true });
 }
 // Drop pages of projects that were removed from projects.js
 for (const d of await readdir(new URL('projects/', root))) {
