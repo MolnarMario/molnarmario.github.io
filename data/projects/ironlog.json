@@ -1,0 +1,345 @@
+{
+ "id": "ironlog",
+ "repo": "testing-out-my-lifting-app",
+ "url": "https://github.com/MolnarMario/testing-out-my-lifting-app",
+ "branch": "main",
+ "created": "2026-06-11",
+ "pushed": "2026-10-15",
+ "commits": 44,
+ "firstCommit": "2026-06-11",
+ "lastCommit": {
+  "sha": "4ca68bb",
+  "date": "2026-10-15",
+  "subject": "Merge pull request #3 from MolnarMario/integrate/review-fixes"
+ },
+ "recent": [
+  {
+   "sha": "2e2a712",
+   "date": "2026-10-15",
+   "subject": "Publish the current build: fixes from the joint Claude and Luna review"
+  },
+  {
+   "sha": "0b46ce7",
+   "date": "2026-10-15",
+   "subject": "Report the carbs imported cans lose"
+  },
+  {
+   "sha": "2729775",
+   "date": "2026-10-15",
+   "subject": "Mark the review fixes ready to ship"
+  },
+  {
+   "sha": "42d47fb",
+   "date": "2026-10-15",
+   "subject": "Offer the import when exercise edits are all an old install has"
+  },
+  {
+   "sha": "ee53431",
+   "date": "2026-10-15",
+   "subject": "Fix what Luna's full-diff review found"
+  }
+ ],
+ "weeks": [
+  [
+   "2026-04-20",
+   0
+  ],
+  [
+   "2026-04-27",
+   0
+  ],
+  [
+   "2026-05-04",
+   0
+  ],
+  [
+   "2026-05-11",
+   0
+  ],
+  [
+   "2026-05-18",
+   0
+  ],
+  [
+   "2026-05-25",
+   0
+  ],
+  [
+   "2026-06-01",
+   0
+  ],
+  [
+   "2026-06-08",
+   3
+  ],
+  [
+   "2026-06-15",
+   0
+  ],
+  [
+   "2026-06-22",
+   0
+  ],
+  [
+   "2026-06-29",
+   0
+  ],
+  [
+   "2026-07-06",
+   0
+  ],
+  [
+   "2026-07-13",
+   0
+  ],
+  [
+   "2026-07-20",
+   0
+  ],
+  [
+   "2026-07-27",
+   0
+  ],
+  [
+   "2026-08-03",
+   17
+  ],
+  [
+   "2026-08-10",
+   0
+  ],
+  [
+   "2026-08-17",
+   0
+  ],
+  [
+   "2026-08-24",
+   0
+  ],
+  [
+   "2026-08-31",
+   0
+  ],
+  [
+   "2026-09-07",
+   0
+  ],
+  [
+   "2026-09-14",
+   0
+  ],
+  [
+   "2026-09-21",
+   1
+  ],
+  [
+   "2026-09-28",
+   0
+  ],
+  [
+   "2026-10-05",
+   0
+  ],
+  [
+   "2026-10-12",
+   23
+  ]
+ ],
+ "log": {
+  "source": {
+   "kind": "commits",
+   "label": "commit history",
+   "url": "https://github.com/MolnarMario/testing-out-my-lifting-app/commits"
+  },
+  "entries": [
+   {
+    "version": null,
+    "date": "2026-10-15",
+    "dated": "commit",
+    "title": null,
+    "commits": [
+     {
+      "sha": "2e2a712",
+      "subject": "Publish the current build: fixes from the joint Claude and Luna review"
+     },
+     {
+      "sha": "0b46ce7",
+      "subject": "Report the carbs imported cans lose"
+     },
+     {
+      "sha": "2729775",
+      "subject": "Mark the review fixes ready to ship"
+     },
+     {
+      "sha": "42d47fb",
+      "subject": "Offer the import when exercise edits are all an old install has"
+     },
+     {
+      "sha": "ee53431",
+      "subject": "Fix what Luna's full-diff review found"
+     },
+     {
+      "sha": "800f1c1",
+      "subject": "Keep built-in holds timed after they are hidden"
+     },
+     {
+      "sha": "8a015d2",
+      "subject": "Leave timed holds out of the day's rep count"
+     },
+     {
+      "sha": "6ec0f67",
+      "subject": "Fix the bugs a joint Claude and Luna review found"
+     },
+     {
+      "sha": "9f3fdfb",
+      "subject": "Take the assets path from Vite's resolved config"
+     },
+     {
+      "sha": "904f4e8",
+      "subject": "Throw away only generated files after a lane build"
+     },
+     {
+      "sha": "0e6aae3",
+      "subject": "Write down the review flow for lanes and integration PRs"
+     },
+     {
+      "sha": "346ca52",
+      "subject": "Write down the review flow for lanes and integration PRs"
+     },
+     {
+      "sha": "f5b93a5",
+      "subject": "Publish the current build: checkbox-styled lift toggles"
+     },
+     {
+      "sha": "ec2e29d",
+      "subject": "Fix the unstyled lift toggles on the Exercises pane"
+     },
+     {
+      "sha": "bd43660",
+      "subject": "Style the lift toggles as checkboxes, not browser buttons"
+     }
+    ]
+   },
+   {
+    "version": null,
+    "date": "2026-09-24",
+    "dated": "commit",
+    "title": null,
+    "commits": [
+     {
+      "sha": "b1f41e6",
+      "subject": "Add MIT license"
+     }
+    ]
+   },
+   {
+    "version": null,
+    "date": "2026-08-04",
+    "dated": "commit",
+    "title": null,
+    "commits": [
+     {
+      "sha": "1d19b79",
+      "subject": "Publish the current build: charts, records, and the label scanner"
+     },
+     {
+      "sha": "48270e3",
+      "subject": "Add a personal records card to the Progress pane"
+     },
+     {
+      "sha": "6f4a7c7",
+      "subject": "Fix the label scanner: the contrast stretch was eating the text"
+     },
+     {
+      "sha": "0d9b691",
+      "subject": "Fix the chart defects the harness turned up, and drop the harness"
+     },
+     {
+      "sha": "727d55d",
+      "subject": "Add barcode lookup to the label scanner, and fix its crop geometry"
+     },
+     {
+      "sha": "bf0a5b5",
+      "subject": "Remove .vite dependency cache from the repo"
+     },
+     {
+      "sha": "ea72ce9",
+      "subject": "Untrack .vite dependency cache"
+     },
+     {
+      "sha": "7d2f403",
+      "subject": "Give the weight input room back on a phone"
+     },
+     {
+      "sha": "92611c9",
+      "subject": "Update live link — the site is actually published now"
+     },
+     {
+      "sha": "e97d3d2",
+      "subject": "Add session rating, legacy data import, and Pages deployment"
+     },
+     {
+      "sha": "0ab1986",
+      "subject": "Reach full feature parity with the original build"
+     }
+    ]
+   },
+   {
+    "version": null,
+    "date": "2026-08-03",
+    "dated": "commit",
+    "title": null,
+    "commits": [
+     {
+      "sha": "c539465",
+      "subject": "Restore the easter eggs, unified calendar and body-composition rows"
+     },
+     {
+      "sha": "35ff1a8",
+      "subject": "Close the parity gap: exercise library, gear, and both calendars"
+     },
+     {
+      "sha": "0d38744",
+      "subject": "Port the macro journal to the food tab"
+     },
+     {
+      "sha": "5b4480e",
+      "subject": "Port the plate loader to the plates tab"
+     },
+     {
+      "sha": "8095c6f",
+      "subject": "Rebuild as a Vite + React + TS source project; port the workout tab"
+     }
+    ]
+   },
+   {
+    "version": null,
+    "date": "2026-06-13",
+    "dated": "commit",
+    "title": null,
+    "commits": [
+     {
+      "sha": "58d996d",
+      "subject": "Update live link after repo rename"
+     },
+     {
+      "sha": "4ce893e",
+      "subject": "Rename app to index.html for GitHub Pages, add live link"
+     }
+    ]
+   },
+   {
+    "version": null,
+    "date": "2026-06-11",
+    "dated": "commit",
+    "title": null,
+    "commits": [
+     {
+      "sha": "30f588a",
+      "subject": "Initial commit: Ironlog powerlifting tracker"
+     }
+    ]
+   }
+  ]
+ }
+}

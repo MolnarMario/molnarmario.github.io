@@ -1,0 +1,577 @@
+{
+ "id": "tile",
+ "repo": "one-more-tile",
+ "url": "https://github.com/MolnarMario/one-more-tile",
+ "branch": "master",
+ "created": "2026-06-13",
+ "pushed": "2026-09-25",
+ "commits": 114,
+ "firstCommit": "2026-06-13",
+ "lastCommit": {
+  "sha": "d738043",
+  "date": "2026-09-25",
+  "subject": "Merge pull request #22 from MolnarMario/feature/baked-boards"
+ },
+ "recent": [
+  {
+   "sha": "94929e8",
+   "date": "2026-09-25",
+   "subject": "Fix versus seating and results, grid Continue in co-op (v0.33.1)"
+  },
+  {
+   "sha": "44bf49a",
+   "date": "2026-09-24",
+   "subject": "Add MIT license"
+  },
+  {
+   "sha": "fcc267e",
+   "date": "2026-08-12",
+   "subject": "Race a friend, and mean it when we say only the host may do that (v0.33.0)"
+  },
+  {
+   "sha": "1a44c52",
+   "date": "2026-08-11",
+   "subject": "Weave a new puzzle from any canvas (v0.31.0)"
+  },
+  {
+   "sha": "16328a1",
+   "date": "2026-08-11",
+   "subject": "Ship every canvas already generated (v0.30.0)"
+  }
+ ],
+ "weeks": [
+  [
+   "2026-04-20",
+   0
+  ],
+  [
+   "2026-04-27",
+   0
+  ],
+  [
+   "2026-05-04",
+   0
+  ],
+  [
+   "2026-05-11",
+   0
+  ],
+  [
+   "2026-05-18",
+   0
+  ],
+  [
+   "2026-05-25",
+   0
+  ],
+  [
+   "2026-06-01",
+   0
+  ],
+  [
+   "2026-06-08",
+   35
+  ],
+  [
+   "2026-06-15",
+   21
+  ],
+  [
+   "2026-06-22",
+   0
+  ],
+  [
+   "2026-06-29",
+   11
+  ],
+  [
+   "2026-07-06",
+   4
+  ],
+  [
+   "2026-07-13",
+   1
+  ],
+  [
+   "2026-07-20",
+   5
+  ],
+  [
+   "2026-07-27",
+   6
+  ],
+  [
+   "2026-08-03",
+   17
+  ],
+  [
+   "2026-08-10",
+   10
+  ],
+  [
+   "2026-08-17",
+   0
+  ],
+  [
+   "2026-08-24",
+   0
+  ],
+  [
+   "2026-08-31",
+   0
+  ],
+  [
+   "2026-09-07",
+   0
+  ],
+  [
+   "2026-09-14",
+   0
+  ],
+  [
+   "2026-09-21",
+   4
+  ],
+  [
+   "2026-09-28",
+   0
+  ],
+  [
+   "2026-10-05",
+   0
+  ],
+  [
+   "2026-10-12",
+   0
+  ]
+ ],
+ "log": {
+  "source": {
+   "kind": "changelog",
+   "label": "CHANGELOG.md",
+   "url": "https://github.com/MolnarMario/one-more-tile/blob/master/CHANGELOG.md"
+  },
+  "entries": [
+   {
+    "version": "0.33.1",
+    "date": "2026-09-25",
+    "dated": "heading",
+    "title": "Versus and menu fixes from live testing",
+    "html": "<p>0.30.0 through 0.33.0 sat on a branch until now and ship together with this\nrelease. Playing them in a real browser, across two tabs over the live PeerJS\nbroker, turned up these.</p>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Fixed</h3><a id=\"user-content-fixed\" class=\"anchor\" aria-label=\"Permalink: Fixed\" href=\"#fixed\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>A versus guest never saw the host.</strong> <code>pvpSeatTokens()</code> built the online seat list\nfrom <code>coopPeers</code>, which only cursor frames fill, and a match sends none. So a\nguest's scoreboard showed only \"You\" and it had no opponents panel. Anyone who\nhas reported match progress (<code>PVP.opp</code>) now gets a seat too.</li>\n<li>\n<strong>A guest who won was told \"Player 3 wins\".</strong> The host builds the result from\nits own seat, where <code>me</code> is the host and the guest is a peer id. The guest showed\nit unchanged, so its own row carried the host's score. The guest now re-keys the\nresult to its own point of view, and seats any rival named in it.</li>\n<li>\n<strong>You could not host your most recent canvas online.</strong> The grid's Continue card\nalways started a solo game, and since 0.30.0 the canvas's own card hides while\nContinue shows. The Continue card now follows the grid's mode (co-op host,\nversus), and only the home screen's Continue button means solo.</li>\n<li>The join panel said \"Connected, receiving the board…\" forever after the board\nhad arrived. It now says you joined.</li>\n<li>Six on-screen strings added in 0.30.0 to 0.32.0 had em dashes, which 0.29.0 had\nstripped from the front end. Rewritten without them.</li>\n</ul>"
+   },
+   {
+    "version": "0.33.0",
+    "date": "2026-09-25",
+    "dated": "heading",
+    "title": "Online play: who is actually speaking",
+    "html": "<p>A security pass over online co-op and versus. The through-line: every privileged\naction was authorised against a peer id <strong>the sender wrote into its own frame</strong>,\nwhile the transport quietly knew who really sent it and threw that away.</p>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Fixed</h3><a id=\"user-content-fixed-1\" class=\"anchor\" aria-label=\"Permalink: Fixed\" href=\"#fixed-1\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>A peer can no longer speak as the host.</strong> Identity now comes from the\nconnection a frame arrived on, never from <code>msg.pid</code>. Because the host relays\nguests' frames to each other, it also <strong>stamps the true origin</strong> on everything it\nforwards — so a relayed guest frame can never be mistaken for one the host\nauthored. Previously, in any session with two or more guests, one guest could\npush a board at the others, forge a match result, cancel their match, or\ndisconnect them.</li>\n<li>\n<strong>The host is decided once.</strong> <code>hostPid</code> was set by <em>any</em> <code>hello</code> at <em>any</em> time, so\na single frame from another guest was enough to become \"the host\" for that\nplayer and pass every host-only check from then on. It is now bound at the first\nhandshake, to the connection, and never reassigned.</li>\n<li>\n<strong>Joining a friend's game no longer hides your own progress.</strong> Adopting the\nhost's board also adopted their <em>weave</em>, and that was written to your seed store\n— which re-files every save key for that canvas under their <code>-s&lt;seed&gt;</code> suffix.\nYour solo progress read as empty and the map card dropped to 0%. Disconnecting\nput it back; closing the tab did not. An adopted weave is now used for\ngeneration but never recorded as yours, unless you explicitly choose <strong>Save this\nboard as mine</strong>, which commits it.</li>\n<li>\n<strong>Presence can't stuff a room.</strong> A <code>cursor</code> frame created a roster entry for\nwhatever id it claimed, so one forged frame could fill the host's guest slots and\nturn real friends away with \"That game is full\", or grow the peer list without\nbound. The host now accepts presence only from peers it actually accepted, and a\nguest only from origins the host has attested. Naming a peer no longer adds it to\nthe roster either.</li>\n<li>\n<strong><code>bye</code> evicts the sender</strong>, not whoever it names — a guest could previously drop\na <em>different</em> guest, and in a match that was enough to end it for everyone.</li>\n<li>\n<strong>No move or board push crosses the wire during a versus match.</strong> Sending was\nalready blocked; receiving was not, so a peer could stitch on your match board or\nreplace it outright. <code>move</code>, <code>resync</code> and <code>snapshot</code> are now refused while a match\nis live.</li>\n<li>\n<strong>Sudoku digits obey the match clock.</strong> <code>setZoneDigit</code> was missing the phase gate\n<code>setCell</code> has, so digits could be entered during the lobby before \"Go!\" and after\nthe whistle — a free head start on every sudoku plot, in local versus too.</li>\n<li>\n<strong>Bounded buffers.</strong> The queue of peer moves held while a joiner imports the\nboard was unbounded, and a board payload went to <code>atob</code> before its size was\nchecked. Both are capped now.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>The multiplayer library is now shipped with the game</strong> (<code>vendor/peerjs.js</code>)\ninstead of being pulled from a CDN the moment you connect. A runtime import puts\nwhoever controls that CDN inside the page, with reach over every save you have,\nand there is no way to attach an integrity check to it. It is still loaded lazily\n— a solo player never downloads it — and loading it as a script tag means online\nplay now also works when you open <code>index.html</code> straight off disk. The page also\ncarries a <strong>Content-Security-Policy</strong> that refuses script from anywhere but\nitself.</li>\n<li>The online versus lobby now says plainly that a match runs on the <strong>honour\nsystem</strong>: each player scores their own board and reports it, and there is no way\nto verify that from the other side. This was always true — it is now stated where\npeople can read it.</li>\n<li>\n<code>BOARD_COMPAT</code> 6 → 7 (the relay stamp is new, and a peer on the old build does not\nproduce it). <strong><code>GEN_COMPAT</code> is unchanged and nothing was re-baked</strong> — none of this\ntouches the puzzle-maker.</li>\n</ul>"
+   },
+   {
+    "version": "0.32.0",
+    "date": "2026-09-25",
+    "dated": "heading",
+    "title": "Versus: race a friend for the canvas",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Versus mode</strong>, on the home menu beside Single Player and Co-op. Two shapes,\nbecause a shared screen and two separate screens leak completely different\namounts of information:\n<ul>\n<li>\n<strong>Local versus (2–4, split-screen).</strong> One shared canvas. Every region is\n<strong>claimed by whoever stitched the most of it</strong>, and a tie goes to whoever laid\nthe <em>last</em> tile — so a region someone has nearly finished can still be stolen\nout from under them. Sharing one canvas is the point here: there is no way to\nstop someone glancing at the other half of a screen, so instead of pretending\notherwise, both players are looking at the same board by design.</li>\n<li>\n<strong>Online versus (2–4, over a code).</strong> Everyone gets their <strong>own copy of the\nsame puzzle</strong>. Moves are not shared. You see your rival's pace — completion %,\nregions held, and a live minimap of the tiles they have committed to — but\n<strong>never which colour they chose</strong>. The minimap reads identically for a light\ntile, a dark tile and an outright mistake.</li>\n</ul>\n</li>\n<li>\n<strong>Three match rules</strong>, picked by the host on the canvas grid: <strong>Full canvas</strong>\n(play it out, most regions wins), <strong>First to N regions</strong>, and <strong>Timed</strong> (most\nregions when the clock stops, tiles break the tie).</li>\n<li>A match scoreboard under the header, claimed regions outlined in their owner's\ncolour on the board itself, and a final standings screen.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-1\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-1\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>A match never touches your save.</strong> Starting one banks your real canvas,\nblanks the board in memory, and switches off every save path for the duration;\nleaving puts your canvas back exactly as it was — marks, play-time, and even\nwhich proverbs you had yet to see. Nothing about a match is written to disk.</li>\n<li>\n<code>BOARD_COMPAT</code> 5 → 6 (seven new message types, and a versus session\ndeliberately stops syncing moves). <strong><code>GEN_COMPAT</code> is unchanged and no board was\nre-baked</strong> — this release does not touch the puzzle-maker at all, which is\nexactly the split introduced in 0.31.0 paying for itself.</li>\n<li>Region proverbs appear as a toast rather than a modal during a match; a dialog\nover the board is a real time penalty in a race.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Fixed</h3><a id=\"user-content-fixed-2\" class=\"anchor\" aria-label=\"Permalink: Fixed\" href=\"#fixed-2\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Sudoku digits entered by mouse or controller were credited to nobody.</strong>\n<code>cycleZone</code> — the path for every click and every pad press on a sudoku cell —\nnever recorded who entered the digit, while typing one did. Co-op has been\nquietly routing those regions' proverbs to the wrong player since per-player\nattribution landed in 0.25.0.</li>\n<li>\n<strong>Split-screen touch stitches were credited to the wrong seat.</strong> Touch always\ndrove player 1 and never set the acting seat, so a tile placed by touch was\nattributed to whichever player last used a controller or the keyboard. The seat\nis now taken from the pane the finger lands in, and held for the whole stroke.</li>\n<li>\n<strong>Players 2–4 could not undo.</strong> Undo was hard-wired to player 1, and only the\nkeyboard and the header button could reach it — so a controller seat had no way\nto take back its own work. Undo now acts on the seat that asked for it, and\nthere is a controller binding for it.</li>\n</ul>"
+   },
+   {
+    "version": "0.31.0",
+    "date": "2026-09-25",
+    "dated": "heading",
+    "title": "Weave a brand-new puzzle from any canvas",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-1\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-1\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>\"New weave\" (🎲, in the ⋯ menu).</strong> Every canvas ships with one fixed puzzle,\nidentical for everyone. Now you can ask any canvas for a <em>completely different</em>\none: same painting, same regions, same plots — but a new solution, new clues,\nand new sudoku and picross puzzles across them. This is the one board that\nisn't shipped ready-made, so it's built on the spot; the long loading screen\nis back for exactly this case.</li>\n<li>\n<strong>Your original progress is kept, not overwritten.</strong> Each weave of a canvas\ngets its own save slot, so you can go <strong>Back to the original</strong> from the same\ndialog and pick up precisely where you left off — then switch again. Both the\ncanvas grid and the header label a rewoven board as <code>· new weave</code>, so you can\nalways tell which puzzle you're looking at.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-2\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-2\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Share codes and co-op now carry the weave</strong> (<code>SHARE_VER</code> 7, four bytes of\nseed). A recipient rebuilds the board locally before replaying progress, so a\ncode that didn't name its weave would have them rebuild the <em>original</em> board\nand read every one of your marks as a mistake — the same trap the per-patch\npicross tiers closed in 0.26.0. Older codes decode as \"the original weave\" and\nstill import fine.</li>\n<li>\n<code>BOARD_COMPAT</code> 4 → 5, so co-op partners on older builds are told to update\nrather than silently disagreeing about which puzzle they're solving.</li>\n<li>\n<strong>Split the compatibility stamp in two.</strong> One number was doing two unrelated\njobs: \"can these two players talk to each other\" <em>and</em> \"were the shipped\npuzzles built by this version of the puzzle-maker\". So a change to the share\nformat — which is all the seed above is — marked every precomputed board\nstale and forced a full rebuild that produced <strong>byte-identical</strong> puzzles.\n<code>BOARD_COMPAT</code> now covers only the share/network side; the new <code>GEN_COMPAT</code>\ncovers the precomputed boards and the on-device cache. Nothing about the\npuzzles changed; future protocol work just stops throwing away good ones.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Notes</h3><a id=\"user-content-notes\" class=\"anchor\" aria-label=\"Permalink: Notes\" href=\"#notes\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>A canvas's <strong>layout never follows the weave</strong>. Regions, region ids and plot\npositions come from the shipped partition, which is keyed by canvas alone —\nwhich is why proverbs, unlocked-region masks and the grid's card previews all\nstay correct on a rewoven board. Only the puzzle itself changes.</li>\n<li>Reweaving is unavailable during an online session, since everyone there shares\none board.</li>\n</ul>"
+   },
+   {
+    "version": "0.30.0",
+    "date": "2026-09-25",
+    "dated": "heading",
+    "title": "Boards ship precomputed: no more waiting to start",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-2\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-2\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Every canvas now ships already generated.</strong> The puzzle was always identical\nfor everyone — the whole pipeline is deterministic from each canvas's seed —\nbut each player was recomputing the same bytes on their own machine, which\ncost between one second (Castle) and about <strong>35 seconds</strong> (Angels) the first\ntime you opened a canvas, and again for every difficulty you tried. That work\nis now done once, ahead of time, and shipped with the game. On the largest\ncanvas the stages it replaced now take <strong>1.4 ms</strong> (0.2 decoding the solution,\n0.6 the clues, 0.6 re-checking them against the solution), so what you wait\nfor is the loading animation's own ~0.9 s beat, not the computation.</li>\n<li>\n<strong><code>boards/&lt;map&gt;.js</code></strong> — the clue set for all five difficulties, four bits per\nsquare, loaded only for the canvas you actually pick (26–122 KB each). The\nsolution grids and the region partitions are small enough to live inside\n<code>index.html</code> itself (+38 KB total).</li>\n<li>\n<strong><code>?bake=&lt;map&gt;</code></strong> — a developer mode that produces those payloads by running\nthe real generation pipeline in the browser, so the shipped bytes are always\nexactly what the shipped code makes, never a reimplementation of it. Paired\nwith <strong><code>_bake_boards.js</code></strong>, which folds the result into the game.</li>\n<li>\n<strong><code>?verifybake=&lt;map&gt;</code></strong> — the guardrail: rebuilds every canvas and difficulty\nfrom scratch and asserts the shipped payload is byte-for-byte identical.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-3\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-3\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>The same board on every machine, guaranteed.</strong> Generation began with a\ncanvas draw to sample the artwork, and that one step could in principle differ\nbetween browsers — which would have shifted the solution <em>and</em> the region\nborders derived from it. With the partitions and solutions baked, nothing\nabout the puzzle depends on the local browser any more; only the revealed\nartwork is still sampled per machine.</li>\n<li>\n<code>?audit=</code>, <code>?bake=</code> and <code>?verifybake=</code> all accept a comma-separated canvas\nlist now (<code>?audit=angels,castle</code>), so a full check can be sharded across tabs\ninstead of running for hours in one.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Notes</h3><a id=\"user-content-notes-1\" class=\"anchor\" aria-label=\"Permalink: Notes\" href=\"#notes-1\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>Nothing about the puzzles themselves changed — the baked boards are provably\nthe same boards the game generated before, so saves, share codes and co-op\nsessions all carry over untouched (<code>BOARD_COMPAT</code> is unchanged at 4).</li>\n<li>If a payload is ever missing, stale or damaged, the game silently generates\nthe board itself exactly as it used to. A bad bake can cost you the wait; it\ncannot hand you a wrong board.</li>\n</ul>"
+   },
+   {
+    "version": "0.29.0",
+    "date": "2026-08-10",
+    "dated": "heading",
+    "title": "Canvas grid shows the regions you've unlocked",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-3\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-3\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Map cards now reveal your progress as picture, not just a number.</strong> Every\nregion you've finished on a canvas is painted with that canvas's <em>real\nartwork</em> on its card in the Single Player grid — exactly what the board shows\nwhen a region is revealed — while unfinished regions stay flat region tint.\nThe Continue card gets the same treatment. Nothing is spoiled: a card can only\never show what you already earned.</li>\n<li>\n<strong>A progress bar on each map card</strong>: <code>NN% · unlocked/total regions</code>, in the\nsame style as the Continue card. Cards for canvases you haven't started are\nunchanged.</li>\n<li>\n<strong>Thumbnails are pre-warmed at the home screen.</strong> While you're on the landing\nmenu, the played canvases' artwork is decoded and their cards rendered during\nidle time (one canvas per idle slot, resume canvas first), so the grid is\nalready painted the moment you press Single Player.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-4\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-4\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<code>saveNow()</code> now also records which regions are finished, as a compact\n<code>0</code>/<code>1</code>-per-region string under <code>proverbs2-&lt;map&gt;-v3-done</code>. This is what lets\nthe menu draw the unlocked set without regenerating a board. It is refreshed\nwhenever a board is opened, so existing saves fill theirs in on first visit.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Fixed</h3><a id=\"user-content-fixed-3\" class=\"anchor\" aria-label=\"Permalink: Fixed\" href=\"#fixed-3\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Resetting a canvas now clears its menu summaries too.</strong> <code>resetGame()</code> left\nthe stored completion <code>%</code> behind (and a debounced save could land <em>after</em> the\nreset and re-create every key), so a reset canvas kept showing stale progress\nin the grid.</li>\n<li>\n<strong>A canvas shown in two places no longer loses its thumbnail.</strong> Rendered\nthumbnails are cached as canvas elements, and one element can only live in one\nspot in the page — so when the resume canvas appeared both on its own card and\non the Continue card, the second one stole the picture and left the first\nblank. Each slot now gets its own copy.</li>\n</ul>"
+   },
+   {
+    "version": "0.28.0",
+    "date": "2026-08-10",
+    "dated": "heading",
+    "title": "UI polish pass: HUD, menus, loading, Options",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-5\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-5\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>HUD rebuilt as a calmer single-row toolbar</strong>: the old two-row stat cluster +\nprogress bar is now one status line (bold <code>%</code> · map name · timer · mistakes)\nwith a slim progress hairline pinned under the header, and a segmented zoom\ncontrol. Secondary actions (music, Clear errors, Solve, Multiplayer, Save/\nshare, Options, How to play, Reset canvas) moved into a new <strong>⋯ overflow\npopover</strong>, and the map legend became a small pill anchored bottom-left,\nreplacing the old full-width footer bar.</li>\n<li>\n<strong>Options rebuilt as a rail-and-pane dialog</strong> (Colour / Music / Difficulty /\nController sections in a left rail) instead of a single scrolling column.</li>\n<li>\n<strong>Loading screen</strong> now shows a phase trail (bloom → compute → thin) with the\ntarget map name and an inline percentage next to the bar, instead of a bare\ntitle + progress bar.</li>\n<li>\n<strong>Home menu</strong> buttons now carry a sub-label (canvas count, co-op mode\ndescription); <strong>Continue</strong> shows the resumed canvas's live progress % and\nplay time.</li>\n<li>\n<strong>Canvas grid</strong> reworked board-first: brand + Options/How-to-play move to a\nheader row, Single player/Local co-op/Online co-op become an in-grid mode\nswitcher, sort moves to a pill, and map cards show plain name/region/square\ninfo instead of a hover-only overlay; Continue gets its own wide progress\ncard, pinned first.</li>\n<li>Purely presentational — no changes to generation, clue, or save logic;\n<code>?audit=1</code> unaffected.</li>\n</ul>"
+   },
+   {
+    "version": "0.27.0",
+    "date": "2026-08-07",
+    "dated": "heading",
+    "title": "New map: In-and-Out 🌀",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-4\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-4\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>New map \"In-and-Out 🌀\"</strong> (237×158, 25 regions, 8 sudoku plots, 8 picross\nplots, 15 region quotes), hand-laid out and baked in via <code>_bake_map.js</code>.</li>\n</ul>"
+   },
+   {
+    "version": "0.26.5",
+    "date": "2026-08-05",
+    "dated": "heading",
+    "title": "Bold column headers in Controller setup",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-6\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-6\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>The \"Xbox\"/\"PlayStation\" column headers are now bold</strong> and use the regular\ntext color instead of the muted one, so they read clearly as column headers\nabove the button chips, with a bit more breathing room before the first row.</li>\n</ul>"
+   },
+   {
+    "version": "0.26.4",
+    "date": "2026-08-05",
+    "dated": "heading",
+    "title": "Controller icons: centered columns, bigger chips",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-7\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-7\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Xbox/PlayStation button chips are now center-aligned under their column\nheaders.</strong> The header cells and the chip cells were sized/aligned\ninconsistently (44px right-aligned vs. 40px centered for Xbox, 74px centered\nvs. 40px centered for PlayStation), so the icons didn't sit under their labels.\nBoth now share the same column width and centering.</li>\n<li>\n<strong>Chips are larger</strong> for visibility: face buttons 22px → 26px, bumpers/\ntriggers/pills/stick-clicks scaled up proportionally, symbol strokes sized to\nmatch.</li>\n</ul>"
+   },
+   {
+    "version": "0.26.3",
+    "date": "2026-08-05",
+    "dated": "heading",
+    "title": "Controller icon polish: hollow triangle, lighter labels",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-8\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-8\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>PlayStation's Triangle symbol is now a hollow outline</strong>, matching Circle and\nSquare instead of being the only filled shape.</li>\n<li>\n<strong>Non-face button labels (LB/RB/L1/R1/…) are less heavy</strong> — chip text dropped\nfrom <code>font-weight:800</code> to <code>600</code> so they read as labels, not shouting.</li>\n<li>\n<strong>The PlayStation header column now reads \"PlayStation\" instead of \"PS\", and is\ncentered</strong> rather than right-aligned.</li>\n</ul>"
+   },
+   {
+    "version": "0.26.2",
+    "date": "2026-08-05",
+    "dated": "heading",
+    "title": "Controller buttons drawn to scale, in their real colors",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-9\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-9\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Controller setup's button chips are now CSS-drawn icons, not text.</strong> Xbox face\nbuttons render as solid-colored round caps in their real colors (A green, B red,\nX blue, Y yellow) with the letter in white/black; PlayStation face buttons render\nas a neutral dark cap with the correct colored outline symbol (✕ blue, ○ red,\n□ pink, △ green) — matching how the actual hardware looks, where the color lives\nin the symbol, not the cap. Bumpers, triggers, select/start/share/options, and\nstick clicks aren't color-coded on real controllers, so they share one neutral\nchip per shape (flat bar, tapered trigger, pill, circle) instead.</li>\n</ul>"
+   },
+   {
+    "version": "0.26.1",
+    "date": "2026-08-05",
+    "dated": "heading",
+    "title": "Controller setup shows PlayStation buttons too",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-10\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-10\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Controller setup (⚙ Options → 🎮 Controller setup) now lists PlayStation button\nnames alongside Xbox.</strong> The keybinding list was Xbox-labelled only (A/B/X/Y/LB/RB/…)\neven though any standard gamepad works; it now shows both (✕/○/□/△/L1/R1/L2/R2/…)\nside by side per action.</li>\n</ul>"
+   },
+   {
+    "version": "0.26.0",
+    "date": "2026-08-02",
+    "dated": "heading",
+    "title": "Boards you've played open in about a second",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-5\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-5\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<p><strong>Picross patches now scale with the difficulty.</strong> They never did before: a patch\nwas whatever light/dark pattern the photograph happened to leave behind, so on\nCastle some patches averaged <strong>0.67 runs per line</strong> — a line that's one solid block\nor nothing, which solves itself. That was the same on Very Easy and Very Hard alike.\nEach patch is now shaped to the tier you're playing, measured by how much deduction\nit actually demands (full row-and-column passes needed to crack it from blank):</p>\n<table>\n<thead>\n<tr>\n<th></th>\n<th>Very Easy</th>\n<th>Easy</th>\n<th>Medium</th>\n<th>Hard</th>\n<th>Very Hard</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>passes needed</td>\n<td>1.4</td>\n<td>2</td>\n<td>3</td>\n<td>5</td>\n<td>7.6</td>\n</tr>\n<tr>\n<td>runs per line</td>\n<td>0.9</td>\n<td>1.3</td>\n<td>2.0</td>\n<td>2.4</td>\n<td>2.5</td>\n</tr>\n</tbody>\n</table>\n<p>Every patch stays <strong>provably solvable by pure line logic at every tier</strong> — harder\nnever means guessing, and still nothing is ever pre-filled for you.</p>\n</li>\n<li>\n<p><strong>A patch you've already started is left alone.</strong> Change difficulty mid-canvas and\nany patch you've stitched into keeps the shape you were solving; only the untouched\nones are redrawn for the new tier. Nothing you've worked on is ever invalidated —\nthe same courtesy the sudoku plots already got.</p>\n</li>\n<li>\n<p>This doesn't change the finished picture at all. The art you uncover comes from the\nphotograph itself, not from the puzzle layer, and a patch's tiles are invisible to\nevery counting clue on the board (clues never reach across a plot border), so\nreshaping one can't disturb anything outside it.</p>\n</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-11\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-11\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Coming back to a canvas is now near-instant.</strong> Until now the game rebuilt every\nboard from scratch on every single page load — so closing the tab and reopening it\nmeant sitting through the whole weave again. The finished board is now kept on your\nown machine and restored instead.\n<ul>\n<li>Angels went from <strong>~37 seconds to under a second</strong> of work; Inferno from ~16s;\nCastle from ~1.8s. The bigger the canvas, the more you save.</li>\n<li>A restored board plays a short <strong>“Restoring the canvas…”</strong> beat (about a second)\nrather than the full weave animation — long enough to see it happen, short enough\nthat you're playing almost immediately.</li>\n<li>\n<strong>Difficulty tiers are remembered separately.</strong> The first time you try a new tier\nit still has to be woven, but going back to one you've already played is instant.\nYour stitches are untouched by any of this, exactly as before.</li>\n</ul>\n</li>\n<li>Nothing about the puzzles themselves changed. A restored board is byte-for-byte the\nboard you would have got by generating it, and the game checks every restored clue\nagainst the solution before trusting it — if anything doesn't line up it quietly\nthrows the copy away and weaves a fresh one.</li>\n<li>Only boards are stored, never your progress (that already had its own save). Older\nboards are cleaned up automatically, and the whole thing sits in well under a\nmegabyte. If your browser blocks local storage the game simply works as it did.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Notes for developers</h3><a id=\"user-content-notes-for-developers\" class=\"anchor\" aria-label=\"Permalink: Notes for developers\" href=\"#notes-for-developers\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>Cache lives in IndexedDB (<code>proverbs2-boards</code>), keyed on map · seed · dimensions ·\n<code>BOARD_COMPAT</code>, plus difficulty for clue sets. <code>?nocache=1</code> bypasses it; <code>?audit=1</code>\ndisables it outright so the audit always exercises real generation.</li>\n<li>Picross shaping is <code>shapePicross()</code> (targets <code>DIFF[tier].pRuns</code> / <code>.pRounds</code>), always\nstarting from <code>capturePicBase()</code>'s canonical interiors so a patch depends only on\n(map, seed, tier) — never on which tiers you passed through. Which tier each patch\nsits at is <code>picTier[]</code>, persisted per map and carried in <strong>share format v6</strong>, because\na recipient (and a co-op guest) regenerates the board locally before replaying\nprogress. <strong><code>BOARD_COMPAT</code> 3 → 4</strong> — 0.26.0 peers cannot play with older builds.\nv3/v4/v5 codes still import; they carry no tiers, so every patch is shaped at the\ncode's own difficulty.</li>\n</ul>"
+   },
+   {
+    "version": "0.25.0",
+    "date": "2026-07-31",
+    "dated": "heading",
+    "title": "Personal co-op moments",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-12\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-12\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Mistake warnings are now personal in co-op.</strong> The “four mistakes” prompt used\nto pop for <em>everyone</em> whenever the board crossed four wrong tiles. Now it counts\neach player’s own tiles: only the player who made the mistakes is asked to sweep\nthem, and <strong>Clear my errors</strong> clears just their tiles (never a teammate’s work).\n<ul>\n<li>Local split-screen: the prompt appears <strong>inside that player’s pane</strong>.</li>\n<li>Online: the mistaken player gets the prompt; teammates get a small,\nself-dismissing notice (“Player 2 has four mistakes on their side”).</li>\n</ul>\n</li>\n<li>\n<strong>Region quotes go to the people who earned them.</strong> When a finished region has a\ncharacter quote, only the players who placed a tile in it (or solved an attached\nsudoku/picross plot) see the quote card.\n<ul>\n<li>Local split-screen: the quote shows <strong>in each contributor’s pane</strong>.</li>\n<li>Online: contributors get the quote modal; everyone else gets a <strong>“Player X\nfinished a region”</strong> notice with a <strong>View quote</strong> button to read it themselves.</li>\n</ul>\n</li>\n<li>\n<strong>Controllers can work these cards/modals.</strong> A player’s pad now navigates the\nbuttons on their region-quote card and the four-mistakes prompt: the <strong>light\nstitch</strong> button presses the focused button (closing a quote outright), and the\n<strong>d-pad / left stick</strong> moves a focus ring between the two mistake buttons. The\nsame focus-ring navigation now applies to the full-screen modals too.</li>\n<li>Renamed the Options button to <strong>🎮 Controller setup</strong> (dropped the trailing “…”).</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Fixed</h3><a id=\"user-content-fixed-4\" class=\"anchor\" aria-label=\"Permalink: Fixed\" href=\"#fixed-4\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>The co-op <strong>clear-errors</strong> action no longer wipes teammates’ mistakes — over the\nnetwork it now clears only the sender’s own tiles. (Bumps the online-play\ncompatibility key, so all players should be on 0.25.0+ to play together.)</li>\n<li>\n<strong>Header no longer overlaps at some widths.</strong> When the window was a certain\nwidth the <strong>🏠 Menu</strong> button could slide over the play timer instead of dropping\nto a second row. The stats cluster (progress · mistakes · timer) can no longer\nshrink narrower than its own text, so the toolbar wraps onto two rows cleanly\nbefore anything can collide.</li>\n</ul>"
+   },
+   {
+    "version": "0.24.1",
+    "date": "2026-07-30",
+    "dated": "heading",
+    "title": "Clearer Save button",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-13\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-13\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>The toolbar’s <strong>⇄ Share</strong> button is now a compact <strong>💾</strong> save icon — it reads\nas “save my progress,” which is what most players use it for.</li>\n<li>The modal it opens is retitled <strong>Save this canvas</strong> and now explains you can\nalso hand your board to a friend, with a warning that importing it <strong>replaces</strong>\ntheir existing progress on that map.</li>\n</ul>"
+   },
+   {
+    "version": "0.24.0",
+    "date": "2026-07-27",
+    "dated": "heading",
+    "title": "New canvas: Inferno",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-6\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-6\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>A new canvas — “Inferno 🔥”.</strong> A 184×164 board (30,176 stitches) with 52\nhand-drawn regions plus the usual 8 sudoku plots and 8 picross patches. Woven\nand repaired like every other map, so it ships fully solvable with zero\npre-filled tiles on every difficulty.</li>\n</ul>"
+   },
+   {
+    "version": "0.23.0",
+    "date": "2026-07-27",
+    "dated": "heading",
+    "title": "Touch play, sturdier saves & sharing",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-7\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-7\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Play on a phone or tablet.</strong> One finger stitches and drags to paint; two fingers pan and pinch\nto zoom. A new <strong>brush toggle</strong> in the header (💡 Light ⇄ ⬛ Dark) chooses what a tap places, and a\nfinger on a sudoku cell selects it (tap again to cycle its digit). The mouse experience is\nunchanged. <em>(finding: no touch support)</em>\n</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Fixed</h3><a id=\"user-content-fixed-5\" class=\"anchor\" aria-label=\"Permalink: Fixed\" href=\"#fixed-5\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Typing in a text field no longer reaches the board.</strong> Entering a share code, a PIN or a join\ncode used to trigger pan/zoom/hint/stitch shortcuts through the field. <em>(input scoping)</em>\n</li>\n<li>\n<strong>Your last stitch is no longer lost on a quick close.</strong> Saves are now flushed immediately when the\ntab is hidden or closed, instead of only on the 400 ms debounce. <em>(save flush)</em>\n</li>\n<li>\n<strong>Music on/off is remembered</strong>, and you can turn it off even while the track is still loading (the\nbutton now follows your choice, not the buffering state). If you've turned music off, the large\ntrack is no longer downloaded at all. <em>(music toggle + persistence)</em>\n</li>\n<li>\n<strong>The dropdown chevron now follows the interface colour</strong> instead of staying purple.</li>\n<li>\n<strong>Sweeping the interface-hue slider no longer leaks memory</strong> (stale cached menu thumbnails are\ndropped on each theme change). <em>(menu-card cache)</em>\n</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-14\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-14\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Shared/saved canvas codes now identify the map by name, not by list position</strong>, so reordering\nthe map list can never load the wrong painting for an old code. Older codes still load. <em>(share\nformat v5)</em>\n</li>\n<li>\n<strong>Online co-op no longer breaks on every release.</strong> Compatibility is now gated on a board/format\nkey that only changes when generation, the code format or the protocol changes — friends on\nadjacent UI builds can still play together. Only the host can push a full board snapshot, so a\nguest can't accidentally overwrite everyone's board. <em>(co-op robustness)</em>\n</li>\n<li>\n<strong>Co-op undo is now per-player.</strong> In both local split-screen and online co-op, your Undo rolls\nback only the tiles and digits <em>you</em> placed — never a teammate's work — and it stops at any region\nthat's already been completed, so finished art never disappears. <em>(per-player undo)</em>\n</li>\n</ul>"
+   },
+   {
+    "version": "0.22.1",
+    "date": "2026-07-27",
+    "dated": "heading",
+    "title": "Music from the first moment",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-15\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-15\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>The music now starts as soon as the game opens</strong> (at the home menu) and plays right through\npicking a canvas, loading and playing — instead of only starting once a board was generated.\nBrowsers that block autoplay start it on your first click. Turn it off any time in <strong>Options</strong> or\nthe header music player.</li>\n</ul>"
+   },
+   {
+    "version": "0.22.0",
+    "date": "2026-07-24",
+    "dated": "heading",
+    "title": "A visual tutorial",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-8\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-8\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>The \"How to play\" screen now shows the rules, not just tells them.</strong> New little tile diagrams\nillustrate: counting the light neighbours (a worked “5”), the <strong>0 / 9</strong> footholds, how a clue\nstays inside its <strong>map</strong> (two regions split by a gold border), and what <strong>gold sudoku plots</strong> and\n<strong>teal picross patches</strong> look like. All theme-coloured.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-16\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-16\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>The home-menu <strong>\"How to play\"</strong> button lost its leading “?” and is now a softer outlined pill —\ndistinct from the main menu buttons without shouting.</li>\n</ul>"
+   },
+   {
+    "version": "0.21.2",
+    "date": "2026-07-24",
+    "dated": "heading",
+    "title": "Cozy menu",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-17\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-17\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>The home menu is centred</strong> vertically and horizontally on the landing screen (it already was\nin-game).</li>\n<li>\n<strong>A soft ambient background</strong> on the home menu — a few theme-coloured orbs drifting slowly. It\nnever shows any map art (nothing to spoil) and moves gently; it stops entirely if your system\nprefers reduced motion. Hidden in-game, where the board shows through the menu modal.</li>\n</ul>"
+   },
+   {
+    "version": "0.21.1",
+    "date": "2026-07-24",
+    "dated": "heading",
+    "title": "Menu/modal polish",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Fixed</h3><a id=\"user-content-fixed-6\" class=\"anchor\" aria-label=\"Permalink: Fixed\" href=\"#fixed-6\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>In-game menu is now a proper centred modal</strong> over a dimmed board, dismissable by clicking the\nbackdrop (same as Esc) — not a full-screen page. The landing page keeps its full layout.</li>\n<li>\n<strong>Clicking outside any modal closes it</strong> (same as its Close/Done button) — including Options.</li>\n<li>\n<strong>Controller setup</strong> opened from Options now sits <strong>above</strong> it (z-index) instead of behind, and\ncloses back to Options.</li>\n<li>\n<strong>Dropdowns</strong> get a clean custom chevron with proper padding (the native arrow is gone); modals\nhave edge padding so nothing crowds the screen.</li>\n</ul>"
+   },
+   {
+    "version": "0.21.0",
+    "date": "2026-07-24",
+    "dated": "heading",
+    "title": "The play timer resumes where you left off",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-18\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-18\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>The timer is now per-canvas and remembers your time.</strong> Come back to a map later and it picks up\nfrom where it stopped instead of resetting to <code>00:00</code>. It counts only <strong>active</strong> time — it pauses\nwhen you open the menu, switch maps, background the tab, or close the page, so time spent away is\nnever added; it resumes on your next stitch. Reset a canvas and its clock starts fresh.</li>\n</ul>"
+   },
+   {
+    "version": "0.20.0",
+    "date": "2026-07-24",
+    "dated": "heading",
+    "title": "Home menu as a stacked button list",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-19\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-19\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>The home screen is now a classic vertical menu</strong> — same-size buttons, one under another:\n<strong>Single Player · Co-op · Continue · Options · Credits</strong> — instead of the two side-by-side cards.</li>\n<li>\n<strong>Continue</strong> jumps straight back into your <strong>most recently played single-player canvas</strong> (greyed\nout until you've played one).</li>\n<li>\n<strong>Options</strong> and <strong>Credits</strong> are first-class menu entries now; <strong>Credits</strong> opens a small about\nscreen. The buttons follow the interface theme you pick in Options.</li>\n<li>\n<strong>The canvas grid has a Sort control</strong> — Name A→Z / Z→A, Newest / Oldest added, or Most / Fewest\nsquares (your choice is remembered).</li>\n<li>Map names now read with the <strong>emoji at the end</strong> (e.g. “Castle 🏰”), so alphabetical sorting works\nnaturally.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Fixed</h3><a id=\"user-content-fixed-7\" class=\"anchor\" aria-label=\"Permalink: Fixed\" href=\"#fixed-7\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>Menu buttons no longer flash <strong>white-on-white</strong> (invisible label) on hover.</li>\n</ul>"
+   },
+   {
+    "version": "0.19.0",
+    "date": "2026-07-24",
+    "dated": "heading",
+    "title": "Options menu: themes, music, difficulty, controller",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-9\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-9\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>An ⚙ Options menu</strong> (from the toolbar and the home menu) collecting the game's settings:\n<ul>\n<li>\n<strong>Interface colour.</strong> Pick from preset swatches (Purple is the default) or drag a hue slider —\nthe <em>entire</em> interface recolours from one hue: chrome, panels, gradients, the board background,\nregion tints and clue ink, live. Gold (sudoku), teal (picross) and red (errors) stay put on\npurpose, so those cues remain readable in any theme. Your choice is saved.</li>\n<li>\n<strong>Music</strong> — mute/resume and a volume slider, kept in sync with the toolbar's player.</li>\n<li>\n<strong>Default difficulty</strong> (Medium by default) — the tier new canvases start at. The toolbar\ndropdown still switches tiers live mid-game.</li>\n</ul>\n</li>\n<li>The <strong>controller setup</strong> (🎮) moved from the toolbar into Options.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-20\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-20\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>The toolbar's 🎮 button is now <strong>⚙ Options</strong>; the music player stays in the toolbar.</li>\n<li>Difficulty is no longer chosen on the map-picker grid (it lives in Options + the toolbar dropdown).</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Notes</h3><a id=\"user-content-notes-2\" class=\"anchor\" aria-label=\"Permalink: Notes\" href=\"#notes-2\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>Theming only changes colours — puzzle generation, the zero-given guarantee and your saves are\nuntouched.</li>\n</ul>"
+   },
+   {
+    "version": "0.18.0",
+    "date": "2026-07-24",
+    "dated": "heading",
+    "title": "Home menu: Single Player / Co-op + a map picker",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-10\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-10\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>A proper home menu on launch.</strong> The game now opens on a landing screen instead of dropping\nstraight into a board. Choose <strong>▶ Single Player</strong> or <strong>👥 Co-op</strong>, then pick a canvas from a grid\nof cards. Each card shows the map's <strong>region lines</strong> in the background; hover (or focus) a card to\nsee how many <strong>regions</strong> and <strong>squares</strong> that canvas has.</li>\n<li>\n<strong>Difficulty is chosen right in the menu</strong> (a row of pills above the grid), alongside the map — it\nstill lives in the toolbar too, so you can switch tiers mid-game exactly as before.</li>\n<li>\n<strong>Co-op flows through the menu.</strong> <em>Local</em> lets you set 2–4 players up front before the split-screen\nboard loads; <em>Online</em> offers <strong>Host</strong> (pick a canvas and get a code to share) and <strong>Join</strong> (enter a\nfriend's code — you'll play their board). The online code-sharing, loopback test, and disconnect\ncontrols are unchanged.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-21\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-21\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>The toolbar's map dropdown is now a 🏠 Menu button</strong> that reopens the home menu, where you switch\ncanvas or mode. Difficulty, and every other toolbar control, is unchanged.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Notes</h3><a id=\"user-content-notes-3\" class=\"anchor\" aria-label=\"Permalink: Notes\" href=\"#notes-3\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>Puzzle generation is untouched — the zero-given guarantee and every difficulty tier behave exactly\nas before; your per-map saves, shared codes and settings carry over.</li>\n</ul>"
+   },
+   {
+    "version": "0.17.0",
+    "date": "2026-07-14",
+    "dated": "heading",
+    "title": "Renamed to \"One More Tile: The Emergent Canvas\"",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-22\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-22\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>The game is now \"One More Tile: The Emergent Canvas\"</strong> (formerly <em>Number Puzzles × Steroids</em>).\nNew title bar, on-screen heading, loading screen, and docs. The live site moved to\n<strong><a target=\"_blank\" rel=\"noopener\" href=\"https://molnarmario.github.io/one-more-tile/\">https://molnarmario.github.io/one-more-tile/</a></strong> (the old address redirects). Your saved progress,\nsettings, shared codes, and <code>.npxs</code> files are unaffected — only the name changed.</li>\n</ul>"
+   },
+   {
+    "version": "0.16.3",
+    "date": "2026-07-08",
+    "dated": "heading",
+    "title": "\"Clear errors\" button",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-11\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-11\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>A \"🧹 Clear errors\" button in the toolbar.</strong> It sweeps away every incorrect tile — the same\naction as the \"Clear my errors\" button in the four-mistakes prompt — but you can now do it any\ntime, not just once you've hit four. It stays greyed out while you have zero mistakes.</li>\n</ul>"
+   },
+   {
+    "version": "0.16.2",
+    "date": "2026-07-08",
+    "dated": "heading",
+    "title": "Consistent click-and-drag painting",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-23\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-23\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Dragging now paints every square it crosses, exactly like clicking each one.</strong> Before, a drag\nonly filled <em>blank</em> squares — if you dragged over a square of the opposite colour it was left\nunchanged, so fixing a mistake (e.g. repainting a dark run light) only flipped the first square.\nNow a left-drag turns every square it touches light and a right-drag turns them dark, regardless\nof what was there; dragging back over a square that's already your colour clears it to blank. Each\nsquare flips once per stroke, so holding still doesn't make it flicker.</li>\n</ul>"
+   },
+   {
+    "version": "0.16.1",
+    "date": "2026-07-08",
+    "dated": "heading",
+    "title": "Pan while loading",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-12\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-12\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Pan the board during the loading animation.</strong> Hold the middle mouse button (the scroll wheel)\nand drag to move around the map while it's still generating — the same free-look panning you have\nonce it's loaded, alongside the existing scroll-to-zoom. (Gameplay is still off until generation\nfinishes; only the camera moves.)</li>\n</ul>"
+   },
+   {
+    "version": "0.16.0",
+    "date": "2026-07-07",
+    "dated": "heading",
+    "title": "New map: Angels",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-13\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-13\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>👼 Angels</strong> — a new built-in map (204×136, 20 regions, with sudoku and picross plots and a full set\nof per-region quotes). Pick it from the map menu.</li>\n</ul>"
+   },
+   {
+    "version": "0.15.3",
+    "date": "2026-07-03",
+    "dated": "heading",
+    "title": "Drop the skip prompt",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Removed</h3><a id=\"user-content-removed\" class=\"anchor\" aria-label=\"Permalink: Removed\" href=\"#removed\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>The \"click or Esc to skip\" prompt is gone.</strong> Skipping could only ever take effect <em>after</em> the\npuzzle finished generating (there's no board to skip to before then), so an early click did\nnothing — confusing for no real benefit. The loading card now just shows the \"scroll to zoom\" hint.</li>\n</ul>"
+   },
+   {
+    "version": "0.15.2",
+    "date": "2026-07-03",
+    "dated": "heading",
+    "title": "Loading progress, zoom, and a readable title card",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-14\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-14\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>A readable title card at the top.</strong> The title, a live status line, and the progress bar now sit\nin an opaque card pinned to the top of the screen, so they stay legible over the moving board —\npreviously the purple-on-purple could wash them out, especially once you zoomed in.</li>\n<li>\n<strong>A slim progress bar during loading</strong> shows real clue-thinning progress (with a live %), so on a\nbig map you can see how much is actually done while the squares are twitching — not just a spinner.</li>\n<li>\n<strong>Zoom while the map is loading.</strong> Scroll (or press +/−, and F to fit) to zoom the board during the\nloading animation — handy for watching the numbers resolve up close, and it makes the shimmer\nlegible on very large maps. Clicking or pressing Esc still skips to the board.</li>\n</ul>"
+   },
+   {
+    "version": "0.15.1",
+    "date": "2026-07-03",
+    "dated": "heading",
+    "title": "Loading animation paced to the map",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-24\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-24\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>The loading animation now runs slower on bigger maps</strong> — the ones with more clue-thinning to do.\nThe opening bloom + number-shimmer are scaled to the board's size (up to ~2.5× on the largest\nmaps), so a heavy map gets a slower, more deliberate reveal instead of racing through the opening\nand then waiting; small maps stay just as snappy as before.</li>\n</ul>"
+   },
+   {
+    "version": "0.15.0",
+    "date": "2026-07-03",
+    "dated": "heading",
+    "title": "Watch the canvas being woven",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-15\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-15\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>The loading screen now shows the puzzle being generated instead of a plain bar.</strong> Three staged\nbeats play on the board while the clues are computed: the <strong>territories bloom in</strong> (regions and\ntheir borders, sudoku/picross plots dropping into place), then <strong>every square runs a \"compute\nshimmer\"</strong> of flickering digits, then a sweep <strong>thins down to the real clues</strong>, the surviving\nnumbers crystallising into place. It runs on the otherwise-idle main thread while the heavy work\nhappens in a background worker, so it costs nothing extra, and it's <strong>spoiler-safe</strong> — the shimmer\nis random digits, never the true counts; only the clues you'd actually get resolve to real numbers.</li>\n<li>\n<strong>Click or press any key to skip</strong> straight to the board (it still waits for generation to finish).</li>\n<li>The animation is choreographed with a short minimum duration so quick maps still get a satisfying\nshow, and it never ends before the board is truly ready. Difficulty changes jump straight to the\nre-thinning step (the territories don't change).</li>\n</ul>"
+   },
+   {
+    "version": "0.14.0",
+    "date": "2026-07-02",
+    "dated": "heading",
+    "title": "No pre-filled squares, ever",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-25\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-25\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Every tile is now yours to stitch — the game never pre-fills a square again.</strong> Boards used to\nship with a few pre-stitched starter tiles wherever pure logic stalled (genuinely ambiguous spots,\nlike a thin 2-cell strip whose clues both read 1), plus a random \"head start\" in picross patches\non the gentler difficulties. The generator now <em>repairs the stitch texture instead</em>: it flips a\nfew solution pixels (exactly like the weave's own cross-stitch specks — the revealed artwork is\nuntouched) until every region falls to plain 3×3 counting with the full clue set and every picross\npatch falls to line logic from a blank grid. Same guarantee as before, on every tier: <em>no guessing\never required</em> — but now also <em>nothing solved for you</em>.</li>\n<li>\n<strong>One-time effect on old saves:</strong> the repaired texture differs from the old one in a handful of\ncells per map, so a few of your previously-correct marks may show up red after updating — use\n<strong>Clear my errors</strong> and re-stitch those spots. A completed region containing such a cell may\nre-open. Your progress is otherwise intact.</li>\n<li>Online co-op needs both players on this version (the usual version handshake).</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Dev</h3><a id=\"user-content-dev\" class=\"anchor\" aria-label=\"Permalink: Dev\" href=\"#dev\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<code>index.html?audit=1</code> (or <code>await auditGivens()</code> in the console) proves the guarantee: for every\nmap × difficulty it rebuilds the board and asserts zero pre-filled cells, every region solvable\nwith that tier's technique from the shipped clues alone, and every picross patch line-solvable.</li>\n</ul>"
+   },
+   {
+    "version": "0.13.0",
+    "date": "2026-07-02",
+    "dated": "heading",
+    "title": "\"Amigos\" map",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-16\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-16\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>A new map — \"🐾 Amigos\"</strong> — authored in the region editor: a 144×95 board with 10 regions,\n8 sudoku zones, 8 picross plots, and a quote per region, with its own autosaved progress.</li>\n</ul>"
+   },
+   {
+    "version": "0.12.4",
+    "date": "2026-06-17",
+    "dated": "heading",
+    "title": "Clean seams on revealed art",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Fixed</h3><a id=\"user-content-fixed-8\" class=\"anchor\" aria-label=\"Permalink: Fixed\" href=\"#fixed-8\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>No more faint light/dark lines between tiles in a finished region.</strong> A solved cell used to paint\nthe picture colour <em>on top of</em> the light/dark solving square, and at fractional-pixel cell edges\nthe near-white / near-black underlay bled through as thin seams. A fully revealed cell now paints\nonly its pixel-art colour (the cross-fade reveal is unchanged), so the finished picture is clean.</li>\n</ul>"
+   },
+   {
+    "version": "0.12.3",
+    "date": "2026-06-17",
+    "dated": "heading",
+    "title": "Esc closes any modal",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-17\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-17\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Press Esc to close the open dialog</strong> — it runs that modal's own Close/Cancel action (so the win\nscreen's Esc dismisses to admire the canvas rather than restarting, the PIN box cancels, etc.). It\nworks even while the PIN field is focused; with no modal open, Esc still deselects a sudoku cell.</li>\n</ul>"
+   },
+   {
+    "version": "0.12.2",
+    "date": "2026-06-17",
+    "dated": "heading",
+    "title": "Keep a co-op board as your own",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-18\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-18\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Guests can save the shared board as their own progress.</strong> In an online session, open\n<strong>👥 Multiplayer</strong> and use <strong>\"Keep this board as my own\"</strong> (with a confirm) to copy the current\nco-op board into your solo save for <em>that map only</em> — so you can pick up where you and your friends\nleft off, alone. It's the Share import in one click. As before, playing in multiplayer never\ntouches your solo progress on any map unless you press this; and your other maps are never affected.</li>\n</ul>"
+   },
+   {
+    "version": "0.12.1",
+    "date": "2026-06-17",
+    "dated": "heading",
+    "title": "Modal button wrapping fix",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Fixed</h3><a id=\"user-content-fixed-9\" class=\"anchor\" aria-label=\"Permalink: Fixed\" href=\"#fixed-9\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>The auto-solve dialog's buttons no longer overflow the box.</strong> Its four buttons sat in a single\nnon-wrapping row and spilled off both edges of the card; modal button rows now wrap, so they lay\nout tidily on any width. Modals are also capped to the viewport (with internal scroll if needed),\nso none can overflow a small or short window.</li>\n</ul>"
+   },
+   {
+    "version": "0.12.0",
+    "date": "2026-06-17",
+    "dated": "heading",
+    "title": "Up to 4 players + a Multiplayer menu",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-19\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-19\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>One 👥 Multiplayer button</strong> replaces the separate Co-op/Online buttons: click it and pick <strong>Local\nco-op</strong> or <strong>Online co-op</strong>. (You can be in one mode at a time; the other becomes available again\nonce everyone disconnects.)</li>\n<li>\n<strong>2–4 players.</strong> Local co-op now has a player-count picker (2–4); online hosts choose how many\nguests (1–3) and hand out the <strong>same code</strong> to all. The screen tiles to fit: <strong>side-by-side</strong> for\n2, <strong>three columns</strong> for 3, a <strong>2×2 grid</strong> for 4.</li>\n<li>\n<strong>Join any time.</strong> Players don't have to be there at the start. Locally, an extra player presses\nany controller button to claim the next spot mid-game; online, a friend can connect to the host's\ncode whenever — they're handed the current board on arrival. Everyone's cursor shows live, in their\nown colour, with an edge arrow when they're off your screen; <strong>⊟ Watch</strong> tiles everyone's views.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-26\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-26\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Responsive at any window size.</strong> Panes are computed from the live window dimensions and re-fit on\nresize, so split-screen works beyond the usual 16:9 fullscreen.</li>\n<li>\n<strong>Online stays host-authoritative for everyone.</strong> All guests play on the host's board and every\nmove — whoever makes it — is saved on the <strong>host's</strong> side; the host's map is never wiped. Each\nguest's own solo progress is untouched and restored when they leave.</li>\n</ul>"
+   },
+   {
+    "version": "0.11.1",
+    "date": "2026-06-17",
+    "dated": "heading",
+    "title": "Controller follows the mouse",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Fixed</h3><a id=\"user-content-fixed-10\" class=\"anchor\" aria-label=\"Permalink: Fixed\" href=\"#fixed-10\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>The controller cursor now starts where you last clicked.</strong> Clicking a square with the mouse and\nthen reaching for the controller used to drop you at an unrelated spot (the controller's old\nposition or the screen centre). Now a mouse click — and any paint stroke — moves the controller\ncursor with it, so picking the controller back up continues from the square you were just on.</li>\n</ul>"
+   },
+   {
+    "version": "0.11.0",
+    "date": "2026-06-17",
+    "dated": "heading",
+    "title": "Online co-op",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-20\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-20\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Play online with a friend.</strong> A new <strong>🌐 Online</strong> button lets one player <em>Host a game</em> (you get a\nshort code) and the other <em>Join</em> by pasting it — then you both work the same board live over a\npeer-to-peer connection (great alongside a Discord call). Because every board is generated\ndeterministically from its map + difficulty, only your <em>moves</em> travel the wire, not the whole\ncanvas; the connection bootstraps by sending a one-time snapshot (the same format as Share codes).\nYour partner's stitches, digits and <strong>cursor</strong> appear in real time, with an edge arrow pointing to\nthem when they're off your screen. Press <strong>⊟ Watch</strong> to split the screen and mirror their viewport\nlive. Disconnects fall back to solo cleanly; undo re-syncs both sides.</li>\n<li>\n<strong>The host owns the board.</strong> A joiner plays <em>on the host's canvas</em> and all progress — whoever makes\nthe move — is saved on the <strong>host's</strong> side; the host's map and progress are never wiped. The\njoiner's own solo progress for that map is left untouched and restored automatically when they\ndisconnect.</li>\n<li>\n<strong>One mode at a time.</strong> Local split-screen and online can't run together — whichever you start\nholds until Player 2 disconnects, then either mode is available again (for host and joiner alike).</li>\n<li>\n<strong>Transport is pluggable</strong> behind a thin <code>Net</code> interface (WebRTC/PeerJS today; a relay could drop\nin later with no game-code change). A \"test in two tabs\" checkbox runs the whole thing locally over\n<code>BroadcastChannel</code> with no internet, for development.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Notes</h3><a id=\"user-content-notes-4\" class=\"anchor\" aria-label=\"Permalink: Notes\" href=\"#notes-4\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>The auto-solver is disabled during online co-op (it's a reveal tool, not collaborative play).</li>\n<li>Networking needs a real origin — use the live site (or a local server), not a <code>file://</code> page.</li>\n</ul>"
+   },
+   {
+    "version": "0.10.0",
+    "date": "2026-06-17",
+    "dated": "heading",
+    "title": "Local split-screen co-op",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-21\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-21\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Two-player local split-screen co-op.</strong> A new <strong>👥 Co-op</strong> button splits the canvas left/right so\ntwo players share one board, each with their own cursor and independent pan/zoom — solve together\nwithout fighting over the view. Player 1 keeps mouse &amp; keyboard; Player 2 presses any button to\njoin with a controller (two controllers also work — claim P2 first, then P1 grabs the other).\nEach pane shows its own cursor plus a dimmed ghost of where your partner is working; completing a\nregion reveals it in both panes. Click 👥 again to return to solo.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-27\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-27\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>The camera and cursor are now per-player.</strong> Rendering was refactored so the board draws once per\nviewport (<code>drawViewport</code>) and every camera/cursor/selection is owned by a player object. Solo play\nis unchanged — it's simply \"one player\" — but this is the groundwork that also enables an upcoming\nonline co-op mode (a partner's view can be mirrored into the second pane).</li>\n</ul>"
+   },
+   {
+    "version": "0.9.4",
+    "date": "2026-06-17",
+    "dated": "heading",
+    "title": "Solver: \"leave one square\" debug option",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-22\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-22\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>A 🐞 \"…but leave one square in each\" button</strong> in the (PIN-gated) solver. It solves the same\nregion as \"Solve this region\" — its numbers plus every sudoku/picross it touches — but stops one\nsquare short in <em>each</em> puzzle, leaving every one of them a single move from done. Place those last\nsquares by hand to test the final-move behaviour (region reveal, character quote, win) without\nre-solving a whole region each time.</li>\n</ul>"
+   },
+   {
+    "version": "0.9.3",
+    "date": "2026-06-17",
+    "dated": "heading",
+    "title": "Regions wait for their puzzles",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Fixed</h3><a id=\"user-content-fixed-11\" class=\"anchor\" aria-label=\"Permalink: Fixed\" href=\"#fixed-11\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>A region no longer reveals while a sudoku/picross inside it is still unsolved.</strong> Placing all of\na region's fill-a-pix numbers used to complete and reveal it on its own, even with an embedded\nsudoku left half-filled. Now a region completes only when its numbers <em>and</em> every sudoku/picross\nplot sitting inside it (touching it, partially or fully) are all solved — finishing that last plot\nis what flips the surrounding region to \"done\". This matches when the region's character quote\nalready fired; the reveal now lines up with it.</li>\n</ul>"
+   },
+   {
+    "version": "0.9.2",
+    "date": "2026-06-17",
+    "dated": "heading",
+    "title": "Strict region completion",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-28\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-28\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>A region now reveals only when every tile is explicitly placed</strong> — light tiles marked light\n(left click) <em>and</em> dark/background tiles marked dark (right click). Previously, placing all the\nlight tiles auto-filled the remaining background and completed the region; now an unmarked tile\nkeeps the region open, so it won't reveal while any square is still blank. The auto-solver and\n\"solve region\" place both colours, so they still complete as before.</li>\n</ul>"
+   },
+   {
+    "version": "0.9.1",
+    "date": "2026-06-16",
+    "dated": "heading",
+    "title": "Reliability fixes & repo cleanup",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Fixed</h3><a id=\"user-content-fixed-12\" class=\"anchor\" aria-label=\"Permalink: Fixed\" href=\"#fixed-12\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Sweeping your mistakes can now complete a region.</strong> Clearing wrong tiles reset the cells but\ndidn't re-check whether the region was finished, so a region you completed <em>by</em> fixing your last\nmistakes wouldn't reveal. <code>clearErrors</code> now re-checks every region it touched.</li>\n<li>\n<strong>No region can strand cells outside its body.</strong> A new load-time pass (<code>healRegions</code>) guarantees\nevery region is a single connected blob: if a partition leaves a region in two pieces, the largest\npiece is kept and the stray fragment is folded into the neighbour it borders most — so you never\nhave to hunt a few cells marooned inside another region. Region ids are preserved (quotes and\nsaved progress are unaffected) and it's a no-op for well-formed maps. <code>_bake_map.js</code> also warns at\nauthoring time if a map-def has a disconnected region.</li>\n<li>\n<strong>Flash map: the top-right region no longer reaches across to the top-left.</strong> A hand-transcription\nslip had scattered two of that region's cells onto the far-left border; they're reattached to the\nregion that actually surrounds them.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-29\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-29\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>The repo no longer tracks any image. The one committed-but-unused PNG was removed and <code>.gitignore</code>\nnow ignores all image types, so debug screenshots and source art can't be pushed by accident (the\ngame embeds all artwork as data URIs inside <code>index.html</code>).</li>\n</ul>"
+   },
+   {
+    "version": "0.9.0",
+    "date": "2026-06-16",
+    "dated": "heading",
+    "title": "Instant-loading clues",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-30\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-30\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Large maps no longer freeze the page while loading.</strong> Fill-a-pix clue generation — the slow\nstep that re-solves each region many times to prune clues — now runs in a Web Worker instead of on\nthe main thread, so switching to a big, high-resolution map (e.g. Blinding Lights) keeps the UI\nresponsive instead of locking up for several seconds. The generated puzzles are byte-for-byte\nidentical; only <em>where</em> the work runs changed.</li>\n</ul>"
+   },
+   {
+    "version": "0.8.0",
+    "date": "2026-06-16",
+    "dated": "heading",
+    "title": "\"Blinding Lights\" map & higher resolutions",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-23\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-23\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>A new map — \"🌙 Blinding Lights\"</strong> — authored in the region editor and baked in like the others,\nwith its own autosaved progress.</li>\n<li>\n<strong>Adjustable pixel-art resolution</strong> in the region editor: an aspect-locked slider trades\ndetail/length against generation time, and the engine's cell-count cap was raised to 320×180\n(57,600 cells) to allow much higher-resolution boards.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-31\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-31\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Share codes now carry 2-byte board dimensions</strong> (format v4) so the larger boards round-trip\ncorrectly; older v3 codes still import.</li>\n</ul>"
+   },
+   {
+    "version": "0.7.0",
+    "date": "2026-06-15",
+    "dated": "heading",
+    "title": "Region editor & the \"Flash\" map",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-24\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-24\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>A hand-drawn region-authoring editor</strong> (<code>region-editor.html</code>): load an image, draw region\nborders with the mouse, and the tool auto-detects each region as you close it, auto-places the\nsudoku/picross plots, and lets you attach a quote per region. It reuses the game's <em>exact</em>\ngeneration code, so the board and region ids match in-game. Export a map-def and bake it into the\ngame with <code>node _bake_map.js</code>. A read-only <strong>region inspector</strong> (<code>region-map.html</code>) renders any\nmap's generated partition.</li>\n<li>\n<strong>A new map — \"Flash\"</strong> — the first map authored end-to-end in the editor, with per-region quotes.\nIts name is revealed <strong>region by region</strong> as you solve, instead of shown up front.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-32\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-32\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>The region-solved (pin-locked) popup now says <strong>\"region\"</strong> instead of \"map\".</li>\n</ul>"
+   },
+   {
+    "version": "0.6.0",
+    "date": "2026-06-15",
+    "dated": "heading",
+    "title": "Music, focused hover & a responsive header",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-25\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-25\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Background music player</strong> in the header. The (large) audio file is deliberately loaded <em>last</em>,\nafter the game is interactive, so it never slows the core load.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-33\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-33\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>The 3×3 hover highlight is clipped to the current region</strong> — squares that would spill across a\nregion border are no longer highlighted, since they don't count toward the tile you're on.</li>\n<li>\n<strong>The header is responsive and grouped</strong> — controls reflow into labelled groups and stay usable on\nsmall / narrow screens.</li>\n</ul>"
+   },
+   {
+    "version": "0.5.2",
+    "date": "2026-06-14",
+    "dated": "heading",
+    "title": "Undo fix",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Fixed</h3><a id=\"user-content-fixed-13\" class=\"anchor\" aria-label=\"Permalink: Fixed\" href=\"#fixed-13\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Undo now reverts exactly one move at a time when using a controller.</strong> The gamepad\nlight/dark buttons placed tiles without recording an undo step, so a single Undo rolled back\nevery controller tile plus the last mouse tile at once. Each controller tile is now its own\nstep, matching mouse and keyboard.</li>\n</ul>"
+   },
+   {
+    "version": "0.5.1",
+    "date": "2026-06-14",
+    "dated": "heading",
+    "title": "Fighters quotes",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-26\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-26\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Quotes on \"The Fighters\" map</strong> — six regions now carry an original, in-character line for the\nfighter who dominates that region's art (Piccolo, Tien, Goku, Krillin, Trunks, Vegeta), keyed in\n<code>MAP_QUOTES</code>. Regions that are background or too small/oddly-shaped to clearly belong to one\nfighter are left silent.</li>\n</ul>"
+   },
+   {
+    "version": "0.5.0",
+    "date": "2026-06-14",
+    "dated": "heading",
+    "title": "Third map",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-27\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-27\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>A third playable map — \"🐉 The Fighters\"</strong> — a 16:9 character lineup, run through the same\npipeline: the board auto-sizes to its aspect (117×66), regions grow content-aware along the\nimage's edges (borders carry ~2.2× the average edge strength), sudoku/picross auto-place and\nattach to home regions, and it's logic-solvable like the others. Pick it from the map dropdown;\nit keeps its own autosaved progress. No character quotes yet.</li>\n</ul>"
+   },
+   {
+    "version": "0.4.0",
+    "date": "2026-06-14",
+    "dated": "heading",
+    "title": "Region quotes & polish",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-28\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-28\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Per-region character quotes</strong> (crew map): a region's line shows once, when that region <em>and</em>\nevery sudoku/picross attached to it are all solved. Quotes live in an editable <code>MAP_QUOTES</code>\ntable keyed by region id; unassigned regions stay silent.</li>\n<li>\n<strong>Replay a quote</strong> by clicking any cell of a finished region (or one of its attached plots);\nworks with mouse and gamepad <strong>A</strong>.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-34\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-34\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>Header progress now reads <strong>\"n/N regions\"</strong> instead of \"maps\".</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Fixed</h3><a id=\"user-content-fixed-14\" class=\"anchor\" aria-label=\"Permalink: Fixed\" href=\"#fixed-14\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Solved picross patches stay revealed (full colour) after a reload.</strong> The load-time recompute\nskipped picross region ids (they sit above the pixel-region range), so a solved patch reverted\nto its two-tone look on refresh.</li>\n</ul>"
+   },
+   {
+    "version": "0.3.0",
+    "date": "2026-06-13",
+    "dated": "heading",
+    "title": "Multiple maps, content-aware generation, characters",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-29\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-29\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Multiple maps</strong> with a toolbar dropdown (Castle + The Crew), each with <strong>separate, autosaved\nprogress</strong> (per-map save keys; global difficulty/controller/tutorial prefs).</li>\n<li>\n<strong>Per-map board dimensions</strong> derived from each image's aspect ratio at a constant ~7,680-cell\nbudget — wide images make wide boards, square images square boards.</li>\n<li>\n<strong>Per-map seed</strong> → each painting grows its own distinct puzzle (regions, sudoku, pockets, clues).</li>\n<li>\n<strong>Content-aware region borders</strong> — a marker-controlled watershed floods region seeds along the\nimage's edges, so finishing a region reveals a coherent chunk of the art.</li>\n<li>\n<strong>Scattered, varied region seeding</strong> (replacing the fixed grid) so each image's regions differ in\ncount, size and arrangement.</li>\n<li>\n<strong>Auto-placed sudoku/picross</strong> on non-castle maps (seeded, non-overlapping, clue-strips on\ncanvas), each <strong>attached to its home organic region</strong>.</li>\n<li>\n<strong>Character dialogue</strong> boxes (crew map) — completing sections greets you with a quote; fires on\nmanual play and during auto-solve; Reset re-arms them.</li>\n<li>\n<strong>Share</strong> — export your full progress as a copy-pasteable code, and <strong>import</strong> one; later also as\na <strong><code>.npxs</code> file</strong> (save/open). Self-describing (carries map + board dimensions).</li>\n<li>\n<strong>Play timer</strong> in the header, counting from your first stitch.</li>\n<li>\n<strong>In-game \"Advanced Deductions\" tutorial</strong>, shown the first time you reach a tier that needs the\noverlap technique.</li>\n<li>\n<strong>Auto-solver gated behind a PIN</strong> (developer/test use).</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-35\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-35\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>Region borders recoloured to a clearly-visible <strong>gold</strong> (the old dark purple vanished over\ndark-stitched squares); slightly thicker line.</li>\n<li>The castle stays pinned to its original 120×64 layout so existing saves remain valid; its plots\nremain the hand-placed, verified set.</li>\n</ul>"
+   },
+   {
+    "version": "0.2.0",
+    "date": "2026-06-13",
+    "dated": "heading",
+    "title": "Solvability, hints & quality of life",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-30\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-30\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Undo</strong> — toolbar button and <code>Ctrl+Z</code>; whole drag strokes, region completions and error sweeps\nroll back as a single step.</li>\n<li>\n<strong>3×3 neighbourhood highlight</strong> around the tile under the mouse or controller cursor (suppressed\ninside sudoku/picross plots).</li>\n<li>\n<strong>Re-centering</strong> — on window resize the last-worked cell glides to centre; in controller mode the\nactive square stays centred while zooming.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-36\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-36\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Easy tiers are now pure counting.</strong> Very Easy / Easy / Medium are guaranteed solvable by plain\nneighbour-counting alone; Hard / Very Hard reserve the cross-clue \"Advanced Deductions\".</li>\n<li>\n<strong>Hints stay local and explain themselves</strong> — <code>H</code> points at a forced move near your view and says\nwhat it is, instead of flying to a random 0/9 clue across the board.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Fixed</h3><a id=\"user-content-fixed-15\" class=\"anchor\" aria-label=\"Permalink: Fixed\" href=\"#fixed-15\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>Hover highlight no longer ignores the mouse when a controller is connected (tracks last-used\ninput).</li>\n</ul>"
+   },
+   {
+    "version": "0.1.0",
+    "date": "2026-06-13",
+    "dated": "heading",
+    "title": "Initial release",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-31\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-31\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>One More Tile: The Emergent Canvas</strong> — a single-file Fill-a-pix (Mosaic) game with woven-in sudoku and\npicross, organic region maps, 5 difficulty tiers, mistake forgiveness, animated auto-solver,\npan/zoom, autosave and gamepad support. The board reveals a hidden pixel-art painting as it's\nsolved.</li>\n<li>A <strong>lavender</strong> UI/canvas theme.</li>\n<li>\n<code>verify-puzzle.js</code> solvability proof harness.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Fixed</h3><a id=\"user-content-fixed-16\" class=\"anchor\" aria-label=\"Permalink: Fixed\" href=\"#fixed-16\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>Solve-all crash on picross regions; \"solve this map\" targets the last-touched region.</li>\n</ul>"
+   }
+  ]
+ }
+}

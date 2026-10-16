@@ -1,0 +1,346 @@
+{
+ "id": "hirakata",
+ "repo": "HiraKataQuest",
+ "url": "https://github.com/MolnarMario/HiraKataQuest",
+ "branch": "main",
+ "created": "2026-07-04",
+ "pushed": "2026-10-15",
+ "commits": 144,
+ "firstCommit": "2026-07-04",
+ "lastCommit": {
+  "sha": "172b2b8",
+  "date": "2026-09-24",
+  "subject": "Add MIT license"
+ },
+ "recent": [
+  {
+   "sha": "172b2b8",
+   "date": "2026-09-24",
+   "subject": "Add MIT license"
+  },
+  {
+   "sha": "4cbfb6d",
+   "date": "2026-08-11",
+   "subject": "Redesign the opening screen (kana wall bg, bilingual title, specimen mode cards)"
+  },
+  {
+   "sha": "e871b47",
+   "date": "2026-08-11",
+   "subject": "Fix forward reading-quiz MC options shrinking to one on a retake"
+  },
+  {
+   "sha": "46623ed",
+   "date": "2026-08-11",
+   "subject": "Replace pointless sort toggle with a hype line on mistake-free reading quizzes"
+  },
+  {
+   "sha": "e4261c3",
+   "date": "2026-08-07",
+   "subject": "Fix silent TTS for standalone small vowel kana"
+  }
+ ],
+ "weeks": [
+  [
+   "2026-04-20",
+   0
+  ],
+  [
+   "2026-04-27",
+   0
+  ],
+  [
+   "2026-05-04",
+   0
+  ],
+  [
+   "2026-05-11",
+   0
+  ],
+  [
+   "2026-05-18",
+   0
+  ],
+  [
+   "2026-05-25",
+   0
+  ],
+  [
+   "2026-06-01",
+   0
+  ],
+  [
+   "2026-06-08",
+   0
+  ],
+  [
+   "2026-06-15",
+   0
+  ],
+  [
+   "2026-06-22",
+   0
+  ],
+  [
+   "2026-06-29",
+   11
+  ],
+  [
+   "2026-07-06",
+   36
+  ],
+  [
+   "2026-07-13",
+   11
+  ],
+  [
+   "2026-07-20",
+   52
+  ],
+  [
+   "2026-07-27",
+   26
+  ],
+  [
+   "2026-08-03",
+   3
+  ],
+  [
+   "2026-08-10",
+   4
+  ],
+  [
+   "2026-08-17",
+   0
+  ],
+  [
+   "2026-08-24",
+   0
+  ],
+  [
+   "2026-08-31",
+   0
+  ],
+  [
+   "2026-09-07",
+   0
+  ],
+  [
+   "2026-09-14",
+   0
+  ],
+  [
+   "2026-09-21",
+   1
+  ],
+  [
+   "2026-09-28",
+   0
+  ],
+  [
+   "2026-10-05",
+   0
+  ],
+  [
+   "2026-10-12",
+   0
+  ]
+ ],
+ "log": {
+  "source": {
+   "kind": "changelog",
+   "label": "CHANGELOG.md",
+   "url": "https://github.com/MolnarMario/HiraKataQuest/blob/main/CHANGELOG.md"
+  },
+  "entries": [
+   {
+    "version": "0.4.0",
+    "date": "2026-08-02",
+    "dated": "heading",
+    "title": "A real vocabulary, kanji reference, and honest scores",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>The word list grew from about 250 words to nearly 700.</strong> The hiragana deck\nnow carries the common JLPT N5 vocabulary, plus 25 more katakana loanwords, so\npractising words no longer runs out of material.</li>\n<li>\n<strong>A \"Kanji\" button on words that have a kanji spelling</strong> (off by default; turn\non \"Kanji reference\" in Study scope). It is colored by how the word is\nnormally written: green when it is usually kanji, blue when it is mixed, grey\nwhen it is usually kana. Tapping it opens a reference card with the kanji, the\nreading, the meaning, and, for words that sound alike, the other kanji that\nshare that reading with a one-line note on the difference. Purely\ninformative: it is never quizzed and never scored.</li>\n<li>\n<strong>Filter the Words tab by category</strong> (hiragana), with removable chips, both\nwhen browsing and when building a word set.</li>\n<li>\n<strong>A \"From my strong kana\" set generator.</strong> It builds a word set out of words\nwhose every kana you already score 85 or better in both writing and reading,\nso review material comes from what you have actually learned.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Writing mode now opens the Library instead of a random character.</strong> Picking\nwhat to practise is the first thing you do, which is how Reading mode already\nworked. Tapping a character or word drops you straight into practice, and Back\nreturns to the Library.</li>\n<li>\n<strong>Handwriting scores are a measurement now, not a cap.</strong> Two scores used to be\nsuspiciously common: a well-formed character the recognizer merely misread\nalways landed on exactly 65, and a scribble that cleared a low bar always\nlanded on exactly 45. Both were ceilings rather than measurements. Recognition\nnow nudges the score instead of capping it, extra strokes actually cost\nsomething, no scoring mode is blind to the shape any more, and a backwards\nstroke is charged once rather than twice. A clean katakana \"e\" that used to\nshow 65 with a \"looks more like\" complaint now scores 93; a single random line\nscores 7 instead of 45.</li>\n<li>\n<strong>The score on the feedback card and the score in the Library finally agree.</strong>\nThe Library used to average the raw form dial while the card showed the\nadjusted number, so the same attempt could read 65 on one screen and 88 on the\nother. It now stores and averages the number you were actually shown. Practice\nrecorded before this update keeps counting toward your averages.</li>\n<li>\n<strong>Katakana are no longer misread as the kanji they came from.</strong> Thirty\nlookalike pairs (the katakana \"e\" and the kanji for \"work\", and so on) are now\ntreated as the same drawing, because nothing in the ink can tell them apart.</li>\n<li>\n<strong>The reading quiz keeps a steady layout.</strong> The prompt no longer jumps when\nyou answer, typing works the way it does in flashcard practice (the keyboard\nstays open, the Done key checks and moves on, an empty answer skips), and\nmemory-hint stories bold the reading they are teaching.</li>\n</ul>"
+   },
+   {
+    "version": "0.3.3",
+    "date": "2026-08-02",
+    "dated": "heading",
+    "title": "Smarter Library search and visible scores",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-1\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-1\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Your writing score now shows on each word in the Library list.</strong> Words in\nthe Characters/Words list already tinted green by score; now they also print\nthe number (\"Avg 82 · Best 90\", or \"Not practiced yet\"), matching the grid\nview and the character rows.</li>\n<li>\n<strong>Reading progress keeps the romaji alongside it.</strong> In Reading mode the word\nlist used to replace a word's romaji with its progress stats; it now shows the\nromaji as usual and puts the progress on its own line, so you never lose the\nreading.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-1\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-1\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Library search ranks results by relevance.</strong> An exact match now floats to\nthe top instead of being buried under incidental substring hits, so searching\n\"hat\" finds the word \"hat\" first rather than \"that\" and \"what\". Romaji search\nworks the same way, with or without spaces (\"boushi\" or \"bo u shi\").</li>\n<li>The reading-progress line labels the typed-answer score <strong>\"Typing\"</strong> instead\nof the terser \"Type\".</li>\n</ul>"
+   },
+   {
+    "version": "0.3.1",
+    "date": "2026-07-31",
+    "dated": "heading",
+    "title": "Quiz polish and memory hints for every kana",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-2\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-2\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Memory hints now cover every kana, not just the basic hiragana.</strong> Katakana\nand the voiced, combined, and extended kana all get keyword-and-story hints,\nmost with two or three alternate images to pick from. Composed kana (like\nきゃ or ヴァ) also show an always-on <strong>Structure</strong> note that spells out how the\npiece is built from its parts, separate from the memory hint itself.</li>\n<li>\n<strong>Encouragement as you build a streak in Reading mode.</strong> Answer a run of\nreading questions correctly (in the quiz or in flashcard practice) and the\nreveal greets you with a short, escalating line of encouragement instead of a\nflat \"Correct!\". A gentle note marks a broken streak.</li>\n<li>\n<strong>The writing quiz shows you how the answer is written.</strong> When you reveal a\nwriting-quiz answer, its stroke-order animation now plays in the corner (the\nsame demo free practice uses), so a missed character teaches the fix, not just\nthe finished shape.</li>\n<li>\n<strong>An Undo button in the writing quiz.</strong> The bottom bar's Back button is now\n<strong>Undo</strong>, which reverts just your last stroke so a slip on a many-stroke\ncharacter no longer means clearing the whole thing.</li>\n<li>\n<strong>Sort your writing-quiz results, and retake the ones that need work.</strong> The\nend-of-quiz summary can now order its items by score (lowest or highest\nfirst), and a new button re-quizzes every character or word you scored below a\ntarget you set right there (default 80, with quick-pick 60/70/80/90 chips).\nIt is the writing counterpart to Reading mode's \"retake the ones I missed\".</li>\n<li>\n<strong>A clearer \"Add new set\" button</strong> on the Practice sets tab (was a plain\n\"New\").</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-2\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-2\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>The Quiz-me \"Practice from\" list now shows only the sets in the script you're\ncurrently studying, matching the Library's Sets tab.</li>\n</ul>"
+   },
+   {
+    "version": "0.3.0",
+    "date": "2026-07-27",
+    "dated": "heading",
+    "title": "Dark mode, memory hints, and a Practice sets tab",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-3\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-3\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>A dark mode.</strong> New <strong>Appearance</strong> setting at the bottom of the Options\n(Study-scope) sheet: <strong>System / Light / Dark</strong>. It stays <strong>Light</strong> until you\nchoose, so nothing changes on update. Dark is a warm, paper-like night theme\n(not a harsh inversion): the writing worksheet itself darkens, with the ghost\nglyph and grid dimmed to match, and your brush gets a <strong>separate ink for dark\nmode</strong> (a light chalk by default) so strokes stay legible on the dark sheet.\nThe same brush-ink row edits whichever appearance is active. <strong>System</strong>\nfollows your phone's own dark-mode setting. Score tints, the score-feedback card,\nand every Library surface get dark-appropriate colors too. (Also fixes a\nlatent bug where the status-bar icons could turn invisible on phones set to\nsystem dark mode.)</li>\n<li>\n<strong>Memory hints for the basic hiragana.</strong> Every one of the 46 basic hiragana\nnow carries a keyword and a short story that tie its shape to its sound. A\n<strong>\"How to remember\"</strong> chip appears in writing practice and on flashcard and\nquiz answer reveals, and a <strong>\"Hint\"</strong> button offers the story before you\nanswer (text-only in the writing quiz, since the shape is the answer). Each\nkana ships with alternates, so you can open <strong>\"More ways to remember\"</strong> and\npromote whichever image sticks; the choice is saved per character. It all\nsits behind a <strong>Memory hints</strong> switch in Options (on by default) and never\naffects your scores.</li>\n<li>\n<strong>Practice sets now have their own tab.</strong> The sets you curate, plus the\nbuilt-in starter sets, live on a dedicated <strong>Sets</strong> tab at the top of the\nLibrary beside Characters and Words, scoped to the script you're studying. A\n<strong>New</strong> button starts a Character set or Word set, and the top-bar search\nfilters sets by name. This replaces the old \"Add practice set\" / \"See sets\"\nbuttons in Options.</li>\n</ul>"
+   },
+   {
+    "version": "0.2.3",
+    "date": "2026-07-25",
+    "dated": "heading",
+    "title": "Practice sets scoped to the chosen script",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-3\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-3\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>The practice-sets manager now shows only the script you have selected</strong>\nin Options: pick Hiragana and you see just your hiragana sets, pick\nKatakana and you see just your katakana sets (Words and Character sets of\nthat script still appear together). The \"See sets\" count next to it now\nreflects that same per-script number instead of the combined total.</li>\n</ul>"
+   },
+   {
+    "version": "0.2.2",
+    "date": "2026-07-25",
+    "dated": "heading",
+    "title": "Reading-mode fixes",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Fixed</h3><a id=\"user-content-fixed\" class=\"anchor\" aria-label=\"Permalink: Fixed\" href=\"#fixed\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Practicing a saved set in Reading mode now works.</strong> It opens the set's\ncharacters or words as reading flashcards; previously the button did\nnothing in Reading mode (it only worked in Writing mode).</li>\n<li>\n<strong>The read-aloud speaker is no longer a dead button</strong> when your phone's\ntext-to-speech engine has no Japanese voice: tapping it now opens the\nsystem Text-to-speech settings so you can install a Japanese voice or\nswitch to an engine (such as Google Text-to-Speech) that has one.</li>\n<li>\n<strong>The \"Looks different in handwriting\" note is visible without scrolling</strong>\non the reading flashcards for さ, き, and り — those cards now give the\nreveal area more room so the note sits in view under the reading.</li>\n</ul>"
+   },
+   {
+    "version": "0.2.1",
+    "date": "2026-07-24",
+    "dated": "heading",
+    "title": "Undo, and practice-sheet sizes that earn their names",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-4\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-4\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Undo your latest stroke</strong>: a new Undo button next to Clear in writing\npractice reverts just the last stroke you drew, so one slip doesn't cost\nthe progress on the rest of the character or word.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-4\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-4\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>The repetition layouts are now sizes — XL, L, M, S</strong> (replacing\n1×1/2×2/3×3, whose grid names meant nothing for words). XL is one big\nscored copy — the default, and what the quiz uses. L, M, and S tile the\nsheet with progressively smaller copies, and every step down is guaranteed\nto give you both visibly smaller cells and strictly more copies to\npractice on — for single characters and words of any length. Your saved\nlayout carries over (old 2×2 becomes L, old 3×3 becomes S).</li>\n<li>Repetition sheets now <strong>fill the canvas with complete rows</strong> instead of a\nfixed 4 or 9 slots — no more ragged, half-empty corner, and taller screens\nsimply get more practice squares. Cells never shrink below a writable\nminimum (~40dp) for very long words.</li>\n</ul>"
+   },
+   {
+    "version": "0.2.0",
+    "date": "2026-07-24",
+    "dated": "heading",
+    "title": "Practice sets sorted by recency",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-5\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-5\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Sort practice sets by how recently you touched them</strong>: the sets manager's\nsort menu gains \"Updated: Newest first\" and \"Updated: Oldest first\".\nCreating, renaming, or editing a set's members counts as touching it, so the\nset you just worked on rises to the top of \"Newest\". (Backed by a new\n<code>updatedAt</code> column — Room v5→v6, additive; existing sets inherit their\ncreation time.)</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-5\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-5\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>The sets list keeps your chosen sort order</strong> across editing a set, running\na quiz from one, and app restarts — it only changes when you pick a\ndifferent order from the menu. (It previously reset to Name: A→Z every time\nthe manager was rebuilt.)</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Fixed</h3><a id=\"user-content-fixed-1\" class=\"anchor\" aria-label=\"Permalink: Fixed\" href=\"#fixed-1\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>Picking a sort order, or an edit bumping a set to #1, now scrolls the sets\nlist back to the top — previously the list stayed anchored where it was, so\nthe new order (or the freshly bumped set) sat invisibly above the screen.</li>\n</ul>"
+   },
+   {
+    "version": "0.1.9",
+    "date": "2026-07-24",
+    "dated": "heading",
+    "title": "Meaning practice, answer read-aloud, and word-practice fixes",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-6\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-6\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Flashcards can now test a word's meaning too</strong>: a new \"Also test meaning\"\noption on the reading flashcards (words only). After you answer the reading,\nthe card asks what the word means — in the same style you're already using\n(type it in Typing mode, or pick it from choices in Multiple choice) — and\nreveals both results together.</li>\n<li>\n<strong>Reading mode reads the answer aloud</strong>: once you submit an answer — on a\nflashcard or in the reading quiz — the character or word is spoken, so you\nhear the reading you just recalled. On by default; turn it off with the new\n\"Read aloud automatically\" switch in the Options menu (Reading's counterpart\nof the Writing narration toggle — the answer is never spoken early).</li>\n<li>The brush color picker now offers black plus one preset for each main\nrainbow color, sized so every swatch fits the row.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-6\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-6\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>Flashcard typing flow: the romaji field and its Check/Next button now share\none row, the answer locks once checked, and the keyboard stays open for the\nwhole run — you can drive an entire session from the keyboard's Done key.</li>\n<li>The flashcard keeps the character/word the same size before and after the\nreveal (the result area is reserved instead of appearing and resizing things).</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Fixed</h3><a id=\"user-content-fixed-2\" class=\"anchor\" aria-label=\"Permalink: Fixed\" href=\"#fixed-2\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>Ink now stays inside the box each stroke started in — strokes can no longer\nbleed into a neighboring character's cell on word sheets.</li>\n<li>Practicing a word from the Library now offers both Again and Next (Next\ncycles through the word list), matching character practice.</li>\n<li>The whole-word \"Average\" pill no longer sits flush against the paper's\nbottom edge.</li>\n</ul>"
+   },
+   {
+    "version": "0.1.8",
+    "date": "2026-07-23",
+    "dated": "heading",
+    "title": "Opening-screen and \"About kana\" polish",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-7\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-7\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Beginner mode</strong> now sits in a small, horizontally-centered footer at the\nbottom of the start screen (previously a full-width row above the mode cards).\nIts label is smaller and the switch scales down with the system font size.</li>\n<li>\n<strong>\"About kana\"</strong> (opened from \"New to kana?\") was rewritten: it now opens with\nwhat kana are and why the correct stroke order and direction matter, keeps\nhiragana and katakana, adds a short note on why kanji are left out of this app,\nand points you to the ⓘ next to the voiced, combined, and extended kana in the\nStudy-scope menu instead of listing them here.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Fixed</h3><a id=\"user-content-fixed-3\" class=\"anchor\" aria-label=\"Permalink: Fixed\" href=\"#fixed-3\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>Turning Beginner mode on no longer nudges the start-screen cards upward: the\n\"New to kana?\" link now appears in place without shifting anything above it.</li>\n</ul>"
+   },
+   {
+    "version": "0.1.7",
+    "date": "2026-07-23",
+    "dated": "heading",
+    "title": "Brush effects, Beginner mode, and read-aloud",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-7\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-7\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Brush effects</strong> — pick the style your strokes are drawn with, next to the\nink color in the Options sheet: <strong>Brush</strong> (the original), <strong>Calligraphy 筆</strong>\n(the line swells on slow, heavy strokes and thins on fast flicks, with pointed\nends), <strong>Fountain pen</strong> (thin and crisp), and <strong>Marker</strong> (bold and translucent,\nso overlaps darken). Purely visual: it never affects your handwriting score.</li>\n<li>\n<strong>Beginner mode</strong> — a toggle on the opening screen (off by default). When on,\nit reveals plain-language ⓘ help for hiragana, katakana, and the voiced,\ncombined, and extended kana groups, plus a \"New to kana?\" overview. Its own ⓘ\nexplains what the mode is and who it helps. Leave it off for a cleaner screen.</li>\n<li>\n<strong>Kana concept explainers</strong> — the ⓘ help above, written for first-time\nlearners (shown only in Beginner mode).</li>\n<li>\n<strong>Read aloud automatically</strong> — an optional Study-scope setting (Writing only):\neach new character or word is spoken by the device voice the moment it appears,\nso you hear the reading without tapping the speaker.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Fixed</h3><a id=\"user-content-fixed-4\" class=\"anchor\" aria-label=\"Permalink: Fixed\" href=\"#fixed-4\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Reading flashcards</strong> — the typed-romaji answer and reading no longer slip\nbehind the keyboard on smaller screens, and the printed glyph now sits\ncentered on the card instead of low.</li>\n</ul>"
+   },
+   {
+    "version": null,
+    "date": "2026-07-11",
+    "dated": "heading",
+    "title": "Responsiveness: large-font & multi-device hardening",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Fixed</h3><a id=\"user-content-fixed-5\" class=\"anchor\" aria-label=\"Permalink: Fixed\" href=\"#fixed-5\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Large system fonts no longer break the UI</strong> (found on a Realme GT 7 Pro; the\napp was hand-tuned to a Pixel 7 at font scale 1.0):\n<ul>\n<li>the <strong>1×1/2×2/3×3 layout picker</strong> labels no longer wrap/clip in the control strip;</li>\n<li>the <strong>flashcard reveal</strong> (reading · audio · meaning) no longer renders shredded\ntext next to the speaker, and the big glyph can no longer overflow its card;</li>\n<li>the quiz setup's <strong>\"Exact number\"</strong> label/hint no longer wraps awkwardly\n(\"+\" orphaned on its own line);</li>\n<li>the practice-set cards' <strong>Quiz · Practice · Edit · Rename · Delete</strong> actions\nalways fit on ONE line (the labels shrink together when space is tight);</li>\n<li>the Library's <strong>search field</strong> gets real width while searching (the view\ntoggle, Sort menu, and \"Quiz me!\" hide until search closes).</li>\n</ul>\n</li>\n<li>The opening screen scrolls (still centered) instead of clipping on short\nscreens / huge fonts; its cards' width modifier fixed for very wide screens.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-8\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-8\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Edge-to-edge</strong>: the app now draws behind the system bars (transparent bars,\nwashi background showing through) with content inset via <code>safeDrawing</code> —\nalso future-proofs Android 15's forced edge-to-edge and display cutouts.</li>\n<li>The practice screen's guide panel and action bar <strong>grow with the system font\nscale</strong> (the canvas absorbs the difference); same for the writing quiz header.</li>\n<li>Dense \"icon-like\" chrome (gojūon chart cells, selection grid cells, corner\nscore badges, the layout-picker labels) is now <strong>font-scale-independent</strong> —\nsized like icons; the list views remain the fully font-scaling path.</li>\n<li>Word-grid columns widen with the font scale (fewer, wider columns).</li>\n</ul>"
+   },
+   {
+    "version": null,
+    "date": "2026-07-09",
+    "dated": "heading",
+    "title": "In-app updates (no Play Store)",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-8\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-8\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>In-app self-updater</strong> — on launch the app checks the project's <strong>GitHub\nReleases</strong> for a newer version and, if one exists, shows an <strong>\"Update available\"</strong>\ndialog. Tap <strong>Update</strong> to download the new APK and hand it to Android's installer\n(<strong>Later</strong> dismisses; <strong>Skip</strong> silences that one version). No Play Store, no extra\napp. Uses plain <code>HttpURLConnection</code> (no new dependency); a flaky/offline network\nfails silently. The one-time \"install unknown apps\" grant is requested on first use.</li>\n<li>\n<strong>Proper release signing</strong> — release builds are now signed with a dedicated\nrelease keystore (via a gitignored <code>keystore.properties</code>), so update-over-install\nworks reliably. <code>BuildConfig</code> is enabled for the version comparison.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-9\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-9\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>Version bumped to <strong>0.1.1</strong> (<code>versionCode 2</code>).</li>\n<li>New permissions: <code>INTERNET</code>, <code>REQUEST_INSTALL_PACKAGES</code>; added a <code>FileProvider</code>\nto serve the downloaded APK to the installer.</li>\n</ul>"
+   },
+   {
+    "version": null,
+    "date": "2026-07-08",
+    "dated": "heading",
+    "title": "Reading/Writing split: opening screen, reading quiz & flashcards",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-9\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-9\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>An opening screen (home) to pick Reading or Writing</strong> — the app now starts on a\ntop-level chooser, and you can switch modes anytime from the new <strong>Reading | Writing</strong>\ntoggle in the Study-scope sheet.</li>\n<li>\n<strong>Reading mode</strong> — two new ways to study without handwriting:\n<ul>\n<li>a <strong>reading quiz</strong> — see the printed glyph or word and answer by <strong>multiple choice</strong>\nor by <strong>typing the romaji</strong> (lenient matching); word items can optionally also test\nthe <strong>English meaning</strong>.</li>\n<li>a <strong>flashcard</strong> study mode — flip a printed card to reveal the reading, audio, and\nmeaning; a <strong>\"Type the reading\"</strong> toggle adds a romaji input field.</li>\n</ul>\n</li>\n<li>\n<strong>Reading accuracy tracking</strong> — recorded per glyph/word as <strong>two independent\npercentages</strong> (multiple-choice and typed). The Library tints cells by their <strong>average</strong>\n(no \"best\" — reading is pass/fail), shows both percentages in list rows, and can sort\nby <strong>Average / Multiple-choice / Typed</strong>, ascending or descending.</li>\n<li>New <strong>Room v5</strong> table <code>reading_progress</code> (<code>MIGRATION_4_5</code>).</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-10\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-10\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Writing mode always uses the handwritten (KanjiVG-stroke) ghost.</strong> The old\n<strong>Printed / Handwritten</strong> \"Character style\" selector is <strong>replaced</strong> by the\nReading | Writing mode toggle.</li>\n<li>The Activity now uses <code>windowSoftInputMode=adjustResize</code> and the flashcard card is\nresponsive, so nothing clips behind the on-screen keyboard.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Tests</h3><a id=\"user-content-tests\" class=\"anchor\" aria-label=\"Permalink: Tests\" href=\"#tests\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>Build + unit tests green (added <code>RomajiMatchTest</code>); device-verified on a Pixel 7,\nincluding the live v4→v5 migration.</li>\n</ul>"
+   },
+   {
+    "version": null,
+    "date": "2026-07-08",
+    "dated": "heading",
+    "title": "Library sorting, smart set-building & Options-sheet polish",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-10\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-10\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Sort the Library list by your scores</strong> — a Sort menu in the Library app bar\n(list view only; the chart keeps its fixed gojūon order) reorders characters or\nwords by <strong>average</strong> or <strong>best</strong> score, ascending or descending, with a\n<strong>Default order</strong> reset. Not-yet-practiced items sink to the bottom, and\nchanging the order snaps the list back to the top so the new leaders are visible.</li>\n<li>\n<strong>Smart \"All\" when building a practice set</strong> — in <em>Add practice set</em>, the <strong>All</strong>\nbutton opens a popup that selects only the items you still need to drill:\n<strong>\"Only under a score of\"</strong> (default <strong>85</strong>, −/+ stepper, tap-to-type a whole\nnumber 1–99, and <strong>70 / 80 / 90 / 99</strong> quick-pick chips) plus a checkbox\n<strong>\"Exclude {characters|words} I have not studied yet\"</strong> (on by default). Turn the\ncap off to select everything (the previous behavior). Applies on <strong>Select</strong>.</li>\n<li>\n<strong>Score-aware selection list</strong> — the set-builder's list rows now mirror the\nLibrary browse rows (score-color tint + \"avg · best\"/\"Not practiced yet\") and\ncarry the same Sort menu, so weak items are easy to spot; selection shows as a\ncheckbox plus a border over the score tint.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-11\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-11\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Brush ink color moved into the Options (Study-scope) sheet</strong> as a labeled\n<em>Brush ink color</em> row (with its color swatch); the app-bar slot it vacated now\nholds the Sort menu.</li>\n<li>\n<strong>The Options sheet fits on a ~6.3″ phone (e.g. Pixel 7) without scrolling</strong> at\ndefault font sizes — tightened section spacing, dividers, and toggle-row padding\n(still uncramped; the ~90 %-height scroll fallback remains for very large fonts).</li>\n</ul>"
+   },
+   {
+    "version": null,
+    "date": "2026-07-06",
+    "dated": "heading",
+    "title": "Handwriting rendering: fixed-width brush & Printed/Handwritten style",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-11\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-11\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Character style — Printed vs Handwritten</strong> — a persisted <code>CharacterForm</code>\nsetting (selector in the Study-scope sheet). <em>Printed</em> keeps the typographic\nfont ghost you read on signs and screens; <em>Handwritten</em> draws the guide ghost\nfrom the same KanjiVG strokes the demo and scorer use (a grey brush), for both\npractice and the quiz. Rendering only — it never changes what is studied,\ndemonstrated, or scored.</li>\n<li>\n<strong>A \"character X of Y\" / \"word X of Y\" position line</strong> under the reading in the\npractice guide panel (the item's place in the active-script scoped list).</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-12\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-12\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>The stroke-order demo now renders as a bold, glyph-proportional brush</strong>\n(previously a thin 3.5 dp wireframe), matching the printed form of the glyph.</li>\n<li>\n<strong>User ink is now a uniform fixed-width brush</strong> — dropped pen-pressure (finger\ncontact size), speed thinning, and head/tail tapers, so a chubby finger and a\nthin stylus draw identically and the ink matches the demo. Width is the same\nfraction of the glyph as the demo at every size, so words, composite glyphs, and\n2×2/3×3 grids thin automatically. Scoring is unaffected (it reads the raw points).</li>\n<li>Removed the redundant <strong>Replay</strong> button from the stroke-order controls (Play\nalready restarts the animation).</li>\n</ul>"
+   },
+   {
+    "version": null,
+    "date": "2026-07-06",
+    "dated": "heading",
+    "title": "Audio pronunciation (device text-to-speech)",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-12\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-12\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Tap to hear a kana or word</strong> — a small speaker button sits next to every\nreading (practice guide panel, Library list rows + word cards, and the quiz\nprompt + summary) and speaks it with the device's Japanese text-to-speech voice.\nUses the framework <code>TextToSpeech</code> (ja-JP) fed the raw kana glyph — <strong>no new\ndependency, permission, manifest, or Room change</strong>. If the Japanese voice is not\ninstalled the button opens the system voice-data installer; if TTS is\nunavailable it greys out. Availability re-checks on resume, so a freshly\ninstalled voice starts working without a restart. (The dense gojūon chart cells\nintentionally omit the button — no room.)</li>\n</ul>"
+   },
+   {
+    "version": null,
+    "date": "2026-07-05",
+    "dated": "heading",
+    "title": "Library search & free-practice polish",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-13\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-13\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Romaji search in the Library</strong> — words are now findable by their reading,\nnot just kana/meaning: <code>ねこ</code> matches <code>neko</code>, <code>ne ko</code>, <code>ねこ</code>, or <code>cat</code>. The\nquery and every searched field are run through a shared <code>searchNormalize()</code>\n(drops all whitespace, lowercases), so romaji typed with or without spaces and\nin any case compare equal, and multi-word glosses match too (\"ice cream\" ⇒\n\"icecream\"). Word readings come from the ViewModel's <code>pronunciationOf</code>.\nKana input is unchanged (still scoped to the active Hiragana/Katakana tab).</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-13\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-13\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Library search field</strong> uses a normal search-input text size (<code>bodyLarge</code>,\n16 sp) instead of the oversized title style, so a longer query like\n\"ka me ra\" fits the narrow title slot without the single-line field scrolling\nand clipping the first character.</li>\n<li>\n<strong>Multi-copy layouts are repetition worksheets for words too</strong> — in 2×2/3×3,\na word (like a single character) now shows <strong>Clear · Next</strong> with no\nSubmit/scoring; the Submit→score two-step exists only in the 1×1 layout.</li>\n<li>\n<strong>Per-kana word score chips</strong> are responsive — an equal-weight row that resizes\nto fit a 4+ kana word on one line inside the canvas, with insets that clear the\npaper card's rounded corner (both practice and quiz).</li>\n</ul>"
+   },
+   {
+    "version": null,
+    "date": "2026-07-05",
+    "dated": "heading",
+    "title": "Guided study removed; built-in default practice sets",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Removed</h3><a id=\"user-content-removed\" class=\"anchor\" aria-label=\"Permalink: Removed\" href=\"#removed\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>The guided SRS study session</strong> — the app is now <strong>free practice + the\n\"Quiz me!\" quiz</strong> only. Deleted <code>SrsScheduler</code>, <code>LessonGenerator</code>,\n<code>StudySession</code>, and <code>PracticeActionBar</code> (the Again/Hard/Good/Easy grade bar;\n<code>FreePracticeActionBar</code> split into its own file), plus the three\n<code>domain/learning</code> test files. <code>SessionPhase</code> collapsed to <code>LOADING</code>/<code>FREE</code>;\nthe COMPLETE summary, the \"Start a study session\" / \"Start next session\" entry\npoints, and the Library's \"Learned/Locked\" status labels are gone.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-14\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-14\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Built-in default practice sets</strong> — ~32 sets seeded once per install\n(persisted <code>default_sets_seeded</code> flag): for each script, the 10 gojūon rows +\nthe Voiced / Combined / Extended kana categories + starter word sets\n(Colors / Nature / Seasons; Food &amp; drink / Countries / Everyday items). They\nare ordinary editable sets afterward, and a deleted default does not return.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-14\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-14\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>Whether writing is scored is now governed <strong>solely</strong> by the <strong>Score my\nwriting</strong> setting — there is no separate graded flow.</li>\n<li>Unscored Library cells / rows / cards use a neutral tint (previously a\nlearned/unlocked highlight); the score-spectrum coloring is unchanged.</li>\n<li>\n<strong>Room untouched at v4</strong> — the <code>review_cards</code> / <code>character_progress</code> /\n<code>vocabulary_progress</code> tables + entities/DAOs + <code>RoomLearningRepository</code>\nremain as dormant, unused schema (removing them would need a destructive\nmigration).</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Tests</h3><a id=\"user-content-tests-1\" class=\"anchor\" aria-label=\"Permalink: Tests\" href=\"#tests-1\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>Suite is now <strong>84 unit tests, 0 failures</strong> (removed the SRS / lesson-generator\n/ vocabulary-unlock suites; trimmed <code>ScriptScopeTest</code> to its pure filter/gating\ncases; added default-practice-set seeding tests).</li>\n</ul>"
+   },
+   {
+    "version": null,
+    "date": "2026-07-05",
+    "dated": "heading",
+    "title": "Code-review round 4 (practice-sets & scoring hardening)",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Fixed</h3><a id=\"user-content-fixed-6\" class=\"anchor\" aria-label=\"Permalink: Fixed\" href=\"#fixed-6\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Library drag-select</strong> no longer inverts: dragging across already-selected\nitems now deselects them. The gesture read a stale captured selection set;\nit now reads the live set via <code>rememberUpdatedState</code>.</li>\n<li>\n<strong>Duplicate-key crash-proofing</strong> — word lists, grids, and selection rows now\nuse unique Compose list keys, so a future homograph word (e.g. あめ rain/candy,\nはし bridge/chopsticks) can't hard-crash the Library. (Shipped data is clean today.)</li>\n<li>\n<strong>Word stroke-order demo</strong> play/pause reflects whether <em>any</em> kana is animating,\nso the control no longer shows the wrong icon or restarts a single kana out of sync.</li>\n<li>\n<strong>Layout switch mid-review</strong> clears pending FREE feedback and the submitted flag,\nso changing the 1×1/2×2/3×3 layout no longer strands an \"Again/Next\" card over a\nblank sheet.</li>\n<li>\n<strong>Quiz with scoring Off</strong> now counts written-but-unscored items as <em>written</em>\ninstead of mislabeling them \"Skipped\".</li>\n<li>\n<strong>SRS interval overflow</strong> — the review interval is capped at <code>MAX_INTERVAL_DAYS</code>\n(100 years), preventing integer overflow after very long GOOD/EASY streaks.</li>\n<li>\n<strong>Brush width</strong> is clamped against degenerate/transient canvas layouts (no giant\nink blob during a layout change).</li>\n<li>\n<strong>Startup</strong> warms the <code>SharedPreferences</code> disk load off the main thread.</li>\n<li>Doc reconciliations for <code>ReviewCard</code> (repetitions / due-date semantics).</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Tests</h3><a id=\"user-content-tests-2\" class=\"anchor\" aria-label=\"Permalink: Tests\" href=\"#tests-2\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>Suite grew to <strong>129 unit tests, 0 failures</strong> (regressions added for layout-reset,\nscoring-off recording, SRS interval cap, stroke-attribution ties, degenerate\ngeometry scoring).</li>\n</ul>"
+   },
+   {
+    "version": null,
+    "date": "2026-07-05",
+    "dated": "heading",
+    "title": "Practice sets & word quizzes",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-15\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-15\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Practice sets</strong> — user-curated, named lists of characters or words, persisted\nvia <strong>Room v4</strong> (<code>practice_sets</code> + <code>practice_set_items</code>, additive <code>MIGRATION_3_4</code>).\nBuilt in a Library <strong>selection mode</strong> (tap + drag-range select, list/grid toggle)\nand managed in a <strong>sets manager</strong> (rename / delete / edit members / Quiz / Practice,\na sort menu, and a color-coded per-set average score).</li>\n<li>\n<strong>Word quizzes</strong> — the \"Quiz me!\" flow now handles whole words as well as single\ncharacters (words scored per-kana with an average). The quiz setup gained a source\npicker: the current study scope, or any saved set.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-15\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-15\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>The Study-scope (\"Filter\") sheet opens to full content height.</li>\n</ul>"
+   },
+   {
+    "version": null,
+    "date": "2026-07-05",
+    "dated": "heading",
+    "title": "Per-kana word scoring, FREE two-step, and Library score UI",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-16\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-16\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Per-kana whole-word scoring</strong> — a multi-kana word traced on one sheet is scored\nper kana (<code>StrokeAttribution</code> assigns each stroke to its nearest cell); per-kana\nscore chips + an average render on the canvas and persist to history.</li>\n<li>\n<strong>FREE-practice two-step</strong>: write → <strong>Submit</strong> (scores, keeps the ink, shows\nfeedback) → <strong>Again</strong> (retry the same glyph) / <strong>Next</strong> (advance); an empty canvas\noffers <strong>Skip</strong>.</li>\n<li>\n<strong>Per-kana stroke-order previews</strong> for words, sharing one playback-controls row.</li>\n<li>\n<strong>Library score color-coding</strong> — a red→green spectrum tints chart squares, word\ncards, and list rows, with a corner score badge.</li>\n<li>\n<strong>Brush ink-color picker</strong> — trace in any color (HSV dialog in the Library top bar);\npurely visual, persisted, never affects scoring or scheduling.</li>\n<li>\n<strong>\"Score my writing\"</strong> Form/Fit/Both/Off picker added to the Library's Study-scope\nsheet (previously quiz-only). <strong>Off</strong> ⇒ FREE practice collapses to Clear · Next and\nrecords no history row (SRS/unlock unaffected).</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-16\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-16\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>Scoring is restricted to a single 1×1 cell; multi-copy 2×2/3×3 layouts are treated\nas repetition worksheets (no score).</li>\n<li>Word stroke-preview sizing fixed so 3+ kana words show every demo at once (no clipping).</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Fixed (review rounds during this batch)</h3><a id=\"user-content-fixed-review-rounds-during-this-batch\" class=\"anchor\" aria-label=\"Permalink: Fixed (review rounds during this batch)\" href=\"#fixed-review-rounds-during-this-batch\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<code>scoringMode</code> / <code>scoreStats</code> preserved across session rebuilds (was silently reset\nby \"Start next session\").</li>\n<li>Stale async handwriting-recognition results can no longer clobber the current glyph's\nscore.</li>\n<li>First-trace <code>introduce</code> + <code>increment</code> run sequentially so the trace count can't be lost.</li>\n<li>\n<code>ScriptScope</code> word gating is per-reading-unit, so a mixed dakuten+yōon word (でんしゃ)\nis offered only when actually unlockable.</li>\n<li>Stale word-score chips cleared on scoring-mode change; word-preview effects scoped by\nengine identity.</li>\n<li>Added the project's first ViewModel tests.</li>\n</ul>"
+   },
+   {
+    "version": null,
+    "date": "2026-07-04",
+    "dated": "heading",
+    "title": "Full kana inventory (all hiragana + katakana)",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-17\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-17\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Extended kana</strong> (third opt-in) — small tsu (っ/ッ), small vowels, ゔ/ヴ, 22\nforeign-sound katakana composites (ファ/ティ/ヴァ/シェ …), and obsolete ゐゑ/ヰヱ.\nCompletes the inventory: <strong>113 hiragana + 136 katakana</strong>, ~397 words.</li>\n<li>\n<strong>Yōon</strong> (second opt-in) — contracted syllables (きゃ/しゅ/きょ …), the app's first\n<strong>composite characters</strong> (2-code-point glyphs whose strokes are composed from a base\nkana + a small ゃ/ゅ/ょ). <code>KanaUnits</code> groups a base + small kana into one reading unit.</li>\n<li>\n<strong>Dakuten / handakuten</strong> (first opt-in) — voiced (が/ざ/だ/ば) and semi-voiced (ぱ)\nkana for both scripts, classified from the glyph via Unicode NFD (<code>KanaKind</code>).</li>\n<li>\n<strong>Katakana</strong> — a second script alongside hiragana (46 homologues + ー), a persisted\n<code>activeScript</code> setting, and a Hiragana/Katakana selector in the Library.</li>\n</ul>\n<p>Each advanced group is <strong>off by default</strong> (a Library toggle folds it in) so beginners\nmeet only the base gojūon first. The learning engine and Room schema were reused\nunchanged (new rows are additive; off-scope cards are inert orphans).</p>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-17\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-17\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>Deck grown from 5 characters to the full 46-character basic gojūon (あ〜ん), then to\nthe complete voiced/yōon/extended sets, all via the KanjiVG stroke-geometry pipeline.</li>\n<li>Vocabulary grown to hundreds of composability-validated words per script.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Fixed</h3><a id=\"user-content-fixed-7\" class=\"anchor\" aria-label=\"Permalink: Fixed\" href=\"#fixed-7\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<code>startNextSession</code> no longer drops <code>activeScript</code> / opt-in settings on rebuild.</li>\n<li>Script/scope toggles act as in-place Library filters instead of bouncing the user out.</li>\n</ul>"
+   },
+   {
+    "version": null,
+    "date": "2026-07-04",
+    "dated": "heading",
+    "title": "/05: Rebrand & smart-learning polish",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-18\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-18\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Rebrand to \"HiraKataQuest\"</strong> with a new hinomaru launcher icon.</li>\n<li>\n<strong>Handwriting-quality scorer</strong> (<code>domain/scoring/</code> — geometry form/fit dials + ML Kit\ndigital-ink recognition; advisory only, never touches SRS), persisted via <strong>Room v3</strong>.</li>\n<li>\n<strong>\"Quiz me!\"</strong> write-from-memory mode.</li>\n<li>\n<strong>Library</strong> overlay for free practice of any character/word, plus a list ⇄ chart\n(gojūon cheat-sheet) view.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Changed</h3><a id=\"user-content-changed-18\" class=\"anchor\" aria-label=\"Permalink: Changed\" href=\"#changed-18\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>Stroke geometry re-sourced from <strong>KanjiVG</strong> (CC BY-SA); ink rendered as a\nvariable-width <strong>brush ribbon</strong>.</li>\n<li>Force-dark opt-out (light-only theme) after a dark-mode device inversion.</li>\n</ul>"
+   },
+   {
+    "version": null,
+    "date": "2026-07-04",
+    "dated": "heading",
+    "title": "Phase 3: Smart Learning System",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-19\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-19\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<strong>Spaced repetition</strong> (<code>SrsScheduler</code>, simplified SM-2) and <strong>session generation</strong>\n(<code>LessonGenerator</code>) — pure, clock-injected, unit-tested.</li>\n<li>\n<strong>Vocabulary unlocking</strong> — words unlock once every required kana is learned.</li>\n<li>\n<strong>Session state machine</strong> (<code>PracticeViewModel</code>): REVIEWS → NEW/PRACTICE → VOCABULARY\n→ COMPLETE → FREE; grades AGAIN/HARD/GOOD/EASY.</li>\n<li>\n<strong>Persistence</strong> — Room v1→v2 (<code>MIGRATION_1_2</code>: rename <code>practice_attempts</code> →\n<code>practice_history</code>, add <code>source</code>, add SRS/progress/vocabulary tables), <code>exportSchema</code>.</li>\n<li>The project's <strong>first tests</strong> (45 JUnit4).</li>\n</ul>"
+   },
+   {
+    "version": null,
+    "date": "2026-07-03",
+    "dated": "heading",
+    "title": "Phase 2: Animated stroke-order demonstrations",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-20\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-20\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>\n<code>StrokeAnimationEngine</code> — strokes draw themselves in recorded order, direction, and\nrhythm, with visible pen lifts; play / pause / replay / speed (0.5×–2×) / auto-repeat.</li>\n<li>Timed <code>strokeAnimations</code> data generated offline from the SVG stroke paths; the static\nnumbered diagram (<code>StrokeOrderDiagram</code>) became the fallback for glyphs without timing.</li>\n</ul>\n<div class=\"markdown-heading\"><h3 class=\"heading-element\">Fixed</h3><a id=\"user-content-fixed-8\" class=\"anchor\" aria-label=\"Permalink: Fixed\" href=\"#fixed-8\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>Guide-panel controls no longer crush to zero width on short screens.</li>\n<li>\n<code>strokeAnimations</code> are consistency-checked against <code>strokes[]</code> and voided (with a\nfallback to the static diagram) when malformed.</li>\n</ul>"
+   },
+   {
+    "version": null,
+    "date": "2026-07-03",
+    "dated": "heading",
+    "title": "Phase 1: Static tracing MVP",
+    "html": "<div class=\"markdown-heading\"><h3 class=\"heading-element\">Added</h3><a id=\"user-content-added-21\" class=\"anchor\" aria-label=\"Permalink: Added\" href=\"#added-21\"><span aria-hidden=\"true\" class=\"octicon octicon-link\"></span></a></div>\n<ul>\n<li>Initial app: single <code>PracticeScreen</code> — character guide (top), a custom Compose\ntracing <code>Canvas</code> with a 2×2 genkōyōshi grid + light-grey ghost glyph + stylus/finger\ninput with pressure capture (middle), and Clear / Next / grade buttons (bottom).</li>\n<li>Drawing engine (<code>StrokePoint</code> / <code>UserStroke</code> / <code>DrawingSession</code>, <code>CanvasState</code>), MVVM\nstructure, Material 3, minimal Room, and the first 5 hiragana (あいうえお).</li>\n</ul>"
+   }
+  ]
+ }
+}

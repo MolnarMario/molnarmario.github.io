@@ -1,0 +1,192 @@
+{
+ "id": "video",
+ "repo": "video-production",
+ "url": "https://github.com/MolnarMario/video-production",
+ "branch": "main",
+ "created": "2026-08-23",
+ "pushed": "2026-09-25",
+ "commits": 4,
+ "firstCommit": "2026-08-23",
+ "lastCommit": {
+  "sha": "e892954",
+  "date": "2026-09-25",
+  "subject": "Deploy to GitHub Pages at /video-production/"
+ },
+ "recent": [
+  {
+   "sha": "e892954",
+   "date": "2026-09-25",
+   "subject": "Deploy to GitHub Pages at /video-production/"
+  },
+  {
+   "sha": "02112bd",
+   "date": "2026-09-25",
+   "subject": "Add a rich-text editor for script sections"
+  },
+  {
+   "sha": "a5e5cb9",
+   "date": "2026-09-24",
+   "subject": "Add MIT license"
+  },
+  {
+   "sha": "61fc517",
+   "date": "2026-08-23",
+   "subject": "feat: initial commit for video production tracker"
+  }
+ ],
+ "weeks": [
+  [
+   "2026-04-20",
+   0
+  ],
+  [
+   "2026-04-27",
+   0
+  ],
+  [
+   "2026-05-04",
+   0
+  ],
+  [
+   "2026-05-11",
+   0
+  ],
+  [
+   "2026-05-18",
+   0
+  ],
+  [
+   "2026-05-25",
+   0
+  ],
+  [
+   "2026-06-01",
+   0
+  ],
+  [
+   "2026-06-08",
+   0
+  ],
+  [
+   "2026-06-15",
+   0
+  ],
+  [
+   "2026-06-22",
+   0
+  ],
+  [
+   "2026-06-29",
+   0
+  ],
+  [
+   "2026-07-06",
+   0
+  ],
+  [
+   "2026-07-13",
+   0
+  ],
+  [
+   "2026-07-20",
+   0
+  ],
+  [
+   "2026-07-27",
+   0
+  ],
+  [
+   "2026-08-03",
+   0
+  ],
+  [
+   "2026-08-10",
+   0
+  ],
+  [
+   "2026-08-17",
+   1
+  ],
+  [
+   "2026-08-24",
+   0
+  ],
+  [
+   "2026-08-31",
+   0
+  ],
+  [
+   "2026-09-07",
+   0
+  ],
+  [
+   "2026-09-14",
+   0
+  ],
+  [
+   "2026-09-21",
+   3
+  ],
+  [
+   "2026-09-28",
+   0
+  ],
+  [
+   "2026-10-05",
+   0
+  ],
+  [
+   "2026-10-12",
+   0
+  ]
+ ],
+ "log": {
+  "source": {
+   "kind": "commits",
+   "label": "commit history",
+   "url": "https://github.com/MolnarMario/video-production/commits"
+  },
+  "entries": [
+   {
+    "version": null,
+    "date": "2026-09-25",
+    "dated": "commit",
+    "title": null,
+    "commits": [
+     {
+      "sha": "e892954",
+      "subject": "Deploy to GitHub Pages at /video-production/"
+     },
+     {
+      "sha": "02112bd",
+      "subject": "Add a rich-text editor for script sections"
+     }
+    ]
+   },
+   {
+    "version": null,
+    "date": "2026-09-24",
+    "dated": "commit",
+    "title": null,
+    "commits": [
+     {
+      "sha": "a5e5cb9",
+      "subject": "Add MIT license"
+     }
+    ]
+   },
+   {
+    "version": null,
+    "date": "2026-08-23",
+    "dated": "commit",
+    "title": null,
+    "commits": [
+     {
+      "sha": "61fc517",
+      "subject": "feat: initial commit for video production tracker"
+     }
+    ]
+   }
+  ]
+ }
+}

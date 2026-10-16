@@ -1,0 +1,277 @@
+{
+ "id": "chess",
+ "repo": "chess2.0",
+ "url": "https://github.com/MolnarMario/chess2.0",
+ "branch": "master",
+ "created": "2026-06-13",
+ "pushed": "2026-09-24",
+ "commits": 18,
+ "firstCommit": "2026-06-13",
+ "lastCommit": {
+  "sha": "b52e8a3",
+  "date": "2026-09-24",
+  "subject": "Add MIT license"
+ },
+ "recent": [
+  {
+   "sha": "b52e8a3",
+   "date": "2026-09-24",
+   "subject": "Add MIT license"
+  },
+  {
+   "sha": "d2ff73f",
+   "date": "2026-08-12",
+   "subject": "Keep vendored files byte-identical to upstream"
+  },
+  {
+   "sha": "16b561f",
+   "date": "2026-08-12",
+   "subject": "Vendor PeerJS, flip the board for Black, and let a dropped game be resumed"
+  },
+  {
+   "sha": "c222faf",
+   "date": "2026-08-11",
+   "subject": "Stop trusting the peer with the board in online play"
+  },
+  {
+   "sha": "36bb779",
+   "date": "2026-08-10",
+   "subject": "Extract a pure move reducer out of playMove's DOM-tangled CPS chain"
+  }
+ ],
+ "weeks": [
+  [
+   "2026-04-20",
+   0
+  ],
+  [
+   "2026-04-27",
+   0
+  ],
+  [
+   "2026-05-04",
+   0
+  ],
+  [
+   "2026-05-11",
+   0
+  ],
+  [
+   "2026-05-18",
+   0
+  ],
+  [
+   "2026-05-25",
+   0
+  ],
+  [
+   "2026-06-01",
+   0
+  ],
+  [
+   "2026-06-08",
+   4
+  ],
+  [
+   "2026-06-15",
+   0
+  ],
+  [
+   "2026-06-22",
+   0
+  ],
+  [
+   "2026-06-29",
+   0
+  ],
+  [
+   "2026-07-06",
+   0
+  ],
+  [
+   "2026-07-13",
+   0
+  ],
+  [
+   "2026-07-20",
+   0
+  ],
+  [
+   "2026-07-27",
+   0
+  ],
+  [
+   "2026-08-03",
+   7
+  ],
+  [
+   "2026-08-10",
+   6
+  ],
+  [
+   "2026-08-17",
+   0
+  ],
+  [
+   "2026-08-24",
+   0
+  ],
+  [
+   "2026-08-31",
+   0
+  ],
+  [
+   "2026-09-07",
+   0
+  ],
+  [
+   "2026-09-14",
+   0
+  ],
+  [
+   "2026-09-21",
+   1
+  ],
+  [
+   "2026-09-28",
+   0
+  ],
+  [
+   "2026-10-05",
+   0
+  ],
+  [
+   "2026-10-12",
+   0
+  ]
+ ],
+ "log": {
+  "source": {
+   "kind": "commits",
+   "label": "commit history",
+   "url": "https://github.com/MolnarMario/chess2.0/commits"
+  },
+  "entries": [
+   {
+    "version": null,
+    "date": "2026-09-24",
+    "dated": "commit",
+    "title": null,
+    "commits": [
+     {
+      "sha": "b52e8a3",
+      "subject": "Add MIT license"
+     }
+    ]
+   },
+   {
+    "version": null,
+    "date": "2026-08-12",
+    "dated": "commit",
+    "title": null,
+    "commits": [
+     {
+      "sha": "d2ff73f",
+      "subject": "Keep vendored files byte-identical to upstream"
+     },
+     {
+      "sha": "16b561f",
+      "subject": "Vendor PeerJS, flip the board for Black, and let a dropped game be resumed"
+     }
+    ]
+   },
+   {
+    "version": null,
+    "date": "2026-08-11",
+    "dated": "commit",
+    "title": null,
+    "commits": [
+     {
+      "sha": "c222faf",
+      "subject": "Stop trusting the peer with the board in online play"
+     }
+    ]
+   },
+   {
+    "version": null,
+    "date": "2026-08-10",
+    "dated": "commit",
+    "title": null,
+    "commits": [
+     {
+      "sha": "36bb779",
+      "subject": "Extract a pure move reducer out of playMove's DOM-tangled CPS chain"
+     }
+    ]
+   },
+   {
+    "version": null,
+    "date": "2026-08-09",
+    "dated": "commit",
+    "title": null,
+    "commits": [
+     {
+      "sha": "6df294d",
+      "subject": "Add online PvP via WebRTC with host-proposed rule-change negotiation"
+     },
+     {
+      "sha": "3cb137c",
+      "subject": "Add Arcade/Swiss visual themes, feature toggles, and board-editor refinements"
+     }
+    ]
+   },
+   {
+    "version": null,
+    "date": "2026-08-06",
+    "dated": "commit",
+    "title": null,
+    "commits": [
+     {
+      "sha": "4c60e6c",
+      "subject": "Add board setup editor, clock system, and resign flow"
+     }
+    ]
+   },
+   {
+    "version": null,
+    "date": "2026-08-04",
+    "dated": "commit",
+    "title": null,
+    "commits": [
+     {
+      "sha": "6f86206",
+      "subject": "Add on-board indicator for the square a piece just captured on (#2)"
+     },
+     {
+      "sha": "3eacd7f",
+      "subject": "Make Evolution/Gambling togglable mid-game, add win overlay, reposition scoreboard (#1)"
+     }
+    ]
+   },
+   {
+    "version": null,
+    "date": "2026-06-13",
+    "dated": "commit",
+    "title": null,
+    "commits": [
+     {
+      "sha": "e4111d1",
+      "subject": "Improve control dropdowns: 2x2 grid, custom arrow, mobile sizing"
+     },
+     {
+      "sha": "9721aef",
+      "subject": "Shrink and reposition evolution counter on small boards"
+     },
+     {
+      "sha": "8e1936a",
+      "subject": "Add draw rules, scoreboard, gambling, undo, responsive board"
+     },
+     {
+      "sha": "fa5da47",
+      "subject": "Chess 2.0 - RPG evolution chess in a single HTML file"
+     }
+    ]
+   }
+  ]
+ }
+}
