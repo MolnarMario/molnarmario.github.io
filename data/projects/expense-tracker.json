@@ -1,0 +1,179 @@
+{
+ "id": "expense",
+ "repo": "common-expense-tracker",
+ "url": "https://github.com/MolnarMario/common-expense-tracker",
+ "branch": "main",
+ "created": "2026-10-16",
+ "pushed": "2026-10-16",
+ "commits": 1,
+ "firstCommit": "2026-10-16",
+ "lastCommit": {
+  "sha": "152e9b7",
+  "date": "2026-10-16",
+  "subject": "Common Expense Tracker, first public version"
+ },
+ "recent": [
+  {
+   "sha": "152e9b7",
+   "date": "2026-10-16",
+   "subject": "Common Expense Tracker, first public version"
+  }
+ ],
+ "weeks": [
+  [
+   "2026-04-20",
+   0
+  ],
+  [
+   "2026-04-27",
+   0
+  ],
+  [
+   "2026-05-04",
+   0
+  ],
+  [
+   "2026-05-11",
+   0
+  ],
+  [
+   "2026-05-18",
+   0
+  ],
+  [
+   "2026-05-25",
+   0
+  ],
+  [
+   "2026-06-01",
+   0
+  ],
+  [
+   "2026-06-08",
+   0
+  ],
+  [
+   "2026-06-15",
+   0
+  ],
+  [
+   "2026-06-22",
+   0
+  ],
+  [
+   "2026-06-29",
+   0
+  ],
+  [
+   "2026-07-06",
+   0
+  ],
+  [
+   "2026-07-13",
+   0
+  ],
+  [
+   "2026-07-20",
+   0
+  ],
+  [
+   "2026-07-27",
+   0
+  ],
+  [
+   "2026-08-03",
+   0
+  ],
+  [
+   "2026-08-10",
+   0
+  ],
+  [
+   "2026-08-17",
+   0
+  ],
+  [
+   "2026-08-24",
+   0
+  ],
+  [
+   "2026-08-31",
+   0
+  ],
+  [
+   "2026-09-07",
+   0
+  ],
+  [
+   "2026-09-14",
+   0
+  ],
+  [
+   "2026-09-21",
+   0
+  ],
+  [
+   "2026-09-28",
+   0
+  ],
+  [
+   "2026-10-05",
+   0
+  ],
+  [
+   "2026-10-12",
+   1
+  ]
+ ],
+ "log": {
+  "source": {
+   "kind": "changelog",
+   "label": "CHANGELOG.md",
+   "url": "https://github.com/MolnarMario/common-expense-tracker/blob/main/CHANGELOG.md"
+  },
+  "entries": [
+   {
+    "version": null,
+    "date": "2026-10-16",
+    "dated": "heading",
+    "title": "Open source, and it can sit inside another page",
+    "html": "<ul>\n<li>The source is on GitHub under the MIT license.</li>\n<li>The page used to refuse to load inside any frame. It now allows\nthebarbellengineer.com to show it, so the portfolio can run it live,\nand still refuses every other site.</li>\n</ul>"
+   },
+   {
+    "version": null,
+    "date": "2026-09-26",
+    "dated": "heading",
+    "title": "Live at expenses.thebarbellengineer.com",
+    "html": "<ul>\n<li>The page and the sharing server run together on one Cloudflare Worker\non their own domain, so shared trackers work without any setup.</li>\n<li>The admin token that mints invite codes lives in a Worker secret, never\nin the page or the repo.</li>\n</ul>"
+   },
+   {
+    "version": null,
+    "date": "2026-08-30",
+    "dated": "heading",
+    "title": "Share one tracker live, end-to-end encrypted",
+    "html": "<ul>\n<li>Share a tracker with a link and a password. Two people can edit it from\ndifferent devices, and each change reaches the other one over a\nWebSocket in well under a second.</li>\n<li>Every record is encrypted in the browser (AES-GCM) with a key wrapped by\nyour password (PBKDF2-SHA256, 600,000 iterations). The server stores\nonly ciphertext and can't read a thing.</li>\n<li>Changes sync one record at a time, so two people editing different\nexpenses never overwrite each other.</li>\n<li>Shared trackers are capped at 2 MB, and making a new one needs an\ninvite code, so a stranger can't fill the server.</li>\n<li>125 unit tests, a two-client protocol smoke test, and a UI check that\ndrives two headless Chrome profiles as two devices.</li>\n</ul>"
+   },
+   {
+    "version": null,
+    "date": "2026-08-30",
+    "dated": "heading",
+    "title": "Export, import and a single-file app",
+    "html": "<ul>\n<li>Export any set of months as JSON or CSV. Importing replaces only the\nmonths in the file and leaves the rest alone.</li>\n<li>\n<code>npm run build</code> inlines everything into one standalone HTML file. Save\nit anywhere and double-click it, no install.</li>\n</ul>"
+   },
+   {
+    "version": null,
+    "date": "2026-08-30",
+    "dated": "heading",
+    "title": "A balance bar, one list of people, and amounts that fit",
+    "html": "<ul>\n<li>The bottom line shows a bar of what each person paid against the fair\nshare, with the amount that changes hands drawn as a hatched band.</li>\n<li>People are one list for the whole tracker, managed from the header, and\nthey carry over from month to month.</li>\n<li>Amounts of any size stay inside the summary panel: its type shrinks to\nfit instead of overflowing.</li>\n<li>RON only. The per-month EUR switch is gone.</li>\n<li>\"240.924,00\" now parses. The amount field accepts only digits and\nseparators.</li>\n<li>Light and dark themes.</li>\n</ul>"
+   },
+   {
+    "version": null,
+    "date": "2026-08-30",
+    "dated": "heading",
+    "title": "First version",
+    "html": "<ul>\n<li>Add each month's shared costs, see who paid what, and get the transfers\nthat square everyone up.</li>\n<li>Amounts are stored as whole cents, never floats, so splitting 10,00\nthree ways gives 3,34 / 3,33 / 3,33.</li>\n<li>Everything stays in the browser. No account, no server.</li>\n</ul>"
+   }
+  ]
+ }
+}
