@@ -29,7 +29,7 @@
       story: {
         context: 'I started AI Hive on 5 July 2026, when I was running more coding agents than I could follow in separate terminal windows. Since then it has been built by the agents it runs: they take tasks, coordinate on the shared board and ship through pull requests, and every release gets a numbered changelog entry.',
         decisions: [
-          ['Session data is never only in memory.', 'Adding or removing an agent saves at once, saves are atomic (a temp file, then a rename) and a failed load keeps the old file as a backup instead of deleting it. Each of these rules came from a real loss and has a regression test.'],
+          ['Session data is never only in memory.', 'Adding or removing an agent saves at once, saves are atomic (a temp file, then a rename) and a failed load keeps the old file as a backup instead of deleting it. Each rule has a regression test, and the README traces several of them to sessions where agents were lost.'],
           ['One copy at a time, enforced by Windows.', 'A named mutex refuses a second launch, so two copies can never overwrite each other\'s session file.'],
           ['Closing a card kills everything it started.', 'Each card\'s processes run in a Windows Job Object, so a shell\'s grandchildren die with it, even if the app itself crashes.'],
           ['Agents work in lanes.', 'An agent can get its own git worktree. It flags finished work with a "Task done" commit, and an integrator agent merges a batch through one pull request once a GPT-6-Luna review comes back clean.']
@@ -63,7 +63,7 @@
           ['Trace the font, animate the real strokes.', 'The ghost you trace is drawn by the system font, which guarantees a correct shape. The stroke-order demo comes from KanjiVG\'s stroke paths, so both match real calligraphic proportions.'],
           ['Contracts before parallel work.', 'Each phase started with a fixed design document and domain types, and then three or four workstreams built against it at once. Phase 3\'s four workstreams went green on the first integration build.']
         ],
-        testing: '272 unit tests across 28 files. After each phase, two independent review agents went through the code, and Phase 2 and Phase 3 both came back with no blocking defects. The live database migrations were checked on a real Pixel 7 running Android 16.',
+        testing: '272 unit tests across 28 files. After Phase 2 and again after Phase 3, two independent review agents went through the code, and both rounds came back with no blocking defects. The live database migrations were checked on a real Pixel 7 running Android 16.',
         status: 'Version 0.4.0 is out as a downloadable APK, with all of hiragana and katakana, a reading track and nearly 700 words.'
       },
       stack: ['Kotlin', 'Jetpack Compose', 'Room', 'ML Kit Digital Ink', 'Gradle'],
@@ -161,7 +161,7 @@
       img: 'vinted',
       lede: 'Vinted shows you items from sellers all over Europe and never says where they are. This extension does.',
       features: [
-        ['A flag on every listing.', 'The seller\'s country flag sits in the corner of each item on the homepage, in search and on the item page.'],
+        ['A flag on the listings you browse.', 'The seller\'s country flag sits in the corner of each item on the homepage, in search results and on seller pages.'],
         ['Reads what the page already knows.', 'Seller ids come from the page\'s own data and from the requests Vinted makes anyway. On a vinted.ro search that named 96 of 96 sellers in 8 ms, with no extra requests.'],
         ['Works on every Vinted domain.', 'No per-country code. It found every card on vinted.pl, .de, .co.uk and .ro without a change.'],
         ['Cards near the screen go first.', 'Where a seller lives costs one profile lookup, once. Cards in and near the viewport are looked up first, and the popup shows how many are still coming.'],
@@ -255,7 +255,7 @@
         ['Safe local storage.', 'Everything saves to the browser with a versioned schema. JSON backup and restore checks the file before touching your data.']
       ],
       story: {
-        context: 'It was planned up front: the data model, how progress is worked out across the production stages, how storage and backups behave, and a phased roadmap, all written down before the first commit on 23 August 2026.',
+        context: 'It was planned up front: the data model, how progress is worked out across the production stages, how storage and backups behave, and a phased roadmap, all written down in a plan that went in with the first commit on 23 August 2026.',
         decisions: [
           ['Progress that doesn\'t mislead.', 'Overall progress weights filming at 40%, editing at 40% and publishing at 20%, so a project with many script sections doesn\'t drown out its publishing.'],
           ['Check a backup before touching your data.', 'An imported file is parsed, and its projects, sections and platform states are validated and repaired. You see how many projects it holds before you choose to merge or replace.'],

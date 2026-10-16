@@ -128,7 +128,7 @@
             <p>I started AI Hive on 5 July 2026, when I was running more coding agents than I could follow in separate terminal windows. Since then it has been built by the agents it runs: they take tasks, coordinate on the shared board and ship through pull requests, and every release gets a numbered changelog entry.</p>
             <h3 class="story__h">Decisions that mattered</h3>
             <ul class="decisions">
-              <li><b>Session data is never only in memory.</b> Adding or removing an agent saves at once, saves are atomic (a temp file, then a rename) and a failed load keeps the old file as a backup instead of deleting it. Each of these rules came from a real loss and has a regression test.</li>
+              <li><b>Session data is never only in memory.</b> Adding or removing an agent saves at once, saves are atomic (a temp file, then a rename) and a failed load keeps the old file as a backup instead of deleting it. Each rule has a regression test, and the README traces several of them to sessions where agents were lost.</li>
               <li><b>One copy at a time, enforced by Windows.</b> A named mutex refuses a second launch, so two copies can never overwrite each other&#39;s session file.</li>
               <li><b>Closing a card kills everything it started.</b> Each card&#39;s processes run in a Windows Job Object, so a shell&#39;s grandchildren die with it, even if the app itself crashes.</li>
               <li><b>Agents work in lanes.</b> An agent can get its own git worktree. It flags finished work with a &quot;Task done&quot; commit, and an integrator agent merges a batch through one pull request once a GPT-6-Luna review comes back clean.</li>
