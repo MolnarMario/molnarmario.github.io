@@ -5,38 +5,38 @@
  "branch": "main",
  "created": "2026-07-05",
  "pushed": "2026-10-16",
- "commits": 519,
+ "commits": 544,
  "firstCommit": "2026-07-05",
  "lastCommit": {
-  "sha": "a3d8148",
+  "sha": "8b9a4ae",
   "date": "2026-10-16",
-  "subject": "Merge pull request #73 from MolnarMario/integrate/2026-10-16-header-chip-fit"
+  "subject": "Merge pull request #75 from MolnarMario/integrate/2026-10-17-shortcuts-sidebar-f11"
  },
  "recent": [
   {
-   "sha": "84ce4b1",
+   "sha": "8247a7c",
    "date": "2026-10-16",
-   "subject": "docs: README count 3420"
+   "subject": "docs: README count 3469"
   },
   {
-   "sha": "21ce9e4",
+   "sha": "9720bc0",
    "date": "2026-10-16",
-   "subject": "fix: narrow header refits before the frame paints"
+   "subject": "fix: /code-review findings on the shortcuts, sidebar icon and F11 batch"
   },
   {
-   "sha": "b259c55",
+   "sha": "128afae",
    "date": "2026-10-16",
-   "subject": "docs: changelog names the summary's clipboard icon"
+   "subject": "chore: version 0.44.0 and changelog"
   },
   {
-   "sha": "4818093",
+   "sha": "af7e58f",
    "date": "2026-10-16",
-   "subject": "chore: version 0.43.2 and changelog"
+   "subject": "F11 leaves no wallpaper border around the window"
   },
   {
-   "sha": "4a0b319",
+   "sha": "359b866",
    "date": "2026-10-16",
-   "subject": "Narrow header chip fit reviewed by GPT-6-Luna, no findings"
+   "subject": "fix: F11 leaves no wallpaper border around the window"
   }
  ],
  "weeks": [
@@ -142,12 +142,12 @@
   ],
   [
    "2026-10-12",
-   61
+   86
   ]
  ],
  "facts": {
-  "pyLines": 71514,
-  "checks": 3420,
+  "pyLines": 72419,
+  "checks": 3469,
   "workers": 6
  },
  "log": {
@@ -157,6 +157,20 @@
    "url": "https://github.com/MolnarMario/ai-hive/blob/main/CHANGELOG.md"
   },
   "entries": [
+   {
+    "version": "0.44.0",
+    "date": "2026-10-16",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Ctrl+Tab moves to the next agent in the workspace, left to right along\na row and then down to the next row, wrapping back to the first.\nCtrl+Shift+Tab goes the other way. If an agent is maximized, the next\none takes its place.</li>\n<li>Options &gt; Help &gt; Keyboard shortcuts lists every shortcut AI Hive has.</li>\n<li>The button at the top left that hides the sidebar now shows which way\nit will go: an arrow pointing left while the sidebar is open, right\nwhile it is hidden. Its tooltip names the action and the shortcut.</li>\n<li>Fullscreen (F11) no longer leaves a thin strip of wallpaper at the\nwindow's edges, and neither does the maximized window you return to.</li>\n</ul>"
+   },
+   {
+    "version": "0.43.3",
+    "date": "2026-10-16",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Hovering a category in the sidebar now shows plainly which one the\npointer is on: the header gets a visible tint, its arrow lights up in\nthe accent colour and its count brightens. The category's outline\nstays visible under the tint instead of disappearing.</li>\n<li>An agent no longer shows a \"?\" when it hasn't asked anything. Claude\nsometimes signals a question it never asks, and the \"?\" then stayed\nlit on an agent that was done. AI Hive now waits until the question is\nactually in the conversation before it shows the \"?\".</li>\n</ul>"
+   },
    {
     "version": "0.43.2",
     "date": "2026-10-16",
