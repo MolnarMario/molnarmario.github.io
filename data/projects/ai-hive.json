@@ -4,39 +4,39 @@
  "url": "https://github.com/MolnarMario/ai-hive",
  "branch": "main",
  "created": "2026-07-05",
- "pushed": "2026-10-16",
- "commits": 544,
+ "pushed": "2026-10-17",
+ "commits": 564,
  "firstCommit": "2026-07-05",
  "lastCommit": {
-  "sha": "8b9a4ae",
-  "date": "2026-10-16",
-  "subject": "Merge pull request #75 from MolnarMario/integrate/2026-10-17-shortcuts-sidebar-f11"
+  "sha": "8247056",
+  "date": "2026-10-17",
+  "subject": "Merge pull request #78 from MolnarMario/integrate/2026-10-18-header-centering"
  },
  "recent": [
   {
-   "sha": "8247a7c",
-   "date": "2026-10-16",
-   "subject": "docs: README count 3469"
+   "sha": "e7a7ffd",
+   "date": "2026-10-17",
+   "subject": "docs: README count 3516"
   },
   {
-   "sha": "9720bc0",
-   "date": "2026-10-16",
-   "subject": "fix: /code-review findings on the shortcuts, sidebar icon and F11 batch"
+   "sha": "5825013",
+   "date": "2026-10-17",
+   "subject": "test: lanes-37 ignores the lane poll's reads when it checks the refused refresh"
   },
   {
-   "sha": "128afae",
-   "date": "2026-10-16",
-   "subject": "chore: version 0.44.0 and changelog"
+   "sha": "b6adbdb",
+   "date": "2026-10-17",
+   "subject": "fix: centre the top bar in the manuscript and mechanicus headers"
   },
   {
-   "sha": "af7e58f",
-   "date": "2026-10-16",
-   "subject": "F11 leaves no wallpaper border around the window"
+   "sha": "29a9b18",
+   "date": "2026-10-17",
+   "subject": "docs: README count 3514"
   },
   {
-   "sha": "359b866",
-   "date": "2026-10-16",
-   "subject": "fix: F11 leaves no wallpaper border around the window"
+   "sha": "bb79318",
+   "date": "2026-10-17",
+   "subject": "fix: centre the usage picker's + and enlarge the sidebar toggle icon"
   }
  ],
  "weeks": [
@@ -142,12 +142,12 @@
   ],
   [
    "2026-10-12",
-   86
+   106
   ]
  ],
  "facts": {
-  "pyLines": 72419,
-  "checks": 3469,
+  "pyLines": 73061,
+  "checks": 3516,
   "workers": 6
  },
  "log": {
@@ -157,6 +157,27 @@
    "url": "https://github.com/MolnarMario/ai-hive/blob/main/CHANGELOG.md"
   },
   "entries": [
+   {
+    "version": "0.44.3",
+    "date": "2026-10-17",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>In the Illuminated Manuscript and Adeptus Mechanicus themes, the top\nbar's buttons and pills sit in the middle of the header. They used to\nsit closer to its bottom edge.</li>\n<li>The Adeptus Mechanicus aquila plaque is smaller and stays on the top\nborder, so it no longer hangs over the usage pills.</li>\n</ul>"
+   },
+   {
+    "version": "0.44.2",
+    "date": "2026-10-17",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>The + that picks which usage pills to show sits in the middle of its\nsquare. It used to sit low and to one side.</li>\n<li>The sidebar collapse and expand button in the top bar is bigger, so\nits panel and arrow are easier to make out.</li>\n</ul>"
+   },
+   {
+    "version": "0.44.1",
+    "date": "2026-10-17",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>The usage pills say \"checking...\" at launch instead of \"unreadable\"\nwhen the Claude login expired during a long break. AI Hive checks again\nevery 2 seconds and fills the pill in as soon as the first Claude agent\nrenews the login, instead of waiting up to 6 minutes.</li>\n<li>The gear on an agent card no longer lights up from launch on for nearly\nevery agent. It counted AI Hive's own activity log helper, which Claude\nstarts a little later, as a background process.</li>\n<li>With a terminal focused, the Win+V clipboard panel and the Win+. emoji\npanel now take the arrow keys, Enter and Esc. Before, those keys went to\nthe agent and the panel couldn't be driven or closed from the keyboard.\nAn emoji picked in the panel is typed into the agent. The panels open\nat the terminal's cursor, and a Japanese, Chinese or Korean input method\nworks in a terminal, showing what you compose at the cursor until you\ncommit it.</li>\n</ul>"
+   },
    {
     "version": "0.44.0",
     "date": "2026-10-16",
