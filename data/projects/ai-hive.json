@@ -4,39 +4,39 @@
  "url": "https://github.com/MolnarMario/ai-hive",
  "branch": "main",
  "created": "2026-07-05",
- "pushed": "2026-10-17",
- "commits": 564,
+ "pushed": "2026-10-19",
+ "commits": 585,
  "firstCommit": "2026-07-05",
  "lastCommit": {
-  "sha": "8247056",
-  "date": "2026-10-17",
-  "subject": "Merge pull request #78 from MolnarMario/integrate/2026-10-18-header-centering"
+  "sha": "b8dc065",
+  "date": "2026-10-19",
+  "subject": "Merge pull request #80 from MolnarMario/integrate/2026-10-19-repaint-copies"
  },
  "recent": [
   {
-   "sha": "e7a7ffd",
-   "date": "2026-10-17",
-   "subject": "docs: README count 3516"
+   "sha": "9f67f33",
+   "date": "2026-10-19",
+   "subject": "docs: README count 3619"
   },
   {
-   "sha": "5825013",
-   "date": "2026-10-17",
-   "subject": "test: lanes-37 ignores the lane poll's reads when it checks the refused refresh"
+   "sha": "f7da3e2",
+   "date": "2026-10-19",
+   "subject": "fix: repaint take-back review findings from /code-review"
   },
   {
-   "sha": "b6adbdb",
-   "date": "2026-10-17",
-   "subject": "fix: centre the top bar in the manuscript and mechanicus headers"
+   "sha": "6fed9f3",
+   "date": "2026-10-19",
+   "subject": "release: 0.45.1, no repaint copies in a Claude card's scrollback"
   },
   {
-   "sha": "29a9b18",
-   "date": "2026-10-17",
-   "subject": "docs: README count 3514"
+   "sha": "7b56afb",
+   "date": "2026-10-19",
+   "subject": "Duplicated reply rows from Claude's repaints, reviewed by GPT-6-Luna"
   },
   {
-   "sha": "bb79318",
-   "date": "2026-10-17",
-   "subject": "fix: centre the usage picker's + and enlarge the sidebar toggle icon"
+   "sha": "5927354",
+   "date": "2026-10-19",
+   "subject": "fix(terminal): take repaint copies back in Claude cards only"
   }
  ],
  "weeks": [
@@ -142,12 +142,12 @@
   ],
   [
    "2026-10-19",
-   0
+   21
   ]
  ],
  "facts": {
-  "pyLines": 73061,
-  "checks": 3516,
+  "pyLines": 74575,
+  "checks": 3619,
   "workers": 6
  },
  "log": {
@@ -157,6 +157,20 @@
    "url": "https://github.com/MolnarMario/ai-hive/blob/main/CHANGELOG.md"
   },
   "entries": [
+   {
+    "version": "0.45.1",
+    "date": "2026-10-19",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>A long Claude reply no longer shows up two or three times over in a\ncard's scrollback. When Claude redraws a reply taller than the card\n(after the idle recap, closing Ctrl+O, or coming back to the\nterminal), the rows that scrolled off a second time are copies, and\nAI Hive now drops them.</li>\n</ul>"
+   },
+   {
+    "version": "0.45.0",
+    "date": "2026-10-19",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Ctrl+F in a terminal opens a find box in its top right corner, like\nChrome's page search. It searches the agent's whole history as you\ntype, ignoring case, paints every match yellow and the current one\norange, shows how many there are and marks each one on the scrollbar.\nEnter or F3 goes to the next match, Shift+Enter or Shift+F3 to the\nprevious one, and Esc closes the box. Text you selected becomes the\nsearch. A phrase the agent wrapped onto two rows is not found. In a\nfull-screen program such as less or vim, Ctrl+F still goes to the\nprogram.</li>\n<li>A mouse wheel over a terminal's scrollbar reaches an agent that tracks\nthe mouse at the spot under the pointer. It used to reach it at the\nterminal's left edge.</li>\n</ul>"
+   },
    {
     "version": "0.44.3",
     "date": "2026-10-17",
