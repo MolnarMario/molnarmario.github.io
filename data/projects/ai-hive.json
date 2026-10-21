@@ -4,39 +4,39 @@
  "url": "https://github.com/MolnarMario/ai-hive",
  "branch": "main",
  "created": "2026-07-05",
- "pushed": "2026-10-19",
- "commits": 585,
+ "pushed": "2026-10-20",
+ "commits": 593,
  "firstCommit": "2026-07-05",
  "lastCommit": {
-  "sha": "b8dc065",
-  "date": "2026-10-19",
-  "subject": "Merge pull request #80 from MolnarMario/integrate/2026-10-19-repaint-copies"
+  "sha": "0cd9416",
+  "date": "2026-10-20",
+  "subject": "Merge pull request #81 from MolnarMario/integrate/2026-10-20-tall-scrollback"
  },
  "recent": [
   {
-   "sha": "9f67f33",
-   "date": "2026-10-19",
-   "subject": "docs: README count 3619"
+   "sha": "98d3ba7",
+   "date": "2026-10-20",
+   "subject": "docs: README count 3633"
   },
   {
-   "sha": "f7da3e2",
-   "date": "2026-10-19",
-   "subject": "fix: repaint take-back review findings from /code-review"
+   "sha": "dee89d4",
+   "date": "2026-10-20",
+   "subject": "fix: tall reflow review findings from /code-review"
   },
   {
-   "sha": "6fed9f3",
-   "date": "2026-10-19",
-   "subject": "release: 0.45.1, no repaint copies in a Claude card's scrollback"
+   "sha": "977949c",
+   "date": "2026-10-20",
+   "subject": "release: 0.45.2, tall Claude cards keep their scrollback through a reflow"
   },
   {
-   "sha": "7b56afb",
-   "date": "2026-10-19",
-   "subject": "Duplicated reply rows from Claude's repaints, reviewed by GPT-6-Luna"
+   "sha": "0b07225",
+   "date": "2026-10-20",
+   "subject": "Tall Claude cards keep their scrollback through a reflow, reviewed by GPT-6-Luna"
   },
   {
-   "sha": "5927354",
-   "date": "2026-10-19",
-   "subject": "fix(terminal): take repaint copies back in Claude cards only"
+   "sha": "1a86c4f",
+   "date": "2026-10-20",
+   "subject": "fix(terminal): hold a split home sequence so REFLOW_BEGIN lands between escapes"
   }
  ],
  "weeks": [
@@ -142,12 +142,12 @@
   ],
   [
    "2026-10-19",
-   21
+   29
   ]
  ],
  "facts": {
-  "pyLines": 74575,
-  "checks": 3619,
+  "pyLines": 74847,
+  "checks": 3633,
   "workers": 6
  },
  "log": {
@@ -157,6 +157,13 @@
    "url": "https://github.com/MolnarMario/ai-hive/blob/main/CHANGELOG.md"
   },
   "entries": [
+   {
+    "version": "0.45.2",
+    "date": "2026-10-20",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>A Claude card taller than 48 rows keeps its scrollback when the card\nchanges size. It used to lose everything above the last screenful, in\nresumed conversations and open ones alike, so the scrollbar went away\nand the mouse wheel did nothing.</li>\n</ul>"
+   },
    {
     "version": "0.45.1",
     "date": "2026-10-19",
