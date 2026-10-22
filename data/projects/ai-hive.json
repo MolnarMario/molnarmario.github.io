@@ -4,39 +4,39 @@
  "url": "https://github.com/MolnarMario/ai-hive",
  "branch": "main",
  "created": "2026-07-05",
- "pushed": "2026-10-20",
- "commits": 593,
+ "pushed": "2026-10-22",
+ "commits": 649,
  "firstCommit": "2026-07-05",
  "lastCommit": {
-  "sha": "0cd9416",
-  "date": "2026-10-20",
-  "subject": "Merge pull request #81 from MolnarMario/integrate/2026-10-20-tall-scrollback"
+  "sha": "d199279",
+  "date": "2026-10-22",
+  "subject": "Merge pull request #86 from MolnarMario/integrate/2026-10-22-launch-order"
  },
  "recent": [
   {
-   "sha": "98d3ba7",
-   "date": "2026-10-20",
-   "subject": "docs: README count 3633"
+   "sha": "e202f3c",
+   "date": "2026-10-22",
+   "subject": "docs: README count 3830"
   },
   {
-   "sha": "dee89d4",
-   "date": "2026-10-20",
-   "subject": "fix: tall reflow review findings from /code-review"
+   "sha": "921e1f4",
+   "date": "2026-10-22",
+   "subject": "fix: launch queue review findings from /code-review"
   },
   {
-   "sha": "977949c",
-   "date": "2026-10-20",
-   "subject": "release: 0.45.2, tall Claude cards keep their scrollback through a reflow"
+   "sha": "24d2770",
+   "date": "2026-10-22",
+   "subject": "release: 0.48.0, launch starts the active workspace's agents first"
   },
   {
-   "sha": "0b07225",
-   "date": "2026-10-20",
-   "subject": "Tall Claude cards keep their scrollback through a reflow, reviewed by GPT-6-Luna"
+   "sha": "21ada00",
+   "date": "2026-10-21",
+   "subject": "Launch starts the active workspace's agents first"
   },
   {
-   "sha": "1a86c4f",
-   "date": "2026-10-20",
-   "subject": "fix(terminal): hold a split home sequence so REFLOW_BEGIN lands between escapes"
+   "sha": "81725fd",
+   "date": "2026-10-21",
+   "subject": "fix: a workspace opened mid-resize starts its queued agents after the layout"
   }
  ],
  "weeks": [
@@ -142,12 +142,12 @@
   ],
   [
    "2026-10-19",
-   29
+   85
   ]
  ],
  "facts": {
-  "pyLines": 74847,
-  "checks": 3633,
+  "pyLines": 78227,
+  "checks": 3830,
   "workers": 6
  },
  "log": {
@@ -157,6 +157,41 @@
    "url": "https://github.com/MolnarMario/ai-hive/blob/main/CHANGELOG.md"
   },
   "entries": [
+   {
+    "version": "0.48.0",
+    "date": "2026-10-22",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>At launch AI Hive starts the agents of the workspace it opens on first.\nAgents in your other workspaces wait until those have their prompt, then\nstart two at a time, and opening one of those workspaces starts its\nwaiting agents straight away. Starting all of them together used to\nfreeze the window for up to 1.2 s while the agents in front of you\nloaded. A card still waiting shows its loader, and closing AI Hive\nbefore it starts brings it back next launch.</li>\n</ul>"
+   },
+   {
+    "version": "0.47.0",
+    "date": "2026-10-21",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Opening AI Hive no longer waits on GitHub. It used to fetch and install\nupdates before showing a window, which took about a second on every\nlaunch. Now a new Options switch, Update AI Hive in the background (on\nby default), checks a minute after the window opens and then every hour.\nIt installs a newer version while you work, the button by the version\nnumber reads \"Restart to update\", and the next launch runs it. An update\nthat needs new Python packages waits for your click, and so does a\nfolder that is off <code>main</code> or has local changes. Switched off, only the\nbutton checks.</li>\n<li>The launch no longer copies your agents' conversations or scans them\nfor plan-limit stops on the window's thread. Both run in the background\nwhile the window builds, which took about 0.6 s of freezing off the\nlaunch. Agents still wait for the backup copy before they start.</li>\n</ul>"
+   },
+   {
+    "version": "0.46.1",
+    "date": "2026-10-21",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>The New Agent dialog opens without waiting for its list of past\nconversations. The list loads in the background while the resume picker\nsays \"Loading conversations\", and OK stays off for a Claude agent until\nit arrives, so Enter can't start a fresh conversation you meant to\nresume. Over a folder with 131 conversations, the first opening went\nfrom about 400 ms to about 80 ms.</li>\n</ul>"
+   },
+   {
+    "version": "0.46.0",
+    "date": "2026-10-21",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>AI Hive opens much faster when you have many workspaces and agents. The\nsaved theme and console font now apply before the window is built,\ninstead of restyling every widget and redrawing every terminal after it,\nand the sidebar builds once instead of once per workspace. On a copy of\na 15 workspace, 18 agent session, building the window went from 14 to\n18 seconds down to 2 to 3.</li>\n<li>A new agent starts at its card's real size. It used to start at 100\ncolumns by 30 rows and redraw when the card's size caught up, and a\nconversation resumed from the New Agent dialog stayed wrapped at 100\ncolumns in the scrollback.</li>\n<li>Each launch writes a <code>PERF startup</code> line to session.log with how long\nevery step took, and a <code>PERF stall</code> line whenever the window freezes for\nmore than 150 ms, naming the terminal output or redraw behind it. Nothing\nchanges on screen.</li>\n<li>Claude's install is looked up once per launch instead of once per agent,\nand the tooltip handler starts after the window appears, which trims a\nlittle more off the launch.</li>\n</ul>"
+   },
+   {
+    "version": "0.45.3",
+    "date": "2026-10-21",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>The Adeptus Mechanicus theme has a new aquila crest: a double-headed\neagle in phosphor green on a dark glass plate with a green edge. The old\ngrey crest was hard to make out. The new one stays sharp at 150%\ndisplay scaling.</li>\n</ul>"
+   },
    {
     "version": "0.45.2",
     "date": "2026-10-20",
