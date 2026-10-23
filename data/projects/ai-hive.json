@@ -5,38 +5,38 @@
  "branch": "main",
  "created": "2026-07-05",
  "pushed": "2026-10-22",
- "commits": 649,
+ "commits": 662,
  "firstCommit": "2026-07-05",
  "lastCommit": {
-  "sha": "d199279",
+  "sha": "b10ee55",
   "date": "2026-10-22",
-  "subject": "Merge pull request #86 from MolnarMario/integrate/2026-10-22-launch-order"
+  "subject": "Merge pull request #87 from MolnarMario/integrate/2026-10-22-fresh-reopen-hang-stacks"
  },
  "recent": [
   {
-   "sha": "e202f3c",
+   "sha": "3dcd62a",
    "date": "2026-10-22",
-   "subject": "docs: README count 3830"
+   "subject": "docs: README count 3859"
   },
   {
-   "sha": "921e1f4",
+   "sha": "a8c16b5",
    "date": "2026-10-22",
-   "subject": "fix: launch queue review findings from /code-review"
+   "subject": "test: a lane folder drop waits out a closed window's lane poll"
   },
   {
-   "sha": "24d2770",
+   "sha": "b048c87",
    "date": "2026-10-22",
-   "subject": "release: 0.48.0, launch starts the active workspace's agents first"
+   "subject": "test: the hang-stack cut check puts the library run where the cut doubled it"
   },
   {
-   "sha": "21ada00",
-   "date": "2026-10-21",
-   "subject": "Launch starts the active workspace's agents first"
+   "sha": "0bbbf3c",
+   "date": "2026-10-22",
+   "subject": "fix: fresh-reopen and hang-stack review findings from /code-review"
   },
   {
-   "sha": "81725fd",
-   "date": "2026-10-21",
-   "subject": "fix: a workspace opened mid-resize starts its queued agents after the layout"
+   "sha": "02b155f",
+   "date": "2026-10-22",
+   "subject": "release: 0.48.1, never-used agents reopen fresh and a GUI freeze logs its stack"
   }
  ],
  "weeks": [
@@ -142,12 +142,12 @@
   ],
   [
    "2026-10-19",
-   85
+   98
   ]
  ],
  "facts": {
-  "pyLines": 78227,
-  "checks": 3830,
+  "pyLines": 78789,
+  "checks": 3859,
   "workers": 6
  },
  "log": {
@@ -157,6 +157,13 @@
    "url": "https://github.com/MolnarMario/ai-hive/blob/main/CHANGELOG.md"
   },
   "entries": [
+   {
+    "version": "0.48.1",
+    "date": "2026-10-22",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>An agent you closed before typing anything to it comes back as a fresh\nsession. It used to show \"No conversation found with session ID\" above\nits prompt, and in a folder with other conversations it could come back\nholding another agent's chat.</li>\n<li>When the window stops responding for 3 seconds or more, AI Hive writes\nwhere it was stuck to hang.log, next to your session file. The next\nlaunch moves it to hang.log.1, so a freeze you had to close AI Hive in\nkeeps its record. Attach both to a report of a freeze.</li>\n</ul>"
+   },
    {
     "version": "0.48.0",
     "date": "2026-10-22",
