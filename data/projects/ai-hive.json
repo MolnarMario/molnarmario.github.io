@@ -4,39 +4,39 @@
  "url": "https://github.com/MolnarMario/ai-hive",
  "branch": "main",
  "created": "2026-07-05",
- "pushed": "2026-10-22",
- "commits": 662,
+ "pushed": "2026-10-23",
+ "commits": 706,
  "firstCommit": "2026-07-05",
  "lastCommit": {
-  "sha": "b10ee55",
-  "date": "2026-10-22",
-  "subject": "Merge pull request #87 from MolnarMario/integrate/2026-10-22-fresh-reopen-hang-stacks"
+  "sha": "90c7998",
+  "date": "2026-10-23",
+  "subject": "Merge pull request #90 from MolnarMario/integrate/2026-10-23-bionic-reading"
  },
  "recent": [
   {
-   "sha": "3dcd62a",
-   "date": "2026-10-22",
-   "subject": "docs: README count 3859"
+   "sha": "22ab0e7",
+   "date": "2026-10-23",
+   "subject": "docs: README count 4118"
   },
   {
-   "sha": "a8c16b5",
-   "date": "2026-10-22",
-   "subject": "test: a lane folder drop waits out a closed window's lane poll"
+   "sha": "3f07a94",
+   "date": "2026-10-23",
+   "subject": "fix: /code-review findings on the integration branch"
   },
   {
-   "sha": "b048c87",
-   "date": "2026-10-22",
-   "subject": "test: the hang-stack cut check puts the library run where the cut doubled it"
+   "sha": "afe2de2",
+   "date": "2026-10-23",
+   "subject": "release: 0.51.0, Bionic reading rename, Contrast row, wrapped prompt fix"
   },
   {
-   "sha": "0bbbf3c",
-   "date": "2026-10-22",
-   "subject": "fix: fresh-reopen and hang-stack review findings from /code-review"
+   "sha": "be06755",
+   "date": "2026-10-23",
+   "subject": "Bionic reading rename, Contrast row, wrapped prompt fix reviewed"
   },
   {
-   "sha": "02b155f",
-   "date": "2026-10-22",
-   "subject": "release: 0.48.1, never-used agents reopen fresh and a GUI freeze logs its stack"
+   "sha": "7f90c20",
+   "date": "2026-10-23",
+   "subject": "Rename Bold word starts to Bionic reading, show Contrast only while on"
   }
  ],
  "weeks": [
@@ -142,12 +142,12 @@
   ],
   [
    "2026-10-19",
-   98
+   142
   ]
  ],
  "facts": {
-  "pyLines": 78789,
-  "checks": 3859,
+  "pyLines": 82572,
+  "checks": 4118,
   "workers": 6
  },
  "log": {
@@ -157,6 +157,27 @@
    "url": "https://github.com/MolnarMario/ai-hive/blob/main/CHANGELOG.md"
   },
   "entries": [
+   {
+    "version": "0.51.0",
+    "date": "2026-10-23",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Bold word starts is now called Bionic reading, and its tooltip explains\nhow a bold start helps some readers keep their place in a line.</li>\n<li>Boldness is now called Contrast, and Options shows it only while Bionic\nreading is on.</li>\n<li>With Bionic reading on, the line you are typing no longer turns bold\nwhen its text fills a row and the caret moves to the row below.</li>\n</ul>"
+   },
+   {
+    "version": "0.50.0",
+    "date": "2026-10-23",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Changing the terminal font or letter spacing no longer flickers through\nthe old screen in the new font. Each terminal on screen shows \"applying\nthe new font\" until the agent has redrawn, at most 3 seconds.</li>\n<li>Options &gt; Terminal font ends with \"Load a custom font...\". It takes\n.ttf, .otf and .ttc files, explains why it refused anything else, and\nkeeps the font across restarts.</li>\n<li>Bold word starts has a Boldness setting from 1 to 5 under the switch.\nLevel 1 is the old plain bold, level 2 draws a heavier bold, and levels\n3 to 5 also fade the rest of each word. It starts at 3, and each\nterminal font remembers its own level.</li>\n<li>Dropdowns open below their box instead of covering it.</li>\n<li>The New Agent dialog keeps one width while its conversation list loads.\nLong conversation previews are cut short in the list and show in full\nin their tooltip.</li>\n</ul>"
+   },
+   {
+    "version": "0.49.0",
+    "date": "2026-10-23",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Options &gt; Appearance has a Terminal font picker and Letter spacing for\nthe agent terminals. Pick Cascadia Mono, JetBrains Mono NL, IBM Plex\nMono, Atkinson Hyperlegible Mono or OpenDyslexic Mono, or Theme font for\nthe skin's own (Share Tech Mono in Adeptus Mechanicus). Default keeps\nConsolas, so nothing changes until you pick. Letter spacing adds 0 to 3\npx between letters, and box-drawing lines stay solid at any spacing.</li>\n<li>A new Bold word starts switch in Options &gt; Appearance draws the first\nhalf of each word in bold in every terminal. Code, paths, links and the\nline you are typing keep their regular weight. It starts off.</li>\n<li>The New Agent model list matches Claude's own /model menu, older models\nincluded (Opus 4.8, Sonnet 4.6 and the rest). The \"[1m]\" entries are\ngone: Opus, Sonnet and Fable already run with a 1M context window.\nAgents saved on one still launch as before.</li>\n<li>The Default model and effort entries in New Agent say what Claude will\nrun, for example \"Default (high, saved by /effort)\". Default uses the\nlast pick /model or /effort saved in any terminal, which looked like\nthe previous agent's settings carrying over.</li>\n<li>Answering one of Claude's question forms puts a dot on the terminal\nscrollbar, a yellower shade of your prompt dots, so you can scroll back\nto what you answered.</li>\n</ul>"
+   },
    {
     "version": "0.48.1",
     "date": "2026-10-22",
