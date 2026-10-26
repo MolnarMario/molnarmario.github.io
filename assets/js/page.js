@@ -37,6 +37,39 @@
   const atp = $('[data-atp]');
   if (atp && window.AtpDemo && !matchMedia('(prefers-reduced-motion: reduce)').matches) AtpDemo(atp);
 
+  /* Every project's changelog: show one project, kept in ?product= so the view can be linked.
+     Months left empty are hidden, and the month counts follow the filter. */
+  const filter = $('.rel-filter');
+  if (filter) {
+    const buttons = [...filter.querySelectorAll('button')];
+    const show = slug => {
+      if (!buttons.some(b => b.dataset.product === slug)) slug = 'all';
+      buttons.forEach(b => b.setAttribute('aria-pressed', b.dataset.product === slug));
+      document.querySelectorAll('.rel-about').forEach(p => { p.hidden = p.dataset.for !== slug; });
+      document.querySelectorAll('.rel-month').forEach(m => {
+        let n = 0;
+        m.querySelectorAll('.rel').forEach(e => {
+          e.hidden = slug !== 'all' && e.dataset.product !== slug;
+          if (!e.hidden) n++;
+        });
+        m.hidden = !n;
+        const link = $(`.log__index a[href="#${m.id}"]`);
+        if (link) { link.parentElement.hidden = !n; link.querySelector('span').textContent = n; }
+      });
+    };
+    filter.addEventListener('click', e => {
+      const b = e.target.closest('button');
+      if (!b) return;
+      show(b.dataset.product);
+      const url = new URL(location.href);
+      if (b.dataset.product === 'all') url.searchParams.delete('product');
+      else url.searchParams.set('product', b.dataset.product);
+      url.hash = '';
+      history.replaceState(null, '', url);
+    });
+    show(new URLSearchParams(location.search).get('product'));
+  }
+
   /* Changelog: open the collapsed notes of an entry someone linked to */
   const target = location.hash && document.getElementById(location.hash.slice(1));
   const more = target && target.querySelector('.entry__more');

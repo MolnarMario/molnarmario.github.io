@@ -32,7 +32,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data projects sitemap.xml index.html
+          git add data projects changelog sitemap.xml index.html
           git diff --cached --quiet && exit 0
           git commit -m "Update contributions and project data"
           git push

@@ -1,6 +1,7 @@
 // Generates the project pages from assets/js/projects.js and data/projects/<slug>.json:
 //   projects/<slug>/index.html            the project page
 //   projects/<slug>/changelog/index.html  its changelog, release notes or commit log
+//   changelog/index.html                  every project's entries on one page
 // plus sitemap.xml. No network: fetch-projects.mjs gets the data. Run after editing
 // projects.js or the page templates below:
 //   node scripts/build-projects.mjs
@@ -102,7 +103,7 @@ const fillAll = (x, facts, where) =>
 
 /* ---------- Shell ---------- */
 
-const NAV = `
+const nav = active => `
   <header class="nav" id="top">
     <div class="nav__inner wrap">
       <a class="brand" href="/" aria-label="Mario Molnar, home">
@@ -110,9 +111,10 @@ const NAV = `
         <span class="brand__name">Mario Molnar</span>
       </a>
       <nav class="nav__links" aria-label="Sections">
-        <a href="/#work" class="is-active">Work</a>
+        <a href="/#work"${active === 'work' ? ' class="is-active"' : ''}>Work</a>
         <a href="/#process">Process</a>
         <a href="/#about">About</a>
+        <a href="/changelog/"${active === 'changelog' ? ' class="is-active" aria-current="page"' : ''}>Changelog</a>
         <a href="/#contact" class="nav__cta">Get in touch</a>
       </nav>
       <button class="theme-btn" type="button" aria-label="Toggle light and dark theme">
@@ -125,7 +127,7 @@ const NAV = `
 const FOOT = `
   <footer class="foot wrap">
     <p>Built and tested by me. &copy; <span id="year">${new Date().getUTCFullYear()}</span> Mario Molnar</p>
-    <a href="#top">Back to top <span aria-hidden="true">&uarr;</span></a>
+    <p class="foot__links"><a href="/changelog/">Changelog</a><a href="#top">Back to top <span aria-hidden="true">&uarr;</span></a></p>
   </footer>`;
 
 function page({ title, description, path, image, bodyClass = '', body, scripts = [] }) {
@@ -310,7 +312,7 @@ async function projectPage(id, p, data) {
   p.links.forEach(([label, href], i) => actions.push(ext(href, `${esc(label)} ${arrow}`, `btn ${i === 0 ? 'btn--primary' : 'btn--ghost'}`)));
   if (data?.log.entries.length) actions.push(`<a class="btn btn--ghost" href="changelog/">${logName(data)}</a>`);
   const features = p.features.map(([name, detail]) => `<li><b>${esc(name)}</b> ${esc(detail)}</li>`).join('\n            ');
-  const body = `${NAV}
+  const body = `${nav('work')}
   <main>
     <article class="p">
       <header class="p-head wrap">
@@ -354,6 +356,22 @@ ${FOOT}`;
 
 /* ---------- Changelog page ---------- */
 
+// The body of one entry: its commits, or its notes with long technical entries cut
+// to the opening paragraph and the rest behind a toggle. Headings in the notes move
+// down so the highest one is h<top>, below the entry's own title.
+const LONG = 2400;
+function notes(e, data, top = 3) {
+  if (e.commits) return `<ul class="commit-list">${e.commits.map(c => `<li><a href="${data.url}/commit/${c.sha}" target="_blank" rel="noopener"><code>${c.sha}</code></a> ${esc(c.subject)}</li>`).join('')}</ul>`;
+  let html = e.html;
+  const highest = Math.min(...[...html.matchAll(/<h([1-6])\b/g)].map(m => +m[1]));
+  if (highest < top) html = html.replace(/<(\/?)h([1-6])\b/g, (_, slash, n) => `<${slash}h${Math.min(6, +n + top - highest)}`);
+  if (html.length > LONG && html.startsWith('<p>')) {
+    const cut = html.indexOf('</p>') + 4;
+    return `<div class="prose">${html.slice(0, cut)}</div><details class="entry__more"><summary>Full notes</summary><div class="prose">${html.slice(cut)}</div></details>`;
+  }
+  return `<div class="prose">${html}</div>`;
+}
+
 function changelogPage(id, p, data) {
   const { source, entries } = data.log;
   const name = logName(data);
@@ -365,18 +383,8 @@ function changelogPage(id, p, data) {
     releases: `Every release of ${esc(p.title)}, newest first, from its ${ext(source.url, 'GitHub releases')}.`,
     commits: `${esc(p.title)} has no written changelog yet, so this is its ${ext(source.url, 'commit history')} grouped by day, newest first. Merge commits are left out.`,
   }[source.kind];
-  const LONG = 2400;
   const articles = entries.map((e, i) => {
-    let content;
-    if (e.commits) {
-      content = `<ul class="commit-list">${e.commits.map(c => `<li><a href="${data.url}/commit/${c.sha}" target="_blank" rel="noopener"><code>${c.sha}</code></a> ${esc(c.subject)}</li>`).join('')}</ul>`;
-    } else if (e.html.length > LONG && e.html.startsWith('<p>')) {
-      // Long technical entries: the opening paragraph, then the rest behind a toggle
-      const cut = e.html.indexOf('</p>') + 4;
-      content = `<div class="prose">${e.html.slice(0, cut)}</div><details class="entry__more"><summary>Full notes</summary><div class="prose">${e.html.slice(cut)}</div></details>`;
-    } else {
-      content = `<div class="prose">${e.html}</div>`;
-    }
+    const content = notes(e, data);
     return `
         <article class="entry" id="${ids[i]}">
           <header class="entry__head">
@@ -390,7 +398,7 @@ function changelogPage(id, p, data) {
   const counted = source.kind === 'commits'
     ? `${entries.reduce((n, e) => n + e.commits.length, 0)} commits over ${entries.length} days`
     : `${entries.length} ${source.kind === 'releases' ? 'releases' : 'entries'}`;
-  const body = `${NAV}
+  const body = `${nav('work')}
   <main>
     <header class="p-head wrap">
       ${crumbs([['Work', '/#work'], [p.title, '../'], [name]])}
@@ -406,6 +414,7 @@ function changelogPage(id, p, data) {
     </div>
     <nav class="pager wrap" aria-label="Back">
       <a class="pager__link" href="../"><span>Back to</span><b>${esc(p.title)}</b></a>
+      <a class="pager__link pager__link--next" href="/changelog/"><span>Every project</span><b>All changes</b></a>
     </nav>
   </main>
 ${FOOT}`;
@@ -413,6 +422,90 @@ ${FOOT}`;
     title: `${p.title} ${name.toLowerCase()} | Mario Molnar`,
     description: `What changed in ${p.title}, ${counted}, newest first.`,
     path: `/projects/${p.slug}/changelog/`, image: p.img ? `/assets/img/${p.img}-1600.webp` : null, body,
+  });
+}
+
+/* ---------- Every project's changelog ---------- */
+// All entries of all projects on one page, newest first, grouped by month. page.js
+// filters it to one project and keeps that in ?product=<slug> so the view can be linked.
+
+const longMonth = new Intl.DateTimeFormat('en', { month: 'long', year: 'numeric', timeZone: 'UTC' });
+
+function allChangelogPage(logs) {
+  const all = logs.flatMap(({ p, data }) => {
+    // Same ids as the project's own changelog, prefixed with its slug
+    const seen = new Set();
+    return data.log.entries.map(e => ({ e, p, data, id: `${p.slug}-${entryId(e, seen)}` }));
+  });
+  // A stable sort, so same-day entries stay in project order and each project's own order
+  all.sort((a, b) => (b.e.date ?? '').localeCompare(a.e.date ?? ''));
+  const months = new Map();
+  for (const x of all) {
+    const key = x.e.date?.slice(0, 7) ?? 'undated';
+    if (!months.has(key)) months.set(key, []);
+    months.get(key).push(x);
+  }
+  const monthLabel = (key, fmt) => key === 'undated' ? 'Undated' : fmt.format(utc(key + '-01'));
+
+  const article = ({ e, p, data, id }) => `
+          <article class="entry rel" id="${id}" data-product="${p.slug}">
+            <header class="entry__head">
+              <p class="rel__meta"><a class="rel__product" href="/projects/${p.slug}/">${esc(p.title)}</a>${time(e.date)}</p>
+              <h3 class="entry__title"><a href="#${id}">${e.commits ? `${e.commits.length} ${e.commits.length === 1 ? 'commit' : 'commits'}` : entryTitle(e)}</a></h3>
+              ${e.url ? `<p class="entry__meta">${ext(e.url, `Release page ${arrow}`)}</p>` : ''}
+            </header>
+            ${notes(e, data, 4)}
+          </article>`;
+  const sections = [...months].map(([key, xs]) => `
+        <section class="rel-month" id="m-${key}" aria-labelledby="m-${key}-h">
+          <h2 class="rel-month__h" id="m-${key}-h">${monthLabel(key, longMonth)}</h2>${xs.map(article).join('')}
+        </section>`).join('');
+  const index = [...months].map(([key, xs]) =>
+    `<li><a href="#m-${key}">${monthLabel(key, month)} <span>${xs.length}</span></a></li>`).join('');
+
+  const chip = (slug, label, n, pressed) =>
+    `<button type="button" data-product="${slug}" aria-pressed="${pressed}">${label} <span>${n}</span></button>`;
+  const filter = `<div class="rel-filter" role="group" aria-label="Show one project">${chip('all', 'All projects', all.length, true)}${logs.map(({ p, data }) => chip(p.slug, esc(p.title), data.log.entries.length, false)).join('')}</div>`;
+  // One line per project, shown while the filter is on it
+  const about = logs.map(({ p, data }) => {
+    const { source, entries } = data.log;
+    const latest = entries.find(e => e.version);
+    const since = entries.at(-1)?.date ? ` since ${month.format(utc(entries.at(-1).date))}` : '';
+    const n = entries.length;
+    const what = source.kind === 'commits'
+      ? `There's no written changelog for ${esc(p.title)} yet, so these are its commits grouped by day, ${n} ${n === 1 ? 'day' : 'days'}${since}.`
+      : source.kind === 'releases'
+        ? `${n} GitHub ${n === 1 ? 'release' : 'releases'}${since}.`
+        : `${n} ${n === 1 ? 'entry' : 'entries'} in ${esc(source.label)}${since}.`;
+    const newest = latest ? ` The latest version is ${esc(latest.version)}${latest.date ? `, from ${day.format(utc(latest.date))}` : ''}.` : '';
+    return `
+      <p class="rel-about" data-for="${p.slug}" hidden>${what}${newest} <a href="/projects/${p.slug}/changelog/">Full ${logName(data).toLowerCase()}</a> &middot; <a href="/projects/${p.slug}/">Project page</a></p>`;
+  }).join('');
+
+  const versions = all.filter(x => x.e.version).length;
+  const first = all.findLast(x => x.e.date)?.e.date;
+  const counted = `${all.length} entries from ${logs.length} projects, ${versions} of them numbered versions${first ? `, since ${month.format(utc(first))}` : ''}`;
+  const body = `${nav('changelog')}
+  <main>
+    <header class="p-head wrap">
+      ${crumbs([['Work', '/#work'], ['Changelog']])}
+      <p class="tag">Every project</p>
+      <h1 class="p-title">Changelog</h1>
+      <p class="p-lede">What changed in each project, newest first. The entries come from each project's changelog file or GitHub releases. Projects without a written changelog show their commits, grouped by day. The site checks for new entries once a day.</p>
+      <p class="p-count">${counted}</p>
+      ${filter}${about}
+    </header>
+    <div class="log wrap">
+      <nav class="log__index" aria-label="Months"><p class="p-h p-h--sm">Jump to</p><ol>${index}</ol></nav>
+      <div class="log__entries">${sections}
+      </div>
+    </div>
+  </main>
+${FOOT}`;
+  return page({
+    title: 'Changelog | Mario Molnar',
+    description: `Every release and change across my projects, newest first. ${counted}.`,
+    path: '/changelog/', body,
   });
 }
 
@@ -424,8 +517,9 @@ const out = async (path, html) => {
 };
 
 const slugs = new Set();
-const urls = ['/'];
+const urls = ['/', '/changelog/'];
 const allData = {};
+const logs = [];
 for (const id of PROJECT_ORDER) {
   const data = PROJECTS[id].repo ? await loadData(PROJECTS[id].slug) : null;
   const p = fillAll(PROJECTS[id], factsOf(data), PROJECTS[id].slug);
@@ -434,11 +528,16 @@ for (const id of PROJECT_ORDER) {
   const dir = `projects/${p.slug}/`;
   await out(dir + 'index.html', await projectPage(id, p, data));
   urls.push('/' + dir);
-  if (data?.log.entries.length) { await out(dir + 'changelog/index.html', changelogPage(id, p, data)); urls.push(`/${dir}changelog/`); }
+  if (data?.log.entries.length) {
+    await out(dir + 'changelog/index.html', changelogPage(id, p, data));
+    urls.push(`/${dir}changelog/`);
+    logs.push({ p, data });
+  }
   else await rm(new URL(dir + 'changelog/', root), { recursive: true, force: true });
   // Projects link straight to their apps, so clear out any old framed copy
   await rm(new URL(dir + 'play/', root), { recursive: true, force: true });
 }
+await out('changelog/index.html', allChangelogPage(logs));
 // Drop pages of projects that were removed from projects.js
 for (const d of await readdir(new URL('projects/', root))) {
   if (!slugs.has(d)) await rm(new URL(`projects/${d}`, root), { recursive: true, force: true });
