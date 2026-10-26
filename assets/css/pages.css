@@ -20,6 +20,31 @@
 .p-media.feature__media { aspect-ratio: 16 / 9; }
 .p-media.feature__media .atp, .p-media.feature__media img { height: 100%; }
 
+/* HiraKataQuest hero: three screens, the writing screen in front */
+.p-media.p-phones .ph { left: 50%; top: 7%; height: 118%; width: auto; transition: none; }
+.p-media.p-phones .ph--c { z-index: 2; transform: translateX(-50%); }
+.p-media.p-phones .ph--l, .p-media.p-phones .ph--r { top: 11%; height: 108%; }
+.p-media.p-phones .ph--l { transform: translateX(calc(-50% - 92%)) rotate(-5deg); }
+.p-media.p-phones .ph--r { transform: translateX(calc(-50% + 92%)) rotate(5deg); }
+@media (max-width: 640px) {
+  .p-media.p-phones.feature__media { aspect-ratio: 4 / 3; }
+  .p-media.p-phones .ph--l { transform: translateX(calc(-50% - 74%)) rotate(-5deg); }
+  .p-media.p-phones .ph--r { transform: translateX(calc(-50% + 74%)) rotate(5deg); }
+}
+
+/* Reading and writing: one row per track, one phone per script and unit */
+.modes__lede { max-width: 62ch; }
+.modes__h { margin: 28px 0 14px; font: 500 12px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--faint); }
+.modes__row { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+.modes__row figure { margin: 0; }
+.modes__row img { width: 100%; height: auto; border: 1px solid var(--line-2); border-radius: 18px; background: #faf6ee; }
+.modes__row figcaption { margin-top: 12px; font-size: 14px; line-height: 1.45; color: var(--muted); }
+.modes__row figcaption b { display: block; margin-bottom: 2px; color: var(--text); font-weight: 600; }
+@media (max-width: 899px) {
+  .modes__row { grid-template-columns: repeat(4, 200px); overflow-x: auto; scroll-snap-type: x proximity; padding-bottom: 10px; scrollbar-width: thin; }
+  .modes__row li { scroll-snap-align: start; }
+}
+
 /* ---------- Two columns: what it does | activity ---------- */
 .p-cols { display: grid; gap: 40px; margin-top: var(--block); align-items: start; }
 @media (min-width: 960px) { .p-cols { grid-template-columns: minmax(0, 1fr) 360px; gap: 64px; } }
