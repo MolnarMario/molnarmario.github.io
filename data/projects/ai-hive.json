@@ -4,39 +4,39 @@
  "url": "https://github.com/MolnarMario/ai-hive",
  "branch": "main",
  "created": "2026-07-05",
- "pushed": "2026-10-25",
- "commits": 718,
+ "pushed": "2026-10-26",
+ "commits": 735,
  "firstCommit": "2026-07-05",
  "lastCommit": {
-  "sha": "ba3b028",
-  "date": "2026-10-25",
-  "subject": "Merge pull request #91 from MolnarMario/integrate/2026-10-26-drag-scroll-dropdowns"
+  "sha": "f775df4",
+  "date": "2026-10-26",
+  "subject": "Merge pull request #92 from MolnarMario/integrate/2026-10-26-sidebar-shift-restart"
  },
  "recent": [
   {
-   "sha": "d10f963",
-   "date": "2026-10-25",
-   "subject": "docs: README count 4159"
+   "sha": "b134fce",
+   "date": "2026-10-26",
+   "subject": "docs: README count 4210"
   },
   {
-   "sha": "cdbb10a",
-   "date": "2026-10-25",
-   "subject": "fix: a selection keeps its text when output scrolls history"
+   "sha": "c59863f",
+   "date": "2026-10-26",
+   "subject": "fix: /code-review findings on Restart to update"
   },
   {
-   "sha": "296c4f1",
-   "date": "2026-10-25",
-   "subject": "docs: README count 4156"
+   "sha": "bb54541",
+   "date": "2026-10-26",
+   "subject": "release: 0.53.0, restart to update, Shift+Arrow in history, sidebar name color"
   },
   {
-   "sha": "66849c0",
-   "date": "2026-10-25",
-   "subject": "fix: /code-review findings on drag-select auto-scroll"
+   "sha": "6d00e10",
+   "date": "2026-10-26",
+   "subject": "Restart to update restarts AI Hive"
   },
   {
-   "sha": "74ee12f",
-   "date": "2026-10-25",
-   "subject": "release: 0.52.0, drag-select auto-scroll, instant dropdowns"
+   "sha": "aabf9ef",
+   "date": "2026-10-26",
+   "subject": "fix: a later successful pip install brings the restart back"
   }
  ],
  "weeks": [
@@ -142,12 +142,12 @@
   ],
   [
    "2026-10-26",
-   0
+   17
   ]
  ],
  "facts": {
-  "pyLines": 83149,
-  "checks": 4159,
+  "pyLines": 84093,
+  "checks": 4210,
   "workers": 6
  },
  "log": {
@@ -157,6 +157,13 @@
    "url": "https://github.com/MolnarMario/ai-hive/blob/main/CHANGELOG.md"
   },
   "entries": [
+   {
+    "version": "0.53.0",
+    "date": "2026-10-26",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Restart to update now restarts AI Hive for you. It saves, closes and\nopens the app again. If agents are still working, waiting on you or\nrunning a command, it lists them first: Restart now interrupts them,\nWait keeps them running and the button counts down what is left. The\nupdate dialog has a Restart now button too.</li>\n<li>Shift+Arrow, Home and End grow a selection you made in an agent's\nhistory where it is, instead of jumping back to the live screen.</li>\n<li>The sidebar no longer leaves the gold name on a workspace you just\nswitched away from.</li>\n</ul>"
+   },
    {
     "version": "0.52.0",
     "date": "2026-10-25",
