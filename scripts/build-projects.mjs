@@ -103,7 +103,9 @@ const fillAll = (x, facts, where) =>
 
 /* ---------- Shell ---------- */
 
-const nav = active => `
+// On a project's pages the Changelog link goes to that project's changelog. Elsewhere,
+// and for a project without one, it goes to the page with every project's entries.
+const nav = (active, log = '/changelog/') => `
   <header class="nav" id="top">
     <div class="nav__inner wrap">
       <a class="brand" href="/" aria-label="Mario Molnar, home">
@@ -114,7 +116,7 @@ const nav = active => `
         <a href="/#work"${active === 'work' ? ' class="is-active"' : ''}>Work</a>
         <a href="/#process">Process</a>
         <a href="/#about">About</a>
-        <a href="/changelog/"${active === 'changelog' ? ' class="is-active" aria-current="page"' : ''}>Changelog</a>
+        <a href="${log}"${active === 'changelog' ? ' class="is-active" aria-current="page"' : ''}>Changelog</a>
         <a href="/#contact" class="nav__cta">Get in touch</a>
       </nav>
       <button class="theme-btn" type="button" aria-label="Toggle light and dark theme">
@@ -127,7 +129,7 @@ const nav = active => `
 const FOOT = `
   <footer class="foot wrap">
     <p>Built and tested by me. &copy; <span id="year">${new Date().getUTCFullYear()}</span> Mario Molnar</p>
-    <p class="foot__links"><a href="/changelog/">Changelog</a><a href="#top">Back to top <span aria-hidden="true">&uarr;</span></a></p>
+    <p class="foot__links"><a href="/changelog/">All changelogs</a><a href="#top">Back to top <span aria-hidden="true">&uarr;</span></a></p>
   </footer>`;
 
 function page({ title, description, path, image, bodyClass = '', body, scripts = [] }) {
@@ -312,7 +314,7 @@ async function projectPage(id, p, data) {
   p.links.forEach(([label, href], i) => actions.push(ext(href, `${esc(label)} ${arrow}`, `btn ${i === 0 ? 'btn--primary' : 'btn--ghost'}`)));
   if (data?.log.entries.length) actions.push(`<a class="btn btn--ghost" href="changelog/">${logName(data)}</a>`);
   const features = p.features.map(([name, detail]) => `<li><b>${esc(name)}</b> ${esc(detail)}</li>`).join('\n            ');
-  const body = `${nav('work')}
+  const body = `${nav('work', data?.log.entries.length ? `/projects/${p.slug}/changelog/` : undefined)}
   <main>
     <article class="p">
       <header class="p-head wrap">
@@ -398,7 +400,7 @@ function changelogPage(id, p, data) {
   const counted = source.kind === 'commits'
     ? `${entries.reduce((n, e) => n + e.commits.length, 0)} commits over ${entries.length} days`
     : `${entries.length} ${source.kind === 'releases' ? 'releases' : 'entries'}`;
-  const body = `${nav('work')}
+  const body = `${nav('changelog', `/projects/${p.slug}/changelog/`)}
   <main>
     <header class="p-head wrap">
       ${crumbs([['Work', '/#work'], [p.title, '../'], [name]])}
@@ -450,7 +452,7 @@ function allChangelogPage(logs) {
   const article = ({ e, p, data, id }) => `
           <article class="entry rel" id="${id}" data-product="${p.slug}">
             <header class="entry__head">
-              <p class="rel__meta"><a class="rel__product" href="/projects/${p.slug}/">${esc(p.title)}</a>${time(e.date)}</p>
+              <p class="rel__meta"><a class="rel__product" href="/projects/${p.slug}/changelog/#${id.slice(p.slug.length + 1)}" title="This entry in the ${esc(p.title)} ${logName(data).toLowerCase()}">${esc(p.title)}</a>${time(e.date)}</p>
               <h3 class="entry__title"><a href="#${id}">${e.commits ? `${e.commits.length} ${e.commits.length === 1 ? 'commit' : 'commits'}` : entryTitle(e)}</a></h3>
               ${e.url ? `<p class="entry__meta">${ext(e.url, `Release page ${arrow}`)}</p>` : ''}
             </header>
@@ -574,6 +576,10 @@ const patched = home
   .replace(/<meta\b[^>]*\sdata-live-tpl="([^"]*)"[^>]*>/g, (m, tpl) =>
     m.replace(/\scontent="[^"]*"/, ` content="${fill(tpl, site, 'index.html')}"`));
 if (patched !== home) await writeFile(new URL('index.html', root), patched);
+// The homepage links to project changelogs by hand, so one that's no longer built stops the build
+for (const [, path] of home.matchAll(/href="\/?(projects\/[^"]+\/changelog\/)/g)) {
+  if (!urls.includes('/' + path)) throw new Error(`index.html: links to /${path}, which has no changelog`);
+}
 
 await writeFile(new URL('sitemap.xml', root), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
