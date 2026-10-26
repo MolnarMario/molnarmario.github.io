@@ -38,6 +38,7 @@
         <a href="/#work" class="is-active">Work</a>
         <a href="/#process">Process</a>
         <a href="/#about">About</a>
+        <a href="/changelog/">Changelog</a>
         <a href="/#contact" class="nav__cta">Get in touch</a>
       </nav>
       <button class="theme-btn" type="button" aria-label="Toggle light and dark theme">
@@ -64,13 +65,13 @@
           </header>
           <div class="prose"><p>Shows the seller's country flag in the corner of every Vinted listing. Vinted never tells a buyer where a seller is, anywhere on the site.</p>
 <p><strong>Download <code>vinted-country-flags-2.2.0.zip</code> below</strong>, unpack it somewhere you will keep it, then in Chrome go to <code>chrome://extensions</code>, turn on Developer mode, click "Load unpacked" and pick the unpacked folder. If you already run 2.1.0, load the new folder and remove the old one.</p>
-<div class="markdown-heading"><h2 class="heading-element">What is fixed</h2><a id="user-content-what-is-fixed" class="anchor" aria-label="Permalink: What is fixed" href="#what-is-fixed"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<div class="markdown-heading"><h3 class="heading-element">What is fixed</h3><a id="user-content-what-is-fixed" class="anchor" aria-label="Permalink: What is fixed" href="#what-is-fixed"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <p>Vinted changed what it serves on 2026-10-08, and 2.1.0 broke in three ways. Flags stopped on the catalog, the item-page lookup could name the visitor instead of the seller, and cards that hit a rate limit or scrolled past were never retried.</p>
 <p>Grids past the first screenful now read the seller from the response the page already fetches for itself, on the homepage and on the catalog. The catalog endpoint 404s now, and asking for the grid again returns a different shuffle, so reading the page's own response is the only path that matches the cards on screen.</p>
 <p>Rate limiting is tighter. The extension leaves a share of Vinted's bucket for the site's own calls, backs off when Vinted answers with a "Client Challenge" page instead of data, and frees a slot as soon as a card scrolls away.</p>
 <p>Cards that cannot be read from their price fall back to a profile lookup, and a lookup that gets cancelled no longer leaves a second card blank.</p>
 <p>The cache is cleared on upgrade. Some entries written by the old item-page lookup may have named the visitor, so they are dropped rather than trusted.</p>
-<div class="markdown-heading"><h2 class="heading-element">Testing</h2><a id="user-content-testing" class="anchor" aria-label="Permalink: Testing" href="#testing"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<div class="markdown-heading"><h3 class="heading-element">Testing</h3><a id="user-content-testing" class="anchor" aria-label="Permalink: Testing" href="#testing"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <p>50 unit tests pass, up from 49 at 2.1.0. Parsers were checked against live vinted.ro pages: 96 of 96 cards named from the document, and 96 of 96 from the page-2 response.</p>
 <p>GPL-3.0. Not affiliated with Vinted.</p></div>
         </article>
@@ -81,7 +82,7 @@
           </header>
           <div class="prose"><p>Shows the seller's country flag in the corner of every Vinted listing. Vinted never tells a buyer where a seller is, anywhere on the site.</p></div><details class="entry__more"><summary>Full notes</summary><div class="prose">
 <p><strong>Download <code>vinted-country-flags-2.1.0.zip</code> below</strong>, unpack it somewhere you will keep it, then in Chrome go to <code>chrome://extensions</code>, turn on Developer mode, click "Load unpacked" and pick the unpacked folder.</p>
-<div class="markdown-heading"><h2 class="heading-element">What is new</h2><a id="user-content-what-is-new" class="anchor" aria-label="Permalink: What is new" href="#what-is-new"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<div class="markdown-heading"><h3 class="heading-element">What is new</h3><a id="user-content-what-is-new" class="anchor" aria-label="Permalink: What is new" href="#what-is-new"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <p>The homepage gets flags. It never did, which is a gap where most visits start.</p>
 <p>Two things were in the way. Catalog cards are numbered <code>product-item-id-&lt;id&gt;--image</code>, but every homepage card shares one testid, <code>feed-item--image</code>, and carries its item id only in the link over the photo, so the selector matched nothing. And nothing could have answered those cards anyway: <code>/api/v2/catalog/items</code> does not return the homepage feed at all, 0 of 20 overlapped on vinted.ro, and the endpoint that does serve it answers 400 to the same query replayed by anyone but Vinted's own front end.</p>
 <p>The homepage does name every seller, though, twice over and for free. The first screenful is server rendered and the payload the page hydrates from is still sitting in the document with <code>"user":{"id":...}</code> on every item. Everything after it arrives on the request the page fires when the feed paginates, where the same fact is spelled <code>user_id</code>, and the extension reads that answer as it goes past rather than asking for its own. Together they named the seller of 70 of 70 cards on vinted.ro, 20 from the document and 50 from one pagination response, for no request at all.</p>
@@ -97,16 +98,16 @@
           </header>
           <div class="prose"><p>Shows the seller's country flag in the corner of every Vinted listing. Vinted never tells a buyer where a seller is, anywhere on the site.</p></div><details class="entry__more"><summary>Full notes</summary><div class="prose">
 <p><strong>Download <code>vinted-country-flags-2.0.0.zip</code> below</strong>, unpack it somewhere you will keep it, then in Chrome go to <code>chrome://extensions</code>, turn on Developer mode, click "Load unpacked" and pick the unpacked folder.</p>
-<div class="markdown-heading"><h2 class="heading-element">What is new</h2><a id="user-content-what-is-new-1" class="anchor" aria-label="Permalink: What is new" href="#what-is-new-1"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<div class="markdown-heading"><h3 class="heading-element">What is new</h3><a id="user-content-what-is-new-1" class="anchor" aria-label="Permalink: What is new" href="#what-is-new-1"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <p>All 27 Vinted markets, up from vinted.ro only.</p>
 <p>The country rule is no longer hardcoded. The market table is read from <code>/api/v2/countries</code> at runtime, so a currency that stops pinning a country stops pinning it on its own, and a new market appears without a release. That also dropped five dead currency rows and picked up Australia.</p>
 <p>The rate limit is measured rather than guessed. From a cold bucket exactly 30 requests to <code>/api/v2/users</code> succeed and the 31st gets a 429; paced at one per second, 45 in a row draw nothing. So it is a token bucket of 30 refilling at about 1/s, shared per IP across domains. That bucket now lives in a service worker, so every tab and every Vinted domain spends one budget instead of one each. Pushback honours the <code>Retry-After</code> the response carries.</p>
 <p>The cache moved to the worker too. A seller resolved on vinted.fr is already known on vinted.de, because seller ids are global across markets.</p>
-<div class="markdown-heading"><h2 class="heading-element">Fixes</h2><a id="user-content-fixes" class="anchor" aria-label="Permalink: Fixes" href="#fixes"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<div class="markdown-heading"><h3 class="heading-element">Fixes</h3><a id="user-content-fixes" class="anchor" aria-label="Permalink: Fixes" href="#fixes"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <p><code>/api/v2/users/{id}</code> returns <code>country_code: "UK"</code> for Britain, which is not an ISO country and resolved to no flag. It now joins <code>country_id</code> against Vinted's own table, which also sidesteps Greece reporting as EL.</p>
 <p>The price fingerprint's guard was one unit of buyer currency. That is a real guard in lei and none at all in forints, where every price clears a one-forint grid. It is anchored to about 0.20 EUR now and refuses to run until it knows the rate that converts it.</p>
 <p>Prices parse in every market's number format, taken from the page language rather than assumed.</p>
-<div class="markdown-heading"><h2 class="heading-element">Euro markets are slower, on purpose</h2><a id="user-content-euro-markets-are-slower-on-purpose" class="anchor" aria-label="Permalink: Euro markets are slower, on purpose" href="#euro-markets-are-slower-on-purpose"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<div class="markdown-heading"><h3 class="heading-element">Euro markets are slower, on purpose</h3><a id="user-content-euro-markets-are-slower-on-purpose" class="anchor" aria-label="Permalink: Euro markets are slower, on purpose" href="#euro-markets-are-slower-on-purpose"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <p>Eighteen of the 27 price in euro. Every seller there prices in the currency you see, so the free signal says nothing: 0 of 259 items sampled on vinted.fr carried the conversion data the other markets give away. Each card costs one seller lookup, so the grid fills in over about 90 seconds rather than appearing at once, viewport first, and the popup tells you how many are left. Roughly a fifth of those sellers turn out to be foreign, which is why it is worth the wait.</p>
 <p>252 flags, covering every ISO country, since a seller can live somewhere Vinted does not operate.</p>
 <p>44 unit tests. GPL-3.0. Not affiliated with Vinted.</p></div></details>
@@ -115,12 +116,13 @@
     </div>
     <nav class="pager wrap" aria-label="Back">
       <a class="pager__link" href="../"><span>Back to</span><b>Vinted Country Flags</b></a>
+      <a class="pager__link pager__link--next" href="/changelog/"><span>Every project</span><b>All changes</b></a>
     </nav>
   </main>
 
   <footer class="foot wrap">
     <p>Built and tested by me. &copy; <span id="year">2026</span> Mario Molnar</p>
-    <a href="#top">Back to top <span aria-hidden="true">&uarr;</span></a>
+    <p class="foot__links"><a href="/changelog/">Changelog</a><a href="#top">Back to top <span aria-hidden="true">&uarr;</span></a></p>
   </footer>
 
   <script src="/assets/js/page.js" defer></script>

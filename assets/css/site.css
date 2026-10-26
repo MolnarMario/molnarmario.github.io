@@ -814,6 +814,9 @@ p { margin: 0; }
 .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-block: 24px 32px; border-top: 1px solid var(--line); color: var(--faint); font-size: 14px; }
 .foot a { text-decoration: none; }
 .foot a:hover { color: var(--text); }
+.foot__links { display: flex; gap: 20px; }
+.section-sub a { color: var(--text); text-underline-offset: 3px; text-decoration-color: var(--line-2); }
+.section-sub a:hover { text-decoration-color: var(--accent); }
 
 /* ---------- Reveal on scroll ---------- */
 .js .reveal { opacity: 0; translate: 0 22px; transition: opacity .8s var(--ease), translate .8s var(--ease); }
