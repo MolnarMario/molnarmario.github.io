@@ -4,46 +4,42 @@
  "url": "https://github.com/MolnarMario/ai-hive",
  "branch": "main",
  "created": "2026-07-05",
- "pushed": "2026-10-23",
- "commits": 706,
+ "pushed": "2026-10-25",
+ "commits": 718,
  "firstCommit": "2026-07-05",
  "lastCommit": {
-  "sha": "90c7998",
-  "date": "2026-10-23",
-  "subject": "Merge pull request #90 from MolnarMario/integrate/2026-10-23-bionic-reading"
+  "sha": "ba3b028",
+  "date": "2026-10-25",
+  "subject": "Merge pull request #91 from MolnarMario/integrate/2026-10-26-drag-scroll-dropdowns"
  },
  "recent": [
   {
-   "sha": "22ab0e7",
-   "date": "2026-10-23",
-   "subject": "docs: README count 4118"
+   "sha": "d10f963",
+   "date": "2026-10-25",
+   "subject": "docs: README count 4159"
   },
   {
-   "sha": "3f07a94",
-   "date": "2026-10-23",
-   "subject": "fix: /code-review findings on the integration branch"
+   "sha": "cdbb10a",
+   "date": "2026-10-25",
+   "subject": "fix: a selection keeps its text when output scrolls history"
   },
   {
-   "sha": "afe2de2",
-   "date": "2026-10-23",
-   "subject": "release: 0.51.0, Bionic reading rename, Contrast row, wrapped prompt fix"
+   "sha": "296c4f1",
+   "date": "2026-10-25",
+   "subject": "docs: README count 4156"
   },
   {
-   "sha": "be06755",
-   "date": "2026-10-23",
-   "subject": "Bionic reading rename, Contrast row, wrapped prompt fix reviewed"
+   "sha": "66849c0",
+   "date": "2026-10-25",
+   "subject": "fix: /code-review findings on drag-select auto-scroll"
   },
   {
-   "sha": "7f90c20",
-   "date": "2026-10-23",
-   "subject": "Rename Bold word starts to Bionic reading, show Contrast only while on"
+   "sha": "74ee12f",
+   "date": "2026-10-25",
+   "subject": "release: 0.52.0, drag-select auto-scroll, instant dropdowns"
   }
  ],
  "weeks": [
-  [
-   "2026-04-27",
-   0
-  ],
   [
    "2026-05-04",
    0
@@ -142,12 +138,16 @@
   ],
   [
    "2026-10-19",
-   142
+   154
+  ],
+  [
+   "2026-10-26",
+   0
   ]
  ],
  "facts": {
-  "pyLines": 82572,
-  "checks": 4118,
+  "pyLines": 83149,
+  "checks": 4159,
   "workers": 6
  },
  "log": {
@@ -157,6 +157,13 @@
    "url": "https://github.com/MolnarMario/ai-hive/blob/main/CHANGELOG.md"
   },
   "entries": [
+   {
+    "version": "0.52.0",
+    "date": "2026-10-25",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Dragging a selection past the top or bottom of an agent's window now\nscrolls through its history and keeps selecting, faster the further\npast the edge you hold the pointer. The selection also stays on its\ntext when you scroll with the wheel or the scrollbar.</li>\n<li>Menus and dropdown lists open at once instead of fading or sliding in.</li>\n</ul>"
+   },
    {
     "version": "0.51.0",
     "date": "2026-10-23",
