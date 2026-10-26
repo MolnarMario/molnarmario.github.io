@@ -337,31 +337,6 @@ p { margin: 0; }
 /* Art */
 .art { display: grid; place-items: center; }
 
-/* Art: kana phone */
-.art--kana { background: radial-gradient(90% 90% at 70% 30%, var(--accent-soft), transparent 70%), var(--bg-3); }
-.phone { position: relative; height: 90%; aspect-ratio: 9 / 17; border-radius: 28px; background: #111; padding: 8px; box-shadow: 0 30px 60px -25px rgba(0, 0, 0, .6); transform: rotate(-4deg); transition: transform .8s var(--ease); }
-.feature:hover .phone { transform: rotate(0); }
-.phone__notch { position: absolute; top: 14px; left: 50%; translate: -50% 0; width: 34px; height: 8px; border-radius: 99px; background: #111; z-index: 2; }
-.kana-app { container-type: size; height: 100%; overflow: hidden; border-radius: 21px; background: #faf6ee; color: #1b1712; padding: 26px 10px 10px; display: flex; flex-direction: column; gap: 6px; font-size: clamp(8px, 1vw, 11px); }
-.kana-app__top { display: flex; justify-content: space-between; align-items: center; font-weight: 600; }
-.pill { font-size: .9em; padding: 3px 7px; border-radius: 99px; background: #1b1712; color: #faf6ee; }
-.genko { position: relative; aspect-ratio: 1; border: 1.5px solid #d6452a; border-radius: 4px; background:
-  linear-gradient(#d6452a33, #d6452a33) center / 100% 1px no-repeat,
-  linear-gradient(#d6452a33, #d6452a33) center / 1px 100% no-repeat; display: grid; place-items: center; }
-.genko span { grid-area: 1 / 1; font: 600 70cqw/1 var(--kana); }
-.genko__ghost { color: #1b171220; }
-.genko__ink { color: #1b1712; animation: ink 5s var(--ease) infinite; }
-@keyframes ink {
-  0% { clip-path: inset(0 100% 0 0); }
-  45%, 80% { clip-path: inset(0 0 0 0); }
-  100% { clip-path: inset(0 0 0 0); opacity: 0; }
-}
-.kana-app__score { display: flex; justify-content: space-between; padding: 5px 7px; border-radius: 7px; background: #efe8da; }
-.kana-app__score b.ok { color: #1c9151; }
-.kana-strip { margin-top: auto; display: flex; justify-content: space-between; }
-.kana-strip span { display: grid; place-items: center; width: 18%; aspect-ratio: 1; border-radius: 6px; background: #efe8da; font: 600 11cqw/1 var(--kana); }
-.kana-strip span:first-child { background: #1b1712; color: #faf6ee; }
-
 /* Art: two phone screenshots */
 .art--phones { position: relative; background: radial-gradient(90% 90% at 30% 20%, rgba(255, 91, 53, .16), transparent 65%), #0f0e0d; }
 .art--phones .ph { position: absolute; top: 9%; height: 118%; width: auto; max-width: none; border-radius: 22px; border: 6px solid #1c1b1a; box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .8); transition: transform .8s var(--ease); }
@@ -369,6 +344,8 @@ p { margin: 0; }
 .art--phones .ph--b { left: 50%; top: 15%; transform: rotate(4deg); }
 .feature:hover .art--phones .ph--a { transform: rotate(-2deg) translateY(-6px); }
 .feature:hover .art--phones .ph--b { transform: rotate(1deg) translateY(-10px); }
+.art--hira { background: radial-gradient(90% 90% at 70% 30%, var(--accent-soft), transparent 70%), var(--bg-3); }
+.art--hira .ph { border-color: #fff; box-shadow: 0 30px 60px -22px rgba(0, 0, 0, .55); }
 
 /* Art: One More Tile board (assets/js/tile.js). Always the game's own lavender: it's the app. */
 .omt {
@@ -826,7 +803,6 @@ p { margin: 0; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
   .js .reveal { opacity: 1; translate: none; }
-  .genko__ink { clip-path: none; }
 }
 
 /* ---------- GitHub activity heatmap (sits under the process steps) ---------- */

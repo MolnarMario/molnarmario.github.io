@@ -199,17 +199,44 @@ ${agents}
       </figure>`;
 }
 
-const KANA = `<div class="feature__media art art--kana p-media" role="img" aria-label="Illustration of HiraKataQuest's writing screen: the kana あ traced on a genkouyoushi grid with a score of 92">
-        <div class="phone">
-          <div class="phone__notch"></div>
-          <div class="kana-app">
-            <div class="kana-app__top"><span>Writing</span><span class="pill">あ row</span></div>
-            <div class="genko"><span class="genko__ghost">あ</span><span class="genko__ink">あ</span></div>
-            <div class="kana-app__score"><span>Score</span><b class="ok">92</b></div>
-            <div class="kana-strip"><span>か</span><span>き</span><span>サ</span><span>ひ</span><span>モ</span></div>
-          </div>
-        </div>
+/* HiraKataQuest: real screens from the app (assets/img/hirakata-*, Galaxy A17 emulator, light appearance) */
+const shot = (name, alt, sizes, cls = '') =>
+  `<img${cls ? ` class="${cls}"` : ''} src="/assets/img/hirakata-${name}-480.webp" srcset="/assets/img/hirakata-${name}-480.webp 480w, /assets/img/hirakata-${name}-960.webp 960w" sizes="${sizes}" width="480" height="1040" alt="${alt}" decoding="async">`;
+
+const KANA = `<div class="feature__media art art--phones art--hira p-media p-phones">
+        ${shot('library', 'HiraKataQuest library: every hiragana tile tinted from red to green by its average score', '(min-width: 900px) 330px, 40vw', 'ph ph--l')}
+        ${shot('start', 'HiraKataQuest start screen with two ways in, Reading and Writing', '(min-width: 900px) 330px, 40vw', 'ph ph--r')}
+        ${shot('write-char-hira', 'HiraKataQuest writing screen: the kana あ traced on a grid, scored 99 with Excellent form', '(min-width: 900px) 360px, 44vw', 'ph ph--c')}
       </div>`;
+
+// [file, script and unit, what the screen shows, alt text]
+const MODES = [
+  ['Reading', [
+    ['read-char-hira', 'Hiragana, character', 'Pick the reading for わ from four choices.', 'HiraKataQuest reading quiz: the hiragana わ with four readings to choose from'],
+    ['read-char-kata', 'Katakana, character', 'The same quiz for ホ.', 'HiraKataQuest reading quiz: the katakana ホ with four readings to choose from'],
+    ['read-word-hira', 'Hiragana, word', 'Flashcard for いえ, "house", with audio.', 'HiraKataQuest flashcard for the hiragana word いえ, answered correctly: ie, house'],
+    ['read-word-kata', 'Katakana, word', 'Flashcard for コーヒー, "coffee", with a long-vowel note.', 'HiraKataQuest flashcard for the katakana word コーヒー, answered correctly: koo hii, coffee']
+  ]],
+  ['Writing', [
+    ['write-char-hira', 'Hiragana, character', 'あ scores 99, "Excellent form".', 'HiraKataQuest writing screen: あ traced on a grid, scored 99'],
+    ['write-char-kata', 'Katakana, character', 'ア scores 99.', 'HiraKataQuest writing screen: ア traced on a grid, scored 99'],
+    ['write-word-hira', 'Hiragana, word', 'ねこ gets 98 for ね and 87 for こ, an average of 93.', 'HiraKataQuest writing screen: the word ねこ traced one kana per box, scored 98 and 87'],
+    ['write-word-kata', 'Katakana, word', 'カメラ gets 95, 82 and 98, an average of 92.', 'HiraKataQuest writing screen: the word カメラ traced one kana per box, scored 95, 82 and 98']
+  ]]
+];
+
+function modes() {
+  const rows = MODES.map(([name, items]) => `
+        <h3 class="modes__h">${name}</h3>
+        <ul class="modes__row">
+          ${items.map(([file, label, text, alt]) => `<li><figure>${shot(file, alt, '(min-width: 900px) 260px, 200px').replace('<img', '<img loading="lazy"')}<figcaption><b>${label}</b>${esc(text)}</figcaption></figure></li>`).join('\n          ')}
+        </ul>`).join('');
+  return `
+      <section class="p-section wrap modes" aria-labelledby="modes-h">
+        <div class="p-section__head"><h2 class="p-h" id="modes-h">Reading and writing</h2></div>
+        <p class="p-muted modes__lede">Both tracks work on single characters and on whole words, in hiragana and katakana. In a word, every kana is scored on its own.</p>${rows}
+      </section>`;
+}
 
 async function media(id, p) {
   if (id === 'aihive') return hive();
@@ -330,7 +357,7 @@ async function projectPage(id, p, data) {
 
       <div class="wrap p-media-wrap">
       ${await media(id, p)}
-      </div>
+      </div>${id === 'hirakata' ? modes() : ''}
 
       <div class="p-cols wrap">
         <section class="p-main" aria-labelledby="feat-h">
