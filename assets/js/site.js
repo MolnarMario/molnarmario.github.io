@@ -29,7 +29,8 @@
   addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  const links = $$('.nav__links a');
+  // Only the in-page links: an href like /changelog/ is not a selector
+  const links = $$('.nav__links a[href^="#"]');
   const sections = links.map(a => $(a.getAttribute('href'))).filter(Boolean);
   const spy = new IntersectionObserver(entries => {
     entries.forEach(e => {
