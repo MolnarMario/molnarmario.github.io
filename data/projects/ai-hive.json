@@ -5,38 +5,38 @@
  "branch": "main",
  "created": "2026-07-05",
  "pushed": "2026-10-26",
- "commits": 735,
+ "commits": 752,
  "firstCommit": "2026-07-05",
  "lastCommit": {
-  "sha": "f775df4",
+  "sha": "4ef2d65",
   "date": "2026-10-26",
-  "subject": "Merge pull request #92 from MolnarMario/integrate/2026-10-26-sidebar-shift-restart"
+  "subject": "Merge pull request #94 from MolnarMario/integrate/2026-10-26-context-badge-compact"
  },
  "recent": [
   {
-   "sha": "b134fce",
+   "sha": "5382ac4",
    "date": "2026-10-26",
-   "subject": "docs: README count 4210"
+   "subject": "docs: README count 4236"
   },
   {
-   "sha": "c59863f",
+   "sha": "1b5ccd9",
    "date": "2026-10-26",
-   "subject": "fix: /code-review findings on Restart to update"
+   "subject": "fix: /code-review findings on the compaction badge"
   },
   {
-   "sha": "bb54541",
+   "sha": "b977b67",
    "date": "2026-10-26",
-   "subject": "release: 0.53.0, restart to update, Shift+Arrow in history, sidebar name color"
+   "subject": "release: 0.53.2, the context badge drops when a conversation compacts"
   },
   {
-   "sha": "6d00e10",
+   "sha": "80855ae",
    "date": "2026-10-26",
-   "subject": "Restart to update restarts AI Hive"
+   "subject": "chore: context badge after compaction reviewed"
   },
   {
-   "sha": "aabf9ef",
+   "sha": "b825eb9",
    "date": "2026-10-26",
-   "subject": "fix: a later successful pip install brings the restart back"
+   "subject": "fix: the context badge drops when a conversation compacts"
   }
  ],
  "weeks": [
@@ -142,12 +142,12 @@
   ],
   [
    "2026-10-26",
-   17
+   34
   ]
  ],
  "facts": {
-  "pyLines": 84093,
-  "checks": 4210,
+  "pyLines": 84525,
+  "checks": 4236,
   "workers": 6
  },
  "log": {
@@ -157,6 +157,20 @@
    "url": "https://github.com/MolnarMario/ai-hive/blob/main/CHANGELOG.md"
   },
   "entries": [
+   {
+    "version": "0.53.2",
+    "date": "2026-10-26",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>The context badge on a Claude card drops as soon as the conversation\ncompacts, instead of showing the old, full reading until the next\nturn.</li>\n</ul>"
+   },
+   {
+    "version": "0.53.1",
+    "date": "2026-10-26",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Copying text from a Claude agent's window keeps a wrapped paragraph as\none line, so a reply or prompt pastes the way Claude wrote it instead\nof breaking at every row. Tool output still keeps every line.</li>\n</ul>"
+   },
    {
     "version": "0.53.0",
     "date": "2026-10-26",
