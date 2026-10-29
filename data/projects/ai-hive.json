@@ -4,39 +4,39 @@
  "url": "https://github.com/MolnarMario/ai-hive",
  "branch": "main",
  "created": "2026-07-05",
- "pushed": "2026-10-26",
- "commits": 752,
+ "pushed": "2026-10-29",
+ "commits": 763,
  "firstCommit": "2026-07-05",
  "lastCommit": {
-  "sha": "4ef2d65",
-  "date": "2026-10-26",
-  "subject": "Merge pull request #94 from MolnarMario/integrate/2026-10-26-context-badge-compact"
+  "sha": "f17a1a8",
+  "date": "2026-10-29",
+  "subject": "Merge pull request #96 from MolnarMario/integrate/2026-10-29-ram-followups"
  },
  "recent": [
   {
-   "sha": "5382ac4",
-   "date": "2026-10-26",
-   "subject": "docs: README count 4236"
+   "sha": "07491e3",
+   "date": "2026-10-29",
+   "subject": "docs: README count 4312"
   },
   {
-   "sha": "1b5ccd9",
-   "date": "2026-10-26",
-   "subject": "fix: /code-review findings on the compaction badge"
+   "sha": "b37a218",
+   "date": "2026-10-29",
+   "subject": "fix: Luna review, a shell learned before the first submit is no longer trusted"
   },
   {
-   "sha": "b977b67",
-   "date": "2026-10-26",
-   "subject": "release: 0.53.2, the context badge drops when a conversation compacts"
+   "sha": "4278b40",
+   "date": "2026-10-29",
+   "subject": "fix: /code-review findings on 0.54.1"
   },
   {
-   "sha": "80855ae",
-   "date": "2026-10-26",
-   "subject": "chore: context badge after compaction reviewed"
+   "sha": "55ec4b3",
+   "date": "2026-10-29",
+   "subject": "test: restore _NPM_CMD_SHIM, cut by the breakaway test rewrite"
   },
   {
-   "sha": "b825eb9",
-   "date": "2026-10-26",
-   "subject": "fix: the context badge drops when a conversation compacts"
+   "sha": "b8990d3",
+   "date": "2026-10-29",
+   "subject": "fix: Git Bash children stay in the agent's job, and two sleep follow-ups"
   }
  ],
  "weeks": [
@@ -142,12 +142,12 @@
   ],
   [
    "2026-10-26",
-   34
+   45
   ]
  ],
  "facts": {
-  "pyLines": 84525,
-  "checks": 4236,
+  "pyLines": 85823,
+  "checks": 4312,
   "workers": 6
  },
  "log": {
@@ -157,6 +157,20 @@
    "url": "https://github.com/MolnarMario/ai-hive/blob/main/CHANGELOG.md"
   },
   "entries": [
+   {
+    "version": "0.54.1",
+    "date": "2026-10-29",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>A program a Claude agent starts through Git Bash, like a dev server,\nnow ends when you stop or close the agent, or when it goes to sleep.\nBefore, it kept running on its own, and the gear on the card never\nshowed it.</li>\n<li>A background command an agent starts in its first 16 seconds now\nlights the gear, so sleep leaves that agent awake instead of ending\nthe command.</li>\n<li>The time an agent was last active is saved as soon as it changes, not\nup to 20 seconds later.</li>\n</ul>"
+   },
+   {
+    "version": "0.54.0",
+    "date": "2026-10-28",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>New in Options: Free up RAM. Sleep inactive agents stops an agent\nthat has been idle for an hour, or for up to 24 hours if you set it,\nso its memory goes back to Windows. Its card turns black with the\nconversation's summary, its dot in the sidebar turns gray, and a click\nresumes the same conversation. An agent that is working, asking you\nsomething, running a command or holding a prompt you haven't sent is\nnever put to sleep. It is off until you turn it on.</li>\n<li>Keep them asleep at startup, on as soon as you turn sleep on, leaves\nagents that were asleep or idle that long asleep when AI Hive opens\ninstead of starting them all. Turn it off and every agent resumes at startup, as\nbefore.</li>\n</ul>"
+   },
    {
     "version": "0.53.2",
     "date": "2026-10-26",
