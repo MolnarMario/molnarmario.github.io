@@ -221,9 +221,8 @@ p { margin: 0; }
   letter-spacing: -.045em;
   text-wrap: balance;
 }
-/* The highlighted words read as a string literal, and a block cursor blinks after the line */
+/* The highlighted words take the highlight colour, and a block cursor blinks after the line */
 .hero__title em { font-style: normal; color: var(--hl); }
-.hero__title em::before, .hero__title em::after { content: '"'; font: 400 .8em/1 var(--mono); color: var(--faint); }
 .hero__title::after { content: ""; display: inline-block; width: .42em; height: .82em; margin-left: .12em; vertical-align: -.06em; background: var(--accent); animation: blink 1.1s steps(1) infinite; }
 /* Line numbers down the left, like the gutter of an open file */
 .hero__copy { position: relative; padding-left: 56px; border-left: 1px solid var(--line); }
