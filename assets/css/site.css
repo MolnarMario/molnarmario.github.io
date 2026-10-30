@@ -187,10 +187,6 @@ p { margin: 0; }
   filter: blur(10px);
 }
 .hero__copy { max-width: 60rem; }
-.eyebrow { display: inline-flex; align-items: center; gap: 10px; color: var(--muted); font-size: 14.5px; margin-bottom: 20px; }
-.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); flex: none; }
-.dot--live { box-shadow: 0 0 0 0 color-mix(in srgb, var(--green) 60%, transparent); animation: ping 2.4s infinite; }
-@keyframes ping { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--green) 55%, transparent); } 70%, 100% { box-shadow: 0 0 0 10px transparent; } }
 .hero__title {
   font-family: var(--serif);
   font-size: clamp(2.7rem, 7vw, 5.8rem);
