@@ -147,7 +147,7 @@ function page({ title, description, path, image, bodyClass = '', body, scripts =
   <meta property="og:title" content="${esc(title)}">
   <meta property="og:description" content="${esc(description)}">
   <meta property="og:url" content="${url}">
-  <meta property="og:image" content="${SITE}${image || '/assets/img/og.png'}">
+  <meta property="og:image" content="${SITE}${image || '/assets/img/og.png?v=2'}">
   <link rel="canonical" href="${url}">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
