@@ -5,14 +5,29 @@
  "branch": "main",
  "created": "2026-07-05",
  "pushed": "2026-10-29",
- "commits": 763,
+ "commits": 767,
  "firstCommit": "2026-07-05",
  "lastCommit": {
-  "sha": "f17a1a8",
+  "sha": "cffdb39",
   "date": "2026-10-29",
-  "subject": "Merge pull request #96 from MolnarMario/integrate/2026-10-29-ram-followups"
+  "subject": "Merge pull request #97 from MolnarMario/feat/new-workspace-lanes"
  },
  "recent": [
+  {
+   "sha": "5bed97c",
+   "date": "2026-10-29",
+   "subject": "docs: README count 4332"
+  },
+  {
+   "sha": "69263ef",
+   "date": "2026-10-29",
+   "subject": "fix: /code-review findings on the New Workspace Lanes box"
+  },
+  {
+   "sha": "424d573",
+   "date": "2026-10-29",
+   "subject": "feat: Lanes box in the New Workspace dialog (0.55.0)"
+  },
   {
    "sha": "07491e3",
    "date": "2026-10-29",
@@ -22,21 +37,6 @@
    "sha": "b37a218",
    "date": "2026-10-29",
    "subject": "fix: Luna review, a shell learned before the first submit is no longer trusted"
-  },
-  {
-   "sha": "4278b40",
-   "date": "2026-10-29",
-   "subject": "fix: /code-review findings on 0.54.1"
-  },
-  {
-   "sha": "55ec4b3",
-   "date": "2026-10-29",
-   "subject": "test: restore _NPM_CMD_SHIM, cut by the breakaway test rewrite"
-  },
-  {
-   "sha": "b8990d3",
-   "date": "2026-10-29",
-   "subject": "fix: Git Bash children stay in the agent's job, and two sleep follow-ups"
   }
  ],
  "weeks": [
@@ -142,12 +142,12 @@
   ],
   [
    "2026-10-26",
-   45
+   49
   ]
  ],
  "facts": {
-  "pyLines": 85823,
-  "checks": 4312,
+  "pyLines": 86128,
+  "checks": 4332,
   "workers": 6
  },
  "log": {
@@ -157,6 +157,13 @@
    "url": "https://github.com/MolnarMario/ai-hive/blob/main/CHANGELOG.md"
   },
   "entries": [
+   {
+    "version": "0.55.0",
+    "date": "2026-10-29",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>The New Workspace dialog has a Lanes box. Tick it and the workspace\nstarts with Lanes on, so the first Claude agent you add gets its own\nlane and you can make it the integrator right away. It needs a git\nrepository, and a GitHub clone always is one.</li>\n<li>In New Workspace, an existing folder no longer leaves an empty gap\nsized for the GitHub fields.</li>\n</ul>"
+   },
    {
     "version": "0.54.1",
     "date": "2026-10-29",
