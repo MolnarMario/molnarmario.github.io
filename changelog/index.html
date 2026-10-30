@@ -54,11 +54,11 @@
       <h1 class="p-title">Changelog</h1>
       <p class="p-lede">What changed in each project, newest first. The entries come from each project's changelog file or GitHub releases. Projects without a written changelog show their commits, grouped by day. The site checks for new entries once a day.</p>
       <p class="p-count">193 entries from 9 projects, 149 of them numbered versions, since Jun 2026</p>
-      <div class="rel-filter" role="group" aria-label="Show one project"><button type="button" data-product="all" aria-pressed="true">All projects <span>193</span></button><button type="button" data-product="ai-hive" aria-pressed="false">AI Hive <span>75</span></button><button type="button" data-product="hirakataquest" aria-pressed="false">HiraKataQuest <span>27</span></button><button type="button" data-product="one-more-tile" aria-pressed="false">One More Tile <span>60</span></button><button type="button" data-product="automation-test-platform" aria-pressed="false">Automation Test Platform <span>2</span></button><button type="button" data-product="ironlog" aria-pressed="false">Ironlog <span>7</span></button><button type="button" data-product="chess-2" aria-pressed="false">Chess 2.0 <span>9</span></button><button type="button" data-product="vinted-country-flags" aria-pressed="false">Vinted Country Flags <span>3</span></button><button type="button" data-product="expense-tracker" aria-pressed="false">Common Expense Tracker <span>6</span></button><button type="button" data-product="video-production-tracker" aria-pressed="false">Video Production Tracker <span>4</span></button></div>
+      <div class="rel-filter" role="group" aria-label="Show one project"><button type="button" data-product="all" aria-pressed="true">All projects <span>193</span></button><button type="button" data-product="ai-hive" aria-pressed="false">AI Hive <span>75</span></button><button type="button" data-product="automation-test-platform" aria-pressed="false">Automation Test Platform <span>2</span></button><button type="button" data-product="hirakataquest" aria-pressed="false">HiraKataQuest <span>27</span></button><button type="button" data-product="one-more-tile" aria-pressed="false">One More Tile <span>60</span></button><button type="button" data-product="ironlog" aria-pressed="false">Ironlog <span>7</span></button><button type="button" data-product="chess-2" aria-pressed="false">Chess 2.0 <span>9</span></button><button type="button" data-product="vinted-country-flags" aria-pressed="false">Vinted Country Flags <span>3</span></button><button type="button" data-product="expense-tracker" aria-pressed="false">Common Expense Tracker <span>6</span></button><button type="button" data-product="video-production-tracker" aria-pressed="false">Video Production Tracker <span>4</span></button></div>
       <p class="rel-about" data-for="ai-hive" hidden>75 entries in CHANGELOG.md since Sep 2026. The latest version is 0.55.0, from Oct 29, 2026. <a href="/projects/ai-hive/changelog/">Full changelog</a> &middot; <a href="/projects/ai-hive/">Project page</a></p>
+      <p class="rel-about" data-for="automation-test-platform" hidden>2 entries in CHANGELOG.md since Jul 2026. <a href="/projects/automation-test-platform/changelog/">Full changelog</a> &middot; <a href="/projects/automation-test-platform/">Project page</a></p>
       <p class="rel-about" data-for="hirakataquest" hidden>27 entries in CHANGELOG.md since Jul 2026. The latest version is 0.4.0, from Aug 2, 2026. <a href="/projects/hirakataquest/changelog/">Full changelog</a> &middot; <a href="/projects/hirakataquest/">Project page</a></p>
       <p class="rel-about" data-for="one-more-tile" hidden>60 entries in RELEASE-NOTES.md since Jun 2026. The latest version is 0.33.1, from Sep 25, 2026. <a href="/projects/one-more-tile/changelog/">Full changelog</a> &middot; <a href="/projects/one-more-tile/">Project page</a></p>
-      <p class="rel-about" data-for="automation-test-platform" hidden>2 entries in CHANGELOG.md since Jul 2026. <a href="/projects/automation-test-platform/changelog/">Full changelog</a> &middot; <a href="/projects/automation-test-platform/">Project page</a></p>
       <p class="rel-about" data-for="ironlog" hidden>There's no written changelog for Ironlog yet, so these are its commits grouped by day, 7 days since Jun 2026. <a href="/projects/ironlog/changelog/">Full commit log</a> &middot; <a href="/projects/ironlog/">Project page</a></p>
       <p class="rel-about" data-for="chess-2" hidden>There's no written changelog for Chess 2.0 yet, so these are its commits grouped by day, 9 days since Jun 2026. <a href="/projects/chess-2/changelog/">Full commit log</a> &middot; <a href="/projects/chess-2/">Project page</a></p>
       <p class="rel-about" data-for="vinted-country-flags" hidden>3 GitHub releases since Aug 2026. The latest version is 2.2.0, from Oct 9, 2026. <a href="/projects/vinted-country-flags/changelog/">Full changelog</a> &middot; <a href="/projects/vinted-country-flags/">Project page</a></p>
@@ -2489,6 +2489,114 @@ works reliably. <code>BuildConfig</code> is enabled for the version comparison.<
 to serve the downloaded APK to the installer.</li>
 </ul></div>
           </article>
+          <article class="entry rel" id="automation-test-platform-d2026-07-08" data-product="automation-test-platform">
+            <header class="entry__head">
+              <p class="rel__meta"><a class="rel__product" href="/projects/automation-test-platform/changelog/#d2026-07-08" title="This entry in the Automation Test Platform changelog">Automation Test Platform</a><time datetime="2026-07-08">Jul 8, 2026</time></p>
+              <h3 class="entry__title"><a href="#automation-test-platform-d2026-07-08">Run pacing, per-site control, and a combined report</a></h3>
+              
+            </header>
+            <div class="prose"><p>Three problems surfaced running the full 11-product suite from the dashboard, plus
+a reporting gap. This release addresses all four.</p></div><details class="entry__more"><summary>Full notes</summary><div class="prose">
+<div class="markdown-heading"><h4 class="heading-element">1. Staggered launch (fixes out-of-memory crashes)</h4><a id="user-content-1-staggered-launch-fixes-out-of-memory-crashes" class="anchor" aria-label="Permalink: 1. Staggered launch (fixes out-of-memory crashes)" href="#1-staggered-launch-fixes-out-of-memory-crashes"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<p><strong>Why:</strong> the orchestrator launched every authenticated site's Playwright process
+<strong>simultaneously</strong> (<code>Promise.all(runnable.map(runTests))</code>). Eleven concurrent
+WordPress stacks plus a swarm of headless Chromium instances exhausted machine
+memory, so the OS refused new allocations and several sites died mid-startup
+with PHP <code>Fatal error: Out of memory</code> / nginx <code>502 Bad Gateway</code> (observed on
+several sites). Which sites lost was down to luck under contention, so the
+failures looked random.</p>
+<p><strong>What changed</strong> (<code>config.js</code>, <code>server/orchestrator.js</code>):</p>
+<ul>
+<li>Sites now launch <strong>one at a time with a delay between starts</strong> —
+<code>SITE_START_STAGGER_MS</code> (default <strong>45000 ms</strong>). Each site clears its
+memory-heavy startup (browser launch + auth + first page load) before the next
+begins, so peak memory stays bounded.</li>
+<li>Optional hard cap <code>MAX_CONCURRENT_SITES</code> (default <code>0</code> = off) as a complementary
+safeguard; a freed slot lets the next queued site launch.</li>
+<li>New <code>launchWithStagger()</code> + <code>cancellableDelay()</code> replace the simultaneous
+<code>Promise.all</code>; a whole-run cancel no longer has to wait out the stagger.</li>
+</ul>
+<div class="markdown-heading"><h4 class="heading-element">2. Priority start order (largest suites first)</h4><a id="user-content-2-priority-start-order-largest-suites-first" class="anchor" aria-label="Permalink: 2. Priority start order (largest suites first)" href="#2-priority-start-order-largest-suites-first"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<p><strong>Why:</strong> the biggest, longest suites should start earliest — they need the most
+runway and the freest memory. Previously sites ran in selection/tree order.</p>
+<p><strong>What changed</strong> (<code>config.js</code>, <code>server/orchestrator.js</code>):</p>
+<ul>
+<li>
+<code>SITE_START_PRIORITY</code> (default <code>apprentice, architect, ttb, quiz</code>) is applied to
+<strong>both</strong> the auth phase and the launch phase via <code>orderTargets()</code>, regardless of
+selection order. Remaining sites keep their original relative order. Storage /
+render order is untouched.</li>
+</ul>
+<div class="markdown-heading"><h4 class="heading-element">3. Per-site control + instant free-up (unblocks new runs)</h4><a id="user-content-3-per-site-control--instant-free-up-unblocks-new-runs" class="anchor" aria-label="Permalink: 3. Per-site control + instant free-up (unblocks new runs)" href="#3-per-site-control--instant-free-up-unblocks-new-runs"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<p><strong>Why:</strong> a site was marked "busy" for the <strong>entire run</strong> and only released at
+whole-run <code>finalize()</code>. So a product that already failed kept blocking a new run
+for that product until every other product finished — you couldn't re-run the
+failed one in the meantime.</p>
+<p><strong>What changed</strong> (<code>server/orchestrator.js</code>, <code>server/index.js</code>, <code>public/app.js</code>,
+<code>public/style.css</code>):</p>
+<ul>
+<li>A site is released from the busy set <strong>the moment it reaches a terminal state</strong>
+(passed/failed/error/cancelled), not at whole-run finalize.</li>
+<li>
+<code>busySites</code> is now a <code>Map&lt;site, runId&gt;</code> with an <strong>ownership-checked</strong>
+<code>releaseSite()</code> — so an old run's finalize can never free a site a newer run has
+already re-acquired.</li>
+<li>Per-site <strong>Cancel</strong> — <code>cancelSite()</code> + <code>POST /api/runs/:id/targets/:site/cancel</code>
+kills just that site's process (children are tagged with <code>_site</code>), marks it
+cancelled, frees it, and finalizes the run only once nothing else is active
+(<code>maybeFinalize()</code>, gated on <code>launchComplete</code>; <code>finalize()</code> made idempotent).</li>
+<li>Per-site <strong>Re-run</strong> button on finished/failed cards starts a fresh single-site
+run (the site is already free, so the busy guard passes).</li>
+<li>New per-site card buttons render in the Live view (<code>renderSiteActions()</code>).</li>
+</ul>
+<div class="markdown-heading"><h4 class="heading-element">4. Combined run report (one shareable, printable page)</h4><a id="user-content-4-combined-run-report-one-shareable-printable-page" class="anchor" aria-label="Permalink: 4. Combined run report (one shareable, printable page)" href="#4-combined-run-report-one-shareable-printable-page"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<p><strong>Why:</strong> results were only viewable <strong>per product</strong> (one Playwright report per
+site). There was no single view of a whole multi-product run to read, share, or
+export.</p>
+<p><strong>What changed</strong> (<code>server/combined-report.js</code> (new), <code>server/index.js</code>,
+<code>public/app.js</code>, <code>public/style.css</code>):</p>
+<ul>
+<li>New route <strong><code>GET /api/runs/:id/combined-report</code></strong> renders a <strong>self-contained
+HTML page</strong> merging every product of a run into one document, built <strong>on demand
+from the persisted <code>run.json</code></strong> (so it works for historical runs too — no
+artifact regeneration).</li>
+<li>Content: run header + summary tiles (products / tests / passed / failed /
+skipped / flaky), then one section per product with its pass/fail/skip counts, a
+detailed list of the <strong>failed tests</strong> (title, <code>file:line</code>, error), a "did not
+run" note for auth-failed/empty products, and a link to each product's full
+Playwright report for trace/screenshot drill-down. All interpolated strings are
+HTML-escaped.</li>
+<li>Print-friendly (<code>@media print</code>, page-break-avoid): open it (it opens in a new
+tab) and <strong>Ctrl/⌘+P → Save as PDF</strong> — no manual PDF step.</li>
+<li>An "↗ Combined report" button appears on a finished run in both the <strong>Live</strong>
+view and the <strong>History</strong> detail panel.</li>
+</ul>
+<div class="markdown-heading"><h4 class="heading-element">Files touched</h4><a id="user-content-files-touched" class="anchor" aria-label="Permalink: Files touched" href="#files-touched"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<ul>
+<li>
+<code>config.js</code> — <code>SITE_START_STAGGER_MS</code>, <code>MAX_CONCURRENT_SITES</code>, <code>SITE_START_PRIORITY</code>
+</li>
+<li>
+<code>server/orchestrator.js</code> — staggered/ordered launch, per-site cancel + ownership-aware busy release, idempotent finalize, per-site child tagging, <code>slimTarget</code> exposes <code>paths/grep/custom</code>
+</li>
+<li>
+<code>server/combined-report.js</code> — <strong>new</strong>; the combined-report HTML builder</li>
+<li>
+<code>server/index.js</code> — combined-report route + per-site cancel route</li>
+<li>
+<code>public/app.js</code> — per-site Cancel/Re-run buttons, combined-report links (Live + History)</li>
+<li>
+<code>public/style.css</code> — <code>.card-actions</code>, small button + run-head link styling</li>
+</ul>
+<div class="markdown-heading"><h4 class="heading-element">Local configuration note (not a code change to review)</h4><a id="user-content-local-configuration-note-not-a-code-change-to-review" class="anchor" aria-label="Permalink: Local configuration note (not a code change to review)" href="#local-configuration-note-not-a-code-change-to-review"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<p>On the machine this runs on, the local site domains didn't match the
+canonical names hardcoded in the committed suite config
+(<code>.playwright/sites.config.ts</code>). To run against the real local sites, the
+suite's <code>sites.config.ts</code> URLs were pointed at the actual local domains. This
+is a machine-specific override, intentionally kept out of this dashboard
+change; the long-term fix is to rename the local sites to the canonical names
+and drop the override.</p></div></details>
+          </article>
           <article class="entry rel" id="hirakataquest-d2026-07-08" data-product="hirakataquest">
             <header class="entry__head">
               <p class="rel__meta"><a class="rel__product" href="/projects/hirakataquest/changelog/#d2026-07-08" title="This entry in the HiraKataQuest changelog">HiraKataQuest</a><time datetime="2026-07-08">Jul 8, 2026</time></p>
@@ -2602,114 +2710,6 @@ one stroke.</li>
             <div class="prose"><ul>
 <li>Move around the board with the middle mouse button while it loads.</li>
 </ul></div>
-          </article>
-          <article class="entry rel" id="automation-test-platform-d2026-07-08" data-product="automation-test-platform">
-            <header class="entry__head">
-              <p class="rel__meta"><a class="rel__product" href="/projects/automation-test-platform/changelog/#d2026-07-08" title="This entry in the Automation Test Platform changelog">Automation Test Platform</a><time datetime="2026-07-08">Jul 8, 2026</time></p>
-              <h3 class="entry__title"><a href="#automation-test-platform-d2026-07-08">Run pacing, per-site control, and a combined report</a></h3>
-              
-            </header>
-            <div class="prose"><p>Three problems surfaced running the full 11-product suite from the dashboard, plus
-a reporting gap. This release addresses all four.</p></div><details class="entry__more"><summary>Full notes</summary><div class="prose">
-<div class="markdown-heading"><h4 class="heading-element">1. Staggered launch (fixes out-of-memory crashes)</h4><a id="user-content-1-staggered-launch-fixes-out-of-memory-crashes" class="anchor" aria-label="Permalink: 1. Staggered launch (fixes out-of-memory crashes)" href="#1-staggered-launch-fixes-out-of-memory-crashes"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
-<p><strong>Why:</strong> the orchestrator launched every authenticated site's Playwright process
-<strong>simultaneously</strong> (<code>Promise.all(runnable.map(runTests))</code>). Eleven concurrent
-WordPress stacks plus a swarm of headless Chromium instances exhausted machine
-memory, so the OS refused new allocations and several sites died mid-startup
-with PHP <code>Fatal error: Out of memory</code> / nginx <code>502 Bad Gateway</code> (observed on
-several sites). Which sites lost was down to luck under contention, so the
-failures looked random.</p>
-<p><strong>What changed</strong> (<code>config.js</code>, <code>server/orchestrator.js</code>):</p>
-<ul>
-<li>Sites now launch <strong>one at a time with a delay between starts</strong> —
-<code>SITE_START_STAGGER_MS</code> (default <strong>45000 ms</strong>). Each site clears its
-memory-heavy startup (browser launch + auth + first page load) before the next
-begins, so peak memory stays bounded.</li>
-<li>Optional hard cap <code>MAX_CONCURRENT_SITES</code> (default <code>0</code> = off) as a complementary
-safeguard; a freed slot lets the next queued site launch.</li>
-<li>New <code>launchWithStagger()</code> + <code>cancellableDelay()</code> replace the simultaneous
-<code>Promise.all</code>; a whole-run cancel no longer has to wait out the stagger.</li>
-</ul>
-<div class="markdown-heading"><h4 class="heading-element">2. Priority start order (largest suites first)</h4><a id="user-content-2-priority-start-order-largest-suites-first" class="anchor" aria-label="Permalink: 2. Priority start order (largest suites first)" href="#2-priority-start-order-largest-suites-first"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
-<p><strong>Why:</strong> the biggest, longest suites should start earliest — they need the most
-runway and the freest memory. Previously sites ran in selection/tree order.</p>
-<p><strong>What changed</strong> (<code>config.js</code>, <code>server/orchestrator.js</code>):</p>
-<ul>
-<li>
-<code>SITE_START_PRIORITY</code> (default <code>apprentice, architect, ttb, quiz</code>) is applied to
-<strong>both</strong> the auth phase and the launch phase via <code>orderTargets()</code>, regardless of
-selection order. Remaining sites keep their original relative order. Storage /
-render order is untouched.</li>
-</ul>
-<div class="markdown-heading"><h4 class="heading-element">3. Per-site control + instant free-up (unblocks new runs)</h4><a id="user-content-3-per-site-control--instant-free-up-unblocks-new-runs" class="anchor" aria-label="Permalink: 3. Per-site control + instant free-up (unblocks new runs)" href="#3-per-site-control--instant-free-up-unblocks-new-runs"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
-<p><strong>Why:</strong> a site was marked "busy" for the <strong>entire run</strong> and only released at
-whole-run <code>finalize()</code>. So a product that already failed kept blocking a new run
-for that product until every other product finished — you couldn't re-run the
-failed one in the meantime.</p>
-<p><strong>What changed</strong> (<code>server/orchestrator.js</code>, <code>server/index.js</code>, <code>public/app.js</code>,
-<code>public/style.css</code>):</p>
-<ul>
-<li>A site is released from the busy set <strong>the moment it reaches a terminal state</strong>
-(passed/failed/error/cancelled), not at whole-run finalize.</li>
-<li>
-<code>busySites</code> is now a <code>Map&lt;site, runId&gt;</code> with an <strong>ownership-checked</strong>
-<code>releaseSite()</code> — so an old run's finalize can never free a site a newer run has
-already re-acquired.</li>
-<li>Per-site <strong>Cancel</strong> — <code>cancelSite()</code> + <code>POST /api/runs/:id/targets/:site/cancel</code>
-kills just that site's process (children are tagged with <code>_site</code>), marks it
-cancelled, frees it, and finalizes the run only once nothing else is active
-(<code>maybeFinalize()</code>, gated on <code>launchComplete</code>; <code>finalize()</code> made idempotent).</li>
-<li>Per-site <strong>Re-run</strong> button on finished/failed cards starts a fresh single-site
-run (the site is already free, so the busy guard passes).</li>
-<li>New per-site card buttons render in the Live view (<code>renderSiteActions()</code>).</li>
-</ul>
-<div class="markdown-heading"><h4 class="heading-element">4. Combined run report (one shareable, printable page)</h4><a id="user-content-4-combined-run-report-one-shareable-printable-page" class="anchor" aria-label="Permalink: 4. Combined run report (one shareable, printable page)" href="#4-combined-run-report-one-shareable-printable-page"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
-<p><strong>Why:</strong> results were only viewable <strong>per product</strong> (one Playwright report per
-site). There was no single view of a whole multi-product run to read, share, or
-export.</p>
-<p><strong>What changed</strong> (<code>server/combined-report.js</code> (new), <code>server/index.js</code>,
-<code>public/app.js</code>, <code>public/style.css</code>):</p>
-<ul>
-<li>New route <strong><code>GET /api/runs/:id/combined-report</code></strong> renders a <strong>self-contained
-HTML page</strong> merging every product of a run into one document, built <strong>on demand
-from the persisted <code>run.json</code></strong> (so it works for historical runs too — no
-artifact regeneration).</li>
-<li>Content: run header + summary tiles (products / tests / passed / failed /
-skipped / flaky), then one section per product with its pass/fail/skip counts, a
-detailed list of the <strong>failed tests</strong> (title, <code>file:line</code>, error), a "did not
-run" note for auth-failed/empty products, and a link to each product's full
-Playwright report for trace/screenshot drill-down. All interpolated strings are
-HTML-escaped.</li>
-<li>Print-friendly (<code>@media print</code>, page-break-avoid): open it (it opens in a new
-tab) and <strong>Ctrl/⌘+P → Save as PDF</strong> — no manual PDF step.</li>
-<li>An "↗ Combined report" button appears on a finished run in both the <strong>Live</strong>
-view and the <strong>History</strong> detail panel.</li>
-</ul>
-<div class="markdown-heading"><h4 class="heading-element">Files touched</h4><a id="user-content-files-touched" class="anchor" aria-label="Permalink: Files touched" href="#files-touched"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
-<ul>
-<li>
-<code>config.js</code> — <code>SITE_START_STAGGER_MS</code>, <code>MAX_CONCURRENT_SITES</code>, <code>SITE_START_PRIORITY</code>
-</li>
-<li>
-<code>server/orchestrator.js</code> — staggered/ordered launch, per-site cancel + ownership-aware busy release, idempotent finalize, per-site child tagging, <code>slimTarget</code> exposes <code>paths/grep/custom</code>
-</li>
-<li>
-<code>server/combined-report.js</code> — <strong>new</strong>; the combined-report HTML builder</li>
-<li>
-<code>server/index.js</code> — combined-report route + per-site cancel route</li>
-<li>
-<code>public/app.js</code> — per-site Cancel/Re-run buttons, combined-report links (Live + History)</li>
-<li>
-<code>public/style.css</code> — <code>.card-actions</code>, small button + run-head link styling</li>
-</ul>
-<div class="markdown-heading"><h4 class="heading-element">Local configuration note (not a code change to review)</h4><a id="user-content-local-configuration-note-not-a-code-change-to-review" class="anchor" aria-label="Permalink: Local configuration note (not a code change to review)" href="#local-configuration-note-not-a-code-change-to-review"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
-<p>On the machine this runs on, the local site domains didn't match the
-canonical names hardcoded in the committed suite config
-(<code>.playwright/sites.config.ts</code>). To run against the real local sites, the
-suite's <code>sites.config.ts</code> URLs were pointed at the actual local domains. This
-is a machine-specific override, intentionally kept out of this dashboard
-change; the long-term fix is to rename the local sites to the canonical names
-and drop the override.</p></div></details>
           </article>
           <article class="entry rel" id="one-more-tile-v0-16-0" data-product="one-more-tile">
             <header class="entry__head">

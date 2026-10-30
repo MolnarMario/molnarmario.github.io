@@ -3,7 +3,7 @@
 // Edit here, then run: node scripts/build-projects.mjs
 (() => {
   // Order of the project pages (and their prev/next links), same as the homepage.
-  window.PROJECT_ORDER = ['aihive', 'hirakata', 'tile', 'dashboard', 'ironlog', 'chess', 'vinted', 'expense', 'video'];
+  window.PROJECT_ORDER = ['aihive', 'dashboard', 'hirakata', 'tile', 'ironlog', 'chess', 'vinted', 'expense', 'video'];
 
   // slug: URL of the project page. repo: GitHub repo name. log: where its changelog comes from
   // (a CHANGELOG.md split at that heading level, GitHub releases, or commit history).
