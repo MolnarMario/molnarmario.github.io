@@ -108,6 +108,17 @@
     setTimeout(() => { label.textContent = 'Copy email'; }, 2000);
   }));
 
+  /* ---------- Email picker ---------- */
+  // Close the compose menu on an outside click, Escape, or once a service is picked
+  const mailto = $('.mailto');
+  if (mailto) {
+    document.addEventListener('click', e => { if (!mailto.contains(e.target)) mailto.open = false; });
+    mailto.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && mailto.open) { mailto.open = false; $('summary', mailto).focus(); }
+    });
+    $$('.mailto__menu a', mailto).forEach(a => a.addEventListener('click', () => { mailto.open = false; }));
+  }
+
   $('#year').textContent = new Date().getFullYear();
 
   /* ---------- Hive replay ---------- */
