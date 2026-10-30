@@ -757,20 +757,22 @@ p { margin: 0; }
 
 .offline { grid-column: 1 / -1; }
 .offline__title { font: 400 clamp(1.9rem, 3.4vw, 2.6rem)/1 var(--serif); margin-bottom: 20px; }
-.offline__grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
+.offline__grid { display: grid; gap: 16px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .off { padding: 26px 22px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg-2); }
 .off__big { font: 400 3.4rem/1 var(--serif); letter-spacing: -.02em; margin-bottom: 14px; }
 .off__big small { font-size: .42em; color: var(--faint); margin-left: 4px; letter-spacing: 0; }
 .off__big--jp { font-family: var(--kana); font-weight: 600; font-size: 3rem; }
 .off p:not(.off__big) { color: var(--muted); font-size: 15px; }
 .off b { color: var(--text); font-weight: 600; }
-@media (max-width: 899px) { .offline { margin-top: var(--block); } }
-@media (max-width: 640px) {
-  .offline__grid { gap: 12px; }
-  .off { display: grid; grid-template-columns: 76px minmax(0, 1fr); column-gap: 14px; align-items: start; padding: 20px 18px; }
+/* Below three-across width, stack the cards with the figure beside the text */
+@media (max-width: 899px) {
+  .offline { margin-top: var(--block); }
+  .offline__grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .off { display: grid; grid-template-columns: 76px minmax(0, 1fr); column-gap: 14px; align-items: start; }
   .off__big { margin: 0; font-size: 2.6rem; }
   .off__big--jp { font-size: 2.3rem; }
 }
+@media (max-width: 640px) { .off { padding: 20px 18px; } }
 
 /* ---------- Contact ---------- */
 .contact { position: relative; margin-top: var(--section); padding-block: var(--section); border-top: 1px solid var(--line); overflow: hidden; text-align: center; }
