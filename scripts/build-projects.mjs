@@ -141,8 +141,7 @@ function page({ title, description, path, image, bodyClass = '', body, scripts =
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${esc(title)}</title>
   <meta name="description" content="${esc(description)}">
-  <meta name="theme-color" content="#0e0e0f" media="(prefers-color-scheme: dark)">
-  <meta name="theme-color" content="#f5f5f4" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#f5f5f4">
   <meta property="og:type" content="website">
   <meta property="og:title" content="${esc(title)}">
   <meta property="og:description" content="${esc(description)}">

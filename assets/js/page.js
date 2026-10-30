@@ -7,7 +7,7 @@
   /* Theme, same switch as the homepage */
   const themeBtn = $('.theme-btn');
   if (themeBtn) themeBtn.addEventListener('click', () => {
-    const current = root.dataset.theme || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    const current = root.dataset.theme || 'light';
     const next = current === 'light' ? 'dark' : 'light';
     root.dataset.theme = next;
     try { localStorage.setItem('theme', next); } catch (e) { /* storage blocked: theme just won't persist */ }
