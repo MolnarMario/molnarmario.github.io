@@ -141,8 +141,8 @@ function page({ title, description, path, image, bodyClass = '', body, scripts =
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${esc(title)}</title>
   <meta name="description" content="${esc(description)}">
-  <meta name="theme-color" content="#0d0c0b" media="(prefers-color-scheme: dark)">
-  <meta name="theme-color" content="#f5f2ec" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e0e0f" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f5f5f4" media="(prefers-color-scheme: light)">
   <meta property="og:type" content="website">
   <meta property="og:title" content="${esc(title)}">
   <meta property="og:description" content="${esc(description)}">
@@ -153,7 +153,7 @@ function page({ title, description, path, image, bodyClass = '', body, scripts =
   <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Klee+One:wght@600&text=%E3%81%82%E3%81%8B%E3%81%8D%E3%82%B5%E3%81%B2%E3%83%A2&display=swap">
   <script>
     try { var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
