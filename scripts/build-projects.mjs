@@ -109,7 +109,8 @@ const nav = (active, log = '/changelog/') => `
   <header class="nav" id="top">
     <div class="nav__inner wrap">
       <a class="brand" href="/" aria-label="Mario Molnar, home">
-        <span class="brand__mark" aria-hidden="true">MM</span>
+        <img class="brand__mark brand__mark--light" src="/assets/img/logo-light.png" width="81" height="36" alt="">
+        <img class="brand__mark brand__mark--dark" src="/assets/img/logo.png" width="81" height="36" alt="">
         <span class="brand__name">Mario Molnar</span>
       </a>
       <nav class="nav__links" aria-label="Sections">
@@ -149,7 +150,9 @@ function page({ title, description, path, image, bodyClass = '', body, scripts =
   <meta property="og:image" content="${SITE}${image || '/assets/img/og.png?v=2'}">
   <link rel="canonical" href="${url}">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">

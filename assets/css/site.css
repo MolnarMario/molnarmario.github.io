@@ -153,13 +153,12 @@ p { margin: 0; }
 .nav.is-stuck { border-bottom-color: var(--line); }
 .nav__inner { display: flex; align-items: center; gap: 24px; height: 68px; }
 .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; margin-right: auto; }
-.brand__mark {
-  display: grid; place-items: center; width: 34px; height: 34px; border-radius: 8px;
-  background: var(--text); color: var(--bg);
-  font: 600 13px/1 var(--mono); letter-spacing: -.02em;
-}
+.brand__mark { display: block; width: auto; height: 36px; }
+.brand__mark--dark { display: none; border-radius: 8px; background: #000; }
+:root[data-theme="dark"] .brand__mark--dark { display: block; }
+:root[data-theme="dark"] .brand__mark--light { display: none; }
 .brand__name { font-weight: 600; letter-spacing: -.01em; }
-.brand__name::after { content: "@romania:~$"; margin-left: 6px; font: 400 12.5px/1 var(--mono); color: var(--faint); }
+.brand__name::after { content: "@romania"; margin-left: 6px; font: 400 12.5px/1 var(--mono); color: var(--faint); }
 .nav__links { display: flex; align-items: center; gap: 4px; }
 .nav__links a {
   text-decoration: none; color: var(--muted); font-size: 15px;
