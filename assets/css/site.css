@@ -117,7 +117,7 @@ p { margin: 0; }
   letter-spacing: -.035em;
 }
 /* Shell prompts in front of the headings */
-.section-head h2::before, .about h2::before { content: "$"; margin-right: .3em; font: 500 .75em/1 var(--mono); color: var(--prompt); vertical-align: .08em; }
+.section-head h2::before, .about h2::before { content: ">"; margin-right: .3em; font: 500 .75em/1 var(--mono); color: var(--prompt); vertical-align: .08em; }
 .section-sub { color: var(--muted); margin-top: 16px; font-size: 1.05rem; max-width: 60ch; }
 
 /* ---------- Buttons ---------- */
