@@ -4,46 +4,42 @@
  "url": "https://github.com/MolnarMario/ai-hive",
  "branch": "main",
  "created": "2026-07-05",
- "pushed": "2026-10-30",
- "commits": 777,
+ "pushed": "2026-11-02",
+ "commits": 802,
  "firstCommit": "2026-07-05",
  "lastCommit": {
-  "sha": "1b013a7",
-  "date": "2026-10-30",
-  "subject": "Merge pull request #98 from MolnarMario/integrate/2026-10-30-options-panel"
+  "sha": "2d588f1",
+  "date": "2026-11-02",
+  "subject": "Merge pull request #100 from MolnarMario/integrate/2026-11-02-provider-cleanups"
  },
  "recent": [
   {
-   "sha": "f7dceec",
-   "date": "2026-10-30",
-   "subject": "docs: README count 4353"
+   "sha": "62ab6e0",
+   "date": "2026-11-02",
+   "subject": "docs: README count 4454"
   },
   {
-   "sha": "930bc0d",
-   "date": "2026-10-30",
-   "subject": "fix: /code-review findings on the Options panel lane"
+   "sha": "a7af922",
+   "date": "2026-11-02",
+   "subject": "fix: /code-review findings on the provider cleanups"
   },
   {
-   "sha": "30d2583",
-   "date": "2026-10-30",
-   "subject": "Bump to 0.55.1 for the Options panel lane"
+   "sha": "f7439ff",
+   "date": "2026-11-02",
+   "subject": "refactor: one model-table lookup, one cached JSON reader (0.56.1)"
   },
   {
-   "sha": "b5d37b9",
-   "date": "2026-10-30",
-   "subject": "Options panel two columns: reviewed clean by GPT-6-Luna"
+   "sha": "71500c9",
+   "date": "2026-11-02",
+   "subject": "docs: README count 4450"
   },
   {
-   "sha": "32bf40f",
-   "date": "2026-10-30",
-   "subject": "fix: stack the Options columns in a window too narrow for two"
+   "sha": "fe32a2f",
+   "date": "2026-11-02",
+   "subject": "fix: /code-review findings on the five-lane batch"
   }
  ],
  "weeks": [
-  [
-   "2026-05-04",
-   0
-  ],
   [
    "2026-05-11",
    0
@@ -143,11 +139,15 @@
   [
    "2026-10-26",
    59
+  ],
+  [
+   "2026-11-02",
+   25
   ]
  ],
  "facts": {
-  "pyLines": 86469,
-  "checks": 4353,
+  "pyLines": 88327,
+  "checks": 4454,
   "workers": 6
  },
  "log": {
@@ -157,6 +157,20 @@
    "url": "https://github.com/MolnarMario/ai-hive/blob/main/CHANGELOG.md"
   },
   "entries": [
+   {
+    "version": "0.56.1",
+    "date": "2026-11-02",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Internal: the Claude model picker's labels and the per-model effort\nlookup read the model table through one function, and the Antigravity\nsettings use the same cached reader as Claude's. No change to the app.</li>\n</ul>"
+   },
+   {
+    "version": "0.56.0",
+    "date": "2026-11-02",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Options &gt; Automation &gt; Keep the PC awake (off by default) stops Windows\nfrom going to sleep on its idle timer while AI Hive is open, so agents\nkeep working overnight. The screen still turns off and locks.</li>\n<li>A sleeping agent's card shows Claude's last recap under the\nconversation's summary, when no work came after it.</li>\n<li>Ship finished lanes works on an integrator that is asleep: AI Hive\nresumes its conversation and types the request once it is ready. A\nscheduled message that comes due on a sleeping agent wakes it too,\ninstead of being missed. Lane agents stay asleep through a ship.</li>\n<li>A new Claude card names the model and permission mode Claude really\nstarts on, such as \"Opus 5.5\" and auto, instead of \"Opus\" and manual.\nIn New Agent, the effort Default follows the model you pick, the mode\nDefault names the mode Claude starts in, and a new Manual entry asks\nbefore each action. An agent set to ask before each action reopens\nthat way instead of in auto mode.</li>\n<li>Clicking in Claude's input box after a collapsed paste such as\n\"[Pasted text #1 +4 lines]\" puts the caret where you clicked, and\ndeleting a selection across one no longer eats the text before it.</li>\n<li>An empty Claude input box no longer counts as an unsent draft, so idle\nClaude agents fall asleep again.</li>\n</ul>"
+   },
    {
     "version": "0.55.1",
     "date": "2026-10-30",

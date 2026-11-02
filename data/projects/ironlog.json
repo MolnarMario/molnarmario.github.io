@@ -1,7 +1,7 @@
 {
  "id": "ironlog",
  "repo": "testing-out-my-lifting-app",
- "url": "https://github.com/MolnarMario/testing-out-my-lifting-app",
+ "url": "https://github.com/MolnarMario/lifting-app",
  "branch": "main",
  "created": "2026-06-11",
  "pushed": "2026-10-16",
@@ -40,10 +40,6 @@
   }
  ],
  "weeks": [
-  [
-   "2026-05-04",
-   0
-  ],
   [
    "2026-05-11",
    0
@@ -142,6 +138,10 @@
   ],
   [
    "2026-10-26",
+   0
+  ],
+  [
+   "2026-11-02",
    0
   ]
  ],

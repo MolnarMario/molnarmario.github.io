@@ -1,7 +1,7 @@
 {
  "id": "dashboard",
  "repo": "thrive-test-dashboard",
- "url": "https://github.com/MolnarMario/thrive-test-dashboard",
+ "url": "https://github.com/MolnarMario/test-dashboard",
  "branch": "main",
  "created": "2026-07-14",
  "pushed": "2026-09-24",
@@ -40,10 +40,6 @@
   }
  ],
  "weeks": [
-  [
-   "2026-05-04",
-   0
-  ],
   [
    "2026-05-11",
    0
@@ -142,6 +138,10 @@
   ],
   [
    "2026-10-26",
+   0
+  ],
+  [
+   "2026-11-02",
    0
   ]
  ],
