@@ -19,7 +19,13 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Klee+One:wght@600&text=%E3%81%82%E3%81%8B%E3%81%8D%E3%82%B5%E3%81%B2%E3%83%A2&display=swap">
   <script>
-    try { var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+    (function () {
+      var r = document.documentElement, mq = matchMedia('(prefers-color-scheme: dark)');
+      function saved() { try { var t = localStorage.getItem('theme'); return t === 'light' || t === 'dark' ? t : null; } catch (e) { return null; } }
+      r.dataset.theme = saved() || (mq.matches ? 'dark' : 'light');
+      // No saved choice: follow the device setting live. The toggle saves a choice and stops this.
+      mq.addEventListener('change', function () { if (!saved()) r.dataset.theme = mq.matches ? 'dark' : 'light'; });
+    })();
   </script>
   <link rel="stylesheet" href="/assets/css/site.css">
   <link rel="stylesheet" href="/assets/css/pages.css">
