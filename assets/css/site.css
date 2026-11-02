@@ -222,6 +222,13 @@ p { margin: 0; }
 @media (max-width: 640px) { .hero__copy { padding-left: 16px; } .hero__copy::before { display: none; } }
 .hero__lede { margin-top: 20px; color: var(--muted); font-size: clamp(1.02rem, 1.4vw, 1.14rem); max-width: 54ch; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+/* Phones: the buttons sit between the headline and the long paragraph, side by side */
+@media (max-width: 640px) {
+  .hero__copy { display: flex; flex-direction: column; }
+  .hero__actions { order: 1; flex-wrap: nowrap; gap: 10px; margin-top: 22px; }
+  .hero__actions .btn { flex: 1 1 0; min-width: 0; justify-content: center; padding: 0 8px; gap: 6px; font-size: 13px; }
+  .hero__lede { order: 2; margin-top: 24px; }
+}
 
 /* The hive replay. Always dark: it's a terminal app. */
 .hive {
