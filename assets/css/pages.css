@@ -55,7 +55,7 @@
 
 .feat-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 18px; counter-reset: feat; }
 .feat-list li { position: relative; padding-left: 40px; color: var(--muted); font-size: 16px; counter-increment: feat; }
-.feat-list li::before { content: counter(feat, decimal-leading-zero); position: absolute; left: 0; top: .2em; font: 500 12px/1.4 var(--mono); color: var(--accent); }
+.feat-list li::before { content: counter(feat, decimal-leading-zero); position: absolute; left: 0; top: .2em; font: 500 12px/1.4 var(--mono); color: var(--accent-ink); }
 .feat-list b { display: block; margin-bottom: 3px; color: var(--text); font-weight: 600; font-size: 17px; }
 
 .p-main > .p-h:not(:first-child) { margin-top: var(--block); }
@@ -81,7 +81,7 @@
 .commits li { color: var(--muted); overflow-wrap: anywhere; }
 .commits code, .commit-list code { font: 500 12px/1 var(--mono); color: var(--faint); }
 .commits a, .commit-list a { text-decoration: none; }
-.commits a:hover code, .commit-list a:hover code { color: var(--accent); }
+.commits a:hover code, .commit-list a:hover code { color: var(--accent-ink); }
 .commits time { display: block; margin-top: 2px; font: 11.5px/1.3 var(--mono); color: var(--faint); }
 .p-more { margin-top: 16px; font-size: 14px; }
 .p-more a { color: var(--muted); text-underline-offset: 3px; text-decoration-color: var(--line-2); }
@@ -97,11 +97,11 @@
 .change__meta { display: flex; align-items: center; gap: 10px; font: 500 12px/1 var(--mono); color: var(--faint); }
 .change__title { margin: 12px 0 8px; font-size: 1.1rem; font-weight: 600; line-height: 1.35; }
 .change__title a { text-decoration: none; }
-.change__title a:hover { color: var(--accent); }
+.change__title a:hover { color: var(--accent-ink); }
 .change__body { color: var(--muted); font-size: 15px; overflow-wrap: anywhere; }
 .change__body code { font: .88em var(--mono); }
 .change__body a { color: inherit; }
-.entry__v { display: inline-block; padding: 3px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); font: 500 12px/1 var(--mono); vertical-align: .2em; }
+.entry__v { display: inline-block; padding: 3px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent-ink); font: 500 12px/1 var(--mono); vertical-align: .2em; }
 
 /* ---------- Prev / next ---------- */
 .pager { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: calc(2 * var(--section)); margin-bottom: var(--block); }
@@ -127,11 +127,11 @@
 .entry { padding-block: 28px; border-top: 1px solid var(--line); }
 .entry__title { font: 600 clamp(1.6rem, 3vw, 2rem)/1.15 var(--display); letter-spacing: -.03em; }
 .entry__title a { text-decoration: none; }
-.entry__title a:hover { color: var(--accent); }
+.entry__title a:hover { color: var(--accent-ink); }
 .entry__meta { margin-top: 8px; font: 500 12.5px/1.4 var(--mono); color: var(--faint); }
 .entry__meta a { color: var(--muted); }
 .entry__more { margin-top: 8px; }
-.entry__more summary { cursor: pointer; width: fit-content; font: 500 13px/1.4 var(--mono); color: var(--accent); }
+.entry__more summary { cursor: pointer; width: fit-content; font: 500 13px/1.4 var(--mono); color: var(--accent-ink); }
 .entry__more[open] summary { margin-bottom: 4px; }
 
 .prose { margin-top: 14px; color: var(--muted); font-size: 16px; overflow-wrap: anywhere; }
@@ -164,7 +164,7 @@
 .rel-filter button span { font: 500 11.5px/1 var(--mono); color: var(--faint); }
 .rel-filter button:hover { border-color: var(--text); color: var(--text); }
 .rel-filter button[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); color: var(--text); }
-.rel-filter button[aria-pressed="true"] span { color: var(--accent); }
+.rel-filter button[aria-pressed="true"] span { color: var(--accent-ink); }
 .rel-about { margin-top: 16px; max-width: 70ch; color: var(--muted); font-size: 15px; }
 .rel-about a { color: var(--text); text-underline-offset: 3px; text-decoration-color: var(--line-2); }
 .rel-about a:hover { text-decoration-color: var(--accent); }
