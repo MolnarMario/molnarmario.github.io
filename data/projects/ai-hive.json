@@ -4,39 +4,39 @@
  "url": "https://github.com/MolnarMario/ai-hive",
  "branch": "main",
  "created": "2026-07-05",
- "pushed": "2026-10-29",
- "commits": 767,
+ "pushed": "2026-10-30",
+ "commits": 777,
  "firstCommit": "2026-07-05",
  "lastCommit": {
-  "sha": "cffdb39",
-  "date": "2026-10-29",
-  "subject": "Merge pull request #97 from MolnarMario/feat/new-workspace-lanes"
+  "sha": "1b013a7",
+  "date": "2026-10-30",
+  "subject": "Merge pull request #98 from MolnarMario/integrate/2026-10-30-options-panel"
  },
  "recent": [
   {
-   "sha": "5bed97c",
-   "date": "2026-10-29",
-   "subject": "docs: README count 4332"
+   "sha": "f7dceec",
+   "date": "2026-10-30",
+   "subject": "docs: README count 4353"
   },
   {
-   "sha": "69263ef",
-   "date": "2026-10-29",
-   "subject": "fix: /code-review findings on the New Workspace Lanes box"
+   "sha": "930bc0d",
+   "date": "2026-10-30",
+   "subject": "fix: /code-review findings on the Options panel lane"
   },
   {
-   "sha": "424d573",
-   "date": "2026-10-29",
-   "subject": "feat: Lanes box in the New Workspace dialog (0.55.0)"
+   "sha": "30d2583",
+   "date": "2026-10-30",
+   "subject": "Bump to 0.55.1 for the Options panel lane"
   },
   {
-   "sha": "07491e3",
-   "date": "2026-10-29",
-   "subject": "docs: README count 4312"
+   "sha": "b5d37b9",
+   "date": "2026-10-30",
+   "subject": "Options panel two columns: reviewed clean by GPT-6-Luna"
   },
   {
-   "sha": "b37a218",
-   "date": "2026-10-29",
-   "subject": "fix: Luna review, a shell learned before the first submit is no longer trusted"
+   "sha": "32bf40f",
+   "date": "2026-10-30",
+   "subject": "fix: stack the Options columns in a window too narrow for two"
   }
  ],
  "weeks": [
@@ -142,12 +142,12 @@
   ],
   [
    "2026-10-26",
-   49
+   59
   ]
  ],
  "facts": {
-  "pyLines": 86128,
-  "checks": 4332,
+  "pyLines": 86469,
+  "checks": 4353,
   "workers": 6
  },
  "log": {
@@ -157,6 +157,13 @@
    "url": "https://github.com/MolnarMario/ai-hive/blob/main/CHANGELOG.md"
   },
   "entries": [
+   {
+    "version": "0.55.1",
+    "date": "2026-10-30",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>The Options panel lays its settings out in two columns, so the whole\npanel fits on a 1080p laptop screen. A window too short for it scrolls\nthe panel, and one too narrow for two columns stacks them.</li>\n<li>The Options panel's labels and buttons use the same 13px text as the\nrest of the window instead of a smaller, blurrier size.</li>\n<li>The detected Claude Code install method moved from a caption in the\nOptions panel to the tooltip of its Manage button.</li>\n</ul>"
+   },
    {
     "version": "0.55.0",
     "date": "2026-10-29",
