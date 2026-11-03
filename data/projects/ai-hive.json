@@ -4,39 +4,39 @@
  "url": "https://github.com/MolnarMario/ai-hive",
  "branch": "main",
  "created": "2026-07-05",
- "pushed": "2026-11-02",
- "commits": 802,
+ "pushed": "2026-11-03",
+ "commits": 848,
  "firstCommit": "2026-07-05",
  "lastCommit": {
-  "sha": "2d588f1",
-  "date": "2026-11-02",
-  "subject": "Merge pull request #100 from MolnarMario/integrate/2026-11-02-provider-cleanups"
+  "sha": "6677937",
+  "date": "2026-11-03",
+  "subject": "Merge pull request #105 from MolnarMario/integrate/2026-11-03-ship-clears-input"
  },
  "recent": [
   {
-   "sha": "62ab6e0",
-   "date": "2026-11-02",
-   "subject": "docs: README count 4454"
+   "sha": "37b27f8",
+   "date": "2026-11-03",
+   "subject": "docs: README count 4607"
   },
   {
-   "sha": "a7af922",
-   "date": "2026-11-02",
-   "subject": "fix: /code-review findings on the provider cleanups"
+   "sha": "62ab74f",
+   "date": "2026-11-03",
+   "subject": "fix: /code-review findings on Ship's clearing of the integrator's box"
   },
   {
-   "sha": "f7439ff",
-   "date": "2026-11-02",
-   "subject": "refactor: one model-table lookup, one cached JSON reader (0.56.1)"
+   "sha": "d331eb3",
+   "date": "2026-11-03",
+   "subject": "release: 0.56.6, Ship finished lanes clears the integrator's input box first"
   },
   {
-   "sha": "71500c9",
-   "date": "2026-11-02",
-   "subject": "docs: README count 4450"
+   "sha": "d3d8fc7",
+   "date": "2026-11-03",
+   "subject": "Ship finished lanes clears the integrator's input box first"
   },
   {
-   "sha": "fe32a2f",
-   "date": "2026-11-02",
-   "subject": "fix: /code-review findings on the five-lane batch"
+   "sha": "272ada6",
+   "date": "2026-11-03",
+   "subject": "fix: a key of the user's ends Ship's clear instead of being erased"
   }
  ],
  "weeks": [
@@ -142,12 +142,12 @@
   ],
   [
    "2026-11-02",
-   25
+   71
   ]
  ],
  "facts": {
-  "pyLines": 88327,
-  "checks": 4454,
+  "pyLines": 91062,
+  "checks": 4607,
   "workers": 6
  },
  "log": {
@@ -157,6 +157,41 @@
    "url": "https://github.com/MolnarMario/ai-hive/blob/main/CHANGELOG.md"
   },
   "entries": [
+   {
+    "version": "0.56.6",
+    "date": "2026-11-03",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Ship finished lanes clears whatever unsent text sits in the integrator's\ninput box before it types the ship request. Before, the request was\nadded after the leftover text and the two went to Claude as one message.\nThe confirm dialog says when there is text it will replace, so Cancel\ncan still keep it, and Ctrl+Z in the card brings it back afterwards.\nA draft taller than about a third of the card comes back only in part.</li>\n<li>If you type into the integrator while AI Hive clears its box, a\nscheduled message comes due, the integrator restarts, or the box can't\nbe cleared, nothing is sent and AI Hive tells you why.</li>\n</ul>"
+   },
+   {
+    "version": "0.56.5",
+    "date": "2026-11-03",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>A Claude reply no longer shows up two or three times over in a card.\nAI Hive's repaint used to shrink the card by one column, and Claude's\nredraw at the narrower width pushed a copy of the top row into the\nscrollback each time. The repaint now shrinks it by a row instead.</li>\n<li>Closing Claude's '/' or '@' menu no longer leaves about 15 repeated rows\nabove the prompt.</li>\n<li>If doubled rows still reach a card, AI Hive writes a RENDER-DUP line to\nsession.log and saves the raw terminal output under render_dumps, so\nthe next report comes with something to replay.</li>\n</ul>"
+   },
+   {
+    "version": "0.56.4",
+    "date": "2026-11-03",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Ctrl+Z and Ctrl+Y in a card's input box restore the earlier text even\nwhile Claude's '@' file list is open. Before, the old prompt stayed and\nthe restored text was added after it.</li>\n<li>Undoing back to an empty prompt leaves it empty. It used to type in\nClaude's grey \"Try ...\" hint as if you had written it, and Schedule\n(Ctrl+Shift+Enter) on an empty prompt filled in that hint too.</li>\n<li>Double-clicking the first word you typed selects just that word, not\nthe prompt arrow in front of it.</li>\n</ul>"
+   },
+   {
+    "version": "0.56.3",
+    "date": "2026-11-02",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Characters typed with AltGr, like '@' or '{' on a Hungarian or German\nkeyboard, reach Claude as those characters. They used to arrive as an\nAlt key combination, so the '@' never showed up in the prompt.</li>\n<li>Pasting with Ctrl+V or the right-click menu replaces text you selected\nin the input box, the same way typing over it does.</li>\n<li>After Ctrl+A, typing, pasting or Backspace empties the whole prompt,\nevery line of it, even while Claude's '@' file list is open. Typing\nused to leave the old prompt in place and drop the key.</li>\n</ul>"
+   },
+   {
+    "version": "0.56.2",
+    "date": "2026-11-02",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Free up RAM puts an idle agent to sleep on time again. Switching to a\ncard, a workspace or another app used to count as activity and restart\nits idle clock, so an agent you only looked at never slept. Now only a\nkey you type, a reply it gives or a start counts, and clicking away from\na sleeping card no longer wakes it.</li>\n<li>Typing over text you selected in a card's input box replaces it, the\nway Backspace already deleted it. Before, the character went in at the\ncaret and the selection stayed.</li>\n</ul>"
+   },
    {
     "version": "0.56.1",
     "date": "2026-11-02",
