@@ -116,7 +116,7 @@ const nav = (active, log = '/changelog/') => `
       <nav class="nav__links" aria-label="Sections">
         <a href="/#work"${active === 'work' ? ' class="is-active"' : ''}>Work</a>
         <a href="/#process">Process</a>
-        <a href="/#about">About</a>
+        <a href="/#about">About me</a>
         <a href="${log}"${active === 'changelog' ? ' class="is-active" aria-current="page"' : ''}>Changelog</a>
         <a href="/#contact" class="nav__cta">Get in touch</a>
       </nav>
