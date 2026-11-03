@@ -318,6 +318,9 @@ p { margin: 0; }
 
 /* ---------- Work ---------- */
 .work { padding-top: var(--section); }
+/* The heading block is its own strip: a hairline under it and room before the first project */
+.work .section-head { max-width: none; padding-bottom: clamp(20px, 2.5vw, 32px); margin-bottom: clamp(32px, 4vw, 56px); border-bottom: 1px solid var(--line); }
+.work .section-sub { max-width: 64ch; }
 
 .feature {
   display: grid; gap: clamp(28px, 5vw, 64px); align-items: center;
