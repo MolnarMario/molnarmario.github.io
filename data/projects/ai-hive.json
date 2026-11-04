@@ -5,38 +5,38 @@
  "branch": "main",
  "created": "2026-07-05",
  "pushed": "2026-11-03",
- "commits": 848,
+ "commits": 868,
  "firstCommit": "2026-07-05",
  "lastCommit": {
-  "sha": "6677937",
+  "sha": "b9afb13",
   "date": "2026-11-03",
-  "subject": "Merge pull request #105 from MolnarMario/integrate/2026-11-03-ship-clears-input"
+  "subject": "Merge pull request #107 from MolnarMario/integrate/2026-11-03-asleep-badge"
  },
  "recent": [
   {
-   "sha": "37b27f8",
+   "sha": "4e7b16a",
    "date": "2026-11-03",
-   "subject": "docs: README count 4607"
+   "subject": "docs: README count 4641"
   },
   {
-   "sha": "62ab74f",
+   "sha": "850ce5a",
    "date": "2026-11-03",
-   "subject": "fix: /code-review findings on Ship's clearing of the integrator's box"
+   "subject": "fix: /code-review findings on the grey workspace badge"
   },
   {
-   "sha": "d331eb3",
+   "sha": "584a3ee",
    "date": "2026-11-03",
-   "subject": "release: 0.56.6, Ship finished lanes clears the integrator's input box first"
+   "subject": "release: 0.56.8, a sleeping or stopped agent no longer turns its workspace red, grey badge for an all-asleep workspace"
   },
   {
-   "sha": "d3d8fc7",
+   "sha": "54f9d21",
    "date": "2026-11-03",
-   "subject": "Ship finished lanes clears the integrator's input box first"
+   "subject": "chore: grey asleep badge reviewed by GPT-6-Luna, no findings"
   },
   {
-   "sha": "272ada6",
+   "sha": "ba6ecfd",
    "date": "2026-11-03",
-   "subject": "fix: a key of the user's ends Ship's clear instead of being erased"
+   "subject": "feat: a workspace whose agents all sleep shows a grey badge"
   }
  ],
  "weeks": [
@@ -142,12 +142,12 @@
   ],
   [
    "2026-11-02",
-   71
+   91
   ]
  ],
  "facts": {
-  "pyLines": 91062,
-  "checks": 4607,
+  "pyLines": 91578,
+  "checks": 4641,
   "workers": 6
  },
  "log": {
@@ -157,6 +157,20 @@
    "url": "https://github.com/MolnarMario/ai-hive/blob/main/CHANGELOG.md"
   },
   "entries": [
+   {
+    "version": "0.56.8",
+    "date": "2026-11-03",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>An agent asleep to free memory, or one you stopped, no longer turns its\nworkspace's count badge red. Stopping it ended with exit code 1 and AI\nHive read that as an error. The card now says \"[stopped]\". Red is back\nto meaning an agent crashed or quit on its own with an error.</li>\n<li>A workspace where no agent is running shows a grey count badge instead\nof green, whether its agents are asleep, stopped or not started yet.\nGreen now always means at least one agent is running. The row and rail\ntooltips count the sleeping agents.</li>\n</ul>"
+   },
+   {
+    "version": "0.56.7",
+    "date": "2026-11-03",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>A lane whose agent flagged its work with an empty \"Task done\" commit no\nlonger loses its check mark, and drops out of Ship finished lanes, once\nanother lane's work ships. It stays flagged until its own work is in\nmain.</li>\n<li>A card no longer shows a \"?\" when nothing asked you anything. Claude's\nprompt suggestion runs in the background and its question to itself\nlooked like a sub-agent's. AI Hive now lights the \"?\" for a sub-agent\nonly once its question shows up in that sub-agent's transcript.</li>\n<li>Running AI Hive's tests no longer breaks the agents of the AI Hive you\nhave open. The tests used to overwrite and then delete its MCP config,\nand each agent's next /clear failed with \"MCP config file not found\".</li>\n</ul>"
+   },
    {
     "version": "0.56.6",
     "date": "2026-11-03",
