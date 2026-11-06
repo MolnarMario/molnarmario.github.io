@@ -4,39 +4,39 @@
  "url": "https://github.com/MolnarMario/ai-hive",
  "branch": "main",
  "created": "2026-07-05",
- "pushed": "2026-11-03",
- "commits": 868,
+ "pushed": "2026-11-06",
+ "commits": 879,
  "firstCommit": "2026-07-05",
  "lastCommit": {
-  "sha": "b9afb13",
-  "date": "2026-11-03",
-  "subject": "Merge pull request #107 from MolnarMario/integrate/2026-11-03-asleep-badge"
+  "sha": "2039e5b",
+  "date": "2026-11-06",
+  "subject": "Merge pull request #109 from MolnarMario/integrate/2026-11-06-sleep-reliable"
  },
  "recent": [
   {
-   "sha": "4e7b16a",
-   "date": "2026-11-03",
-   "subject": "docs: README count 4641"
+   "sha": "1ea06ea",
+   "date": "2026-11-06",
+   "subject": "docs: README count 4733"
   },
   {
-   "sha": "850ce5a",
-   "date": "2026-11-03",
-   "subject": "fix: /code-review findings on the grey workspace badge"
+   "sha": "db249bd",
+   "date": "2026-11-06",
+   "subject": "test: fix a racing check, and keep a process-wide patch to its own files"
   },
   {
-   "sha": "584a3ee",
-   "date": "2026-11-03",
-   "subject": "release: 0.56.8, a sleeping or stopped agent no longer turns its workspace red, grey badge for an all-asleep workspace"
+   "sha": "7eae5e3",
+   "date": "2026-11-06",
+   "subject": "fix: Luna finding, a failed ScheduleWakeup no longer drops the live wakeup"
   },
   {
-   "sha": "54f9d21",
-   "date": "2026-11-03",
-   "subject": "chore: grey asleep badge reviewed by GPT-6-Luna, no findings"
+   "sha": "a51a7dd",
+   "date": "2026-11-06",
+   "subject": "docs: README count 4728"
   },
   {
-   "sha": "ba6ecfd",
-   "date": "2026-11-03",
-   "subject": "feat: a workspace whose agents all sleep shows a grey badge"
+   "sha": "6fa27b8",
+   "date": "2026-11-06",
+   "subject": "fix: /code-review findings on the sleep holds"
   }
  ],
  "weeks": [
@@ -142,12 +142,12 @@
   ],
   [
    "2026-11-02",
-   91
+   102
   ]
  ],
  "facts": {
-  "pyLines": 91578,
-  "checks": 4641,
+  "pyLines": 92609,
+  "checks": 4733,
   "workers": 6
  },
  "log": {
@@ -157,6 +157,20 @@
    "url": "https://github.com/MolnarMario/ai-hive/blob/main/CHANGELOG.md"
   },
   "entries": [
+   {
+    "version": "0.56.10",
+    "date": "2026-11-06",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Free up RAM no longer ends a background agent. These run inside Claude\nwith no process of their own, so nothing showed they were working. AI\nHive now reads Claude's own record of them, and one waiting out a plan\nlimit stays safe too.</li>\n<li>Free up RAM no longer cancels a Claude cron job or a <code>/loop</code> wakeup.\nClaude keeps those in memory only, so a sleep lost them for good. The\nagent now stays awake until they fire or expire.</li>\n<li>An agent no longer stays awake for good, or shows the gear, because an\nMCP server came up late or got replaced. The gear's kill menu no longer\noffers that server either. A process started through a shell still counts\nas a command, since AI Hive can't tell it from one.</li>\n<li>Whatever keeps an agent past its idle hours awake now leaves one\n<code>SLEEP-HOLD</code> line in session.log saying why.</li>\n</ul>"
+   },
+   {
+    "version": "0.56.9",
+    "date": "2026-11-06",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Free up RAM no longer ends a command an agent is waiting on. For a few\nseconds after an agent printed anything, like the recap Claude shows\nwhen you come back to it, a running background shell didn't count, and\na sleep landing in that gap stopped the shell with the agent. AI Hive\nnow looks at the agent's actual processes right before a sleep, and\nwaits two minutes after a command ends so the agent can act on it.</li>\n</ul>"
+   },
    {
     "version": "0.56.8",
     "date": "2026-11-03",
