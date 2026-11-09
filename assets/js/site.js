@@ -96,6 +96,14 @@
   // The dashboard card plays its walkthrough in place of the screenshot
   if (window.AtpDemo && !reduceMotion) AtpDemo($('[data-atp]'));
 
+  /* ---------- Back to top ---------- */
+  // #top is the sticky nav, so the browser only scrolls it into view where it already sits.
+  $$('a[href="#top"]').forEach(a => a.addEventListener('click', e => {
+    e.preventDefault();
+    scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+    history.replaceState(null, '', location.pathname + location.search);
+  }));
+
   /* ---------- Copy email ---------- */
   $$('.copy').forEach(btn => btn.addEventListener('click', async () => {
     const label = $('.copy__label', btn);

@@ -339,6 +339,8 @@ p { margin: 0; }
   box-shadow: var(--shadow);
 }
 .feature__body h3 { font: 600 var(--fs-h3)/1.05 var(--display); letter-spacing: -.035em; margin: 12px 0 14px; }
+.feature__link { color: inherit; text-decoration: none; }
+.feature__link:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: .12em; }
 .feature__body > p:not(.tag) { color: var(--muted); font-size: 1.05rem; max-width: 48ch; }
 .facts { list-style: none; padding: 0; margin: 20px 0 24px; display: flex; flex-wrap: wrap; gap: 8px; }
 .facts li { font: 12px/1.4 var(--mono); color: var(--muted); padding: 7px 12px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg-2); }
