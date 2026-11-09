@@ -13,6 +13,13 @@
     try { localStorage.setItem('theme', next); } catch (e) { /* storage blocked: theme just won't persist */ }
   });
 
+  /* Back to top: #top is the sticky nav, so the browser would barely move */
+  document.querySelectorAll('a[href="#top"]').forEach(a => a.addEventListener('click', e => {
+    e.preventDefault();
+    scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+    history.replaceState(null, '', location.pathname + location.search);
+  }));
+
   const nav = $('.nav');
   if (nav) {
     const onScroll = () => nav.classList.toggle('is-stuck', scrollY > 8);
