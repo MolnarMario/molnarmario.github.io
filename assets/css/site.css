@@ -291,10 +291,18 @@ p { margin: 0; }
 @keyframes blink { 50% { opacity: 0; } }
 .hive__cap { padding: 10px 14px; border-top: 1px solid var(--h-line); font-size: 12.5px; color: var(--h-dim); background: #110f0c; }
 
+/* "Animated preview" pill: only where the mock-up is stacked in a card and could be mistaken for the project itself */
+.hive__tag { display: none; font: 500 10.5px/1 var(--mono); color: var(--h-gold); padding: 4px 7px; border-radius: 5px; background: rgba(227, 180, 88, .1); white-space: nowrap; }
+@media (max-width: 899px) {
+  .hive__tag { display: inline-block; margin-left: auto; }
+  .hive__usage { margin-left: 12px; }
+}
+
 @media (max-width: 640px) {
-  .hive__body { grid-template-columns: 1fr; height: 330px; }
+  .hive__body { grid-template-columns: 1fr; height: 400px; }
   .hive__side { display: none; }
   .hive__grid { grid-template-columns: minmax(0, 1fr); }
+  .agent__out { font-size: 12px; }
   .hive__grid .agent:nth-child(2), .hive__grid .agent:nth-child(4) { display: none; }
   .hive__usage { display: none; }
 }
@@ -360,7 +368,22 @@ p { margin: 0; }
   .feature__body > p:not(.tag) { font-size: 1rem; }
   .facts { margin: 16px 0 20px; }
   .facts li { background: var(--bg); }
+
+  /* Name first, then the picture, then the write-up: tag, title, picture, description, facts, buttons.
+     Without this the AI Hive mock-up (which has its own "AI Hive" title bar) reads as the heading,
+     and every card follows the same order so the list is easy to scan. */
+  .feature .feature__body { display: contents; }
+  .feature .feature__body > * { margin-inline: 20px; order: 1; }
+  .feature .feature__body > .tag { order: -1; margin-top: 22px; margin-bottom: 0; }
+  .feature .feature__body > h3 { order: -1; margin-top: 8px; margin-bottom: 16px; }
+  .feature > .hive, .feature > .feature__media { order: 0; border-top: 1px solid var(--line); }
+  .feature .feature__body > p:not(.tag) { margin-top: 20px; margin-bottom: 0; }
+  .feature .feature__actions { margin-bottom: 24px; }
 }
+
+/* "Why it exists" label above each project description */
+.why { display: block; margin-bottom: 7px; font: 500 12.5px/1 var(--mono); color: var(--muted); }
+.why::before { content: "// "; color: var(--accent-ink); }
 
 .shot img { width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform .7s var(--ease); }
 .shot--top img { object-position: top left; }
@@ -712,6 +735,13 @@ p { margin: 0; }
 .card__text { color: var(--muted); font-size: 15px; line-height: 1.55; }
 @media (max-width: 899px) {
   .more-title { margin-top: var(--section); padding-top: 20px; }
+  /* Same order as the featured projects: tag, title, picture, description */
+  .card__body { display: contents; }
+  .card__body > * { margin-inline: 20px; order: 1; }
+  .card__body > .tag { order: -1; margin-top: 20px; }
+  .card__body > .card__title { order: -1; margin-top: 8px; margin-bottom: 16px; }
+  .card__media { order: 0; border-top: 1px solid var(--line); }
+  .card__body > .card__text { margin-top: 18px; margin-bottom: 22px; }
 }
 
 /* Art: test matrix */
