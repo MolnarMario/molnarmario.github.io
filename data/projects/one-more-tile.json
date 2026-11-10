@@ -4,15 +4,20 @@
  "url": "https://github.com/MolnarMario/one-more-tile",
  "branch": "master",
  "created": "2026-06-13",
- "pushed": "2026-10-16",
- "commits": 119,
+ "pushed": "2026-11-10",
+ "commits": 120,
  "firstCommit": "2026-06-13",
  "lastCommit": {
-  "sha": "b9b3147",
-  "date": "2026-10-16",
-  "subject": "Merge pull request #24 from MolnarMario/subdomain"
+  "sha": "ca8f68b",
+  "date": "2026-11-10",
+  "subject": "Add new map: Silver Steel ⚔️ (v0.34.0) (#25)"
  },
  "recent": [
+  {
+   "sha": "ca8f68b",
+   "date": "2026-11-10",
+   "subject": "Add new map: Silver Steel ⚔️ (v0.34.0) (#25)"
+  },
   {
    "sha": "c21ce29",
    "date": "2026-10-16",
@@ -32,11 +37,6 @@
    "sha": "94929e8",
    "date": "2026-09-25",
    "subject": "Fix versus seating and results, grid Continue in co-op (v0.33.1)"
-  },
-  {
-   "sha": "44bf49a",
-   "date": "2026-09-24",
-   "subject": "Add MIT license"
   }
  ],
  "weeks": [
@@ -142,11 +142,11 @@
   ],
   [
    "2026-11-09",
-   0
+   1
   ]
  ],
  "facts": {
-  "paintings": 9
+  "paintings": 10
  },
  "log": {
   "source": {
