@@ -5,14 +5,29 @@
  "branch": "master",
  "created": "2026-06-13",
  "pushed": "2026-11-10",
- "commits": 120,
+ "commits": 124,
  "firstCommit": "2026-06-13",
  "lastCommit": {
-  "sha": "ca8f68b",
+  "sha": "e439fbf",
   "date": "2026-11-10",
-  "subject": "Add new map: Silver Steel ⚔️ (v0.34.0) (#25)"
+  "subject": "Merge pull request #26 from MolnarMario/release/0.34.1"
  },
  "recent": [
+  {
+   "sha": "d4d67e4",
+   "date": "2026-11-10",
+   "subject": "Note the map-card fix in the 0.34.1 changelog and release notes"
+  },
+  {
+   "sha": "9648bbd",
+   "date": "2026-11-10",
+   "subject": "Make adding a map touch only that map (v0.34.1)"
+  },
+  {
+   "sha": "7c0e2f5",
+   "date": "2026-11-10",
+   "subject": "Fix white bar above map-card thumbnails"
+  },
   {
    "sha": "ca8f68b",
    "date": "2026-11-10",
@@ -22,21 +37,6 @@
    "sha": "c21ce29",
    "date": "2026-10-16",
    "subject": "Serve the game from tile.thebarbellengineer.com"
-  },
-  {
-   "sha": "2b84dca",
-   "date": "2026-10-16",
-   "subject": "Release notes: fill in what Luna's accuracy check found missing"
-  },
-  {
-   "sha": "ca0d059",
-   "date": "2026-10-16",
-   "subject": "Add player-facing release notes"
-  },
-  {
-   "sha": "94929e8",
-   "date": "2026-09-25",
-   "subject": "Fix versus seating and results, grid Continue in co-op (v0.33.1)"
   }
  ],
  "weeks": [
@@ -142,7 +142,7 @@
   ],
   [
    "2026-11-09",
-   1
+   5
   ]
  ],
  "facts": {
@@ -155,6 +155,13 @@
    "url": "https://github.com/MolnarMario/one-more-tile/blob/master/RELEASE-NOTES.md"
   },
   "entries": [
+   {
+    "version": "0.34.1",
+    "date": "2026-11-10",
+    "dated": "heading",
+    "title": "Canvas grid fix",
+    "html": "<ul>\n<li>Canvas thumbnails no longer slide down and leave an empty bar above the\npicture when a row of the grid is taller than the card.</li>\n</ul>"
+   },
    {
     "version": "0.33.1",
     "date": "2026-09-25",

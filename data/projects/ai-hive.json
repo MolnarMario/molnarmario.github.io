@@ -5,14 +5,29 @@
  "branch": "main",
  "created": "2026-07-05",
  "pushed": "2026-11-10",
- "commits": 903,
+ "commits": 907,
  "firstCommit": "2026-07-05",
  "lastCommit": {
-  "sha": "0290340",
+  "sha": "e0f42d7",
   "date": "2026-11-10",
-  "subject": "Merge pull request #111 from MolnarMario/integrate/2026-11-10-workspace-sync"
+  "subject": "Merge pull request #112 from MolnarMario/integrate/2026-11-11-sync-results-dialog"
  },
  "recent": [
+  {
+   "sha": "9972b0c",
+   "date": "2026-11-10",
+   "subject": "docs: README count 4839"
+  },
+  {
+   "sha": "401fb82",
+   "date": "2026-11-10",
+   "subject": "fix: review findings on the sync results window"
+  },
+  {
+   "sha": "e592087",
+   "date": "2026-11-10",
+   "subject": "feat: a readable Sync with GitHub results window"
+  },
   {
    "sha": "b0cd746",
    "date": "2026-11-10",
@@ -22,21 +37,6 @@
    "sha": "0a32d05",
    "date": "2026-11-10",
    "subject": "fix: the sync's fast-forward holds the repository's lane lock"
-  },
-  {
-   "sha": "5df3677",
-   "date": "2026-11-10",
-   "subject": "docs: README count 4825"
-  },
-  {
-   "sha": "a60eb41",
-   "date": "2026-11-10",
-   "subject": "fix: review findings on the workspace sync and the grapheme draw"
-  },
-  {
-   "sha": "da72c87",
-   "date": "2026-11-10",
-   "subject": "chore: version 0.57.0 and changelog"
   }
  ],
  "weeks": [
@@ -142,12 +142,12 @@
   ],
   [
    "2026-11-09",
-   24
+   28
   ]
  ],
  "facts": {
-  "pyLines": 94702,
-  "checks": 4826,
+  "pyLines": 95185,
+  "checks": 4839,
   "workers": 6
  },
  "log": {
@@ -157,6 +157,13 @@
    "url": "https://github.com/MolnarMario/ai-hive/blob/main/CHANGELOG.md"
   },
   "entries": [
+   {
+    "version": "0.57.1",
+    "date": "2026-11-10",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>The Sync with GitHub results window is easier to read. Workspaces that\nneed you come first, in red, then what was updated, what was not synced\nand why, and a single line of the workspaces already up to date. Each\nworkspace has its own row with the reason underneath, branch names stand\nout, and Copy puts the whole report on the clipboard.</li>\n</ul>"
+   },
    {
     "version": "0.57.0",
     "date": "2026-11-10",
