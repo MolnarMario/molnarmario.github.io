@@ -4,39 +4,39 @@
  "url": "https://github.com/MolnarMario/ai-hive",
  "branch": "main",
  "created": "2026-07-05",
- "pushed": "2026-11-10",
- "commits": 907,
+ "pushed": "2026-11-17",
+ "commits": 936,
  "firstCommit": "2026-07-05",
  "lastCommit": {
-  "sha": "e0f42d7",
-  "date": "2026-11-10",
-  "subject": "Merge pull request #112 from MolnarMario/integrate/2026-11-11-sync-results-dialog"
+  "sha": "f5c1814",
+  "date": "2026-11-17",
+  "subject": "Merge pull request #114 from MolnarMario/integrate/2026-11-17-clone-setup-icons"
  },
  "recent": [
   {
-   "sha": "9972b0c",
-   "date": "2026-11-10",
-   "subject": "docs: README count 4839"
+   "sha": "315d4ab",
+   "date": "2026-11-17",
+   "subject": "docs: README count 4931"
   },
   {
-   "sha": "401fb82",
-   "date": "2026-11-10",
-   "subject": "fix: review findings on the sync results window"
+   "sha": "c0b38d4",
+   "date": "2026-11-17",
+   "subject": "fix: code review findings on the shipped lanes, e2e for CLI 2.1.326"
   },
   {
-   "sha": "e592087",
-   "date": "2026-11-10",
-   "subject": "feat: a readable Sync with GitHub results window"
+   "sha": "cb2d9bd",
+   "date": "2026-11-17",
+   "subject": "chore: version 0.59.0 and CHANGELOG"
   },
   {
-   "sha": "b0cd746",
-   "date": "2026-11-10",
-   "subject": "docs: README count 4826"
+   "sha": "b3f51c4",
+   "date": "2026-11-17",
+   "subject": "Sidebar header icons reviewed by GPT-6-Luna: no findings."
   },
   {
-   "sha": "0a32d05",
-   "date": "2026-11-10",
-   "subject": "fix: the sync's fast-forward holds the repository's lane lock"
+   "sha": "1b9ddbc",
+   "date": "2026-11-17",
+   "subject": "feat: stacked folders icon for Add category, bigger sidebar header icons"
   }
  ],
  "weeks": [
@@ -142,12 +142,12 @@
   ],
   [
    "2026-11-16",
-   0
+   29
   ]
  ],
  "facts": {
-  "pyLines": 95185,
-  "checks": 4839,
+  "pyLines": 97455,
+  "checks": 4931,
   "workers": 6
  },
  "log": {
@@ -157,6 +157,20 @@
    "url": "https://github.com/MolnarMario/ai-hive/blob/main/CHANGELOG.md"
   },
   "entries": [
+   {
+    "version": "0.59.0",
+    "date": "2026-11-17",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Ctrl+Shift+T opens a new agent in the active workspace set up exactly\nlike the last one you opened (kind, model, effort, mode, command, extra\narguments and the Own lane tick), with the next free name and a fresh\nconversation, without the dialog. Before your first agent it opens the\ndialog. Ctrl+T still opens the dialog.</li>\n<li>The Add category button in the sidebar header is now a stacked folders\nicon, and the header icons are a little bigger.</li>\n</ul>"
+   },
+   {
+    "version": "0.58.0",
+    "date": "2026-11-16",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>A workspace whose folder is not connected to GitHub shows Connect to\nrepo in its header. Paste the repository's address and AI Hive checks\nthat your git account can reach it, then sets the folder up (running\ngit init first if needed). A private repository you can't read is\nrefused and the folder is left as it was.</li>\n<li>Sync with GitHub now checks only workspaces connected to a repository.\nThe others are listed as Not connected in the results window, each with\na Connect button that connects the folder and then syncs it alone, so a\nnew folder can pick up the repository's default branch in one step.</li>\n<li>The buttons at the top of the workspace list are now matching icons,\nthe sync button a cloud whose arrows turn while it works, and the header\nfits narrow sidebars without clipping the title.</li>\n<li>A lane that merged another lane's finished work no longer shows as done\nitself. Only the lane's own Task done flag turns its chip green, so Ship\nfinished lanes offers only lanes that really are finished.</li>\n<li>The Activity panel's task box shows each agent's conversation title, as\nthe board does, and still takes a typed task for an agent without one.</li>\n</ul>"
+   },
    {
     "version": "0.57.1",
     "date": "2026-11-10",
