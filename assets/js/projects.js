@@ -8,6 +8,9 @@
   // slug: URL of the project page. repo: GitHub repo name. log: where its changelog comes from
   // (a CHANGELOG.md split at that heading level, GitHub releases, or commit history).
   // features: [name, detail], ordered by how much each one matters to someone using the app.
+  // Or chapters: [{ title, story, points: [[name, detail], ...] }, ...] in place of features.
+  // featuresIntro (optional): one line under the "What it does" heading.
+  // start (optional): { intro, steps: [[name, detail], ...] }, a Get started section.
   //
   // Figures that change with the repo are written as {name} or {name|format} in the text.
   // fetch-projects.mjs counts each project's `facts` in its repo once a day:
@@ -32,26 +35,91 @@
       tag: 'Windows desktop app',
       title: 'AI Hive',
       art: '[data-project="aihive"] .hive',
-      lede: 'I built it when one terminal per assistant stopped scaling, somewhere around the fifth project. It lets me keep several workstreams moving at once and see all of them in one place.',
-      features: [
-        ['Many agents, real terminals, one window.', 'Each tile is a Windows pseudo-console (ConPTY) running Claude Code, Gemini, Grok or a plain shell, so every CLI behaves exactly as it does on its own. Grids go from 1×1 to 4×3.'],
-        ['Agents that don\'t trip over each other.', 'Agents in a workspace share an activity board through an MCP server. Before one edits a file, it can see that another agent already claimed it.'],
-        ['Work keeps running when you look away.', 'Each workspace maps to a project folder and keeps executing while hidden. Its sidebar badge stays green while agents are healthy and pulses amber while one is working.'],
-        ['Waits out usage limits for you.', 'It reads plan usage from the CLI into the top bar. When a limit runs out it can wait for the reset and resume the agents on its own.'],
-        ['See what each agent is doing at a glance.', 'Every agent row shows its task, or Claude Code\'s own conversation title read live from the transcript, so you don\'t have to read its terminal.'],
-        ['Per-agent model, effort and mode.', 'Dropdowns map to the real CLI flags. The card header follows whatever you change inside the terminal, and the permission mode survives a restart.'],
-        ['A sidebar you can organize.', 'Drag agents and workspaces to reorder them, and group workspaces into collapsible categories. The layout persists across restarts.']
+      lede: 'Somewhere around the fifth project, I had five terminals open and no idea which agent was waiting on me. AI Hive puts every coding agent in one window, tells you which one needs you, and keeps them from overwriting each other\'s work.',
+      // chapters: the problem first (story), then what the app does about it (points).
+      // Most important first. `text` in backticks renders as code.
+      featuresIntro: 'Six problems I kept running into, and what the app does about each, most important first.',
+      chapters: [
+        {
+          title: 'See every agent at once',
+          story: 'Before AI Hive, most of my day was alt-tab. I cycled through terminal windows just to find the one agent that had stopped to ask me something, while the others sat idle waiting for the same check. Now they all fit on one screen, and the screen tells me where to look.',
+          points: [
+            ['One grid, real terminals.', 'Every card is a real Windows console running Claude Code, Codex, Gemini, Grok or a plain shell, so each tool behaves exactly as it does on its own. Projects sit in the sidebar as workspaces.'],
+            ['A status light for every project.', 'The sidebar badge pulses amber while an agent works, stays green when they\'re idle, turns red on a crash and goes grey when nothing runs. The taskbar icon counts the busy ones.'],
+            ['A "?" and a chime when an agent needs you.', 'You hear it from another window, and the waiting card is marked, so a question never sits unanswered for an hour.'],
+            ['Each card says what it\'s doing.', 'The header shows the conversation title, the model, effort and mode, and how full the context window is. It follows `/model` and `/effort` changes live.']
+          ]
+        },
+        {
+          title: 'Close it, and nothing is lost',
+          story: 'The worst thing a tool like this can do is lose your work, and early on it did, a few times. Each of those sessions became a rule with a test behind it. Today you can close the app or reboot the PC and come back to exactly where you were.',
+          points: [
+            ['Every agent returns to its own conversation.', 'Each card is pinned to its chat and resumes it at launch, and it keeps track through `/clear` and compaction.'],
+            ['Whatever was running starts again.', 'Agents that were mid-task come back with their conversation on screen, not a blank card.'],
+            ['Saves you can\'t break.', 'Every change is saved at once, atomically, with a backup. Only one copy of the app can run, so two can never overwrite the same session.']
+          ]
+        },
+        {
+          title: 'Run agents in parallel without collisions',
+          story: 'More agents only help if they stay out of each other\'s way. Two of them editing the same file is how you lose an afternoon. So each agent can work in its own lane, and the app warns you long before a merge goes wrong.',
+          points: [
+            ['Each agent gets its own lane.', 'A lane is a separate git worktree and branch, so agents can\'t overwrite each other\'s files. Switch it on per workspace.'],
+            ['Collisions show up before they hurt.', 'A chip on each card shows its branch and changes. It turns amber when two lanes touch the same file and red when they would conflict, and the agent is warned too.'],
+            ['One click to ship.', 'Finished lanes turn green. Click Ship finished lanes, and an integrator agent merges them, runs the tests, gets a code review, fixes what it finds and merges one pull request. Nothing ships until you click.'],
+            ['A shared board.', 'Agents post what they\'re working on to a board they can all read, so they split the work instead of doing it twice.']
+          ]
+        },
+        {
+          title: 'It keeps working while you sleep',
+          story: 'Usage limits used to end my evenings. I\'d hit one at 11 p.m., and the work sat there until I typed "continue" the next morning. Now a limit is just a pause.',
+          points: [
+            ['Your budget, always in view.', 'Pills in the top bar show Claude\'s 5-hour and 7-day usage, Codex and Gemini, with the time each one resets. They turn red at 85%.'],
+            ['Auto-continue after a limit.', 'When the limit resets, each stopped agent picks up on its own. It checks your usage first, so it doesn\'t walk straight into the same wall.'],
+            ['Scheduled messages.', 'Queue a prompt to send later, for example right after a reset.'],
+            ['An awake PC and free memory.', 'One switch stops Windows from sleeping while agents work. Idle agents go to sleep instead and hand their memory back, then wake in the same conversation with a click.']
+          ]
+        },
+        {
+          title: 'Get around fast',
+          story: 'Once you run ten agents, finding things becomes the job. These are the parts I use all day without thinking about them.',
+          points: [
+            ['Search and history.', '`Ctrl+F` searches an agent\'s whole conversation. The event log (`Ctrl+Shift+L`) shows what every agent did, and can filter to only what needs you.'],
+            ['Keyboard first.', '`Ctrl+T` opens a new agent, `Ctrl+Tab` moves between them, `Ctrl+Up` maximizes one and `F11` hides everything but the grid.'],
+            ['Layouts that fit.', 'Auto tiling, or any grid from 1×1 to 4×3. Drag cards to reorder them. Changing the layout never restarts an agent.'],
+            ['See the code.', '`Ctrl+click` a path or link in a reply to open it. The file explorer and the Agent/File Map show which agent touched which file.'],
+            ['Every computer in sync.', 'One click brings every workspace up to date with GitHub, so you can switch machines without asking each agent to pull.']
+          ]
+        },
+        {
+          title: 'Make it yours',
+          story: 'You\'ll look at it all day, so it should be comfortable to look at.',
+          points: [
+            ['Four themes.', 'From dark parchment and gold to a green-phosphor CRT, switched live.'],
+            ['Fonts for your eyes.', 'Pick a terminal font or load your own, adjust the letter spacing, and turn on Bionic reading if bold word starts help you keep your place.'],
+            ['Your own sounds.', 'Replace any chime with a WAV or MP3.']
+          ]
+        }
       ],
+      start: {
+        intro: 'AI Hive is a Windows app written in Python. If you already use a coding agent in the terminal, setup takes about five minutes.',
+        steps: [
+          ['Check the basics.', 'Windows 11, Python 3, Git, and at least one agent CLI you\'re signed in to: Claude Code, Codex or Gemini.'],
+          ['Get the code.', '`git clone https://github.com/MolnarMario/ai-hive`'],
+          ['Install it once.', 'In the new folder, run `python -m venv .venv` and then `.venv\\Scripts\\python.exe -m pip install -r requirements.txt`.'],
+          ['Launch it.', 'Double-click `AI Hive.bat`. From then on, the app updates itself from GitHub.'],
+          ['Spend your first ten minutes.', 'Click + in the sidebar to add a workspace for a project folder, or paste a GitHub URL. Press `Ctrl+T`, pick Claude, set Count to 3 and give each agent a task. When you want them on separate branches, switch on Lanes in the workspace header.']
+        ]
+      },
       story: {
-        context: 'I started AI Hive on 5 July 2026, when I was running more coding agents than I could follow in separate terminal windows. Since then it has been built by the agents it runs: they take tasks, coordinate on the shared board and ship through pull requests, and every release gets a numbered changelog entry.',
+        context: 'I started AI Hive on 5 July 2026 as a quick fix for too many terminal windows. It kept growing because I used it every day. Whenever something slowed me down, it became a task, and the agents running inside AI Hive built the fix. They coordinate on the shared board, work in their own lanes and ship through reviewed pull requests, and every release gets a numbered entry in the changelog.',
         decisions: [
           ['Session data is never only in memory.', 'Adding or removing an agent saves at once, saves are atomic (a temp file, then a rename) and a failed load keeps the old file as a backup instead of deleting it. Each rule has a regression test, and the README traces several of them to sessions where agents were lost.'],
           ['One copy at a time, enforced by Windows.', 'A named mutex refuses a second launch, so two copies can never overwrite each other\'s session file.'],
           ['Closing a card kills everything it started.', 'Each card\'s processes run in a Windows Job Object, so a shell\'s grandchildren die with it, even if the app itself crashes.'],
-          ['Agents work in lanes.', 'An agent can get its own git worktree. It flags finished work with a "Task done" commit, and an integrator agent merges a batch through one pull request once a GPT-6-Luna review comes back clean.']
+          ['You decide when work ships.', 'Early versions merged finished lanes as soon as an agent flagged them. Now a lane only marks its work done, and nothing merges until you click Ship. A GPT-6-Luna review has to come back clean first.']
         ],
         testing: 'A smoke suite of {checks} checks drives the real app headlessly, with real child processes, in up to {workers|word} parallel workers. One end-to-end test talks to a live Claude Code agent, closes the app, reopens it and checks that the same conversation comes back on the same card, which is exactly where data used to get lost.',
-        status: 'In daily use. I run my projects from it, this site included.'
+        status: 'In daily use. I run all my projects from it, this site included, and new versions ship several times a week.'
       },
       stack: ['Python', 'PySide6 / Qt', 'Windows ConPTY', 'MCP', 'pytest'],
       links: [['Source on GitHub', GH + 'ai-hive']]
