@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AI Hive | Mario Molnar</title>
-  <meta name="description" content="I built it when one terminal per assistant stopped scaling, somewhere around the fifth project. It lets me keep several workstreams moving at once and see all of them in one place.">
+  <meta name="description" content="Somewhere around the fifth project, I had five terminals open and no idea which agent was waiting on me. AI Hive puts every coding agent in one window, tells you which one needs you, and keeps them from overwriting each other&#39;s work.">
   <meta name="theme-color" content="#f5f5f4">
   <meta property="og:type" content="website">
   <meta property="og:title" content="AI Hive | Mario Molnar">
-  <meta property="og:description" content="I built it when one terminal per assistant stopped scaling, somewhere around the fifth project. It lets me keep several workstreams moving at once and see all of them in one place.">
+  <meta property="og:description" content="Somewhere around the fifth project, I had five terminals open and no idea which agent was waiting on me. AI Hive puts every coding agent in one window, tells you which one needs you, and keeps them from overwriting each other&#39;s work.">
   <meta property="og:url" content="https://thebarbellengineer.com/projects/ai-hive/">
   <meta property="og:image" content="https://thebarbellengineer.com/assets/img/og.png?v=2">
   <link rel="canonical" href="https://thebarbellengineer.com/projects/ai-hive/">
@@ -61,9 +61,10 @@
         <nav aria-label="Breadcrumb"><ol class="crumbs"><li><a href="/#work">Work</a></li><li aria-current="page">AI Hive</li></ol></nav>
         <p class="tag">Windows desktop app</p>
         <h1 class="p-title">AI Hive</h1>
-        <p class="p-lede">I built it when one terminal per assistant stopped scaling, somewhere around the fifth project. It lets me keep several workstreams moving at once and see all of them in one place.</p>
+        <p class="p-lede">Somewhere around the fifth project, I had five terminals open and no idea which agent was waiting on me. AI Hive puts every coding agent in one window, tells you which one needs you, and keeps them from overwriting each other&#39;s work.</p>
         <div class="p-actions">
           <a class="btn btn--primary" href="https://github.com/MolnarMario/ai-hive" target="_blank" rel="noopener">Source on GitHub <span aria-hidden="true">&nearr;</span></a>
+          <a class="btn btn--ghost" href="#start">Get started</a>
           <a class="btn btn--ghost" href="changelog/">Changelog</a>
         </div>
         
@@ -123,29 +124,99 @@
       <div class="p-cols wrap">
         <section class="p-main" aria-labelledby="feat-h">
           <h2 class="p-h" id="feat-h">What it does</h2>
-          <ol class="feat-list">
-            <li><b>Many agents, real terminals, one window.</b> Each tile is a Windows pseudo-console (ConPTY) running Claude Code, Gemini, Grok or a plain shell, so every CLI behaves exactly as it does on its own. Grids go from 1×1 to 4×3.</li>
-            <li><b>Agents that don&#39;t trip over each other.</b> Agents in a workspace share an activity board through an MCP server. Before one edits a file, it can see that another agent already claimed it.</li>
-            <li><b>Work keeps running when you look away.</b> Each workspace maps to a project folder and keeps executing while hidden. Its sidebar badge stays green while agents are healthy and pulses amber while one is working.</li>
-            <li><b>Waits out usage limits for you.</b> It reads plan usage from the CLI into the top bar. When a limit runs out it can wait for the reset and resume the agents on its own.</li>
-            <li><b>See what each agent is doing at a glance.</b> Every agent row shows its task, or Claude Code&#39;s own conversation title read live from the transcript, so you don&#39;t have to read its terminal.</li>
-            <li><b>Per-agent model, effort and mode.</b> Dropdowns map to the real CLI flags. The card header follows whatever you change inside the terminal, and the permission mode survives a restart.</li>
-            <li><b>A sidebar you can organize.</b> Drag agents and workspaces to reorder them, and group workspaces into collapsible categories. The layout persists across restarts.</li>
-          </ol>
+          <p class="feat-intro">Six problems I kept running into, and what the app does about each, most important first.</p>
+          <div class="chapters">
+          <section class="chapter" aria-labelledby="ch-1">
+            <p class="chapter__n">01</p>
+            <h3 class="chapter__h" id="ch-1">See every agent at once</h3>
+            <p class="chapter__story">Before AI Hive, most of my day was alt-tab. I cycled through terminal windows just to find the one agent that had stopped to ask me something, while the others sat idle waiting for the same check. Now they all fit on one screen, and the screen tells me where to look.</p>
+            <ul class="chapter__points">
+              <li><b>One grid, real terminals.</b> Every card is a real Windows console running Claude Code, Codex, Gemini, Grok or a plain shell, so each tool behaves exactly as it does on its own. Projects sit in the sidebar as workspaces.</li>
+              <li><b>A status light for every project.</b> The sidebar badge pulses amber while an agent works, stays green when they&#39;re idle, turns red on a crash and goes grey when nothing runs. The taskbar icon counts the busy ones.</li>
+              <li><b>A &quot;?&quot; and a chime when an agent needs you.</b> You hear it from another window, and the waiting card is marked, so a question never sits unanswered for an hour.</li>
+              <li><b>Each card says what it&#39;s doing.</b> The header shows the conversation title, the model, effort and mode, and how full the context window is. It follows <code>/model</code> and <code>/effort</code> changes live.</li>
+            </ul>
+          </section>
+          <section class="chapter" aria-labelledby="ch-2">
+            <p class="chapter__n">02</p>
+            <h3 class="chapter__h" id="ch-2">Close it, and nothing is lost</h3>
+            <p class="chapter__story">The worst thing a tool like this can do is lose your work, and early on it did, a few times. Each of those sessions became a rule with a test behind it. Today you can close the app or reboot the PC and come back to exactly where you were.</p>
+            <ul class="chapter__points">
+              <li><b>Every agent returns to its own conversation.</b> Each card is pinned to its chat and resumes it at launch, and it keeps track through <code>/clear</code> and compaction.</li>
+              <li><b>Whatever was running starts again.</b> Agents that were mid-task come back with their conversation on screen, not a blank card.</li>
+              <li><b>Saves you can&#39;t break.</b> Every change is saved at once, atomically, with a backup. Only one copy of the app can run, so two can never overwrite the same session.</li>
+            </ul>
+          </section>
+          <section class="chapter" aria-labelledby="ch-3">
+            <p class="chapter__n">03</p>
+            <h3 class="chapter__h" id="ch-3">Run agents in parallel without collisions</h3>
+            <p class="chapter__story">More agents only help if they stay out of each other&#39;s way. Two of them editing the same file is how you lose an afternoon. So each agent can work in its own lane, and the app warns you long before a merge goes wrong.</p>
+            <ul class="chapter__points">
+              <li><b>Each agent gets its own lane.</b> A lane is a separate git worktree and branch, so agents can&#39;t overwrite each other&#39;s files. Switch it on per workspace.</li>
+              <li><b>Collisions show up before they hurt.</b> A chip on each card shows its branch and changes. It turns amber when two lanes touch the same file and red when they would conflict, and the agent is warned too.</li>
+              <li><b>One click to ship.</b> Finished lanes turn green. Click Ship finished lanes, and an integrator agent merges them, runs the tests, gets a code review, fixes what it finds and merges one pull request. Nothing ships until you click.</li>
+              <li><b>A shared board.</b> Agents post what they&#39;re working on to a board they can all read, so they split the work instead of doing it twice.</li>
+            </ul>
+          </section>
+          <section class="chapter" aria-labelledby="ch-4">
+            <p class="chapter__n">04</p>
+            <h3 class="chapter__h" id="ch-4">It keeps working while you sleep</h3>
+            <p class="chapter__story">Usage limits used to end my evenings. I&#39;d hit one at 11 p.m., and the work sat there until I typed &quot;continue&quot; the next morning. Now a limit is just a pause.</p>
+            <ul class="chapter__points">
+              <li><b>Your budget, always in view.</b> Pills in the top bar show Claude&#39;s 5-hour and 7-day usage, Codex and Gemini, with the time each one resets. They turn red at 85%.</li>
+              <li><b>Auto-continue after a limit.</b> When the limit resets, each stopped agent picks up on its own. It checks your usage first, so it doesn&#39;t walk straight into the same wall.</li>
+              <li><b>Scheduled messages.</b> Queue a prompt to send later, for example right after a reset.</li>
+              <li><b>An awake PC and free memory.</b> One switch stops Windows from sleeping while agents work. Idle agents go to sleep instead and hand their memory back, then wake in the same conversation with a click.</li>
+            </ul>
+          </section>
+          <section class="chapter" aria-labelledby="ch-5">
+            <p class="chapter__n">05</p>
+            <h3 class="chapter__h" id="ch-5">Get around fast</h3>
+            <p class="chapter__story">Once you run ten agents, finding things becomes the job. These are the parts I use all day without thinking about them.</p>
+            <ul class="chapter__points">
+              <li><b>Search and history.</b> <code>Ctrl+F</code> searches an agent&#39;s whole conversation. The event log (<code>Ctrl+Shift+L</code>) shows what every agent did, and can filter to only what needs you.</li>
+              <li><b>Keyboard first.</b> <code>Ctrl+T</code> opens a new agent, <code>Ctrl+Tab</code> moves between them, <code>Ctrl+Up</code> maximizes one and <code>F11</code> hides everything but the grid.</li>
+              <li><b>Layouts that fit.</b> Auto tiling, or any grid from 1×1 to 4×3. Drag cards to reorder them. Changing the layout never restarts an agent.</li>
+              <li><b>See the code.</b> <code>Ctrl+click</code> a path or link in a reply to open it. The file explorer and the Agent/File Map show which agent touched which file.</li>
+              <li><b>Every computer in sync.</b> One click brings every workspace up to date with GitHub, so you can switch machines without asking each agent to pull.</li>
+            </ul>
+          </section>
+          <section class="chapter" aria-labelledby="ch-6">
+            <p class="chapter__n">06</p>
+            <h3 class="chapter__h" id="ch-6">Make it yours</h3>
+            <p class="chapter__story">You&#39;ll look at it all day, so it should be comfortable to look at.</p>
+            <ul class="chapter__points">
+              <li><b>Four themes.</b> From dark parchment and gold to a green-phosphor CRT, switched live.</li>
+              <li><b>Fonts for your eyes.</b> Pick a terminal font or load your own, adjust the letter spacing, and turn on Bionic reading if bold word starts help you keep your place.</li>
+              <li><b>Your own sounds.</b> Replace any chime with a WAV or MP3.</li>
+            </ul>
+          </section>
+          </div>
+          <h2 class="p-h" id="start">Get started</h2>
+          <div class="start">
+            <p class="start__intro">AI Hive is a Windows app written in Python. If you already use a coding agent in the terminal, setup takes about five minutes.</p>
+            <ol class="start__steps">
+              <li><b>Check the basics.</b> Windows 11, Python 3, Git, and at least one agent CLI you&#39;re signed in to: Claude Code, Codex or Gemini.</li>
+              <li><b>Get the code.</b> <code>git clone https://github.com/MolnarMario/ai-hive</code></li>
+              <li><b>Install it once.</b> In the new folder, run <code>python -m venv .venv</code> and then <code>.venv\Scripts\python.exe -m pip install -r requirements.txt</code>.</li>
+              <li><b>Launch it.</b> Double-click <code>AI Hive.bat</code>. From then on, the app updates itself from GitHub.</li>
+              <li><b>Spend your first ten minutes.</b> Click + in the sidebar to add a workspace for a project folder, or paste a GitHub URL. Press <code>Ctrl+T</code>, pick Claude, set Count to 3 and give each agent a task. When you want them on separate branches, switch on Lanes in the workspace header.</li>
+            </ol>
+          </div>
           <h2 class="p-h">How it was built</h2>
           <div class="story">
-            <p>I started AI Hive on 5 July 2026, when I was running more coding agents than I could follow in separate terminal windows. Since then it has been built by the agents it runs: they take tasks, coordinate on the shared board and ship through pull requests, and every release gets a numbered changelog entry.</p>
+            <p>I started AI Hive on 5 July 2026 as a quick fix for too many terminal windows. It kept growing because I used it every day. Whenever something slowed me down, it became a task, and the agents running inside AI Hive built the fix. They coordinate on the shared board, work in their own lanes and ship through reviewed pull requests, and every release gets a numbered entry in the changelog.</p>
             <h3 class="story__h">Decisions that mattered</h3>
             <ul class="decisions">
               <li><b>Session data is never only in memory.</b> Adding or removing an agent saves at once, saves are atomic (a temp file, then a rename) and a failed load keeps the old file as a backup instead of deleting it. Each rule has a regression test, and the README traces several of them to sessions where agents were lost.</li>
               <li><b>One copy at a time, enforced by Windows.</b> A named mutex refuses a second launch, so two copies can never overwrite each other&#39;s session file.</li>
               <li><b>Closing a card kills everything it started.</b> Each card&#39;s processes run in a Windows Job Object, so a shell&#39;s grandchildren die with it, even if the app itself crashes.</li>
-              <li><b>Agents work in lanes.</b> An agent can get its own git worktree. It flags finished work with a &quot;Task done&quot; commit, and an integrator agent merges a batch through one pull request once a GPT-6-Luna review comes back clean.</li>
+              <li><b>You decide when work ships.</b> Early versions merged finished lanes as soon as an agent flagged them. Now a lane only marks its work done, and nothing merges until you click Ship. A GPT-6-Luna review has to come back clean first.</li>
             </ul>
             <h3 class="story__h">How it's tested</h3>
             <p>A smoke suite of 4,977 checks drives the real app headlessly, with real child processes, in up to six parallel workers. One end-to-end test talks to a live Claude Code agent, closes the app, reopens it and checks that the same conversation comes back on the same card, which is exactly where data used to get lost.</p>
             <h3 class="story__h">Where it stands</h3>
-            <p>In daily use. I run my projects from it, this site included.</p>
+            <p>In daily use. I run all my projects from it, this site included, and new versions ship several times a week.</p>
           </div>
           <h2 class="p-h">Made with</h2>
           <ul class="stack"><li>Python</li><li>PySide6 / Qt</li><li>Windows ConPTY</li><li>MCP</li><li>pytest</li></ul>

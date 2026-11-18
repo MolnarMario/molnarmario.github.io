@@ -318,6 +318,34 @@ function latest(p, data) {
       </section>`;
 }
 
+// Text with `code` spans, for copy that names commands and shortcuts
+const rich = s => esc(s).replace(/`([^`]+)`/g, '<code>$1</code>');
+const pts = (cls, list) => `<${cls === 'start__steps' ? 'ol' : 'ul'} class="${cls}">
+              ${list.map(([lead, detail]) => `<li><b>${esc(lead)}</b> ${rich(detail)}</li>`).join('\n              ')}
+            </${cls === 'start__steps' ? 'ol' : 'ul'}>`;
+
+// Each chapter: a short story of the problem, then what the app does about it
+function chapters(list) {
+  return `<div class="chapters">
+          ${list.map((c, i) => `<section class="chapter" aria-labelledby="ch-${i + 1}">
+            <p class="chapter__n">${String(i + 1).padStart(2, '0')}</p>
+            <h3 class="chapter__h" id="ch-${i + 1}">${esc(c.title)}</h3>
+            <p class="chapter__story">${rich(c.story)}</p>
+            ${pts('chapter__points', c.points)}
+          </section>`).join('\n          ')}
+          </div>`;
+}
+
+function getStarted(s) {
+  if (!s) return '';
+  return `
+          <h2 class="p-h" id="start">Get started</h2>
+          <div class="start">
+            <p class="start__intro">${rich(s.intro)}</p>
+            ${pts('start__steps', s.steps)}
+          </div>`;
+}
+
 function story(s) {
   if (!s) return '';
   return `
@@ -348,7 +376,13 @@ async function projectPage(id, p, data) {
   const actions = [];
   p.links.forEach(([label, href], i) => actions.push(ext(href, `${esc(label)} ${arrow}`, `btn ${i === 0 ? 'btn--primary' : 'btn--ghost'}`)));
   if (data?.log.entries.length) actions.push(`<a class="btn btn--ghost" href="changelog/">${logName(data)}</a>`);
-  const features = p.features.map(([name, detail]) => `<li><b>${esc(name)}</b> ${esc(detail)}</li>`).join('\n            ');
+  if (p.start) actions.splice(1, 0, `<a class="btn btn--ghost" href="#start">Get started</a>`);
+  const features = (p.featuresIntro ? `<p class="feat-intro">${esc(p.featuresIntro)}</p>\n          ` : '')
+    + (p.chapters ? chapters(p.chapters)
+      : `<ol class="feat-list">
+            ${p.features.map(([name, detail]) => `<li><b>${esc(name)}</b> ${esc(detail)}</li>`).join('\n            ')}
+          </ol>`)
+    + getStarted(p.start);
   const body = `${nav('work', data?.log.entries.length ? `/projects/${p.slug}/changelog/` : undefined)}
   <main>
     <article class="p">
@@ -370,9 +404,7 @@ async function projectPage(id, p, data) {
       <div class="p-cols wrap">
         <section class="p-main" aria-labelledby="feat-h">
           <h2 class="p-h" id="feat-h">What it does</h2>
-          <ol class="feat-list">
-            ${features}
-          </ol>${story(p.story)}
+          ${features}${story(p.story)}
           <h2 class="p-h">Made with</h2>
           <ul class="stack">${p.stack.map(t => `<li>${esc(t)}</li>`).join('')}</ul>
         </section>
