@@ -4,39 +4,39 @@
  "url": "https://github.com/MolnarMario/ai-hive",
  "branch": "main",
  "created": "2026-07-05",
- "pushed": "2026-11-17",
- "commits": 936,
+ "pushed": "2026-11-18",
+ "commits": 967,
  "firstCommit": "2026-07-05",
  "lastCommit": {
-  "sha": "f5c1814",
-  "date": "2026-11-17",
-  "subject": "Merge pull request #114 from MolnarMario/integrate/2026-11-17-clone-setup-icons"
+  "sha": "607d05b",
+  "date": "2026-11-18",
+  "subject": "Merge pull request #118 from MolnarMario/integrate/2026-11-18-codex-unchained"
  },
  "recent": [
   {
-   "sha": "315d4ab",
-   "date": "2026-11-17",
-   "subject": "docs: README count 4931"
+   "sha": "4eef359",
+   "date": "2026-11-18",
+   "subject": "docs: README count 4977"
   },
   {
-   "sha": "c0b38d4",
-   "date": "2026-11-17",
-   "subject": "fix: code review findings on the shipped lanes, e2e for CLI 2.1.326"
+   "sha": "e86106a",
+   "date": "2026-11-18",
+   "subject": "fix: /code-review findings on the unchained review instruction"
   },
   {
-   "sha": "cb2d9bd",
-   "date": "2026-11-17",
-   "subject": "chore: version 0.59.0 and CHANGELOG"
+   "sha": "5594d2c",
+   "date": "2026-11-18",
+   "subject": "release: 0.60.3"
   },
   {
-   "sha": "b3f51c4",
-   "date": "2026-11-17",
-   "subject": "Sidebar header icons reviewed by GPT-6-Luna: no findings."
+   "sha": "1f60ad3",
+   "date": "2026-11-18",
+   "subject": "lanes: unchained Codex review instruction, reviewed"
   },
   {
-   "sha": "1b9ddbc",
-   "date": "2026-11-17",
-   "subject": "feat: stacked folders icon for Add category, bigger sidebar header icons"
+   "sha": "27a0acb",
+   "date": "2026-11-18",
+   "subject": "fix: tell lane agents to run the Codex review unchained"
   }
  ],
  "weeks": [
@@ -142,12 +142,12 @@
   ],
   [
    "2026-11-16",
-   29
+   60
   ]
  ],
  "facts": {
-  "pyLines": 97455,
-  "checks": 4931,
+  "pyLines": 98160,
+  "checks": 4977,
   "workers": 6
  },
  "log": {
@@ -157,6 +157,34 @@
    "url": "https://github.com/MolnarMario/ai-hive/blob/main/CHANGELOG.md"
   },
   "entries": [
+   {
+    "version": "0.60.3",
+    "date": "2026-11-18",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Agents in their own lane are told to run their Codex review as a\ncommand of its own, so Claude Code's auto mode no longer blocks it when\nthey would have chained it after a commit or a test run.</li>\n</ul>"
+   },
+   {
+    "version": "0.60.2",
+    "date": "2026-11-18",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>A new agent whose Claude asks whether you trust its folder (every new\nlane does) shows that question right away instead of hiding it behind\nthe starting loader for about 25 seconds.</li>\n<li>Agents in their own lane can run the Codex review they do before\nflagging their work as done, without Claude Code's auto mode blocking\nit.</li>\n</ul>"
+   },
+   {
+    "version": "0.60.1",
+    "date": "2026-11-17",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>New Workspace's GitHub page can clone into a folder that doesn't exist\nyet: type its full path in Clone into and the button becomes Create\nfolder and workspace. If the clone fails, AI Hive removes the empty\nfolders it made.</li>\n</ul>"
+   },
+   {
+    "version": "0.60.0",
+    "date": "2026-11-17",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>New Workspace can make the project folder for you: type the full path\nof a folder that doesn't exist yet and the button becomes Create folder\nand workspace. AI Hive creates the folder, and any missing folders\nabove it, then opens the workspace there.</li>\n</ul>"
+   },
    {
     "version": "0.59.0",
     "date": "2026-11-17",
