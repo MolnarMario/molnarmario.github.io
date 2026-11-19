@@ -5,38 +5,38 @@
  "branch": "main",
  "created": "2026-07-05",
  "pushed": "2026-11-18",
- "commits": 967,
+ "commits": 984,
  "firstCommit": "2026-07-05",
  "lastCommit": {
-  "sha": "607d05b",
+  "sha": "ab94a94",
   "date": "2026-11-18",
-  "subject": "Merge pull request #118 from MolnarMario/integrate/2026-11-18-codex-unchained"
+  "subject": "Merge pull request #120 from MolnarMario/integrate/2026-11-18-ship-over-suggestion"
  },
  "recent": [
   {
-   "sha": "4eef359",
+   "sha": "a5aa51a",
    "date": "2026-11-18",
-   "subject": "docs: README count 4977"
+   "subject": "docs: README count 4993"
   },
   {
-   "sha": "e86106a",
+   "sha": "91d5217",
    "date": "2026-11-18",
-   "subject": "fix: /code-review findings on the unchained review instruction"
+   "subject": "test: give the busy-lane retry room on a loaded run"
   },
   {
-   "sha": "5594d2c",
+   "sha": "242f988",
    "date": "2026-11-18",
-   "subject": "release: 0.60.3"
+   "subject": "test: wait for the activity panel's reveal instead of a fixed pump"
   },
   {
-   "sha": "1f60ad3",
+   "sha": "d37c540",
    "date": "2026-11-18",
-   "subject": "lanes: unchained Codex review instruction, reviewed"
+   "subject": "fix: /code-review findings, faint rides in the cell"
   },
   {
-   "sha": "27a0acb",
+   "sha": "1fa480b",
    "date": "2026-11-18",
-   "subject": "fix: tell lane agents to run the Codex review unchained"
+   "subject": "release: 0.60.5, Ship works over Claude's prompt suggestion"
   }
  ],
  "weeks": [
@@ -142,12 +142,12 @@
   ],
   [
    "2026-11-16",
-   60
+   77
   ]
  ],
  "facts": {
-  "pyLines": 98160,
-  "checks": 4977,
+  "pyLines": 98367,
+  "checks": 4993,
   "workers": 6
  },
  "log": {
@@ -157,6 +157,20 @@
    "url": "https://github.com/MolnarMario/ai-hive/blob/main/CHANGELOG.md"
   },
   "entries": [
+   {
+    "version": "0.60.5",
+    "date": "2026-11-18",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Ship finished lanes no longer fails with \"could not clear the text\"\nwhen Claude shows its faint guess at your next prompt in the integrator's\nbox. AI Hive treats that guess as an empty box and types the request\nover it.</li>\n</ul>"
+   },
+   {
+    "version": "0.60.4",
+    "date": "2026-11-18",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Agents in their own lane are also told to run their Codex review with\nnothing before or after it, no cd in front and no pipe behind, since\nClaude Code's auto mode blocked those too.</li>\n</ul>"
+   },
    {
     "version": "0.60.3",
     "date": "2026-11-18",
