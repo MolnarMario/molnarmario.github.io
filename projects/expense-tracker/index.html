@@ -81,10 +81,10 @@
             <li><b>Who owes whom, settled.</b> Add each month&#39;s shared costs and it works out the transfers that square everyone up.</li>
             <li><b>Share one tracker live.</b> Two people can edit the same tracker from different devices. A change on a phone shows up on the other laptop in well under a second.</li>
             <li><b>The server can&#39;t read your data.</b> Every record is encrypted in the browser with a 256-bit key, wrapped by a key derived from your password (PBKDF2-SHA256, 600,000 iterations). The server never sees either.</li>
-            <li><b>Hand someone one file.</b> The whole app builds into a single 202 KB HTML file. Save it anywhere and double-click it, no install.</li>
+            <li><b>Hand someone one file.</b> The whole app builds into a single 210 KB HTML file. Save it anywhere and double-click it, no install.</li>
             <li><b>Money that adds up.</b> Amounts are stored as whole cents, never floats. Splitting 10,00 three ways gives 3,34 / 3,33 / 3,33, and &quot;42,50&quot; and &quot;240.924,00&quot; both parse correctly.</li>
             <li><b>Your data, portable.</b> Export any set of months as JSON or CSV.</li>
-            <li><b>Tested hard.</b> 125 unit tests, a two-client protocol smoke test, and a UI test that drives two headless Chrome profiles as two devices.</li>
+            <li><b>Tested hard.</b> 134 unit tests, a two-client protocol smoke test, and a UI test that drives two headless Chrome profiles as two devices.</li>
           </ol>
           <h2 class="p-h">How it was built</h2>
           <div class="story">
@@ -97,7 +97,7 @@
               <li><b>Invite-only sharing.</b> Creating a shared tracker needs an invite code, and each one is capped at 2 MB, so a stranger can&#39;t fill the server.</li>
             </ul>
             <h3 class="story__h">How it's tested</h3>
-            <p>125 unit tests, a protocol smoke test with two clients, and a UI check that drives two headless Chrome profiles as two devices editing the same tracker.</p>
+            <p>134 unit tests, a protocol smoke test with two clients, and a UI check that drives two headless Chrome profiles as two devices editing the same tracker.</p>
             <h3 class="story__h">Where it stands</h3>
             <p>Live at expenses.thebarbellengineer.com.</p>
           </div>
@@ -108,15 +108,17 @@
         <section class="p-side__block" aria-labelledby="act-h">
           <h2 class="p-h" id="act-h">Repository activity</h2>
           <dl class="act">
-            <div><dt>Commits</dt><dd>5</dd></div>
-            <div><dt>Last commit</dt><dd><time datetime="2026-10-16" data-rel>Oct 16, 2026</time></dd></div>
+            <div><dt>Commits</dt><dd>8</dd></div>
+            <div><dt>Last commit</dt><dd><time datetime="2026-11-20" data-rel>Nov 20, 2026</time></dd></div>
             
             <div><dt>First commit</dt><dd>Oct 2026</dd></div>
           </dl>
-          <div class="weeks" role="img" aria-label="5 commits in the last 26 weeks, by week"><i style="--h:0.000" title="Week of May 25, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Jun 1, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Jun 8, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Jun 15, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Jun 22, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Jun 29, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Jul 6, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Jul 13, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Jul 20, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Jul 27, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Aug 3, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Aug 10, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Aug 17, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Aug 24, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Aug 31, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Sep 7, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Sep 14, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Sep 21, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Sep 28, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Oct 5, 2026: 0 commits" class="is-zero"></i><i style="--h:1.000" title="Week of Oct 12, 2026: 5 commits"></i><i style="--h:0.000" title="Week of Oct 19, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Oct 26, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Nov 2, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Nov 9, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Nov 16, 2026: 0 commits" class="is-zero"></i></div>
+          <div class="weeks" role="img" aria-label="8 commits in the last 26 weeks, by week"><i style="--h:0.000" title="Week of May 25, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Jun 1, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Jun 8, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Jun 15, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Jun 22, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Jun 29, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Jul 6, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Jul 13, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Jul 20, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Jul 27, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Aug 3, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Aug 10, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Aug 17, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Aug 24, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Aug 31, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Sep 7, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Sep 14, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Sep 21, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Sep 28, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Oct 5, 2026: 0 commits" class="is-zero"></i><i style="--h:1.000" title="Week of Oct 12, 2026: 5 commits"></i><i style="--h:0.000" title="Week of Oct 19, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Oct 26, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Nov 2, 2026: 0 commits" class="is-zero"></i><i style="--h:0.000" title="Week of Nov 9, 2026: 0 commits" class="is-zero"></i><i style="--h:0.600" title="Week of Nov 16, 2026: 3 commits"></i></div>
           <p class="weeks__cap"><span>26 weeks ago</span><span>This week</span></p>
           <h3 class="p-h p-h--sm">Latest commits</h3>
           <ol class="commits">
+            <li><a href="https://github.com/MolnarMario/common-expense-tracker/commit/734de81" target="_blank" rel="noopener"><code>734de81</code></a> <span>Add handoff notes and a script to reset the admin token</span> <time datetime="2026-11-20">Nov 20, 2026</time></li>
+            <li><a href="https://github.com/MolnarMario/common-expense-tracker/commit/d2e7006" target="_blank" rel="noopener"><code>d2e7006</code></a> <span>Let people ask for an invite code from the Share dialog</span> <time datetime="2026-11-19">Nov 19, 2026</time></li>
             <li><a href="https://github.com/MolnarMario/common-expense-tracker/commit/9a66f74" target="_blank" rel="noopener"><code>9a66f74</code></a> <span>Link the live app from the README</span> <time datetime="2026-10-16">Oct 16, 2026</time></li>
             <li><a href="https://github.com/MolnarMario/common-expense-tracker/commit/2d23956" target="_blank" rel="noopener"><code>2d23956</code></a> <span>Tell forks to change the hostname before deploying</span> <time datetime="2026-10-16">Oct 16, 2026</time></li>
             <li><a href="https://github.com/MolnarMario/common-expense-tracker/commit/152e9b7" target="_blank" rel="noopener"><code>152e9b7</code></a> <span>Common Expense Tracker, first public version</span> <time datetime="2026-10-16">Oct 16, 2026</time></li>
@@ -133,6 +135,12 @@
         </div>
         <ol class="changes">
           <li class="change">
+            <p class="change__meta"><time datetime="2026-11-20">Nov 20, 2026</time></p>
+            <h3 class="change__title"><a href="changelog/#d2026-11-20">Ask for an invite code from the app</a></h3>
+            <div class="change__body"><p>The Share dialog has a "No code? Request one" link. It sends a name and
+a short message, nothing else: no email, no account.</p></div>
+          </li>
+          <li class="change">
             <p class="change__meta"><time datetime="2026-10-16">Oct 16, 2026</time></p>
             <h3 class="change__title"><a href="changelog/#d2026-10-16">Open source, and it can sit inside another page</a></h3>
             <div class="change__body"><p>The source is on GitHub under the MIT license.</p></div>
@@ -142,13 +150,6 @@
             <h3 class="change__title"><a href="changelog/#d2026-09-26">Live at expenses.thebarbellengineer.com</a></h3>
             <div class="change__body"><p>The page and the sharing server run together on one Cloudflare Worker
 on their own domain, so shared trackers work without any setup.</p></div>
-          </li>
-          <li class="change">
-            <p class="change__meta"><time datetime="2026-08-30">Aug 30, 2026</time></p>
-            <h3 class="change__title"><a href="changelog/#d2026-08-30">Share one tracker live, end-to-end encrypted</a></h3>
-            <div class="change__body"><p>Share a tracker with a link and a password. Two people can edit it from
-different devices, and each change reaches the other one over a
-WebSocket in well under a second.</p></div>
           </li>
         </ol>
       </section>

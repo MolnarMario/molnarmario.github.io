@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Common Expense Tracker changelog | Mario Molnar</title>
-  <meta name="description" content="What changed in Common Expense Tracker, 6 entries, newest first.">
+  <meta name="description" content="What changed in Common Expense Tracker, 7 entries, newest first.">
   <meta name="theme-color" content="#f5f5f4">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Common Expense Tracker changelog | Mario Molnar">
-  <meta property="og:description" content="What changed in Common Expense Tracker, 6 entries, newest first.">
+  <meta property="og:description" content="What changed in Common Expense Tracker, 7 entries, newest first.">
   <meta property="og:url" content="https://thebarbellengineer.com/projects/expense-tracker/changelog/">
   <meta property="og:image" content="https://thebarbellengineer.com/assets/img/expense-1600.webp">
   <link rel="canonical" href="https://thebarbellengineer.com/projects/expense-tracker/changelog/">
@@ -61,11 +61,26 @@
       <p class="tag">Web app</p>
       <h1 class="p-title">Common Expense Tracker changelog</h1>
       <p class="p-lede">Every version of Common Expense Tracker, newest first, from <a href="https://github.com/MolnarMario/common-expense-tracker/blob/main/CHANGELOG.md" target="_blank" rel="noopener">CHANGELOG.md</a> in <a href="https://github.com/MolnarMario/common-expense-tracker" target="_blank" rel="noopener">MolnarMario/common-expense-tracker</a>. The site checks for new entries once a day.</p>
-      <p class="p-count">6 entries, since Aug 2026</p>
+      <p class="p-count">7 entries, since Aug 2026</p>
     </header>
     <div class="log wrap">
-      <nav class="log__index" aria-label="Changelog entries"><p class="p-h p-h--sm">Jump to</p><ol><li><a href="#d2026-10-16">Oct 16, 2026</a></li><li><a href="#d2026-09-26">Sep 26, 2026</a></li><li><a href="#d2026-08-30">Aug 30, 2026</a></li><li><a href="#d2026-08-30-">Aug 30, 2026</a></li><li><a href="#d2026-08-30--">Aug 30, 2026</a></li><li><a href="#d2026-08-30---">Aug 30, 2026</a></li></ol></nav>
+      <nav class="log__index" aria-label="Changelog entries"><p class="p-h p-h--sm">Jump to</p><ol><li><a href="#d2026-11-20">Nov 20, 2026</a></li><li><a href="#d2026-10-16">Oct 16, 2026</a></li><li><a href="#d2026-09-26">Sep 26, 2026</a></li><li><a href="#d2026-08-30">Aug 30, 2026</a></li><li><a href="#d2026-08-30-">Aug 30, 2026</a></li><li><a href="#d2026-08-30--">Aug 30, 2026</a></li><li><a href="#d2026-08-30---">Aug 30, 2026</a></li></ol></nav>
       <div class="log__entries">
+        <article class="entry" id="d2026-11-20">
+          <header class="entry__head">
+            <h2 class="entry__title"><a href="#d2026-11-20">Ask for an invite code from the app</a></h2>
+            <p class="entry__meta"><time datetime="2026-11-20">Nov 20, 2026</time></p>
+          </header>
+          <div class="prose"><ul>
+<li>The Share dialog has a "No code? Request one" link. It sends a name and
+a short message, nothing else: no email, no account.</li>
+<li>Approve or decline with <code>node scripts/admin.mjs requests</code>, <code>approve</code>
+and <code>decline</code>. An approved code fills itself in the next time the
+requester opens Share in that browser.</li>
+<li>Three requests a day per address, 200 held at most, all forgotten
+after 30 days. An optional <code>NOTIFY_URL</code> gets a one-line heads-up.</li>
+</ul></div>
+        </article>
         <article class="entry" id="d2026-10-16">
           <header class="entry__head">
             <h2 class="entry__title"><a href="#d2026-10-16">Open source, and it can sit inside another page</a></h2>

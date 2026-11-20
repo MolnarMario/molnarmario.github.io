@@ -4,15 +4,25 @@
  "url": "https://github.com/MolnarMario/common-expense-tracker",
  "branch": "main",
  "created": "2026-10-16",
- "pushed": "2026-10-16",
- "commits": 5,
+ "pushed": "2026-11-20",
+ "commits": 8,
  "firstCommit": "2026-10-16",
  "lastCommit": {
-  "sha": "293d20d",
-  "date": "2026-10-16",
-  "subject": "Merge pull request #2 from MolnarMario/readme-live-link"
+  "sha": "734de81",
+  "date": "2026-11-20",
+  "subject": "Add handoff notes and a script to reset the admin token"
  },
  "recent": [
+  {
+   "sha": "734de81",
+   "date": "2026-11-20",
+   "subject": "Add handoff notes and a script to reset the admin token"
+  },
+  {
+   "sha": "d2e7006",
+   "date": "2026-11-19",
+   "subject": "Let people ask for an invite code from the Share dialog"
+  },
   {
    "sha": "9a66f74",
    "date": "2026-10-16",
@@ -132,12 +142,12 @@
   ],
   [
    "2026-11-16",
-   0
+   3
   ]
  ],
  "facts": {
-  "tests": 125,
-  "htmlSize": 206525
+  "tests": 134,
+  "htmlSize": 215022
  },
  "log": {
   "source": {
@@ -146,6 +156,13 @@
    "url": "https://github.com/MolnarMario/common-expense-tracker/blob/main/CHANGELOG.md"
   },
   "entries": [
+   {
+    "version": null,
+    "date": "2026-11-20",
+    "dated": "heading",
+    "title": "Ask for an invite code from the app",
+    "html": "<ul>\n<li>The Share dialog has a \"No code? Request one\" link. It sends a name and\na short message, nothing else: no email, no account.</li>\n<li>Approve or decline with <code>node scripts/admin.mjs requests</code>, <code>approve</code>\nand <code>decline</code>. An approved code fills itself in the next time the\nrequester opens Share in that browser.</li>\n<li>Three requests a day per address, 200 held at most, all forgotten\nafter 30 days. An optional <code>NOTIFY_URL</code> gets a one-line heads-up.</li>\n</ul>"
+   },
    {
     "version": null,
     "date": "2026-10-16",

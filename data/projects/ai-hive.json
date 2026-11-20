@@ -4,39 +4,39 @@
  "url": "https://github.com/MolnarMario/ai-hive",
  "branch": "main",
  "created": "2026-07-05",
- "pushed": "2026-11-18",
- "commits": 984,
+ "pushed": "2026-11-20",
+ "commits": 994,
  "firstCommit": "2026-07-05",
  "lastCommit": {
-  "sha": "ab94a94",
-  "date": "2026-11-18",
-  "subject": "Merge pull request #120 from MolnarMario/integrate/2026-11-18-ship-over-suggestion"
+  "sha": "d912cb0",
+  "date": "2026-11-20",
+  "subject": "Merge pull request #121 from MolnarMario/integrate/2026-11-20-links-and-winv"
  },
  "recent": [
   {
-   "sha": "a5aa51a",
-   "date": "2026-11-18",
-   "subject": "docs: README count 4993"
+   "sha": "4ffaa68",
+   "date": "2026-11-20",
+   "subject": "docs: README count 5008"
   },
   {
-   "sha": "91d5217",
-   "date": "2026-11-18",
-   "subject": "test: give the busy-lane retry room on a loaded run"
+   "sha": "d026d3c",
+   "date": "2026-11-20",
+   "subject": "fix: /code-review findings on the link and Win+V lanes"
   },
   {
-   "sha": "242f988",
-   "date": "2026-11-18",
-   "subject": "test: wait for the activity panel's reveal instead of a fixed pump"
+   "sha": "2206fff",
+   "date": "2026-11-20",
+   "subject": "release: 0.60.6"
   },
   {
-   "sha": "d37c540",
-   "date": "2026-11-18",
-   "subject": "fix: /code-review findings, faint rides in the cell"
+   "sha": "a81eda5",
+   "date": "2026-11-20",
+   "subject": "Win+V panel position: reviewed clean"
   },
   {
-   "sha": "1fa480b",
-   "date": "2026-11-18",
-   "subject": "release: 0.60.5, Ship works over Claude's prompt suggestion"
+   "sha": "df088ad",
+   "date": "2026-11-20",
+   "subject": "fix: Win+V and Win+. open at the terminal cursor, not the screen corner"
   }
  ],
  "weeks": [
@@ -142,12 +142,12 @@
   ],
   [
    "2026-11-16",
-   77
+   87
   ]
  ],
  "facts": {
-  "pyLines": 98367,
-  "checks": 4993,
+  "pyLines": 98688,
+  "checks": 5008,
   "workers": 6
  },
  "log": {
@@ -157,6 +157,13 @@
    "url": "https://github.com/MolnarMario/ai-hive/blob/main/CHANGELOG.md"
   },
   "entries": [
+   {
+    "version": "0.60.6",
+    "date": "2026-11-20",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Clicking a link that ends a sentence, like \"it's live at\n<a target=\"_blank\" rel=\"noopener\" href=\"https://example.app\">https://example.app</a>.\", no longer opens the address with the period\nstuck on the end.</li>\n<li>Win+V (clipboard history) and Win+. (emoji) now open right under the\ncursor in a terminal card, instead of in the corner of the screen.</li>\n</ul>"
+   },
    {
     "version": "0.60.5",
     "date": "2026-11-18",
