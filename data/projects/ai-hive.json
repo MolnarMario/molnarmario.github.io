@@ -5,14 +5,29 @@
  "branch": "main",
  "created": "2026-07-05",
  "pushed": "2026-11-20",
- "commits": 994,
+ "commits": 999,
  "firstCommit": "2026-07-05",
  "lastCommit": {
-  "sha": "d912cb0",
+  "sha": "8785eb8",
   "date": "2026-11-20",
-  "subject": "Merge pull request #121 from MolnarMario/integrate/2026-11-20-links-and-winv"
+  "subject": "Merge pull request #123 from MolnarMario/docs/2026-11-20-readme-drop-image"
  },
  "recent": [
+  {
+   "sha": "80573cf",
+   "date": "2026-11-20",
+   "subject": "docs: drop the README's second logo and its caption"
+  },
+  {
+   "sha": "675e33e",
+   "date": "2026-11-20",
+   "subject": "docs: README install commands for the Antigravity (Gemini) and Grok CLIs"
+  },
+  {
+   "sha": "c8db059",
+   "date": "2026-11-20",
+   "subject": "docs: rewrite README for new users: features, requirements, install, agent install prompt"
+  },
   {
    "sha": "4ffaa68",
    "date": "2026-11-20",
@@ -22,21 +37,6 @@
    "sha": "d026d3c",
    "date": "2026-11-20",
    "subject": "fix: /code-review findings on the link and Win+V lanes"
-  },
-  {
-   "sha": "2206fff",
-   "date": "2026-11-20",
-   "subject": "release: 0.60.6"
-  },
-  {
-   "sha": "a81eda5",
-   "date": "2026-11-20",
-   "subject": "Win+V panel position: reviewed clean"
-  },
-  {
-   "sha": "df088ad",
-   "date": "2026-11-20",
-   "subject": "fix: Win+V and Win+. open at the terminal cursor, not the screen corner"
   }
  ],
  "weeks": [
@@ -142,7 +142,7 @@
   ],
   [
    "2026-11-16",
-   87
+   92
   ]
  ],
  "facts": {
