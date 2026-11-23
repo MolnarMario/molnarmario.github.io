@@ -29,8 +29,8 @@
       slug: 'ai-hive', repo: 'ai-hive', log: { from: 'changelog', file: 'CHANGELOG.md', level: 2 },
       facts: {
         pyLines: { lines: /\.py$/ },
-        checks: { capture: /(\d[\d,]*) checks drive/, in: 'README.md' },
-        workers: { capture: /up to (\d+) worker processes/, in: 'README.md' }
+        checks: { capture: /(\d[\d,]*)\s+checks\s+drive/, in: 'README.md' },
+        workers: { capture: /up\s+to\s+(\d+|[a-z]+)\s+worker\s+processes/i, in: 'README.md' }
       },
       tag: 'Windows desktop app',
       title: 'AI Hive',
