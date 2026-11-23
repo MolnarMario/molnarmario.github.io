@@ -149,6 +149,13 @@ function fromCommits(p, commits) {
 // its last good value, and the run is marked failed so someone notices.
 const re = (r, global) => new RegExp(r.source, r.flags.replace('g', '') + (global ? 'g' : ''));
 const sum = ns => ns.reduce((a, b) => a + b, 0);
+// A captured "5,008", "6" or "six" (READMEs spell small numbers out) as a number
+const NUMBER_WORDS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten',
+  'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty'];
+const toNumber = s => {
+  const word = NUMBER_WORDS.indexOf(s?.toLowerCase());
+  return word >= 0 ? word : Number(s?.replace(/,/g, ''));
+};
 const lineCount = s => (s.match(/\n/g)?.length ?? 0) + (s && !s.endsWith('\n') ? 1 : 0);
 
 // File contents come from raw.githubusercontent.com, which doesn't use up the API
@@ -192,7 +199,7 @@ async function countFacts(p, sha, previous) {
         const files = pick(f.files);
         v = f.containing ? (await Promise.all(files.map(b => text(b.path)))).filter(s => re(f.containing).test(s)).length : files.length;
       }
-      else if (f.capture) v = Number((await text(f.in)).match(re(f.capture))?.[1]?.replace(/,/g, ''));
+      else if (f.capture) v = toNumber((await text(f.in)).match(re(f.capture))?.[1]);
       else if (f.bytes) v = blobs.find(b => b.path === f.bytes)?.size;
       else throw new Error('unknown rule');
       // Nothing on the site counts zero of something, so 0 means the rule stopped matching
