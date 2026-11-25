@@ -64,7 +64,8 @@
         <p class="p-lede">The powerlifting tracker I use for my own training. No account, and nothing leaves your browser.</p>
         <div class="p-actions">
           <a class="btn btn--primary" href="https://ironlog.thebarbellengineer.com/" target="_blank" rel="noopener">Open the app <span aria-hidden="true">&nearr;</span></a>
-          <a class="btn btn--ghost" href="https://github.com/MolnarMario/testing-out-my-lifting-app" target="_blank" rel="noopener">Source on GitHub <span aria-hidden="true">&nearr;</span></a>
+          <a class="btn btn--ghost" href="#start">Get started</a>
+          <a class="btn btn--ghost" href="https://github.com/MolnarMario/lifting-app" target="_blank" rel="noopener">Source on GitHub <span aria-hidden="true">&nearr;</span></a>
           <a class="btn btn--ghost" href="changelog/">Commit log</a>
         </div>
         
@@ -77,14 +78,70 @@
       <div class="p-cols wrap">
         <section class="p-main" aria-labelledby="feat-h">
           <h2 class="p-h" id="feat-h">What it does</h2>
-          <ol class="feat-list">
-            <li><b>Log a session set by set.</b> RPE or percentage intensity, per-set gear, readiness meters and session timing, from a 47-lift exercise library.</li>
-            <li><b>Know which plates go on the bar.</b> The plate loader draws the barbell and solves the plates per side, with bar and collar options. The plate icon on any logged set sends that weight straight to it.</li>
-            <li><b>Track food against your targets.</b> Calories and macros against daily targets from a 92-food pantry plus your own foods, with water and bodyweight.</li>
-            <li><b>Training and food on one calendar.</b> The month view can overlay each day&#39;s calories, macros and bodyweight on top of the training grid.</li>
-            <li><b>Switch kg and lb freely.</b> Weights are stored in kilograms and converted for display, so changing units never rewrites your history.</li>
-            <li><b>Your old data comes along.</b> On first load it offers to import data from the older single-file version, and it never deletes the original.</li>
-          </ol>
+          <p class="feat-intro">What I need from a training app, in the order I use it.</p>
+          <div class="chapters">
+          <section class="chapter" aria-labelledby="ch-1">
+            <p class="chapter__n">01</p>
+            <h3 class="chapter__h" id="ch-1">Log the session at the rack</h3>
+            <p class="chapter__story">Between heavy sets I have about a minute and chalky hands. Logging has to be quick, and it has to capture how the session felt, not only the numbers.</p>
+            <ul class="chapter__points">
+              <li><b>Set by set.</b> Weight and reps with RPE or a percentage of your max, per-set gear and notes, from a 47-lift exercise library plus your own.</li>
+              <li><b>How you came in.</b> Readiness meters for sleep, motivation, hydration, calories, protein and stimulants.</li>
+              <li><b>Session timing.</b> Start and end times are tracked for you, or you enter the duration by hand.</li>
+            </ul>
+          </section>
+          <section class="chapter" aria-labelledby="ch-2">
+            <p class="chapter__n">02</p>
+            <h3 class="chapter__h" id="ch-2">Know which plates go on the bar</h3>
+            <p class="chapter__story">Working out the plates for an odd weight after a hard set is how you load the bar wrong.</p>
+            <ul class="chapter__points">
+              <li><b>The loader draws the bar.</b> It solves the plates per side, with bar and collar options and kg micro plates.</li>
+              <li><b>One tap from the log.</b> The plate icon on any logged set sends that weight straight to the loader.</li>
+              <li><b>Real plates in either unit.</b> In lb mode the bar is 45 lb and the plates are 45s, 35s and 25s, not converted kilos.</li>
+            </ul>
+          </section>
+          <section class="chapter" aria-labelledby="ch-3">
+            <p class="chapter__n">03</p>
+            <h3 class="chapter__h" id="ch-3">Food on the same calendar</h3>
+            <p class="chapter__story">A bad week of training often starts with a bad week of eating. So food lives in the same app, on the same calendar as the lifting.</p>
+            <ul class="chapter__points">
+              <li><b>Track food against your targets.</b> Calories and macros against daily targets from a 92-food pantry plus your own foods, with water and bodyweight.</li>
+              <li><b>Scan a label.</b> Photograph a package and the app finds the nutrition table and reads it on your phone. A barcode, when there is one, is looked up on Open Food Facts first.</li>
+              <li><b>Training and food on one calendar.</b> The month view can overlay each day&#39;s calories, macros and bodyweight on the training grid.</li>
+            </ul>
+          </section>
+          <section class="chapter" aria-labelledby="ch-4">
+            <p class="chapter__n">04</p>
+            <h3 class="chapter__h" id="ch-4">See the trend</h3>
+            <p class="chapter__story">A log is only worth keeping if it tells you something back.</p>
+            <ul class="chapter__points">
+              <li><b>Progress per lift.</b> Estimated one-rep max and top set over time, and your recent records.</li>
+              <li><b>Volume and consistency.</b> Weekly volume, weekly sets per muscle group, your week streak, and bodyweight against volume.</li>
+              <li><b>Food trends.</b> Average calories, protein and water, macro composition and bodyweight over time.</li>
+            </ul>
+          </section>
+          <section class="chapter" aria-labelledby="ch-5">
+            <p class="chapter__n">05</p>
+            <h3 class="chapter__h" id="ch-5">Your data stays yours</h3>
+            <p class="chapter__story">There is no account and no server, so keeping the data safe is entirely the app&#39;s job.</p>
+            <ul class="chapter__points">
+              <li><b>Switch kg and lb freely.</b> Weights are stored in kilograms and converted for display, so changing units never rewrites your history.</li>
+              <li><b>Your old data comes along.</b> On first load it offers to import data from the older single-file version, and it never deletes the original.</li>
+              <li><b>It tells you when saving fails.</b> If the browser refuses to store data, in private mode or with full storage, a banner says so instead of failing silently.</li>
+            </ul>
+          </section>
+          </div>
+          <h2 class="p-h" id="start">Get started</h2>
+          <div class="start">
+            <p class="start__intro">Ironlog runs in the browser, on a phone or a computer, with no account and nothing to install. Your data stays in that browser.</p>
+            <ol class="start__steps">
+              <li><b>Open the app.</b> Go to <code>ironlog.thebarbellengineer.com</code>. On a phone, add it to your home screen.</li>
+              <li><b>Set your maxes.</b> Enter your squat, bench and deadlift one-rep maxes, so percentage-based sets work out their weights.</li>
+              <li><b>Log a session.</b> Under Workout, Today, pick an exercise and log your sets.</li>
+              <li><b>Load the bar.</b> Tap the plate icon on a set to see it on the bar in Plates.</li>
+              <li><b>Track food.</b> Set daily targets under Food, Goals, log what you eat, and turn on + Food in the workout calendar to see both together.</li>
+            </ol>
+          </div>
           <h2 class="p-h">How it was built</h2>
           <div class="story">
             <p>It began on 11 June 2026 as a single 424 KB HTML file holding a minified React bundle. In August I rebuilt it as a Vite, React and TypeScript project, one tab at a time, with the old build kept as the reference for how everything should behave.</p>
@@ -96,7 +153,7 @@
               <li><b>Say so when saving fails.</b> If the browser refuses to store data, in private mode or with full storage, a banner says so instead of failing silently.</li>
             </ul>
             <h3 class="story__h">How it's tested</h3>
-            <p>Unit tests cover the plate solver and the food maths, and every build runs the TypeScript typecheck first.</p>
+            <p>Unit tests cover the plate solver, the food maths, the statistics behind every chart, reading a nutrition label and the import from the old build. Every build runs the TypeScript typecheck first.</p>
             <h3 class="story__h">Where it stands</h3>
             <p>In use for my own training. The workout, plates and food tabs are all rebuilt.</p>
           </div>

@@ -64,6 +64,7 @@
         <p class="p-lede">I make videos, so I built the tracker I wanted. Each project is a script split into sections.</p>
         <div class="p-actions">
           <a class="btn btn--primary" href="https://video.thebarbellengineer.com/" target="_blank" rel="noopener">Open the app <span aria-hidden="true">&nearr;</span></a>
+          <a class="btn btn--ghost" href="#start">Get started</a>
           <a class="btn btn--ghost" href="https://github.com/MolnarMario/video-production" target="_blank" rel="noopener">Source on GitHub <span aria-hidden="true">&nearr;</span></a>
           <a class="btn btn--ghost" href="changelog/">Commit log</a>
         </div>
@@ -77,13 +78,57 @@
       <div class="p-cols wrap">
         <section class="p-main" aria-labelledby="feat-h">
           <h2 class="p-h" id="feat-h">What it does</h2>
-          <ol class="feat-list">
-            <li><b>Know what&#39;s filmed and what made the edit.</b> Every script section has its own filmed and edited checkboxes, so nothing gets forgotten between shoot and cut.</li>
-            <li><b>Progress at a glance.</b> Progress bars for filming, editing and publishing, per project and overall.</li>
-            <li><b>Track where it went live.</b> Publishing status per platform: YouTube, LinkedIn, Facebook, Instagram and TikTok.</li>
-            <li><b>Write the script in place.</b> Quick-add templates for hooks, intros, main points, B-roll and calls to action, with a rich-text editor per section.</li>
-            <li><b>Safe local storage.</b> Everything saves to the browser with a versioned schema. JSON backup and restore checks the file before touching your data.</li>
-          </ol>
+          <p class="feat-intro">How a video actually gets made, one stage at a time.</p>
+          <div class="chapters">
+          <section class="chapter" aria-labelledby="ch-1">
+            <p class="chapter__n">01</p>
+            <h3 class="chapter__h" id="ch-1">Write the script in sections</h3>
+            <p class="chapter__story">Every video I make has a hook, an intro, a few main points and a call to action, and each part has a life of its own after the script is written.</p>
+            <ul class="chapter__points">
+              <li><b>Quick-add templates.</b> Sections for a hook, an intro, main points, B-roll and a call to action, or your own.</li>
+              <li><b>A rich-text editor per section.</b> Bold, italics and lists, with sections you can rename and reorder as the script changes.</li>
+            </ul>
+          </section>
+          <section class="chapter" aria-labelledby="ch-2">
+            <p class="chapter__n">02</p>
+            <h3 class="chapter__h" id="ch-2">Know what&#39;s filmed and what made the edit</h3>
+            <p class="chapter__story">Sections get filmed on different days and cut in later, and a to-do list loses track of which one is still missing from the edit.</p>
+            <ul class="chapter__points">
+              <li><b>Two checkboxes per section.</b> Filmed, and inserted into the edit, so nothing gets forgotten between the shoot and the cut.</li>
+              <li><b>Progress at a glance.</b> Bars for filming, editing and publishing, per project, and an overall figure that doesn&#39;t let a long script drown out its publishing.</li>
+            </ul>
+          </section>
+          <section class="chapter" aria-labelledby="ch-3">
+            <p class="chapter__n">03</p>
+            <h3 class="chapter__h" id="ch-3">Track where it went live</h3>
+            <p class="chapter__story">A finished video goes out to five platforms, not one, and they rarely all happen on the same day.</p>
+            <ul class="chapter__points">
+              <li><b>Publishing per platform.</b> YouTube, LinkedIn, Facebook, Instagram and TikTok, each marked draft or published.</li>
+              <li><b>Projects that end properly.</b> Mark a project completed, or scrap it. Scrapped projects are archived, not deleted, and can be restored.</li>
+            </ul>
+          </section>
+          <section class="chapter" aria-labelledby="ch-4">
+            <p class="chapter__n">04</p>
+            <h3 class="chapter__h" id="ch-4">Safe in your browser</h3>
+            <p class="chapter__story">There is no account and no server, so everything stays on your device, and the backup has to be trustworthy.</p>
+            <ul class="chapter__points">
+              <li><b>Saved as you type.</b> Everything is stored in the browser with a versioned schema.</li>
+              <li><b>Backups checked before they touch your data.</b> An imported file is validated and repaired, and you see how many projects it holds before choosing to merge or replace.</li>
+              <li><b>Light and dark.</b> Plus a font picker that previews each option.</li>
+            </ul>
+          </section>
+          </div>
+          <h2 class="p-h" id="start">Get started</h2>
+          <div class="start">
+            <p class="start__intro">It runs in the browser with no account and nothing to install. Your projects stay in that browser.</p>
+            <ol class="start__steps">
+              <li><b>Open the app.</b> Go to <code>video.thebarbellengineer.com</code>.</li>
+              <li><b>Start a project.</b> Click New Project and give the video a title.</li>
+              <li><b>Write the script.</b> Add sections with the quick-add templates and write each one.</li>
+              <li><b>Tick as you go.</b> Mark each section filmed and inserted, then each platform as published.</li>
+              <li><b>Back it up.</b> Use Backup / Restore in the header now and then. Clearing site data or switching browsers starts empty until you restore.</li>
+            </ol>
+          </div>
           <h2 class="p-h">How it was built</h2>
           <div class="story">
             <p>It was planned up front: the data model, how progress is worked out across the production stages, how storage and backups behave, and a phased roadmap, all written down in a plan that went in with the first commit on 23 August 2026.</p>

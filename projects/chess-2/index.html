@@ -64,6 +64,7 @@
         <p class="p-lede">Chess with an RPG layer. The king watches and never changes. Everything else can grow.</p>
         <div class="p-actions">
           <a class="btn btn--primary" href="https://chess.thebarbellengineer.com/" target="_blank" rel="noopener">Play it <span aria-hidden="true">&nearr;</span></a>
+          <a class="btn btn--ghost" href="#start">Get started</a>
           <a class="btn btn--ghost" href="https://github.com/MolnarMario/chess2.0" target="_blank" rel="noopener">Source on GitHub <span aria-hidden="true">&nearr;</span></a>
           <a class="btn btn--ghost" href="changelog/">Commit log</a>
         </div>
@@ -77,12 +78,52 @@
       <div class="p-cols wrap">
         <section class="p-main" aria-labelledby="feat-h">
           <h2 class="p-h" id="feat-h">What it does</h2>
-          <ol class="feat-list">
-            <li><b>Pieces evolve.</b> A pawn with 2 points becomes a knight or bishop, those become a rook at 6, a rook becomes a queen at 10, and a queen with 20 turns into an Amazon that also moves like a knight.</li>
-            <li><b>Captures earn points.</b> 1 for a pawn, 3 for a knight or bishop, 5 for a rook, 10 for a queen.</li>
-            <li><b>Play a friend or the computer.</b> Online against a friend, or against an AI at several difficulties, with an optional clock.</li>
-            <li><b>Gambling mode.</b> Any capture can become a 50/50 roll that doubles the points or destroys your piece.</li>
-          </ol>
+          <p class="feat-intro">Three ideas on top of ordinary chess.</p>
+          <div class="chapters">
+          <section class="chapter" aria-labelledby="ch-1">
+            <p class="chapter__n">01</p>
+            <h3 class="chapter__h" id="ch-1">Pieces that grow</h3>
+            <p class="chapter__story">In ordinary chess, a pawn that wins three trades is still a pawn. I borrowed one idea from role-playing games: the pieces doing the work should get stronger. The king watches and never changes.</p>
+            <ul class="chapter__points">
+              <li><b>Captures earn points.</b> 1 for a pawn, 3 for a knight or bishop, 5 for a rook, 10 for a queen, for the piece that made the capture. You can change the values before a game.</li>
+              <li><b>Pieces evolve.</b> A pawn with 2 points becomes a knight or bishop, those become a rook at 6, a rook becomes a queen at 10, and a queen with 20 turns into an Amazon that also moves like a knight.</li>
+              <li><b>Gambling mode.</b> Any capture can become a 50/50 roll that doubles the points or destroys your piece. Turn it on from move 1, or only once a clock runs low.</li>
+            </ul>
+          </section>
+          <section class="chapter" aria-labelledby="ch-2">
+            <p class="chapter__n">02</p>
+            <h3 class="chapter__h" id="ch-2">Play anyone</h3>
+            <p class="chapter__story">I wanted to play friends who weren&#39;t in the room, without an account or a game server of my own.</p>
+            <ul class="chapter__points">
+              <li><b>On one screen.</b> Two players take turns on the same device.</li>
+              <li><b>Against the computer.</b> An AI at Easy, Medium or Hard.</li>
+              <li><b>Online with a room code.</b> One player hosts and shares a code, the other joins. The connection is peer to peer, a dropped game can be resumed, and Rematch starts the next one.</li>
+              <li><b>Fair online play.</b> Each side sends only its move, checks it against its own legal moves and compares a position hash after every move, so neither player can fake the board.</li>
+            </ul>
+          </section>
+          <section class="chapter" aria-labelledby="ch-3">
+            <p class="chapter__n">03</p>
+            <h3 class="chapter__h" id="ch-3">Set it up your way</h3>
+            <p class="chapter__story">Half the fun of a variant is changing the rules, so most of them are settings.</p>
+            <ul class="chapter__points">
+              <li><b>Clocks.</b> From bullet (1+0) to classical (30+20), with increment.</li>
+              <li><b>Any starting position.</b> The standard one, a random Chess960 position, or your own from the board editor.</li>
+              <li><b>Three looks.</b> Classic, Arcade and Swiss.</li>
+              <li><b>Undo, resign and a move log.</b> The log records every evolution and gamble.</li>
+            </ul>
+          </section>
+          </div>
+          <h2 class="p-h" id="start">Get started</h2>
+          <div class="start">
+            <p class="start__intro">Chess 2.0 runs in the browser, on a computer or a phone. There is nothing to install.</p>
+            <ol class="start__steps">
+              <li><b>Open the game.</b> Go to <code>chess.thebarbellengineer.com</code>, or use Play it on this page.</li>
+              <li><b>Pick a mode.</b> 2 Players, vs AI, or Play Online.</li>
+              <li><b>Set it up.</b> Optionally open Board Setup for Chess960 or a custom position, Clock for a time control, and switch evolution and gambling on or off.</li>
+              <li><b>Play.</b> Click a piece, then its square. A piece with enough points evolves, and a pawn asks which piece it should become.</li>
+              <li><b>Play a friend online.</b> One of you clicks Host a Game and sends the room code; the other clicks Join a Game and enters it.</li>
+            </ol>
+          </div>
           <h2 class="p-h">How it was built</h2>
           <div class="story">
             <p>It started on 13 June 2026 as chess with an RPG layer, in one HTML file. Online play came in August, and so did the work that made it safe.</p>

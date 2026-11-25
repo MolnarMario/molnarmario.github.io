@@ -63,7 +63,8 @@
         <h1 class="p-title">HiraKataQuest</h1>
         <p class="p-lede">Most kana apps stop at recognition. This one makes you write each character by hand and tells you how well you wrote it.</p>
         <div class="p-actions">
-          <a class="btn btn--primary" href="https://github.com/MolnarMario/HiraKataQuest-releases/releases/latest" target="_blank" rel="noopener">Download the APK <span aria-hidden="true">&nearr;</span></a>
+          <a class="btn btn--primary" href="https://github.com/MolnarMario/HiraKataQuest/releases/latest/download/HiraKataQuest.apk" target="_blank" rel="noopener">Download the APK <span aria-hidden="true">&nearr;</span></a>
+          <a class="btn btn--ghost" href="#start">Get started</a>
           <a class="btn btn--ghost" href="https://github.com/MolnarMario/HiraKataQuest" target="_blank" rel="noopener">Source on GitHub <span aria-hidden="true">&nearr;</span></a>
           <a class="btn btn--ghost" href="changelog/">Changelog</a>
         </div>
@@ -99,16 +100,61 @@
       <div class="p-cols wrap">
         <section class="p-main" aria-labelledby="feat-h">
           <h2 class="p-h" id="feat-h">What it does</h2>
-          <ol class="feat-list">
-            <li><b>Your handwriting gets a real score.</b> Geometry checks plus ML Kit digital-ink recognition score what you actually drew, with no consolation floor. A calibration suite pins it: a clean trace scores 95 or more, a random line 12 or less.</li>
-            <li><b>Trace the handwritten form, not the font.</b> You write over a ghost of the kaisho (school handwriting) form on a genkouyoushi grid, by finger or stylus. The ink widens with pen pressure like a brush.</li>
-            <li><b>Stroke order for every character.</b> An animated demo draws each stroke with the recorded rhythm and pen lifts, with play, pause, replay and speed controls. Words get one demo per kana.</li>
-            <li><b>Write from memory.</b> Quiz me shows only the romaji and hides the guide. It works on whole words as well as single characters, and scores each kana in a word separately.</li>
-            <li><b>A reading track for printed kana.</b> Quizzes run in either direction, by multiple choice or by typing the romaji, plus flip flashcards with audio.</li>
-            <li><b>See what still needs work.</b> The library tints every character from red to green by your average score.</li>
-            <li><b>Hear it, and remember it.</b> A speaker button reads any kana or word aloud with the phone&#39;s Japanese voice. Each of the 46 basic hiragana has a memory story: あ is APPLE.</li>
-            <li><b>All of hiragana and katakana.</b> Voiced, combined and extended kana are opt-ins, so beginners start with the 46 basics and add the rest when ready.</li>
-          </ol>
+          <p class="feat-intro">Four things a kana app should do, and what this one does about each.</p>
+          <div class="chapters">
+          <section class="chapter" aria-labelledby="ch-1">
+            <p class="chapter__n">01</p>
+            <h3 class="chapter__h" id="ch-1">Write it by hand</h3>
+            <p class="chapter__story">Most kana apps stop at recognition: you see a character and tap the right answer. That teaches reading, not writing, and the font they show isn&#39;t how anyone writes by hand. Here you write every character yourself, and the app tells you honestly how close you got.</p>
+            <ul class="chapter__points">
+              <li><b>Trace the handwritten form, not the font.</b> You write over a ghost of the kaisho (school handwriting) form on a genkouyoushi grid, by finger or stylus. The ink widens with pen pressure like a brush.</li>
+              <li><b>Stroke order for every character.</b> An animated demo draws each stroke with the recorded rhythm and pen lifts, with play, pause, replay and speed controls. Words get one demo per kana.</li>
+              <li><b>A score that measures what you drew.</b> Geometry checks plus ML Kit handwriting recognition score your ink, with no consolation floor. A calibration suite pins it: a clean trace scores 95 or more, a random line 12 or less.</li>
+              <li><b>Write from memory.</b> Quiz me shows only the romaji and hides the guide. It works on whole words as well as single characters, and scores each kana in a word separately.</li>
+            </ul>
+          </section>
+          <section class="chapter" aria-labelledby="ch-2">
+            <p class="chapter__n">02</p>
+            <h3 class="chapter__h" id="ch-2">Read it in print</h3>
+            <p class="chapter__story">Signs, menus and screens use printed kana, and a few of them look different from the handwritten form. So reading has its own track, built around the shapes you&#39;ll actually meet.</p>
+            <ul class="chapter__points">
+              <li><b>A reading quiz, either way round.</b> See a printed kana or word and give its reading, or see the reading and pick the kana, by multiple choice or by typing. Words can test the meaning too.</li>
+              <li><b>Flashcards with audio.</b> Flip a printed card to reveal its reading, meaning and pronunciation, with an optional field to type the reading.</li>
+              <li><b>&quot;Looks different in print.&quot;</b> さ, き and り join their strokes in print but not by hand. Wherever one is on screen, a chip shows both forms side by side.</li>
+            </ul>
+          </section>
+          <section class="chapter" aria-labelledby="ch-3">
+            <p class="chapter__n">03</p>
+            <h3 class="chapter__h" id="ch-3">Make it stick</h3>
+            <p class="chapter__story">Recognising a shape today is easy. Recalling it a week later is the hard part, so the app gives every character something to hang on to.</p>
+            <ul class="chapter__points">
+              <li><b>A memory story for every basic hiragana.</b> Each of the 46 has a keyword and a short story tying its shape to its sound: あ is APPLE. Every kana has alternates, and the one you pick is used everywhere.</li>
+              <li><b>Hear it.</b> A speaker button reads any kana or word aloud with the phone&#39;s Japanese voice.</li>
+              <li><b>A kanji reference.</b> Words with a kanji spelling can show the kanji, the reading and the meaning, and other kanji that share the reading. It is never quizzed.</li>
+            </ul>
+          </section>
+          <section class="chapter" aria-labelledby="ch-4">
+            <p class="chapter__n">04</p>
+            <h3 class="chapter__h" id="ch-4">Know what to practise next</h3>
+            <p class="chapter__story">Nothing is locked behind progress, so you can practise anything at any time. That only works if the app shows you where you stand.</p>
+            <ul class="chapter__points">
+              <li><b>A Library tinted by your scores.</b> Every character, word and practice set goes from red to green by your average, in a list or as a gojūon chart.</li>
+              <li><b>Practice sets.</b> Built-in sets for every gojūon row, kana category and a few word themes, plus your own. One button builds a word set from the kana you already score 85 or better on.</li>
+              <li><b>All of hiragana and katakana, without the overwhelm.</b> Beginners start with the 46 basics. Voiced, combined and extended kana are separate opt-ins, and 844 words ship with the app.</li>
+            </ul>
+          </section>
+          </div>
+          <h2 class="p-h" id="start">Get started</h2>
+          <div class="start">
+            <p class="start__intro">HiraKataQuest is an Android app for Android 8.0 or newer. It isn&#39;t on the Play Store, so you install the APK straight from GitHub. It takes a minute.</p>
+            <ol class="start__steps">
+              <li><b>Download the APK.</b> On your phone, tap Download the APK on this page. It is about 39 MB and always the latest release.</li>
+              <li><b>Install it.</b> Open the downloaded file. If Android asks, allow your browser to install unknown apps. If Play Protect warns that the app is unknown, tap More details, then Install anyway.</li>
+              <li><b>Pick a track.</b> The opening screen offers Writing for handwriting and Reading for printed kana. You can switch any time.</li>
+              <li><b>Write your first character.</b> Writing opens the Library. Tap あ, watch the stroke-order demo, trace it and tap Submit to see your score.</li>
+              <li><b>Set your scope.</b> The Study scope sheet switches between hiragana and katakana, adds voiced, combined or extended kana, and holds memory hints, scoring and dark mode.</li>
+            </ol>
+          </div>
           <h2 class="p-h">How it was built</h2>
           <div class="story">
             <p>AI agents built the first version from three written phase prompts, starting on 3 July 2026. The first build session was lost before anything was written down, so the repo&#39;s HISTORY.md is a recovery record: what each phase asked for, what shipped and how every step was verified.</p>

@@ -64,6 +64,7 @@
         <p class="p-lede">Vinted shows you items from sellers all over Europe and never says where they are. This extension does.</p>
         <div class="p-actions">
           <a class="btn btn--primary" href="https://github.com/MolnarMario/vinted-country-flags/releases/latest" target="_blank" rel="noopener">Download the latest release <span aria-hidden="true">&nearr;</span></a>
+          <a class="btn btn--ghost" href="#start">Get started</a>
           <a class="btn btn--ghost" href="https://github.com/MolnarMario/vinted-country-flags" target="_blank" rel="noopener">Source on GitHub <span aria-hidden="true">&nearr;</span></a>
           <a class="btn btn--ghost" href="changelog/">Changelog</a>
         </div>
@@ -77,15 +78,50 @@
       <div class="p-cols wrap">
         <section class="p-main" aria-labelledby="feat-h">
           <h2 class="p-h" id="feat-h">What it does</h2>
-          <ol class="feat-list">
-            <li><b>A flag on the listings you browse.</b> The seller&#39;s country flag sits in the corner of each item on the homepage, in search results and on seller pages.</li>
-            <li><b>Reads what the page already knows.</b> Seller ids come from the page&#39;s own data and from the requests Vinted makes anyway. On a vinted.ro search that named 96 of 96 sellers in 8 ms, with no extra requests.</li>
-            <li><b>Works on every Vinted domain.</b> No per-country code. It found every card on vinted.pl, .de, .co.uk and .ro without a change.</li>
-            <li><b>Cards near the screen go first.</b> Where a seller lives costs one profile lookup, once. Cards in and near the viewport are looked up first, and the popup shows how many are still coming.</li>
-            <li><b>Learns new markets by itself.</b> It builds the currency-to-country table from Vinted&#39;s own countries endpoint and caches it for a week.</li>
-            <li><b>One cache across countries.</b> Sellers are cached for 30 days in the service worker, so a seller found on vinted.fr is already known on vinted.de.</li>
-            <li><b>Polite to Vinted.</b> It stays under the measured rate limit, shares one budget across every tab and backs off whenever Vinted says to.</li>
-          </ol>
+          <p class="feat-intro">Three things the extension had to get right.</p>
+          <div class="chapters">
+          <section class="chapter" aria-labelledby="ch-1">
+            <p class="chapter__n">01</p>
+            <h3 class="chapter__h" id="ch-1">The answer on the picture</h3>
+            <p class="chapter__story">Where a seller lives decides the shipping cost and how long a parcel takes, and Vinted never says. Finding out meant opening every seller&#39;s profile, which kills browsing.</p>
+            <ul class="chapter__points">
+              <li><b>A flag on the listings you browse.</b> The seller&#39;s country flag sits in the corner of each item on the homepage, in search results, on seller pages and on the item page.</li>
+              <li><b>Works on every Vinted domain.</b> All 27 markets, with no per-country code. It found every card on vinted.pl, .de, .co.uk and .ro without a change.</li>
+              <li><b>Cards near the screen go first.</b> Cards in and near the viewport are looked up first, and the popup shows how many are still coming.</li>
+            </ul>
+          </section>
+          <section class="chapter" aria-labelledby="ch-2">
+            <p class="chapter__n">02</p>
+            <h3 class="chapter__h" id="ch-2">Fast because it reads, not asks</h3>
+            <p class="chapter__story">The page already knows who sold each item. It just doesn&#39;t show you, and reading that costs nothing.</p>
+            <ul class="chapter__points">
+              <li><b>Reads what the page already knows.</b> Seller ids come from the page&#39;s own data and from the requests Vinted makes anyway. On a vinted.ro search that named 96 of 96 sellers in 8 ms, with no extra requests.</li>
+              <li><b>One lookup per seller, then remembered.</b> Where a seller lives costs one profile lookup. Sellers are cached for 30 days in one place, so a seller found on vinted.fr is already known on vinted.de.</li>
+              <li><b>Learns new markets by itself.</b> It builds the market table from Vinted&#39;s own countries endpoint and caches it for a week.</li>
+            </ul>
+          </section>
+          <section class="chapter" aria-labelledby="ch-3">
+            <p class="chapter__n">03</p>
+            <h3 class="chapter__h" id="ch-3">A good guest</h3>
+            <p class="chapter__story">An extension that hammers Vinted&#39;s API gets you rate-limited, and takes Vinted&#39;s own page down with it. So it behaves like a careful visitor.</p>
+            <ul class="chapter__points">
+              <li><b>Under the measured limit.</b> It allows 20 lookups at once and 0.8 a second after that, shared by every tab, and stops whenever Vinted says to slow down.</li>
+              <li><b>No flag beats a wrong flag.</b> A card whose seller nothing named gets no flag rather than a guess.</li>
+              <li><b>Nothing leaves your browser.</b> It reads Vinted&#39;s API with your own session and sends nothing anywhere else.</li>
+            </ul>
+          </section>
+          </div>
+          <h2 class="p-h" id="start">Get started</h2>
+          <div class="start">
+            <p class="start__intro">It isn&#39;t on the Chrome Web Store, so it installs as an unpacked extension. That takes about a minute.</p>
+            <ol class="start__steps">
+              <li><b>Download it.</b> Get the zip from the latest release on GitHub, with Download the latest release on this page.</li>
+              <li><b>Unpack it somewhere you&#39;ll keep it.</b> Chrome loads the extension from that folder on every start, so don&#39;t delete it afterwards.</li>
+              <li><b>Turn on Developer mode.</b> Go to <code>chrome://extensions</code> and switch on Developer mode, top right.</li>
+              <li><b>Load it.</b> Click Load unpacked and pick the folder that holds <code>manifest.json</code>.</li>
+              <li><b>Browse Vinted.</b> Open any Vinted market. Flags fill in as you scroll, and the toolbar popup shows what it&#39;s doing.</li>
+            </ol>
+          </div>
           <h2 class="p-h">How it was built</h2>
           <div class="story">
             <p>Vinted shows listings from all over Europe and never says where the seller is. The extension reads that from data the page already has, and asks Vinted only when it has to.</p>
