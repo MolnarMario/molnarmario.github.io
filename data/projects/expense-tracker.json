@@ -4,15 +4,20 @@
  "url": "https://github.com/MolnarMario/common-expense-tracker",
  "branch": "main",
  "created": "2026-10-16",
- "pushed": "2026-11-20",
- "commits": 8,
+ "pushed": "2026-11-25",
+ "commits": 9,
  "firstCommit": "2026-10-16",
  "lastCommit": {
-  "sha": "734de81",
-  "date": "2026-11-20",
-  "subject": "Add handoff notes and a script to reset the admin token"
+  "sha": "e59326e",
+  "date": "2026-11-25",
+  "subject": "Rewrite the README for new users (#4)"
  },
  "recent": [
+  {
+   "sha": "e59326e",
+   "date": "2026-11-25",
+   "subject": "Rewrite the README for new users (#4)"
+  },
   {
    "sha": "734de81",
    "date": "2026-11-20",
@@ -32,11 +37,6 @@
    "sha": "2d23956",
    "date": "2026-10-16",
    "subject": "Tell forks to change the hostname before deploying"
-  },
-  {
-   "sha": "152e9b7",
-   "date": "2026-10-16",
-   "subject": "Common Expense Tracker, first public version"
   }
  ],
  "weeks": [
@@ -142,7 +142,7 @@
   ],
   [
    "2026-11-23",
-   0
+   1
   ]
  ],
  "facts": {

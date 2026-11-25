@@ -4,15 +4,20 @@
  "url": "https://github.com/MolnarMario/HiraKataQuest",
  "branch": "main",
  "created": "2026-07-04",
- "pushed": "2026-10-16",
- "commits": 168,
+ "pushed": "2026-11-25",
+ "commits": 169,
  "firstCommit": "2026-07-04",
  "lastCommit": {
-  "sha": "93c187c",
-  "date": "2026-10-16",
-  "subject": "Merge pull request #66 from MolnarMario/fix/large-font-leftovers"
+  "sha": "e8a0246",
+  "date": "2026-11-25",
+  "subject": "Rewrite the README for new users (#67)"
  },
  "recent": [
+  {
+   "sha": "e8a0246",
+   "date": "2026-11-25",
+   "subject": "Rewrite the README for new users (#67)"
+  },
   {
    "sha": "d2b601e",
    "date": "2026-10-16",
@@ -32,11 +37,6 @@
    "sha": "bd91d63",
    "date": "2026-10-16",
    "subject": "Keep a gap between Study scope row text and its value"
-  },
-  {
-   "sha": "462f29d",
-   "date": "2026-10-16",
-   "subject": "Collapse the Library button when its label would clip the size picker"
   }
  ],
  "weeks": [
@@ -142,7 +142,7 @@
   ],
   [
    "2026-11-23",
-   0
+   1
   ]
  ],
  "facts": {

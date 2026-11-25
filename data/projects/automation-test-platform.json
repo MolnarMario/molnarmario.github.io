@@ -1,18 +1,23 @@
 {
  "id": "dashboard",
- "repo": "thrive-test-dashboard",
+ "repo": "test-dashboard",
  "url": "https://github.com/MolnarMario/test-dashboard",
  "branch": "main",
  "created": "2026-07-14",
- "pushed": "2026-09-24",
- "commits": 8,
+ "pushed": "2026-11-25",
+ "commits": 9,
  "firstCommit": "2026-07-14",
  "lastCommit": {
-  "sha": "5b8a911",
-  "date": "2026-09-24",
-  "subject": "Add MIT license"
+  "sha": "599605c",
+  "date": "2026-11-25",
+  "subject": "Rewrite the README for new users (#3)"
  },
  "recent": [
+  {
+   "sha": "599605c",
+   "date": "2026-11-25",
+   "subject": "Rewrite the README for new users (#3)"
+  },
   {
    "sha": "5b8a911",
    "date": "2026-09-24",
@@ -32,11 +37,6 @@
    "sha": "a4ea899",
    "date": "2026-08-19",
    "subject": "Serialize same-site targets in a run to fix cross-framework test races"
-  },
-  {
-   "sha": "ce660ad",
-   "date": "2026-08-19",
-   "subject": "Add login/RBAC, site management UI, and fix JDK glob detection"
   }
  ],
  "weeks": [
@@ -142,14 +142,14 @@
   ],
   [
    "2026-11-23",
-   0
+   1
   ]
  ],
  "log": {
   "source": {
    "kind": "changelog",
    "label": "CHANGELOG.md",
-   "url": "https://github.com/MolnarMario/thrive-test-dashboard/blob/main/CHANGELOG.md"
+   "url": "https://github.com/MolnarMario/test-dashboard/blob/main/CHANGELOG.md"
   },
   "entries": [
    {

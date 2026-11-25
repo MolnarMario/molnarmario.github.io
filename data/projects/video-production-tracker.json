@@ -4,15 +4,20 @@
  "url": "https://github.com/MolnarMario/video-production",
  "branch": "main",
  "created": "2026-08-23",
- "pushed": "2026-10-16",
- "commits": 8,
+ "pushed": "2026-11-25",
+ "commits": 9,
  "firstCommit": "2026-08-23",
  "lastCommit": {
-  "sha": "49433b7",
-  "date": "2026-10-16",
-  "subject": "Merge pull request #2 from MolnarMario/readme-live-link"
+  "sha": "57d6403",
+  "date": "2026-11-25",
+  "subject": "Rewrite the README for new users (#3)"
  },
  "recent": [
+  {
+   "sha": "57d6403",
+   "date": "2026-11-25",
+   "subject": "Rewrite the README for new users (#3)"
+  },
   {
    "sha": "abc5db4",
    "date": "2026-10-16",
@@ -32,11 +37,6 @@
    "sha": "02112bd",
    "date": "2026-09-25",
    "subject": "Add a rich-text editor for script sections"
-  },
-  {
-   "sha": "a5e5cb9",
-   "date": "2026-09-24",
-   "subject": "Add MIT license"
   }
  ],
  "weeks": [
@@ -142,7 +142,7 @@
   ],
   [
    "2026-11-23",
-   0
+   1
   ]
  ],
  "log": {
@@ -152,6 +152,18 @@
    "url": "https://github.com/MolnarMario/video-production/commits"
   },
   "entries": [
+   {
+    "version": null,
+    "date": "2026-11-25",
+    "dated": "commit",
+    "title": null,
+    "commits": [
+     {
+      "sha": "57d6403",
+      "subject": "Rewrite the README for new users (#3)"
+     }
+    ]
+   },
    {
     "version": null,
     "date": "2026-10-16",

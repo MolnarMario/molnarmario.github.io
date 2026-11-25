@@ -4,15 +4,20 @@
  "url": "https://github.com/MolnarMario/vinted-country-flags",
  "branch": "main",
  "created": "2026-08-31",
- "pushed": "2026-10-09",
- "commits": 3,
+ "pushed": "2026-11-25",
+ "commits": 4,
  "firstCommit": "2026-08-31",
  "lastCommit": {
-  "sha": "a5c872b",
-  "date": "2026-10-09",
-  "subject": "v2.2.0: stop the 429 storm and fill in grids that stalled on scroll (#2)"
+  "sha": "edc2f3a",
+  "date": "2026-11-25",
+  "subject": "Rewrite the README for new users (#3)"
  },
  "recent": [
+  {
+   "sha": "edc2f3a",
+   "date": "2026-11-25",
+   "subject": "Rewrite the README for new users (#3)"
+  },
   {
    "sha": "a5c872b",
    "date": "2026-10-09",
@@ -132,7 +137,7 @@
   ],
   [
    "2026-11-23",
-   0
+   1
   ]
  ],
  "facts": {

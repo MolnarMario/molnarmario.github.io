@@ -4,15 +4,20 @@
  "url": "https://github.com/MolnarMario/one-more-tile",
  "branch": "master",
  "created": "2026-06-13",
- "pushed": "2026-11-10",
- "commits": 124,
+ "pushed": "2026-11-25",
+ "commits": 125,
  "firstCommit": "2026-06-13",
  "lastCommit": {
-  "sha": "e439fbf",
-  "date": "2026-11-10",
-  "subject": "Merge pull request #26 from MolnarMario/release/0.34.1"
+  "sha": "c91f0b5",
+  "date": "2026-11-25",
+  "subject": "Rewrite the README for new users (#27)"
  },
  "recent": [
+  {
+   "sha": "c91f0b5",
+   "date": "2026-11-25",
+   "subject": "Rewrite the README for new users (#27)"
+  },
   {
    "sha": "d4d67e4",
    "date": "2026-11-10",
@@ -32,11 +37,6 @@
    "sha": "ca8f68b",
    "date": "2026-11-10",
    "subject": "Add new map: Silver Steel ⚔️ (v0.34.0) (#25)"
-  },
-  {
-   "sha": "c21ce29",
-   "date": "2026-10-16",
-   "subject": "Serve the game from tile.thebarbellengineer.com"
   }
  ],
  "weeks": [
@@ -142,7 +142,7 @@
   ],
   [
    "2026-11-23",
-   0
+   1
   ]
  ],
  "facts": {

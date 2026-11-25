@@ -1,18 +1,23 @@
 {
  "id": "ironlog",
- "repo": "testing-out-my-lifting-app",
+ "repo": "lifting-app",
  "url": "https://github.com/MolnarMario/lifting-app",
  "branch": "main",
  "created": "2026-06-11",
- "pushed": "2026-10-16",
- "commits": 46,
+ "pushed": "2026-11-25",
+ "commits": 47,
  "firstCommit": "2026-06-11",
  "lastCommit": {
-  "sha": "4d9953e",
-  "date": "2026-10-16",
-  "subject": "Merge pull request #4 from MolnarMario/subdomain"
+  "sha": "581b24b",
+  "date": "2026-11-25",
+  "subject": "Rewrite the README for new users (#5)"
  },
  "recent": [
+  {
+   "sha": "581b24b",
+   "date": "2026-11-25",
+   "subject": "Rewrite the README for new users (#5)"
+  },
   {
    "sha": "e03956c",
    "date": "2026-10-16",
@@ -32,11 +37,6 @@
    "sha": "2729775",
    "date": "2026-10-15",
    "subject": "Mark the review fixes ready to ship"
-  },
-  {
-   "sha": "42d47fb",
-   "date": "2026-10-15",
-   "subject": "Offer the import when exercise edits are all an old install has"
   }
  ],
  "weeks": [
@@ -142,7 +142,7 @@
   ],
   [
    "2026-11-23",
-   0
+   1
   ]
  ],
  "facts": {
@@ -153,9 +153,21 @@
   "source": {
    "kind": "commits",
    "label": "commit history",
-   "url": "https://github.com/MolnarMario/testing-out-my-lifting-app/commits"
+   "url": "https://github.com/MolnarMario/lifting-app/commits"
   },
   "entries": [
+   {
+    "version": null,
+    "date": "2026-11-25",
+    "dated": "commit",
+    "title": null,
+    "commits": [
+     {
+      "sha": "581b24b",
+      "subject": "Rewrite the README for new users (#5)"
+     }
+    ]
+   },
    {
     "version": null,
     "date": "2026-10-16",
