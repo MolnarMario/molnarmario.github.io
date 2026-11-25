@@ -64,6 +64,7 @@
         <p class="p-lede">Split shared monthly costs between any number of people and see who owes whom, with no account.</p>
         <div class="p-actions">
           <a class="btn btn--primary" href="https://expenses.thebarbellengineer.com/" target="_blank" rel="noopener">Open the app <span aria-hidden="true">&nearr;</span></a>
+          <a class="btn btn--ghost" href="#start">Get started</a>
           <a class="btn btn--ghost" href="https://github.com/MolnarMario/common-expense-tracker" target="_blank" rel="noopener">Source on GitHub <span aria-hidden="true">&nearr;</span></a>
           <a class="btn btn--ghost" href="changelog/">Changelog</a>
         </div>
@@ -77,15 +78,50 @@
       <div class="p-cols wrap">
         <section class="p-main" aria-labelledby="feat-h">
           <h2 class="p-h" id="feat-h">What it does</h2>
-          <ol class="feat-list">
-            <li><b>Who owes whom, settled.</b> Add each month&#39;s shared costs and it works out the transfers that square everyone up.</li>
-            <li><b>Share one tracker live.</b> Two people can edit the same tracker from different devices. A change on a phone shows up on the other laptop in well under a second.</li>
-            <li><b>The server can&#39;t read your data.</b> Every record is encrypted in the browser with a 256-bit key, wrapped by a key derived from your password (PBKDF2-SHA256, 600,000 iterations). The server never sees either.</li>
-            <li><b>Hand someone one file.</b> The whole app builds into a single 210 KB HTML file. Save it anywhere and double-click it, no install.</li>
-            <li><b>Money that adds up.</b> Amounts are stored as whole cents, never floats. Splitting 10,00 three ways gives 3,34 / 3,33 / 3,33, and &quot;42,50&quot; and &quot;240.924,00&quot; both parse correctly.</li>
-            <li><b>Your data, portable.</b> Export any set of months as JSON or CSV.</li>
-            <li><b>Tested hard.</b> 134 unit tests, a two-client protocol smoke test, and a UI test that drives two headless Chrome profiles as two devices.</li>
-          </ol>
+          <p class="feat-intro">Three problems with splitting bills, and what the app does about each.</p>
+          <div class="chapters">
+          <section class="chapter" aria-labelledby="ch-1">
+            <p class="chapter__n">01</p>
+            <h3 class="chapter__h" id="ch-1">Settle up without arguing</h3>
+            <p class="chapter__story">Shared bills usually end in a spreadsheet nobody trusts. If the maths is right once, nobody has to check it again.</p>
+            <ul class="chapter__points">
+              <li><b>Who owes whom, settled.</b> Add each month&#39;s shared costs and it works out the transfers that square everyone up.</li>
+              <li><b>The month in one picture.</b> A balance bar shows who paid what, the fair-share line, and exactly the money that has to change hands.</li>
+              <li><b>Money that adds up.</b> Amounts are stored as whole cents, never floats. Splitting 10,00 three ways gives 3,34 / 3,33 / 3,33, and &quot;42,50&quot; and &quot;240.924,00&quot; both parse correctly.</li>
+            </ul>
+          </section>
+          <section class="chapter" aria-labelledby="ch-2">
+            <p class="chapter__n">02</p>
+            <h3 class="chapter__h" id="ch-2">Share it without giving it away</h3>
+            <p class="chapter__story">Two people need the same tracker on their phones. But a server holding a household&#39;s spending is a server that can leak it, so this one can&#39;t read what it stores.</p>
+            <ul class="chapter__points">
+              <li><b>Share one tracker live.</b> Send a link and a password. A change on a phone shows up on the other laptop in well under a second, and edits made offline sync when the connection returns.</li>
+              <li><b>The server can&#39;t read your data.</b> Every record is encrypted in the browser with a 256-bit key, wrapped by a key derived from your password (PBKDF2-SHA256, 600,000 iterations). The server never sees either.</li>
+              <li><b>Invite only.</b> Making a shared tracker takes an invite code. No code? Ask for one from the Share dialog with just a name and a line about who you are.</li>
+            </ul>
+          </section>
+          <section class="chapter" aria-labelledby="ch-3">
+            <p class="chapter__n">03</p>
+            <h3 class="chapter__h" id="ch-3">Your data, portable</h3>
+            <p class="chapter__story">An app for money should never be the only place your numbers live.</p>
+            <ul class="chapter__points">
+              <li><b>Export any months.</b> As JSON for an exact copy, or CSV for a spreadsheet.</li>
+              <li><b>Imports that ask first.</b> An import replaces only the months the file names, and lists exactly what it will replace before it does.</li>
+              <li><b>Hand someone one file.</b> The whole app builds into a single 210 KB HTML file. Save it anywhere and double-click it, no install.</li>
+            </ul>
+          </section>
+          </div>
+          <h2 class="p-h" id="start">Get started</h2>
+          <div class="start">
+            <p class="start__intro">It runs in the browser with no account. Everything except sharing works straight away.</p>
+            <ol class="start__steps">
+              <li><b>Open the app.</b> Go to <code>expenses.thebarbellengineer.com</code>.</li>
+              <li><b>Add the people.</b> Open People in the header and add everyone who shares the costs.</li>
+              <li><b>Add expenses.</b> Amount, who paid, the date and a description.</li>
+              <li><b>Settle up.</b> At the end of the month, open the bottom line for the balances and the payments that square everyone up.</li>
+              <li><b>Share it.</b> Click Share, make a tracker and send the link and password to the other person. Keep the recovery key it shows you: a forgotten password can&#39;t be recovered by anyone.</li>
+            </ol>
+          </div>
           <h2 class="p-h">How it was built</h2>
           <div class="story">
             <p>I built it on 30 August 2026 from a written PRD with numbered acceptance scenarios, in one long day: the local-only version first, then export and the single-file build, then end-to-end encrypted sharing. It went live on its own domain on 26 September.</p>

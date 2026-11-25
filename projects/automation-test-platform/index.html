@@ -63,7 +63,8 @@
         <h1 class="p-title">Automation Test Platform</h1>
         <p class="p-lede">The QA tooling I always wanted. It runs end-to-end suites, shows every test live and keeps the history, without ever modifying the suites.</p>
         <div class="p-actions">
-          <a class="btn btn--primary" href="https://github.com/MolnarMario/thrive-test-dashboard" target="_blank" rel="noopener">Source on GitHub <span aria-hidden="true">&nearr;</span></a>
+          <a class="btn btn--primary" href="https://github.com/MolnarMario/test-dashboard" target="_blank" rel="noopener">Source on GitHub <span aria-hidden="true">&nearr;</span></a>
+          <a class="btn btn--ghost" href="#start">Get started</a>
           <a class="btn btn--ghost" href="changelog/">Changelog</a>
         </div>
         
@@ -76,15 +77,60 @@
       <div class="p-cols wrap">
         <section class="p-main" aria-labelledby="feat-h">
           <h2 class="p-h" id="feat-h">What it does</h2>
-          <ol class="feat-list">
-            <li><b>Three frameworks, one live view.</b> Playwright, Cypress and Selenium suites run from the same dashboard. Each target gets a live card with a progress bar, pass/fail/skip counts and failures as they happen.</li>
-            <li><b>Any suite against any site.</b> A suite says how to run, a site says where. Pick any registered site from a dropdown on the suite&#39;s row.</li>
-            <li><b>Test a pull request in one step.</b> Paste a GitHub PR link and it builds that plugin or theme, installs it on a local WordPress site and lets you run any suite against it.</li>
-            <li><b>Runs in parallel.</b> The same suite against two sites, or two frameworks against one site, run at once. Cancel stops the whole process tree.</li>
-            <li><b>Scheduled runs and full history.</b> Cron schedules fire while the dashboard runs, and every run is kept, filterable by site and framework, with links to its reports.</li>
-            <li><b>Shareable reports.</b> HTML and PDF reports for any run.</li>
-            <li><b>Behind a login.</b> The dashboard, API, reports and live streams all need a session, with roles for who can do what.</li>
-          </ol>
+          <p class="feat-intro">Four things I wanted from one test dashboard, in the order I reach for them.</p>
+          <div class="chapters">
+          <section class="chapter" aria-labelledby="ch-1">
+            <p class="chapter__n">01</p>
+            <h3 class="chapter__h" id="ch-1">Any suite, against any site</h3>
+            <p class="chapter__story">Every framework came with its own runner, and pointing a suite at a different site meant editing its config. Here the suite and the site are chosen separately.</p>
+            <ul class="chapter__points">
+              <li><b>Suites times sites.</b> A suite says how to run, a site says where. Every suite gets the site&#39;s URL and admin credentials as environment variables, so any suite can run against any registered site.</li>
+              <li><b>Three frameworks, one view.</b> Playwright, Cypress and Selenium suites run from the same dashboard, with the same live view and history.</li>
+              <li><b>Runs in parallel.</b> The same suite against two sites, or two frameworks against one site, run at once. Cancel stops the whole process tree.</li>
+            </ul>
+          </section>
+          <section class="chapter" aria-labelledby="ch-2">
+            <p class="chapter__n">02</p>
+            <h3 class="chapter__h" id="ch-2">Watch it live, keep the history</h3>
+            <p class="chapter__story">Terminal output scrolls away, and last week&#39;s failures go with it.</p>
+            <ul class="chapter__points">
+              <li><b>A live card per target.</b> A progress bar, pass, fail and skip counts, the test running now, and failures as they happen.</li>
+              <li><b>Every run kept.</b> Filterable by site and framework, with links to each run&#39;s reports and artifacts.</li>
+              <li><b>Reports you can share.</b> A combined report for any run, printable to PDF, next to each framework&#39;s own HTML report.</li>
+              <li><b>Scheduled runs.</b> Cron schedules fire while the dashboard runs, and a calendar shows runs by day.</li>
+            </ul>
+          </section>
+          <section class="chapter" aria-labelledby="ch-3">
+            <p class="chapter__n">03</p>
+            <h3 class="chapter__h" id="ch-3">Test a pull request in one step</h3>
+            <p class="chapter__story">Testing a WordPress plugin pull request used to mean checking out the branch, building it and installing it on a local site by hand, before a single test ran.</p>
+            <ul class="chapter__points">
+              <li><b>Paste the link.</b> Paste a GitHub PR link and it builds that plugin or theme and installs it on a local WordPress site.</li>
+              <li><b>Then run anything.</b> Any suite runs against the freshly installed build from the same screen.</li>
+            </ul>
+          </section>
+          <section class="chapter" aria-labelledby="ch-4">
+            <p class="chapter__n">04</p>
+            <h3 class="chapter__h" id="ch-4">Safe to leave running</h3>
+            <p class="chapter__story">It holds admin credentials for every site it can test, so it is locked down by default.</p>
+            <ul class="chapter__points">
+              <li><b>Behind a login.</b> The dashboard, API, reports and live streams all need a session, with admin, tester and viewer roles.</li>
+              <li><b>Encrypted site passwords.</b> Stored with AES-256-GCM and handed to a test only through its environment, never on a command line.</li>
+              <li><b>Localhost by default.</b> It binds to 127.0.0.1 unless you choose otherwise, and the README covers what to set before exposing it.</li>
+            </ul>
+          </section>
+          </div>
+          <h2 class="p-h" id="start">Get started</h2>
+          <div class="start">
+            <p class="start__intro">It runs on your own machine with Node.js 18 or newer. Your suites stay where they are and are never modified.</p>
+            <ol class="start__steps">
+              <li><b>Get the code.</b> <code>git clone https://github.com/MolnarMario/test-dashboard</code>, then <code>npm install</code> in the new folder.</li>
+              <li><b>Point it at your suites.</b> Copy <code>sites.config.example.json</code> to <code>sites.config.json</code> and list each suite&#39;s folder and framework.</li>
+              <li><b>Start it.</b> Run <code>npm start</code> and open <code>http://localhost:4400</code>. Copy the admin password from the boot banner; it is shown only once.</li>
+              <li><b>Add a site.</b> In the Sites tab, add each site with its URL and admin credentials.</li>
+              <li><b>Run something.</b> In Run, tick a suite or a few specs, pick the site and click Run selected. Watch it on Live.</li>
+            </ol>
+          </div>
           <h2 class="p-h">How it was built</h2>
           <div class="story">
             <p>I write Playwright suites for a living, and every framework came with its own runner, reports and history. On my own time I built the one dashboard I wanted: run Playwright, Cypress and Selenium suites against any site, without changing the suites.</p>

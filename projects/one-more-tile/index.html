@@ -64,6 +64,7 @@
         <p class="p-lede">A cross-stitch puzzle inspired by the game Proverbs. Solving it uncovers a hidden pixel-art painting, one region at a time.</p>
         <div class="p-actions">
           <a class="btn btn--primary" href="https://tile.thebarbellengineer.com/" target="_blank" rel="noopener">Play it <span aria-hidden="true">&nearr;</span></a>
+          <a class="btn btn--ghost" href="#start">Get started</a>
           <a class="btn btn--ghost" href="https://github.com/MolnarMario/one-more-tile" target="_blank" rel="noopener">Source on GitHub <span aria-hidden="true">&nearr;</span></a>
           <a class="btn btn--ghost" href="changelog/">Changelog</a>
         </div>
@@ -77,15 +78,63 @@
       <div class="p-cols wrap">
         <section class="p-main" aria-labelledby="feat-h">
           <h2 class="p-h" id="feat-h">What it does</h2>
-          <ol class="feat-list">
-            <li><b>Three puzzle types on one canvas.</b> Fill-a-pix clues cover the board, with sudoku patches (4×4 up to 9×9) and picross patches whose solution is part of the painting.</li>
-            <li><b>Every region you finish reveals the art.</b> A content-aware watershed grows the regions along the picture&#39;s own edges, so a finished region shows a recognizable piece of the painting, not a random blob.</li>
-            <li><b>Never a guess.</b> Five difficulty tiers, and a verifier script checks that every tier of every painting solves by logic alone.</li>
-            <li><b>Co-op for up to four.</b> Split-screen on one screen, or online with a room code.</li>
-            <li><b>Hints near where you&#39;re working.</b> Press H and it points at a forced move close to your cursor and explains why it&#39;s forced.</li>
-            <li><b>Ten paintings, saved as you go.</b> Each painting autosaves separately, with a timer that remembers your time, undo, pan and zoom, and full gamepad support.</li>
-            <li><b>No build step, no install.</b> The game and its puzzle generator live in one HTML file, next to the precomputed boards. Open it and play.</li>
-          </ol>
+          <p class="feat-intro">Four things I wanted from a puzzle like this, and how the game does each.</p>
+          <div class="chapters">
+          <section class="chapter" aria-labelledby="ch-1">
+            <p class="chapter__n">01</p>
+            <h3 class="chapter__h" id="ch-1">A picture worth solving for</h3>
+            <p class="chapter__story">In most logic puzzles the reward is a filled grid. I wanted something to look at when I was done, so here the solution is a painting, and you uncover it one region at a time.</p>
+            <ul class="chapter__points">
+              <li><b>Three puzzle types on one canvas.</b> Fill-a-pix clues cover the board, with sudoku patches (4×4 up to 9×9) and picross patches whose solution is part of the painting.</li>
+              <li><b>Every region you finish reveals the art.</b> A content-aware watershed grows the regions along the picture&#39;s own edges, so a finished region shows a recognizable piece of the painting, not a random blob.</li>
+              <li><b>Ten paintings, saved as you go.</b> Each painting autosaves separately, with a timer that remembers your time. On character maps, finishing a region makes its character speak.</li>
+              <li><b>Weave it again.</b> Finished a canvas? New weave builds a completely new puzzle over the same painting, with its own save.</li>
+            </ul>
+          </section>
+          <section class="chapter" aria-labelledby="ch-2">
+            <p class="chapter__n">02</p>
+            <h3 class="chapter__h" id="ch-2">Never a guess</h3>
+            <p class="chapter__story">Nothing kills a logic puzzle like a spot where you have to guess. So every board at every difficulty is checked to solve by logic alone, and the game never hands you answers to get there.</p>
+            <ul class="chapter__points">
+              <li><b>Five difficulty tiers.</b> The easier three need only neighbour counting. Hard and Very Hard add comparing overlapping clues, with a short tutorial the first time.</li>
+              <li><b>Nothing is pre-filled.</b> An audit rebuilds every painting at every tier and checks that each region solves from its clues alone, with zero tiles given.</li>
+              <li><b>Hints near where you&#39;re working.</b> Press H and it points at a forced move close to your cursor and explains why it&#39;s forced.</li>
+              <li><b>No game over.</b> Mistakes are forgiven, and Undo takes back whole drag strokes.</li>
+            </ul>
+          </section>
+          <section class="chapter" aria-labelledby="ch-3">
+            <p class="chapter__n">03</p>
+            <h3 class="chapter__h" id="ch-3">Better with friends</h3>
+            <p class="chapter__story">Puzzles like this are usually a solo thing. I wanted to solve one on the couch with friends, and sometimes to race them.</p>
+            <ul class="chapter__points">
+              <li><b>Co-op for up to four.</b> Split-screen on one screen, or online with a room code.</li>
+              <li><b>Versus.</b> On one screen everyone races on the same canvas, and each region goes to whoever stitched most of it. Online, everyone solves their own copy and sees rivals&#39; progress, never their answers.</li>
+              <li><b>Share a canvas.</b> Export your progress as a code or a file, and a friend&#39;s game replays it.</li>
+            </ul>
+          </section>
+          <section class="chapter" aria-labelledby="ch-4">
+            <p class="chapter__n">04</p>
+            <h3 class="chapter__h" id="ch-4">Made for long sessions</h3>
+            <p class="chapter__story">A big canvas takes hours, so the small things matter.</p>
+            <ul class="chapter__points">
+              <li><b>Mouse, touch or gamepad.</b> Full gamepad support with remappable buttons, pinch-zoom on touch, and pan and zoom everywhere.</li>
+              <li><b>Your colours, your music.</b> Recolour the whole interface, adjust the music and set a default difficulty.</li>
+              <li><b>Loads instantly.</b> Every canvas ships already generated, so the only wait is a short animation of the puzzle being built.</li>
+              <li><b>No install.</b> The game and its puzzle generator live in one HTML file, next to the precomputed boards.</li>
+            </ul>
+          </section>
+          </div>
+          <h2 class="p-h" id="start">Get started</h2>
+          <div class="start">
+            <p class="start__intro">One More Tile runs in any modern browser, on a computer or a phone. There is nothing to install and no account.</p>
+            <ol class="start__steps">
+              <li><b>Open the game.</b> Go to <code>tile.thebarbellengineer.com</code>, or use Play it on this page.</li>
+              <li><b>Pick a mode and a painting.</b> Single Player, Co-op or Versus, then any canvas from the grid. Continue on the home menu takes you back later.</li>
+              <li><b>Stitch.</b> Left-click or tap a tile to stitch it light, right-click to mark it dark, and drag to paint several. In a sudoku patch, click a cell and type a digit.</li>
+              <li><b>Stuck?</b> Press <code>H</code> for a hint near your cursor.</li>
+              <li><b>Play offline.</b> Download the repository and open <code>index.html</code>. Keep the <code>boards</code> folder next to it so canvases load instantly.</li>
+            </ol>
+          </div>
           <h2 class="p-h">How it was built</h2>
           <div class="story">
             <p>I started it on 13 June 2026 as a single HTML file. It still has no build step and no install: the game and its generator live in index.html, next to the precomputed boards. 61 versions shipped between June and November.</p>

@@ -136,16 +136,56 @@
       title: 'HiraKataQuest',
       art: '[data-project="hirakata"] .feature__media',
       lede: 'Most kana apps stop at recognition. This one makes you write each character by hand and tells you how well you wrote it.',
-      features: [
-        ['Your handwriting gets a real score.', 'Geometry checks plus ML Kit digital-ink recognition score what you actually drew, with no consolation floor. A calibration suite pins it: a clean trace scores 95 or more, a random line 12 or less.'],
-        ['Trace the handwritten form, not the font.', 'You write over a ghost of the kaisho (school handwriting) form on a genkouyoushi grid, by finger or stylus. The ink widens with pen pressure like a brush.'],
-        ['Stroke order for every character.', 'An animated demo draws each stroke with the recorded rhythm and pen lifts, with play, pause, replay and speed controls. Words get one demo per kana.'],
-        ['Write from memory.', 'Quiz me shows only the romaji and hides the guide. It works on whole words as well as single characters, and scores each kana in a word separately.'],
-        ['A reading track for printed kana.', 'Quizzes run in either direction, by multiple choice or by typing the romaji, plus flip flashcards with audio.'],
-        ['See what still needs work.', 'The library tints every character from red to green by your average score.'],
-        ['Hear it, and remember it.', 'A speaker button reads any kana or word aloud with the phone\'s Japanese voice. Each of the 46 basic hiragana has a memory story: あ is APPLE.'],
-        ['All of hiragana and katakana.', 'Voiced, combined and extended kana are opt-ins, so beginners start with the 46 basics and add the rest when ready.']
+      featuresIntro: 'Four things a kana app should do, and what this one does about each.',
+      chapters: [
+        {
+          title: 'Write it by hand',
+          story: 'Most kana apps stop at recognition: you see a character and tap the right answer. That teaches reading, not writing, and the font they show isn\'t how anyone writes by hand. Here you write every character yourself, and the app tells you honestly how close you got.',
+          points: [
+            ['Trace the handwritten form, not the font.', 'You write over a ghost of the kaisho (school handwriting) form on a genkouyoushi grid, by finger or stylus. The ink widens with pen pressure like a brush.'],
+            ['Stroke order for every character.', 'An animated demo draws each stroke with the recorded rhythm and pen lifts, with play, pause, replay and speed controls. Words get one demo per kana.'],
+            ['A score that measures what you drew.', 'Geometry checks plus ML Kit handwriting recognition score your ink, with no consolation floor. A calibration suite pins it: a clean trace scores 95 or more, a random line 12 or less.'],
+            ['Write from memory.', 'Quiz me shows only the romaji and hides the guide. It works on whole words as well as single characters, and scores each kana in a word separately.']
+          ]
+        },
+        {
+          title: 'Read it in print',
+          story: 'Signs, menus and screens use printed kana, and a few of them look different from the handwritten form. So reading has its own track, built around the shapes you\'ll actually meet.',
+          points: [
+            ['A reading quiz, either way round.', 'See a printed kana or word and give its reading, or see the reading and pick the kana, by multiple choice or by typing. Words can test the meaning too.'],
+            ['Flashcards with audio.', 'Flip a printed card to reveal its reading, meaning and pronunciation, with an optional field to type the reading.'],
+            ['"Looks different in print."', 'さ, き and り join their strokes in print but not by hand. Wherever one is on screen, a chip shows both forms side by side.']
+          ]
+        },
+        {
+          title: 'Make it stick',
+          story: 'Recognising a shape today is easy. Recalling it a week later is the hard part, so the app gives every character something to hang on to.',
+          points: [
+            ['A memory story for every basic hiragana.', 'Each of the 46 has a keyword and a short story tying its shape to its sound: あ is APPLE. Every kana has alternates, and the one you pick is used everywhere.'],
+            ['Hear it.', 'A speaker button reads any kana or word aloud with the phone\'s Japanese voice.'],
+            ['A kanji reference.', 'Words with a kanji spelling can show the kanji, the reading and the meaning, and other kanji that share the reading. It is never quizzed.']
+          ]
+        },
+        {
+          title: 'Know what to practise next',
+          story: 'Nothing is locked behind progress, so you can practise anything at any time. That only works if the app shows you where you stand.',
+          points: [
+            ['A Library tinted by your scores.', 'Every character, word and practice set goes from red to green by your average, in a list or as a gojūon chart.'],
+            ['Practice sets.', 'Built-in sets for every gojūon row, kana category and a few word themes, plus your own. One button builds a word set from the kana you already score 85 or better on.'],
+            ['All of hiragana and katakana, without the overwhelm.', 'Beginners start with the 46 basics. Voiced, combined and extended kana are separate opt-ins, and {words} words ship with the app.']
+          ]
+        }
       ],
+      start: {
+        intro: 'HiraKataQuest is an Android app for Android 8.0 or newer. It isn\'t on the Play Store, so you install the APK straight from GitHub. It takes a minute.',
+        steps: [
+          ['Download the APK.', 'On your phone, tap Download the APK on this page. It is about 39 MB and always the latest release.'],
+          ['Install it.', 'Open the downloaded file. If Android asks, allow your browser to install unknown apps. If Play Protect warns that the app is unknown, tap More details, then Install anyway.'],
+          ['Pick a track.', 'The opening screen offers Writing for handwriting and Reading for printed kana. You can switch any time.'],
+          ['Write your first character.', 'Writing opens the Library. Tap あ, watch the stroke-order demo, trace it and tap Submit to see your score.'],
+          ['Set your scope.', 'The Study scope sheet switches between hiragana and katakana, adds voiced, combined or extended kana, and holds memory hints, scoring and dark mode.']
+        ]
+      },
       story: {
         context: 'AI agents built the first version from three written phase prompts, starting on 3 July 2026. The first build session was lost before anything was written down, so the repo\'s HISTORY.md is a recovery record: what each phase asked for, what shipped and how every step was verified.',
         decisions: [
@@ -157,7 +197,7 @@
         status: 'Version {version} is out as a downloadable APK, with all of hiragana and katakana, a reading track and {words} words.'
       },
       stack: ['Kotlin', 'Jetpack Compose', 'Room', 'ML Kit Digital Ink', 'Gradle'],
-      links: [['Download the APK', GH + 'HiraKataQuest-releases/releases/latest'], ['Source on GitHub', GH + 'HiraKataQuest']]
+      links: [['Download the APK', GH + 'HiraKataQuest/releases/latest/download/HiraKataQuest.apk'], ['Source on GitHub', GH + 'HiraKataQuest']]
     },
     tile: {
       slug: 'one-more-tile', repo: 'one-more-tile', log: { from: 'changelog', file: 'RELEASE-NOTES.md', level: 2 },
@@ -166,15 +206,58 @@
       title: 'One More Tile',
       img: 'tile', board: true,
       lede: 'A cross-stitch puzzle inspired by the game Proverbs. Solving it uncovers a hidden pixel-art painting, one region at a time.',
-      features: [
-        ['Three puzzle types on one canvas.', 'Fill-a-pix clues cover the board, with sudoku patches (4×4 up to 9×9) and picross patches whose solution is part of the painting.'],
-        ['Every region you finish reveals the art.', 'A content-aware watershed grows the regions along the picture\'s own edges, so a finished region shows a recognizable piece of the painting, not a random blob.'],
-        ['Never a guess.', 'Five difficulty tiers, and a verifier script checks that every tier of every painting solves by logic alone.'],
-        ['Co-op for up to four.', 'Split-screen on one screen, or online with a room code.'],
-        ['Hints near where you\'re working.', 'Press H and it points at a forced move close to your cursor and explains why it\'s forced.'],
-        ['{paintings|Word} paintings, saved as you go.', 'Each painting autosaves separately, with a timer that remembers your time, undo, pan and zoom, and full gamepad support.'],
-        ['No build step, no install.', 'The game and its puzzle generator live in one HTML file, next to the precomputed boards. Open it and play.']
+      featuresIntro: 'Four things I wanted from a puzzle like this, and how the game does each.',
+      chapters: [
+        {
+          title: 'A picture worth solving for',
+          story: 'In most logic puzzles the reward is a filled grid. I wanted something to look at when I was done, so here the solution is a painting, and you uncover it one region at a time.',
+          points: [
+            ['Three puzzle types on one canvas.', 'Fill-a-pix clues cover the board, with sudoku patches (4×4 up to 9×9) and picross patches whose solution is part of the painting.'],
+            ['Every region you finish reveals the art.', 'A content-aware watershed grows the regions along the picture\'s own edges, so a finished region shows a recognizable piece of the painting, not a random blob.'],
+            ['{paintings|Word} paintings, saved as you go.', 'Each painting autosaves separately, with a timer that remembers your time. On character maps, finishing a region makes its character speak.'],
+            ['Weave it again.', 'Finished a canvas? New weave builds a completely new puzzle over the same painting, with its own save.']
+          ]
+        },
+        {
+          title: 'Never a guess',
+          story: 'Nothing kills a logic puzzle like a spot where you have to guess. So every board at every difficulty is checked to solve by logic alone, and the game never hands you answers to get there.',
+          points: [
+            ['Five difficulty tiers.', 'The easier three need only neighbour counting. Hard and Very Hard add comparing overlapping clues, with a short tutorial the first time.'],
+            ['Nothing is pre-filled.', 'An audit rebuilds every painting at every tier and checks that each region solves from its clues alone, with zero tiles given.'],
+            ['Hints near where you\'re working.', 'Press H and it points at a forced move close to your cursor and explains why it\'s forced.'],
+            ['No game over.', 'Mistakes are forgiven, and Undo takes back whole drag strokes.']
+          ]
+        },
+        {
+          title: 'Better with friends',
+          story: 'Puzzles like this are usually a solo thing. I wanted to solve one on the couch with friends, and sometimes to race them.',
+          points: [
+            ['Co-op for up to four.', 'Split-screen on one screen, or online with a room code.'],
+            ['Versus.', 'On one screen everyone races on the same canvas, and each region goes to whoever stitched most of it. Online, everyone solves their own copy and sees rivals\' progress, never their answers.'],
+            ['Share a canvas.', 'Export your progress as a code or a file, and a friend\'s game replays it.']
+          ]
+        },
+        {
+          title: 'Made for long sessions',
+          story: 'A big canvas takes hours, so the small things matter.',
+          points: [
+            ['Mouse, touch or gamepad.', 'Full gamepad support with remappable buttons, pinch-zoom on touch, and pan and zoom everywhere.'],
+            ['Your colours, your music.', 'Recolour the whole interface, adjust the music and set a default difficulty.'],
+            ['Loads instantly.', 'Every canvas ships already generated, so the only wait is a short animation of the puzzle being built.'],
+            ['No install.', 'The game and its puzzle generator live in one HTML file, next to the precomputed boards.']
+          ]
+        }
       ],
+      start: {
+        intro: 'One More Tile runs in any modern browser, on a computer or a phone. There is nothing to install and no account.',
+        steps: [
+          ['Open the game.', 'Go to `tile.thebarbellengineer.com`, or use Play it on this page.'],
+          ['Pick a mode and a painting.', 'Single Player, Co-op or Versus, then any canvas from the grid. Continue on the home menu takes you back later.'],
+          ['Stitch.', 'Left-click or tap a tile to stitch it light, right-click to mark it dark, and drag to paint several. In a sudoku patch, click a cell and type a digit.'],
+          ['Stuck?', 'Press `H` for a hint near your cursor.'],
+          ['Play offline.', 'Download the repository and open `index.html`. Keep the `boards` folder next to it so canvases load instantly.']
+        ]
+      },
       story: {
         context: 'I started it on 13 June 2026 as a single HTML file. It still has no build step and no install: the game and its generator live in index.html, next to the precomputed boards. {versions} versions shipped between {firstVersion|month} and {lastVersion|month}.',
         decisions: [
@@ -195,12 +278,48 @@
       title: 'Chess 2.0',
       img: 'chess', mob: true,
       lede: 'Chess with an RPG layer. The king watches and never changes. Everything else can grow.',
-      features: [
-        ['Pieces evolve.', 'A pawn with 2 points becomes a knight or bishop, those become a rook at 6, a rook becomes a queen at 10, and a queen with 20 turns into an Amazon that also moves like a knight.'],
-        ['Captures earn points.', '1 for a pawn, 3 for a knight or bishop, 5 for a rook, 10 for a queen.'],
-        ['Play a friend or the computer.', 'Online against a friend, or against an AI at several difficulties, with an optional clock.'],
-        ['Gambling mode.', 'Any capture can become a 50/50 roll that doubles the points or destroys your piece.']
+      featuresIntro: 'Three ideas on top of ordinary chess.',
+      chapters: [
+        {
+          title: 'Pieces that grow',
+          story: 'In ordinary chess, a pawn that wins three trades is still a pawn. I borrowed one idea from role-playing games: the pieces doing the work should get stronger. The king watches and never changes.',
+          points: [
+            ['Captures earn points.', '1 for a pawn, 3 for a knight or bishop, 5 for a rook, 10 for a queen, for the piece that made the capture. You can change the values before a game.'],
+            ['Pieces evolve.', 'A pawn with 2 points becomes a knight or bishop, those become a rook at 6, a rook becomes a queen at 10, and a queen with 20 turns into an Amazon that also moves like a knight.'],
+            ['Gambling mode.', 'Any capture can become a 50/50 roll that doubles the points or destroys your piece. Turn it on from move 1, or only once a clock runs low.']
+          ]
+        },
+        {
+          title: 'Play anyone',
+          story: 'I wanted to play friends who weren\'t in the room, without an account or a game server of my own.',
+          points: [
+            ['On one screen.', 'Two players take turns on the same device.'],
+            ['Against the computer.', 'An AI at Easy, Medium or Hard.'],
+            ['Online with a room code.', 'One player hosts and shares a code, the other joins. The connection is peer to peer, a dropped game can be resumed, and Rematch starts the next one.'],
+            ['Fair online play.', 'Each side sends only its move, checks it against its own legal moves and compares a position hash after every move, so neither player can fake the board.']
+          ]
+        },
+        {
+          title: 'Set it up your way',
+          story: 'Half the fun of a variant is changing the rules, so most of them are settings.',
+          points: [
+            ['Clocks.', 'From bullet (1+0) to classical (30+20), with increment.'],
+            ['Any starting position.', 'The standard one, a random Chess960 position, or your own from the board editor.'],
+            ['Three looks.', 'Classic, Arcade and Swiss.'],
+            ['Undo, resign and a move log.', 'The log records every evolution and gamble.']
+          ]
+        }
       ],
+      start: {
+        intro: 'Chess 2.0 runs in the browser, on a computer or a phone. There is nothing to install.',
+        steps: [
+          ['Open the game.', 'Go to `chess.thebarbellengineer.com`, or use Play it on this page.'],
+          ['Pick a mode.', '2 Players, vs AI, or Play Online.'],
+          ['Set it up.', 'Optionally open Board Setup for Chess960 or a custom position, Clock for a time control, and switch evolution and gambling on or off.'],
+          ['Play.', 'Click a piece, then its square. A piece with enough points evolves, and a pawn asks which piece it should become.'],
+          ['Play a friend online.', 'One of you clicks Host a Game and sends the room code; the other clicks Join a Game and enters it.']
+        ]
+      },
       story: {
         context: 'It started on 13 June 2026 as chess with an RPG layer, in one HTML file. Online play came in August, and so did the work that made it safe.',
         decisions: [
@@ -215,7 +334,7 @@
       links: [['Play it', 'https://chess.thebarbellengineer.com/'], ['Source on GitHub', GH + 'chess2.0']]
     },
     ironlog: {
-      slug: 'ironlog', repo: 'testing-out-my-lifting-app', log: { from: 'commits' },
+      slug: 'ironlog', repo: 'lifting-app', log: { from: 'commits' },
       facts: {
         lifts: { count: /id: "def-/, in: /^src\/data\/exercises\.ts$/ },
         foods: { count: /id: "df-/, in: /^src\/data\/foods\.ts$/ }
@@ -224,14 +343,64 @@
       title: 'Ironlog',
       img: 'ironlog',
       lede: 'The powerlifting tracker I use for my own training. No account, and nothing leaves your browser.',
-      features: [
-        ['Log a session set by set.', 'RPE or percentage intensity, per-set gear, readiness meters and session timing, from a {lifts}-lift exercise library.'],
-        ['Know which plates go on the bar.', 'The plate loader draws the barbell and solves the plates per side, with bar and collar options. The plate icon on any logged set sends that weight straight to it.'],
-        ['Track food against your targets.', 'Calories and macros against daily targets from a {foods}-food pantry plus your own foods, with water and bodyweight.'],
-        ['Training and food on one calendar.', 'The month view can overlay each day\'s calories, macros and bodyweight on top of the training grid.'],
-        ['Switch kg and lb freely.', 'Weights are stored in kilograms and converted for display, so changing units never rewrites your history.'],
-        ['Your old data comes along.', 'On first load it offers to import data from the older single-file version, and it never deletes the original.']
+      featuresIntro: 'What I need from a training app, in the order I use it.',
+      chapters: [
+        {
+          title: 'Log the session at the rack',
+          story: 'Between heavy sets I have about a minute and chalky hands. Logging has to be quick, and it has to capture how the session felt, not only the numbers.',
+          points: [
+            ['Set by set.', 'Weight and reps with RPE or a percentage of your max, per-set gear and notes, from a {lifts}-lift exercise library plus your own.'],
+            ['How you came in.', 'Readiness meters for sleep, motivation, hydration, calories, protein and stimulants.'],
+            ['Session timing.', 'Start and end times are tracked for you, or you enter the duration by hand.']
+          ]
+        },
+        {
+          title: 'Know which plates go on the bar',
+          story: 'Working out the plates for an odd weight after a hard set is how you load the bar wrong.',
+          points: [
+            ['The loader draws the bar.', 'It solves the plates per side, with bar and collar options and kg micro plates.'],
+            ['One tap from the log.', 'The plate icon on any logged set sends that weight straight to the loader.'],
+            ['Real plates in either unit.', 'In lb mode the bar is 45 lb and the plates are 45s, 35s and 25s, not converted kilos.']
+          ]
+        },
+        {
+          title: 'Food on the same calendar',
+          story: 'A bad week of training often starts with a bad week of eating. So food lives in the same app, on the same calendar as the lifting.',
+          points: [
+            ['Track food against your targets.', 'Calories and macros against daily targets from a {foods}-food pantry plus your own foods, with water and bodyweight.'],
+            ['Scan a label.', 'Photograph a package and the app finds the nutrition table and reads it on your phone. A barcode, when there is one, is looked up on Open Food Facts first.'],
+            ['Training and food on one calendar.', 'The month view can overlay each day\'s calories, macros and bodyweight on the training grid.']
+          ]
+        },
+        {
+          title: 'See the trend',
+          story: 'A log is only worth keeping if it tells you something back.',
+          points: [
+            ['Progress per lift.', 'Estimated one-rep max and top set over time, and your recent records.'],
+            ['Volume and consistency.', 'Weekly volume, weekly sets per muscle group, your week streak, and bodyweight against volume.'],
+            ['Food trends.', 'Average calories, protein and water, macro composition and bodyweight over time.']
+          ]
+        },
+        {
+          title: 'Your data stays yours',
+          story: 'There is no account and no server, so keeping the data safe is entirely the app\'s job.',
+          points: [
+            ['Switch kg and lb freely.', 'Weights are stored in kilograms and converted for display, so changing units never rewrites your history.'],
+            ['Your old data comes along.', 'On first load it offers to import data from the older single-file version, and it never deletes the original.'],
+            ['It tells you when saving fails.', 'If the browser refuses to store data, in private mode or with full storage, a banner says so instead of failing silently.']
+          ]
+        }
       ],
+      start: {
+        intro: 'Ironlog runs in the browser, on a phone or a computer, with no account and nothing to install. Your data stays in that browser.',
+        steps: [
+          ['Open the app.', 'Go to `ironlog.thebarbellengineer.com`. On a phone, add it to your home screen.'],
+          ['Set your maxes.', 'Enter your squat, bench and deadlift one-rep maxes, so percentage-based sets work out their weights.'],
+          ['Log a session.', 'Under Workout, Today, pick an exercise and log your sets.'],
+          ['Load the bar.', 'Tap the plate icon on a set to see it on the bar in Plates.'],
+          ['Track food.', 'Set daily targets under Food, Goals, log what you eat, and turn on + Food in the workout calendar to see both together.']
+        ]
+      },
       story: {
         context: 'It began on 11 June 2026 as a single 424 KB HTML file holding a minified React bundle. In August I rebuilt it as a Vite, React and TypeScript project, one tab at a time, with the old build kept as the reference for how everything should behave.',
         decisions: [
@@ -240,11 +409,11 @@
           ['Parity you can check.', 'Every class in the original stylesheet was diffed against the new code. 17 are unused, and all 17 were already dead in the original.'],
           ['Say so when saving fails.', 'If the browser refuses to store data, in private mode or with full storage, a banner says so instead of failing silently.']
         ],
-        testing: 'Unit tests cover the plate solver and the food maths, and every build runs the TypeScript typecheck first.',
+        testing: 'Unit tests cover the plate solver, the food maths, the statistics behind every chart, reading a nutrition label and the import from the old build. Every build runs the TypeScript typecheck first.',
         status: 'In use for my own training. The workout, plates and food tabs are all rebuilt.'
       },
       stack: ['React', 'TypeScript', 'Vite', 'localStorage'],
-      links: [['Open the app', 'https://ironlog.thebarbellengineer.com/'], ['Source on GitHub', GH + 'testing-out-my-lifting-app']]
+      links: [['Open the app', 'https://ironlog.thebarbellengineer.com/'], ['Source on GitHub', GH + 'lifting-app']]
     },
     vinted: {
       slug: 'vinted-country-flags', repo: 'vinted-country-flags', log: { from: 'releases' },
@@ -253,15 +422,46 @@
       title: 'Vinted Country Flags',
       img: 'vinted',
       lede: 'Vinted shows you items from sellers all over Europe and never says where they are. This extension does.',
-      features: [
-        ['A flag on the listings you browse.', 'The seller\'s country flag sits in the corner of each item on the homepage, in search results and on seller pages.'],
-        ['Reads what the page already knows.', 'Seller ids come from the page\'s own data and from the requests Vinted makes anyway. On a vinted.ro search that named 96 of 96 sellers in 8 ms, with no extra requests.'],
-        ['Works on every Vinted domain.', 'No per-country code. It found every card on vinted.pl, .de, .co.uk and .ro without a change.'],
-        ['Cards near the screen go first.', 'Where a seller lives costs one profile lookup, once. Cards in and near the viewport are looked up first, and the popup shows how many are still coming.'],
-        ['Learns new markets by itself.', 'It builds the currency-to-country table from Vinted\'s own countries endpoint and caches it for a week.'],
-        ['One cache across countries.', 'Sellers are cached for 30 days in the service worker, so a seller found on vinted.fr is already known on vinted.de.'],
-        ['Polite to Vinted.', 'It stays under the measured rate limit, shares one budget across every tab and backs off whenever Vinted says to.']
+      featuresIntro: 'Three things the extension had to get right.',
+      chapters: [
+        {
+          title: 'The answer on the picture',
+          story: 'Where a seller lives decides the shipping cost and how long a parcel takes, and Vinted never says. Finding out meant opening every seller\'s profile, which kills browsing.',
+          points: [
+            ['A flag on the listings you browse.', 'The seller\'s country flag sits in the corner of each item on the homepage, in search results, on seller pages and on the item page.'],
+            ['Works on every Vinted domain.', 'All {markets} markets, with no per-country code. It found every card on vinted.pl, .de, .co.uk and .ro without a change.'],
+            ['Cards near the screen go first.', 'Cards in and near the viewport are looked up first, and the popup shows how many are still coming.']
+          ]
+        },
+        {
+          title: 'Fast because it reads, not asks',
+          story: 'The page already knows who sold each item. It just doesn\'t show you, and reading that costs nothing.',
+          points: [
+            ['Reads what the page already knows.', 'Seller ids come from the page\'s own data and from the requests Vinted makes anyway. On a vinted.ro search that named 96 of 96 sellers in 8 ms, with no extra requests.'],
+            ['One lookup per seller, then remembered.', 'Where a seller lives costs one profile lookup. Sellers are cached for 30 days in one place, so a seller found on vinted.fr is already known on vinted.de.'],
+            ['Learns new markets by itself.', 'It builds the market table from Vinted\'s own countries endpoint and caches it for a week.']
+          ]
+        },
+        {
+          title: 'A good guest',
+          story: 'An extension that hammers Vinted\'s API gets you rate-limited, and takes Vinted\'s own page down with it. So it behaves like a careful visitor.',
+          points: [
+            ['Under the measured limit.', 'It allows 20 lookups at once and 0.8 a second after that, shared by every tab, and stops whenever Vinted says to slow down.'],
+            ['No flag beats a wrong flag.', 'A card whose seller nothing named gets no flag rather than a guess.'],
+            ['Nothing leaves your browser.', 'It reads Vinted\'s API with your own session and sends nothing anywhere else.']
+          ]
+        }
       ],
+      start: {
+        intro: 'It isn\'t on the Chrome Web Store, so it installs as an unpacked extension. That takes about a minute.',
+        steps: [
+          ['Download it.', 'Get the zip from the latest release on GitHub, with Download the latest release on this page.'],
+          ['Unpack it somewhere you\'ll keep it.', 'Chrome loads the extension from that folder on every start, so don\'t delete it afterwards.'],
+          ['Turn on Developer mode.', 'Go to `chrome://extensions` and switch on Developer mode, top right.'],
+          ['Load it.', 'Click Load unpacked and pick the folder that holds `manifest.json`.'],
+          ['Browse Vinted.', 'Open any Vinted market. Flags fill in as you scroll, and the toolbar popup shows what it\'s doing.']
+        ]
+      },
       story: {
         context: 'Vinted shows listings from all over Europe and never says where the seller is. The extension reads that from data the page already has, and asks Vinted only when it has to.',
         decisions: [
@@ -286,15 +486,46 @@
       title: 'Common Expense Tracker',
       img: 'expense', mob: true,
       lede: 'Split shared monthly costs between any number of people and see who owes whom, with no account.',
-      features: [
-        ['Who owes whom, settled.', 'Add each month\'s shared costs and it works out the transfers that square everyone up.'],
-        ['Share one tracker live.', 'Two people can edit the same tracker from different devices. A change on a phone shows up on the other laptop in well under a second.'],
-        ['The server can\'t read your data.', 'Every record is encrypted in the browser with a 256-bit key, wrapped by a key derived from your password (PBKDF2-SHA256, 600,000 iterations). The server never sees either.'],
-        ['Hand someone one file.', 'The whole app builds into a single {htmlSize|kb} HTML file. Save it anywhere and double-click it, no install.'],
-        ['Money that adds up.', 'Amounts are stored as whole cents, never floats. Splitting 10,00 three ways gives 3,34 / 3,33 / 3,33, and "42,50" and "240.924,00" both parse correctly.'],
-        ['Your data, portable.', 'Export any set of months as JSON or CSV.'],
-        ['Tested hard.', '{tests} unit tests, a two-client protocol smoke test, and a UI test that drives two headless Chrome profiles as two devices.']
+      featuresIntro: 'Three problems with splitting bills, and what the app does about each.',
+      chapters: [
+        {
+          title: 'Settle up without arguing',
+          story: 'Shared bills usually end in a spreadsheet nobody trusts. If the maths is right once, nobody has to check it again.',
+          points: [
+            ['Who owes whom, settled.', 'Add each month\'s shared costs and it works out the transfers that square everyone up.'],
+            ['The month in one picture.', 'A balance bar shows who paid what, the fair-share line, and exactly the money that has to change hands.'],
+            ['Money that adds up.', 'Amounts are stored as whole cents, never floats. Splitting 10,00 three ways gives 3,34 / 3,33 / 3,33, and "42,50" and "240.924,00" both parse correctly.']
+          ]
+        },
+        {
+          title: 'Share it without giving it away',
+          story: 'Two people need the same tracker on their phones. But a server holding a household\'s spending is a server that can leak it, so this one can\'t read what it stores.',
+          points: [
+            ['Share one tracker live.', 'Send a link and a password. A change on a phone shows up on the other laptop in well under a second, and edits made offline sync when the connection returns.'],
+            ['The server can\'t read your data.', 'Every record is encrypted in the browser with a 256-bit key, wrapped by a key derived from your password (PBKDF2-SHA256, 600,000 iterations). The server never sees either.'],
+            ['Invite only.', 'Making a shared tracker takes an invite code. No code? Ask for one from the Share dialog with just a name and a line about who you are.']
+          ]
+        },
+        {
+          title: 'Your data, portable',
+          story: 'An app for money should never be the only place your numbers live.',
+          points: [
+            ['Export any months.', 'As JSON for an exact copy, or CSV for a spreadsheet.'],
+            ['Imports that ask first.', 'An import replaces only the months the file names, and lists exactly what it will replace before it does.'],
+            ['Hand someone one file.', 'The whole app builds into a single {htmlSize|kb} HTML file. Save it anywhere and double-click it, no install.']
+          ]
+        }
       ],
+      start: {
+        intro: 'It runs in the browser with no account. Everything except sharing works straight away.',
+        steps: [
+          ['Open the app.', 'Go to `expenses.thebarbellengineer.com`.'],
+          ['Add the people.', 'Open People in the header and add everyone who shares the costs.'],
+          ['Add expenses.', 'Amount, who paid, the date and a description.'],
+          ['Settle up.', 'At the end of the month, open the bottom line for the balances and the payments that square everyone up.'],
+          ['Share it.', 'Click Share, make a tracker and send the link and password to the other person. Keep the recovery key it shows you: a forgotten password can\'t be recovered by anyone.']
+        ]
+      },
       story: {
         context: 'I built it on 30 August 2026 from a written PRD with numbered acceptance scenarios, in one long day: the local-only version first, then export and the single-file build, then end-to-end encrypted sharing. It went live on its own domain on 26 September.',
         decisions: [
@@ -310,20 +541,60 @@
       links: [['Open the app', 'https://expenses.thebarbellengineer.com/'], ['Source on GitHub', GH + 'common-expense-tracker']]
     },
     dashboard: {
-      slug: 'automation-test-platform', repo: 'thrive-test-dashboard', log: { from: 'changelog', file: 'CHANGELOG.md', level: 2 },
+      slug: 'automation-test-platform', repo: 'test-dashboard', log: { from: 'changelog', file: 'CHANGELOG.md', level: 2 },
       tag: 'QA platform',
       title: 'Automation Test Platform',
       img: 'dashboard', replay: true,
       lede: 'The QA tooling I always wanted. It runs end-to-end suites, shows every test live and keeps the history, without ever modifying the suites.',
-      features: [
-        ['Three frameworks, one live view.', 'Playwright, Cypress and Selenium suites run from the same dashboard. Each target gets a live card with a progress bar, pass/fail/skip counts and failures as they happen.'],
-        ['Any suite against any site.', 'A suite says how to run, a site says where. Pick any registered site from a dropdown on the suite\'s row.'],
-        ['Test a pull request in one step.', 'Paste a GitHub PR link and it builds that plugin or theme, installs it on a local WordPress site and lets you run any suite against it.'],
-        ['Runs in parallel.', 'The same suite against two sites, or two frameworks against one site, run at once. Cancel stops the whole process tree.'],
-        ['Scheduled runs and full history.', 'Cron schedules fire while the dashboard runs, and every run is kept, filterable by site and framework, with links to its reports.'],
-        ['Shareable reports.', 'HTML and PDF reports for any run.'],
-        ['Behind a login.', 'The dashboard, API, reports and live streams all need a session, with roles for who can do what.']
+      featuresIntro: 'Four things I wanted from one test dashboard, in the order I reach for them.',
+      chapters: [
+        {
+          title: 'Any suite, against any site',
+          story: 'Every framework came with its own runner, and pointing a suite at a different site meant editing its config. Here the suite and the site are chosen separately.',
+          points: [
+            ['Suites times sites.', 'A suite says how to run, a site says where. Every suite gets the site\'s URL and admin credentials as environment variables, so any suite can run against any registered site.'],
+            ['Three frameworks, one view.', 'Playwright, Cypress and Selenium suites run from the same dashboard, with the same live view and history.'],
+            ['Runs in parallel.', 'The same suite against two sites, or two frameworks against one site, run at once. Cancel stops the whole process tree.']
+          ]
+        },
+        {
+          title: 'Watch it live, keep the history',
+          story: 'Terminal output scrolls away, and last week\'s failures go with it.',
+          points: [
+            ['A live card per target.', 'A progress bar, pass, fail and skip counts, the test running now, and failures as they happen.'],
+            ['Every run kept.', 'Filterable by site and framework, with links to each run\'s reports and artifacts.'],
+            ['Reports you can share.', 'A combined report for any run, printable to PDF, next to each framework\'s own HTML report.'],
+            ['Scheduled runs.', 'Cron schedules fire while the dashboard runs, and a calendar shows runs by day.']
+          ]
+        },
+        {
+          title: 'Test a pull request in one step',
+          story: 'Testing a WordPress plugin pull request used to mean checking out the branch, building it and installing it on a local site by hand, before a single test ran.',
+          points: [
+            ['Paste the link.', 'Paste a GitHub PR link and it builds that plugin or theme and installs it on a local WordPress site.'],
+            ['Then run anything.', 'Any suite runs against the freshly installed build from the same screen.']
+          ]
+        },
+        {
+          title: 'Safe to leave running',
+          story: 'It holds admin credentials for every site it can test, so it is locked down by default.',
+          points: [
+            ['Behind a login.', 'The dashboard, API, reports and live streams all need a session, with admin, tester and viewer roles.'],
+            ['Encrypted site passwords.', 'Stored with AES-256-GCM and handed to a test only through its environment, never on a command line.'],
+            ['Localhost by default.', 'It binds to 127.0.0.1 unless you choose otherwise, and the README covers what to set before exposing it.']
+          ]
+        }
       ],
+      start: {
+        intro: 'It runs on your own machine with Node.js 18 or newer. Your suites stay where they are and are never modified.',
+        steps: [
+          ['Get the code.', '`git clone https://github.com/MolnarMario/test-dashboard`, then `npm install` in the new folder.'],
+          ['Point it at your suites.', 'Copy `sites.config.example.json` to `sites.config.json` and list each suite\'s folder and framework.'],
+          ['Start it.', 'Run `npm start` and open `http://localhost:4400`. Copy the admin password from the boot banner; it is shown only once.'],
+          ['Add a site.', 'In the Sites tab, add each site with its URL and admin credentials.'],
+          ['Run something.', 'In Run, tick a suite or a few specs, pick the site and click Run selected. Watch it on Live.']
+        ]
+      },
       story: {
         context: 'I write Playwright suites for a living, and every framework came with its own runner, reports and history. On my own time I built the one dashboard I wanted: run Playwright, Cypress and Selenium suites against any site, without changing the suites.',
         decisions: [
@@ -334,7 +605,7 @@
         status: 'Runs on your own machine, behind a login with roles. The source is public.'
       },
       stack: ['Node.js', 'Express', 'Playwright', 'Cypress', 'Selenium'],
-      links: [['Source on GitHub', GH + 'thrive-test-dashboard']]
+      links: [['Source on GitHub', GH + 'test-dashboard']]
     },
     video: {
       slug: 'video-production-tracker', repo: 'video-production', log: { from: 'commits' },
@@ -342,13 +613,52 @@
       title: 'Video Production Tracker',
       img: 'video', mob: true,
       lede: 'I make videos, so I built the tracker I wanted. Each project is a script split into sections.',
-      features: [
-        ['Know what\'s filmed and what made the edit.', 'Every script section has its own filmed and edited checkboxes, so nothing gets forgotten between shoot and cut.'],
-        ['Progress at a glance.', 'Progress bars for filming, editing and publishing, per project and overall.'],
-        ['Track where it went live.', 'Publishing status per platform: YouTube, LinkedIn, Facebook, Instagram and TikTok.'],
-        ['Write the script in place.', 'Quick-add templates for hooks, intros, main points, B-roll and calls to action, with a rich-text editor per section.'],
-        ['Safe local storage.', 'Everything saves to the browser with a versioned schema. JSON backup and restore checks the file before touching your data.']
+      featuresIntro: 'How a video actually gets made, one stage at a time.',
+      chapters: [
+        {
+          title: 'Write the script in sections',
+          story: 'Every video I make has a hook, an intro, a few main points and a call to action, and each part has a life of its own after the script is written.',
+          points: [
+            ['Quick-add templates.', 'Sections for a hook, an intro, main points, B-roll and a call to action, or your own.'],
+            ['A rich-text editor per section.', 'Bold, italics and lists, with sections you can rename and reorder as the script changes.']
+          ]
+        },
+        {
+          title: 'Know what\'s filmed and what made the edit',
+          story: 'Sections get filmed on different days and cut in later, and a to-do list loses track of which one is still missing from the edit.',
+          points: [
+            ['Two checkboxes per section.', 'Filmed, and inserted into the edit, so nothing gets forgotten between the shoot and the cut.'],
+            ['Progress at a glance.', 'Bars for filming, editing and publishing, per project, and an overall figure that doesn\'t let a long script drown out its publishing.']
+          ]
+        },
+        {
+          title: 'Track where it went live',
+          story: 'A finished video goes out to five platforms, not one, and they rarely all happen on the same day.',
+          points: [
+            ['Publishing per platform.', 'YouTube, LinkedIn, Facebook, Instagram and TikTok, each marked draft or published.'],
+            ['Projects that end properly.', 'Mark a project completed, or scrap it. Scrapped projects are archived, not deleted, and can be restored.']
+          ]
+        },
+        {
+          title: 'Safe in your browser',
+          story: 'There is no account and no server, so everything stays on your device, and the backup has to be trustworthy.',
+          points: [
+            ['Saved as you type.', 'Everything is stored in the browser with a versioned schema.'],
+            ['Backups checked before they touch your data.', 'An imported file is validated and repaired, and you see how many projects it holds before choosing to merge or replace.'],
+            ['Light and dark.', 'Plus a font picker that previews each option.']
+          ]
+        }
       ],
+      start: {
+        intro: 'It runs in the browser with no account and nothing to install. Your projects stay in that browser.',
+        steps: [
+          ['Open the app.', 'Go to `video.thebarbellengineer.com`.'],
+          ['Start a project.', 'Click New Project and give the video a title.'],
+          ['Write the script.', 'Add sections with the quick-add templates and write each one.'],
+          ['Tick as you go.', 'Mark each section filmed and inserted, then each platform as published.'],
+          ['Back it up.', 'Use Backup / Restore in the header now and then. Clearing site data or switching browsers starts empty until you restore.']
+        ]
+      },
       story: {
         context: 'It was planned up front: the data model, how progress is worked out across the production stages, how storage and backups behave, and a phased roadmap, all written down in a plan that went in with the first commit on 23 August 2026.',
         decisions: [
