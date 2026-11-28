@@ -4,39 +4,39 @@
  "url": "https://github.com/MolnarMario/ai-hive",
  "branch": "main",
  "created": "2026-07-05",
- "pushed": "2026-11-20",
- "commits": 999,
+ "pushed": "2026-11-28",
+ "commits": 1004,
  "firstCommit": "2026-07-05",
  "lastCommit": {
-  "sha": "8785eb8",
-  "date": "2026-11-20",
-  "subject": "Merge pull request #123 from MolnarMario/docs/2026-11-20-readme-drop-image"
+  "sha": "574ab55",
+  "date": "2026-11-28",
+  "subject": "Merge pull request #124 from MolnarMario/rules/2026-11-28-review-gpt-6.2-sol"
  },
  "recent": [
+  {
+   "sha": "219e1c4",
+   "date": "2026-11-28",
+   "subject": "README: 5009 checks"
+  },
+  {
+   "sha": "2e72355",
+   "date": "2026-11-28",
+   "subject": "Give the integrator the exact Sol review command and keep it over a checklist's model"
+  },
+  {
+   "sha": "e96fc68",
+   "date": "2026-11-28",
+   "subject": "Pin review_model and high effort in every review gate"
+  },
+  {
+   "sha": "8018bcd",
+   "date": "2026-11-28",
+   "subject": "Review with GPT-6.2-Sol at high effort instead of GPT-6-Luna"
+  },
   {
    "sha": "80573cf",
    "date": "2026-11-20",
    "subject": "docs: drop the README's second logo and its caption"
-  },
-  {
-   "sha": "675e33e",
-   "date": "2026-11-20",
-   "subject": "docs: README install commands for the Antigravity (Gemini) and Grok CLIs"
-  },
-  {
-   "sha": "c8db059",
-   "date": "2026-11-20",
-   "subject": "docs: rewrite README for new users: features, requirements, install, agent install prompt"
-  },
-  {
-   "sha": "4ffaa68",
-   "date": "2026-11-20",
-   "subject": "docs: README count 5008"
-  },
-  {
-   "sha": "d026d3c",
-   "date": "2026-11-20",
-   "subject": "fix: /code-review findings on the link and Win+V lanes"
   }
  ],
  "weeks": [
@@ -142,12 +142,12 @@
   ],
   [
    "2026-11-23",
-   0
+   5
   ]
  ],
  "facts": {
-  "pyLines": 98688,
-  "checks": 5008,
+  "pyLines": 98714,
+  "checks": 5009,
   "workers": 6
  },
  "log": {
@@ -157,6 +157,13 @@
    "url": "https://github.com/MolnarMario/ai-hive/blob/main/CHANGELOG.md"
   },
   "entries": [
+   {
+    "version": "0.60.7",
+    "date": "2026-11-28",
+    "dated": "git",
+    "title": null,
+    "html": "<ul>\n<li>Code reviews now use GPT-6.2-Sol at high effort instead of GPT-6-Luna.\nLane agents get it before they mark work Task done, and the integrator\ngets it on every pull request before it merges.</li>\n</ul>"
+   },
    {
     "version": "0.60.6",
     "date": "2026-11-20",
